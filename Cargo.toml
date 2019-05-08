@@ -1,0 +1,13 @@
+[package]
+name = "avr-device"
+version = "0.1.0"
+authors = ["Rahix <rahix@rahix.de>"]
+edition = "2018"
+
+[features]
+attiny85 = []
+atmega32u4 = []
+
+[dependencies]
+bare-metal = "0.2.4"
+vcell = "0.1.0"
