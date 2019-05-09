@@ -7,7 +7,9 @@ mod devices;
 pub mod interrupt;
 
 cfg_if::cfg_if! {
-    if #[cfg(feature = "atmega32u4")] {
+    if #[cfg(feature = "atmega328p")] {
+        pub use crate::devices::atmega328p::*;
+    } else if #[cfg(feature = "atmega32u4")] {
         pub use crate::devices::atmega32u4::*;
     } else if #[cfg(feature = "attiny85")] {
         pub use crate::devices::attiny85::*;
