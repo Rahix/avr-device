@@ -5,6 +5,7 @@ authors = ["Rahix <rahix@rahix.de>"]
 edition = "2018"
 
 [features]
+atmega8 = []
 atmega328p = []
 atmega32u4 = []
 attiny85 = []

@@ -32,6 +32,7 @@ features = ["atmega32u4"]
 ```
 
 Via the feature you can select which chip you want the register specifications for.  The following list is what is currently supported:
+* `atmega8`
 * `atmega328p`
 * `atmega32u4`
 * `attiny85`
