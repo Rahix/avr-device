@@ -1,0 +1,22 @@
+TWI:
+  _modify:
+    TWCR:
+      access: read-write
+  TWCR:
+    _modify:
+      TWWC:
+        access: read-only
+  TWAMR:
+    _modify:
+      TWAM:
+        description: "TWI (Slave) Address Mask Bits"
+  TWSR:
+    _modify:
+      TWS:
+        access: read-only
+    TWPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_4: [1, "Prescaler Value 4"]
+        PRESCALER_16: [2, "Prescaler Value 16"]
+        PRESCALER_64: [3, "Prescaler Value 64"]

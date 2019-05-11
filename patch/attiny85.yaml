@@ -1,2 +1,11 @@
 _include:
-    - "common/ac.yaml"
+  - "common/ac.yaml"
+
+USI:
+  USICR:
+    USIWM:
+      _replace_enum:
+        DISABLED: [0, "All detectors disabled. Port pins operates as normal."]
+        THREE_WIRE: [1, "Three-wire mode. Uses DO, DI, and USCK pins."]
+        TWO_WIRE_SLAVE: [2, "Two-wire mode (Slave). Uses SDA (DI) and SCL (USCK) pins."]
+        TWO_WIRE_MASTER: [3, "Two-wire mode (Master). Uses SDA and SCL pins."]
