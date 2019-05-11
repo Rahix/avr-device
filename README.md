@@ -43,6 +43,17 @@ Via the feature you can select which chip you want the register specifications f
 ### Adding a new Chip
 To add a new chip, download the *atdf* from <http://packs.download.atmel.com/> and place it in `vendor/`.  Be sure to name it like the Rust module that should be generated.  Next, you need to integrate it into the base crate and build system.  Follow what was done in [this commit](https://github.com/Rahix/avr-device/commit/8b1679a89704f5a303a1578b261aa2aee53e1251).  Please adhere to the alphabetical sorting that is present so far.
 
+If patches need to be applied, create a `<chipname>.yaml` in `patch/`. The patching format is compatible to the [YAML patching format of stm32](https://github.com/stm32-rs/stm32-rs/#device-and-peripheral-yaml-format), except that you do not need to provide the path to the svd file (`_svd: ...`) since it is generated in the build process. Additionally, the following patching was added:
+```yaml
+PERIPHERIAL:
+    REGISTER:
+        FIELD:
+            # Replaces the enumeratedValues definition for this field.
+            # If it does not exist yet, it is created.
+            _replace_enum:
+                NAME: [VALUE, DESCRIPTION]
+```
+
 ## License
 *avr-device* is licensed under either of
 

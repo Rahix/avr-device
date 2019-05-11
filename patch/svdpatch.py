@@ -6,6 +6,9 @@ Licensed under the MIT and Apache 2.0 licenses. See LICENSE files for details.
 
 This script was adapted from stm32-rs (https://github.com/stm32-rs/stm32-rs/blob/master/scripts/svdpatch.py).
 To be integrated into the build system, support for an input / output svd argument is added.
+
+Additional changes:
+    - Support for _replace_enum to overwrite existing <enumeratedValues>
 """
 
 import copy
@@ -595,6 +598,11 @@ def process_register_split(rtag, fspec):
 
 def process_field_enum(pname, rtag, fspec, field, usage="read-write"):
     """Add an enumeratedValues given by field to all fspec in rtag."""
+    replace_if_exists = False
+    if "_replace_enum" in field:
+        field = field["_replace_enum"]
+        replace_if_exists = True
+
     derived = None
     for ftag in iter_fields(rtag, fspec):
         name = ftag.find('name').text
@@ -603,12 +611,16 @@ def process_field_enum(pname, rtag, fspec, field, usage="read-write"):
             enum_name = enum.find('name').text
             enum_usage = enum.find('usage').text
             for ev in ftag.iter('enumeratedValues'):
-                ev_usage = ev.find('usage').text
+                ev_usage_tag = ev.find('usage')
+                ev_usage = ev_usage_tag.text if ev_usage_tag is not None else 'read-write'
                 if ev_usage == enum_usage or ev_usage == "read-write":
-                    print(pname, fspec, field)
-                    raise SvdPatchError(
-                        "{}: field {} already has enumeratedValues for {}"
-                        .format(pname, name, ev_usage))
+                    if replace_if_exists:
+                        ftag.remove(ev)
+                    else:
+                        print(pname, fspec, field)
+                        raise SvdPatchError(
+                            "{}: field {} already has enumeratedValues for {}. Use '_replace_enum' to overwrite."
+                            .format(pname, name, ev_usage))
             ftag.append(enum)
             derived = make_derived_enumerated_values(enum_name)
         else:
