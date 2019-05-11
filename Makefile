@@ -9,9 +9,13 @@ svd/%.bare.svd: vendor/%.atdf
 	mkdir -p svd
 	atdf2svd $< $@
 
-# TODO: Implement actual patching
 svd/%.patched.svd: svd/%.bare.svd
-	cp $< $@
+	if [ -f patch/$*.yaml ] ; then \
+		python3 patch/svdpatch.py patch/$*.yaml $< $@; \
+	else \
+		echo "No patches found for $*"; \
+		cp $< $@; \
+	fi
 
 src/devices/%/mod.full.rs: svd/%.patched.svd
 	mkdir -p $(@D)

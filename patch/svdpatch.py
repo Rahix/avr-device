@@ -3,6 +3,9 @@ svdpatch.py
 
 Copyright 2017-2019 Adam Greig.
 Licensed under the MIT and Apache 2.0 licenses. See LICENSE files for details.
+
+This script was adapted from stm32-rs (https://github.com/stm32-rs/stm32-rs/blob/master/scripts/svdpatch.py).
+To be integrated into the build system, support for an input / output svd argument is added.
 """
 
 import copy
@@ -35,6 +38,8 @@ def parseargs():
     """Parse our command line arguments, returns a Namespace of results."""
     parser = argparse.ArgumentParser()
     parser.add_argument("yaml", help="Path to YAML file to load")
+    parser.add_argument("svd_in", help="Path to the input SVD file")
+    parser.add_argument("svd_out", help="Path to write the patched SVD file")
     args = parser.parse_args()
     return args
 
@@ -774,10 +779,10 @@ def main():
         root["_path"] = args.yaml
 
     # Load the specified SVD file
-    if "_svd" not in root:
-        raise RuntimeError("You must have an svd key in the root YAML file")
-    svdpath = abspath(args.yaml, root["_svd"])
-    svdpath_out = svdpath + ".patched"
+    svdpath = args.svd_in
+    if not os.path.exists(svdpath):
+        raise FileNotFoundError("The input SVD file does not exist")
+    svdpath_out = args.svd_out
     svd = ET.parse(svdpath)
 
     # Load all included YAML files
