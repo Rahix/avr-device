@@ -1,6 +1,6 @@
 all: chips
 
-CHIPS := atmega328p atmega32u4 attiny85
+CHIPS := atmega8 atmega328p atmega32u4 attiny85
 
 .PHONY: chips
 chips: $(foreach chip, $(CHIPS), src/devices/$(chip)/mod.rs)
