@@ -5,10 +5,13 @@ CHIPS := atmega8 atmega328p atmega32u4 attiny85
 PATCHES := $(foreach chip, $(CHIPS), $(wildcard patch/$(chip).yaml))
 DEPS := $(foreach patch, $(PATCHES), $(patsubst patch/%.yaml, .deps/%.d, $(patch)))
 
-.PHONY: chips deps
-chips: $(foreach chip, $(CHIPS), src/devices/$(chip)/mod.rs)
+.PHONY: chips deps $(CHIPS)
+chips: $(CHIPS)
 deps: $(DEPS)
 
+$(foreach chip, $(CHIPS), $(eval $(chip): src/devices/$(chip)/mod.rs))
+
+.SECONDARY:
 svd/%.bare.svd: vendor/%.atdf
 	@mkdir -p svd
 	@echo -e "\tATDF2SVD\t$*"

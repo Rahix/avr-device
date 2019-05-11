@@ -20,7 +20,7 @@ git clone https://github.com/Rahix/avr-device
 cd avr-device
 make
 # You can build for just one specific chip using
-make src/devices/<chip>/mod.rs
+# make atmega32u4
 # I suggest building documentation as well
 cargo +nightly doc --features <chip> --open
 ```
