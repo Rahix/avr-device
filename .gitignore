@@ -3,4 +3,6 @@
 Cargo.lock
 
 svd/
+.deps/
 src/devices/*/*
+__pycache__/
