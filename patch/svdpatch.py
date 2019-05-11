@@ -9,6 +9,7 @@ To be integrated into the build system, support for an input / output svd argume
 
 Additional changes:
     - Support for _replace_enum to overwrite existing <enumeratedValues>
+    - Fix field modifications not being able to add new elements
 """
 
 import copy
@@ -221,7 +222,10 @@ def process_register_modify(rtag, fspec, fmod):
     for ftag in iter_fields(rtag, fspec):
         for (key, value) in fmod.items():
             try:
-                ftag.find(key).text = str(value)
+                tag = ftag.find(key)
+                if tag is None:
+                    tag = ET.SubElement(ftag, key)
+                tag.text = str(value)
             except AttributeError:
                 raise SvdPatchError('invalid attribute {!r} for '
                                     'register {}, field {}'
