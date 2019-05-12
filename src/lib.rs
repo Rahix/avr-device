@@ -20,7 +20,12 @@ cfg_if::cfg_if! {
     }
 }
 
-#[cfg(any(feature = "attiny85", feature = "atmega32u4"))]
+#[cfg(any(
+    feature = "atmega8",
+    feature = "atmega328p",
+    feature = "atmega32u4",
+    feature = "attiny85",
+))]
 impl Peripherals {
     /// Returns all the peripherals *once*
     #[inline]
