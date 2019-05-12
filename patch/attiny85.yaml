@@ -1,5 +1,6 @@
 _include:
   - "common/ac.yaml"
+  - "common/wdt.yaml"
 
 USI:
   USICR:
