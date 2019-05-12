@@ -2,6 +2,7 @@ _include:
   - "common/ac.yaml"
   - "common/pll.yaml"
   - "common/twi.yaml"
+  - "common/wdt.yaml"
 
 USART1:
   _modify:

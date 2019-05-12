@@ -1,0 +1,23 @@
+WDT:
+  _modify:
+    WDTCSR:
+      access: read-write
+  WDTCSR:
+    _delete:
+      - WDP
+    _add:
+      WDPL:
+        description: "Watchdog Timer Prescaler - Low Bits"
+        bitRange: "[2:0]"
+      WDPH:
+        description: "Watchdog Timer Prescaler - High Bit"
+        bitRange: "[5:5]"
+    WDPL:
+      CYCLES_2K:     [0, "- 2048 cycles, ~16ms - 512K (524288) cycles, ~4s if WDPH is set"]
+      CYCLES_4K:     [1, "- 4096 cycles, ~32ms - 1024K (1048576) cycles, ~8s if WDPH is set"]
+      CYCLES_8K:     [2, "- 8192 cycles, ~64ms"]
+      CYCLES_16K:    [3, "- 16K (16384) cycles, ~0.125s"]
+      CYCLES_32K:    [4, "- 32K (32768) cycles, ~0.25s"]
+      CYCLES_64K:    [5, "- 64K (65536) cycles, ~0.5s"]
+      CYCLES_128K:   [6, "- 128K (131072) cycles, ~1s"]
+      CYCLES_256K:   [7, "- 256K (262144) cycles, ~2s"]
