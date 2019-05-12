@@ -1,8 +1,13 @@
 AC:
+  _modify:
+    ACSR:
+      access: read-write
   ACSR:
     _modify:
       ACIS:
         description: "Analog Comparator Interrupt Mode Select"
+      ACO:
+        access: read-only
     ACIS:
       _replace_enum:
         ON_TOGGLE: [0, "Interrupt on Toggle"]
