@@ -41,9 +41,9 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@mv $(@D)/lib.rs $@
 	@rustfmt $@
 	@# Remove the `extern crate` lines
-	@sed -i "1,7d" $@
+	@sed -i'' -e "1,7d" $@
 	@# Make DEVICE_PERIPHERALS visible crate-wide
-	@sed -i 's/\(static mut DEVICE_PERIPHERALS\)/pub(crate) \0/' $@
+	@sed -i'' -e 's/\(static mut DEVICE_PERIPHERALS\)/pub(crate) \1/' $@
 
 clean:
 	@echo -e "\tCLEAN\t\t./svd/"
