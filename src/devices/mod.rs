@@ -1,5 +1,7 @@
 cfg_if::cfg_if! {
-    if #[cfg(feature = "atmega8")] {
+    if #[cfg(feature = "atmega1280")] {
+        pub mod atmega1280;
+    } else if #[cfg(feature = "atmega8")] {
         pub mod atmega8;
     } else if #[cfg(feature = "atmega328p")] {
         pub mod atmega328p;
