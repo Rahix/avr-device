@@ -23,6 +23,7 @@ cfg_if::cfg_if! {
 }
 
 #[cfg(any(
+    feature = "atmega1280",
     feature = "atmega8",
     feature = "atmega328p",
     feature = "atmega32u4",
