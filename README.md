@@ -49,6 +49,20 @@ If patches need to be applied, create a `<chipname>.yaml` in `patch/`. The patch
 ```yaml
 PERIPHERIAL:
     REGISTER:
+        _modify:
+          FIELD:
+            # If a field already contains a write-constraint, you can
+            # change it using the _write_constraint modifier.  The
+            # following values are allowed:
+
+            # "enum": Only allow enumerated values (<useEnumeratedValues>)
+            _write_constraint: "enum"
+
+            # Remove any existing writeConstraint tag
+            _write_constraint: "none"
+
+            # Constrain to a range of values (<range>)
+            _write_constraint: [min, max]
         FIELD:
             # Replaces the enumeratedValues definition for this field.
             # If it does not exist yet, it is created.
