@@ -10,6 +10,7 @@ To be integrated into the build system, support for an input / output svd argume
 Additional changes:
     - Support for _replace_enum to overwrite existing <enumeratedValues>
     - Fix field modifications not being able to add new elements
+    - Add _write_constraint modifier for changing the <writeConstraint>
 """
 
 import copy
@@ -221,16 +222,34 @@ def process_register_modify(rtag, fspec, fmod):
     """Modify fspec inside rtag according to fmod."""
     for ftag in iter_fields(rtag, fspec):
         for (key, value) in fmod.items():
-            try:
-                tag = ftag.find(key)
-                if tag is None:
-                    tag = ET.SubElement(ftag, key)
+            if key == "_write_constraint":
+                key = "writeConstraint"
+
+            tag = ftag.find(key)
+            if tag is None:
+                tag = ET.SubElement(ftag, key)
+
+            if key == "writeConstraint":
+                # Remove existing constraint contents
+                for child in list(tag):
+                    tag.remove(child)
+                if value == "none":
+                    # Completely remove the existing writeConstraint
+                    ftag.remove(tag)
+                elif value == "enum":
+                    # Only allow enumerated values
+                    enum_tag = ET.SubElement(tag, "useEnumeratedValues")
+                    enum_tag.text = "true"
+                elif isinstance(value, list):
+                    # Allow a certain range
+                    range_tag = make_write_constraint(value).find("range")
+                    tag.append(range_tag)
+                else:
+                    raise SvdPatchError('Unknown writeConstraint type {}'
+                                        .format(repr(value)))
+            else:
+                # For all other tags, just set the value
                 tag.text = str(value)
-            except AttributeError:
-                raise SvdPatchError('invalid attribute {!r} for '
-                                    'register {}, field {}'
-                                    .format(key, rtag.find('name').text,
-                                            ftag.find('name').text))
 
 
 def process_device_add(device, pname, padd):
