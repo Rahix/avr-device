@@ -1,3 +1,9 @@
+# Patches for the Two-Wire-Interface peripheral (i2c)
+#
+# - Make the Control Register read-write with only the
+#   "Write Collision Flag" being read-only
+# - Fix the "Slave Address Mask" description
+# - Fix the Prescaler enumerated values
 TWI:
   _modify:
     TWCR:

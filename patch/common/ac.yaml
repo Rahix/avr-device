@@ -1,3 +1,9 @@
+# Patches for the Analog Comparator
+#
+# - Make the control-register actually writable
+# - Fix the description of the "Interrupt Mode Select" field
+# - Make just the Output field of ACSR read-only
+# - Fix the "Interrupt Mode Select" enumerated values
 AC:
   _modify:
     ACSR:

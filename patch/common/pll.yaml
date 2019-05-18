@@ -1,3 +1,9 @@
+# Patches for the PLL Clock Generator
+#
+# - Make the Lock Detector field read-only
+# - Add descriptions for "Input Multiplexer" and "USB Postscaler"
+# - Remove and re-add the "Lock Frequency" and Postscaler fields
+#   to fix <https://github.com/Rahix/atdf2svd/issues/1>.
 PLL:
   PLLCSR:
     _modify:
@@ -11,13 +17,13 @@ PLL:
       PINMUX:
         description: "PLL Input Multiplexer"
       PLLUSB:
-        description: "PLL Postcaler for USB Peripheral"
+        description: "PLL Postscaler for USB Peripheral"
     _add:
       PDIV:
         description: "PLL Lock Frequency"
         bitRange: "[3:0]"
       PLLTM:
-        description: "PLL Postcaler for High Speed Timer"
+        description: "PLL Postscaler for High Speed Timer"
         bitRange: "[5:4]"
     PDIV:
       MHZ40: [0b0011, "40 MHz"]

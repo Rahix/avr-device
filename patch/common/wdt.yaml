@@ -1,3 +1,12 @@
+# Patches for the Watchdog Timer
+#
+# The control register has a different name between ATmega and
+# ATtiny (WDTCSR vs WDTCR).
+#
+# - Make the control register read-write
+# - Remove the overlapping WDP (Prescaler) field and replace
+#   it with two separate fields.
+# - TODO: See if svd2rust would support some kind of mask?
 WDT:
   _modify:
     WDTCSR,WDTCR:
