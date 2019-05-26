@@ -1,6 +1,7 @@
 _include:
   - "common/ac.yaml"
   - "common/wdt.yaml"
+  - "common/timer/tc0.yaml"
 
 USI:
   USICR:

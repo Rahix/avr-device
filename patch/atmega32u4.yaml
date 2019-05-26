@@ -3,6 +3,7 @@ _include:
   - "common/pll.yaml"
   - "common/twi.yaml"
   - "common/wdt.yaml"
+  - "common/timer/tc0.yaml"
 
 USART1:
   _modify:
