@@ -11,7 +11,7 @@ avr-device: Running `make` resulted in a failure.
         - atdf2svd
         - svd2rust
         - form
-        - rustfmt (for the toolchain you are using!)
+        - rustfmt (for the nightly toolchain!)
         - PyYAML
 
     For more info, look at README file:

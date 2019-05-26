@@ -39,7 +39,7 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@RUST_LOG=WARN form -i $< -o $(@D) >/dev/null
 	@rm $<
 	@mv $(@D)/lib.rs $@
-	@rustfmt $@
+	@RUSTUP_TOOLCHAIN=nightly rustfmt $@
 	@# Remove the `extern crate` lines
 	@sed -i'' -e "1,7d" $@
 	@# Make DEVICE_PERIPHERALS visible crate-wide
