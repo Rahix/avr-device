@@ -1,0 +1,44 @@
+USART1:
+  _modify:
+    UCSR1A:
+      access: read-write
+  UCSR1A:
+    _modify:
+      UPE1:
+        access: read-only
+      DOR1:
+        access: read-only
+      FE1:
+        access: read-only
+      UDRE1:
+        access: read-only
+      RXC1:
+        access: read-only
+  UCSR1B:
+    _modify:
+      RXB81:
+        access: read-only
+  UCSR1C:
+    UMSEL1:
+      _replace_enum:
+        USART_ASYNC: [0, "Asynchronous USART"]
+        USART_SYNC:  [1, "Synchronous USART"]
+        SPI_MASTER:  [3, "Master SPI (MSPIM)"]
+    UPM1:
+      _replace_enum:
+        DISABLED:    [0, "Disabled"]
+        PARITY_EVEN: [2, "Enabled, Even Parity"]
+        PARITY_ODD:  [3, "Enabled, Odd Parity"]
+    USBS1:
+      _replace_enum:
+        STOP1: [0, "1-bit"]
+        STOP2: [1, "2-bit"]
+    UCSZ1:
+      CHR5: [0, "Character Size: 5 bit"]
+      CHR6: [1, "Character Size: 6 bit"]
+      CHR7: [2, "Character Size: 7 bit"]
+      CHR8: [3, "Character Size: 8 bit"]
+    UCPOL1:
+      _replace_enum:
+        RISING_EDGE:  [0, "Transmit on Rising XCKn Edge, Receive on Falling XCKn Edge"]
+        FALLING_EDGE: [1, "Transmit on Falling XCKn Edge, Receive on Rising XCKn Edge"]
