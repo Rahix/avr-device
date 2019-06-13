@@ -1,2 +1,5 @@
 _include:
   - "common/usart.yaml"
+  - "common/twi.yaml"
+  - "common/ac.yaml"
+  - "common/wdt.yaml"
