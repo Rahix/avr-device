@@ -1,3 +1,6 @@
 _include:
-  - "common/wdt.yaml"
   - "common/ac.yaml"
+  - "common/timer/tc0.yaml"
+  - "common/twi.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
