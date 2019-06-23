@@ -2,8 +2,10 @@ TC0:
   TCCR0A:
     _modify:
       COM0A:
+        description: "Compare Output A Mode"
         _write_constraint: enum
       COM0B:
+        description: "Compare Output B Mode"
         _write_constraint: enum
       WGM0:
         _write_constraint: enum
