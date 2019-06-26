@@ -1,4 +1,4 @@
-avr-device
+avr-device [![Build Status](https://travis-ci.org/Rahix/avr-device.svg?branch=master)](https://travis-ci.org/Rahix/avr-device)
 ==========
 Auto-generated wrappers around registers for avr chips.
 
