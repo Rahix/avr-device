@@ -15,4 +15,3 @@ attiny85 = []
 [dependencies]
 bare-metal = "0.2.4"
 vcell = "0.1.0"
-cfg-if = "0.1.7"

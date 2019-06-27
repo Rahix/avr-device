@@ -1,6 +1,6 @@
-//! Interrupts
+//! Chip-Generic Interrupt Utilities
 //!
-//! For the most part, [interrupt::free] is what you want:
+//! For the most part, [crate::interrupt::free] is what you want:
 //!
 //! ```
 //! atmega32u4::interrupt::free(|cs| {
@@ -25,7 +25,7 @@ pub fn disable() {
 ///
 /// # Safety
 ///
-/// - Do not call this function inside an `interrupt::free` critical section
+/// - Do not call this function inside an [crate::interrupt::free] critical section
 pub fn enable() {
     unsafe {
         asm!(
