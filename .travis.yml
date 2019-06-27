@@ -20,6 +20,10 @@ env:
     - CHIP=atmega328p
     - CHIP=atmega32u4
     - CHIP=attiny85
+    # Check building two together
+    - CHIP=atmega32u4,attiny85
+    # Check building all at once
+    - CHIP=atmega1280,atmega8,atmega328p,atmega32u4,attiny85
 
 install:
   - rustup component add rustfmt
