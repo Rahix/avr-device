@@ -18,6 +18,9 @@
 
 pub mod interrupt;
 
+#[cfg(feature = "rt")]
+pub use avr_device_macros::interrupt;
+
 #[allow(non_camel_case_types, unused_attributes, unreachable_patterns)]
 mod devices;
 
