@@ -5,9 +5,10 @@ CHIPS := atmega1280 atmega8 atmega328p atmega32u4 attiny85
 PATCHES := $(foreach chip, $(CHIPS), $(wildcard patch/$(chip).yaml))
 DEPS := $(foreach patch, $(PATCHES), $(patsubst patch/%.yaml, .deps/%.d, $(patch)))
 
-.PHONY: chips deps $(CHIPS)
+.PHONY: chips deps $(CHIPS) vector
 chips: $(CHIPS)
 deps: $(DEPS)
+vector: macros/src/vector.rs
 
 $(foreach chip, $(CHIPS), $(eval $(chip): src/devices/$(chip)/mod.rs))
 
@@ -42,8 +43,15 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@RUSTUP_TOOLCHAIN=nightly rustfmt $@
 	@# Remove the `extern crate` lines
 	@sed -i'' -e "1,7d" $@
-	@# Make DEVICE_PERIPHERALS visible crate-wide
-	@sed -i'' -e 's/\(static mut DEVICE_PERIPHERALS\)/pub(crate) \1/' $@
+	@# Remove DEVICE_PERIPHERALS declaration and replace it with a reference
+	@# to the global version
+	@sed -i'' -e '/^\#\[allow(renamed_and_removed_lints)\]/,+3cuse crate::devices::DEVICE_PERIPHERALS;' $@
+	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
+	@./gen-intr-lut.sh src/devices/*/interrupt.rs >macros/src/vector.rs
+
+macros/src/vector.rs: src/devices/*/interrupt.rs
+	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
+	@./gen-intr-lut.sh $^ >$@
 
 clean:
 	@echo -e "\tCLEAN\t\t./svd/"
@@ -52,6 +60,8 @@ clean:
 	@rm -rf src/devices/at*
 	@echo -e "\tCLEAN\t\t./.deps/"
 	@rm -rf .deps/
+	@echo -e "\tCLEAN\t\t./macros/src/vector.rs"
+	@rm -rf macros/src/vector.rs
 
 # Patch dependencies
 .deps/%.d: patch/%.yaml
