@@ -5,7 +5,7 @@ Auto-generated wrappers around registers for avr chips.
 ## Usage
 You need to have [atdf2svd](https://github.com/Rahix/atdf2svd), [svd2rust](https://github.com/rust-embedded/svd2rust), [form](https://github.com/djmcgill/form), [rustfmt](https://github.com/rust-lang/rustfmt)(for the *nightly* toolchain) and [PyYAML](https://github.com/yaml/pyyaml) installed:
 ```bash
-rustup component add rustfmt
+rustup component add --toolchain nightly rustfmt
 cargo install form
 cargo install svd2rust
 git clone https://github.com/Rahix/atdf2svd
