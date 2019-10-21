@@ -32,8 +32,9 @@ svd/%.patched.svd: svd/%.bare.svd patch/svdpatch.py
 src/devices/%/mod.full.rs: svd/%.patched.svd
 	@mkdir -p $(@D)
 	@echo -e "\tSVD2RUST\t$*"
-	@cd $(@D); svd2rust --target none -i $(realpath $<)
+	@cd $(@D); svd2rust --generic_mod --target none -i $(realpath $<)
 	@mv $(@D)/lib.rs $@
+	@mv $(@D)/generic.rs $(@D)/../../generic.rs
 
 src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@echo -e "\tFORM\t\t$*"
@@ -45,7 +46,7 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@sed -i'' -e "1,7d" $@
 	@# Remove DEVICE_PERIPHERALS declaration and replace it with a reference
 	@# to the global version
-	@sed -i'' -e '/^\#\[allow(renamed_and_removed_lints)\]/,+3cuse crate::devices::DEVICE_PERIPHERALS;' $@
+	@sed -i'' -e '/^\#\[no_mangle\]/,+1cuse crate::devices::DEVICE_PERIPHERALS;' $@
 	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
 	@./gen-intr-lut.sh src/devices/*/interrupt.rs >macros/src/vector.rs
 

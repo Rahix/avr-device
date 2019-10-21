@@ -18,6 +18,11 @@
 
 pub mod interrupt;
 
+#[allow(unused_imports)]
+use generic::*;
+#[doc = r"Common register and bit access and modify traits"]
+pub mod generic;
+
 #[cfg(feature = "rt")]
 pub use avr_device_macros::interrupt;
 
