@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Generate a lookup table function for interrupts of all supported chips
 set -e
 
