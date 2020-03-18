@@ -46,7 +46,7 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@sed -i'' -e "1,7d" $@
 	@# Remove DEVICE_PERIPHERALS declaration and replace it with a reference
 	@# to the global version
-	@sed -i'' -e '/^\#\[no_mangle\]/,+1cuse crate::devices::DEVICE_PERIPHERALS;' $@
+	@patch --no-backup-if-mismatch --quiet $@ patch/modrs.patch
 	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
 	@./gen-intr-lut.sh src/devices/*/interrupt.rs >macros/src/vector.rs
 
