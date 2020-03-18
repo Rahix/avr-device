@@ -8,9 +8,7 @@ You need to have [atdf2svd](https://github.com/Rahix/atdf2svd), [svd2rust](https
 rustup component add --toolchain nightly rustfmt
 cargo install form
 cargo install svd2rust
-git clone https://github.com/Rahix/atdf2svd
-cd atdf2svd
-cargo install --path .
+cargo install atdf2svd
 pip3 install --user pyyaml
 ```
 
