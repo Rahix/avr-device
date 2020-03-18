@@ -29,8 +29,7 @@ install:
   - rustup component add rustfmt
   - cargo install form || true
   - cargo install svd2rust || true
-  - test -f atdf2svd/Cargo.toml || git clone https://github.com/Rahix/atdf2svd
-  - (cd atdf2svd/ && cargo install --path . || true)
+  - cargo install atdf2svd || true
   - python3 -c "__import__('yaml')" || pip3 install --user pyyaml
 
 script:
