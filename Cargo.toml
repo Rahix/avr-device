@@ -14,8 +14,8 @@ attiny85 = []
 rt = ["avr-device-macros"]
 
 [dependencies]
-bare-metal = "0.2.4"
-vcell = "0.1.0"
+bare-metal = "0.2.5"
+vcell = "0.1.2"
 
 [dependencies.avr-device-macros]
 path = "macros/"
