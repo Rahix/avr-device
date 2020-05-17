@@ -10,8 +10,8 @@ for intr_path in "$@"; do
     chip="$(basename "$(dirname "$intr_path")")"
     echo "        \"$chip\" => match intr {"
 
-    sed '/Interrupt::.\+ =>/!d
-s/ \+Interrupt::\(.\+\) => \(.\+\),/            "\1" => Some(\2),/' "$intr_path"
+    sed '/=> Ok(Interrupt::.\+),$/!d
+    s/ \+\(.\+\) => Ok(Interrupt::\(.\+\)),$/            "\2" => Some(\1),/' "$intr_path"
 
     echo "            _ => None,"
     echo "        },"
