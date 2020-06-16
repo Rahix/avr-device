@@ -1,6 +1,6 @@
 all: deps chips
 
-CHIPS := atmega1280 atmega8 atmega328p atmega32u4 attiny85
+CHIPS := atmega1280 atmega8 atmega328p atmega32u4 atmega64 attiny85
 
 PATCHES := $(foreach chip, $(CHIPS), $(wildcard patch/$(chip).yaml))
 DEPS := $(foreach patch, $(PATCHES), $(patsubst patch/%.yaml, .deps/%.d, $(patch)))

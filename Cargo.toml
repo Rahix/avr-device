@@ -10,6 +10,7 @@ atmega1280 = []
 atmega8 = []
 atmega328p = []
 atmega32u4 = []
+atmega64 = []
 attiny85 = []
 rt = ["avr-device-macros"]
 
