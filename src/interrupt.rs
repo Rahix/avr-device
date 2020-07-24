@@ -14,7 +14,7 @@ pub use bare_metal::{CriticalSection, Mutex, Nr};
 /// Disables all interrupts
 pub fn disable() {
     unsafe {
-        asm!(
+        llvm_asm!(
             "cli" :::: "volatile"
         );
     }
@@ -28,7 +28,7 @@ pub fn disable() {
 /// - Do not call this function inside an [crate::interrupt::free] critical section
 pub fn enable() {
     unsafe {
-        asm!(
+        llvm_asm!(
             "sei" :::: "volatile"
         );
     }
@@ -45,7 +45,7 @@ where
 
     // Store current state
     unsafe {
-        asm!(
+        llvm_asm!(
             "in $0,0x35"
             : "=r"(sreg)
             :

@@ -16,7 +16,7 @@
 //! * `atmega64`
 //! * `attiny85`
 #![no_std]
-#![feature(asm)]
+#![feature(llvm_asm)]
 
 pub mod interrupt;
 
