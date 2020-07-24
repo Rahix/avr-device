@@ -1,0 +1,7 @@
+# Patches for the Analog Digital Converter
+#
+# - Make the control-register actually writable
+ADC:
+  _modify:
+    ADCSRA:
+      access: read-write
