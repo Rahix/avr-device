@@ -2,6 +2,8 @@ all: deps chips
 
 CHIPS := atmega1280 atmega8 atmega328p atmega32u4 atmega64 attiny85
 
+RUSTUP_TOOLCHAIN ?= nightly
+
 PATCHES := $(foreach chip, $(CHIPS), $(wildcard patch/$(chip).yaml))
 DEPS := $(foreach patch, $(PATCHES), $(patsubst patch/%.yaml, .deps/%.d, $(patch)))
 
@@ -41,7 +43,7 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@RUST_LOG=WARN form -i $< -o $(@D) >/dev/null
 	@rm $<
 	@mv $(@D)/lib.rs $@
-	@RUSTUP_TOOLCHAIN=nightly rustfmt $@
+	@RUSTUP_TOOLCHAIN=$(RUSTUP_TOOLCHAIN) rustfmt $@
 	@# Remove the `extern crate` lines
 	@sed -i'' -e "1,7d" $@
 	@# Remove DEVICE_PERIPHERALS declaration and replace it with a reference
