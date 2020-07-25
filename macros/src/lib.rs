@@ -1,3 +1,5 @@
+// Adapted from https://github.com/rust-embedded/cortex-m-rt/blob/master/macros/src/lib.rs
+
 extern crate proc_macro;
 
 mod vector;
@@ -5,11 +7,73 @@ mod vector;
 use syn::spanned::Spanned;
 
 #[proc_macro_attribute]
+pub fn entry(
+    args: proc_macro::TokenStream,
+    input: proc_macro::TokenStream,
+) -> proc_macro::TokenStream {
+    let f = syn::parse_macro_input!(input as syn::ItemFn);
+
+    // check the function signature
+    let valid_signature = f.sig.constness.is_none()
+        && f.vis == syn::Visibility::Inherited
+        && f.sig.abi.is_none()
+        && f.sig.inputs.is_empty()
+        && f.sig.generics.params.is_empty()
+        && f.sig.generics.where_clause.is_none()
+        && f.sig.variadic.is_none()
+        && match f.sig.output {
+            syn::ReturnType::Default => false,
+            syn::ReturnType::Type(_, ref ty) => match **ty {
+                syn::Type::Never(_) => true,
+                _ => false,
+            },
+        };
+
+    if !valid_signature {
+        return syn::parse::Error::new(
+            f.span(),
+            "`#[entry]` function must have signature `[unsafe] fn() -> !`",
+        )
+        .to_compile_error()
+        .into();
+    }
+
+    if !args.is_empty() {
+        return syn::parse::Error::new(
+            proc_macro2::Span::call_site(),
+            "This attribute accepts no arguments",
+        )
+        .to_compile_error()
+        .into();
+    }
+
+    // Rename the function so it is not callable
+    let ident = syn::Ident::new(
+        &format!("_avr_device_rt_{}", f.sig.ident),
+        proc_macro2::Span::call_site(),
+    );
+
+    let attrs = f.attrs;
+    let block = f.block;
+    let stmts = block.stmts;
+    let unsafety = f.sig.unsafety;
+
+    quote::quote!(
+        #(#attrs)*
+        #[doc(hidden)]
+        #[export_name = "main"]
+        pub #unsafety extern "C" fn #ident() -> ! {
+            #(#stmts)*
+        }
+    )
+    .into()
+}
+
+#[proc_macro_attribute]
 pub fn interrupt(
     args: proc_macro::TokenStream,
     input: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
-    // Adapted from https://github.com/rust-embedded/cortex-m-rt/blob/master/macros/src/lib.rs
     let f = syn::parse_macro_input!(input as syn::ItemFn);
     let args: Vec<_> = args.into_iter().collect();
 
