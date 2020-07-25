@@ -8,9 +8,9 @@ edition = "2018"
 proc-macro = true
 
 [dependencies]
-quote = "0.6.12"
-proc-macro2 = "0.4.30"
+quote = "1.0.7"
+proc-macro2 = "1.0.19"
 
 [dependencies.syn]
-version = "0.15.39"
+version = "1.0.35"
 features = ["extra-traits", "full"]

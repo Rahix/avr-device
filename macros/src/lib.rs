@@ -10,16 +10,16 @@ pub fn interrupt(
     input: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
     // Adapted from https://github.com/rust-embedded/cortex-m-rt/blob/master/macros/src/lib.rs
-    let f: syn::ItemFn = syn::parse(input).expect("`#[interrupt]` must be applied to a function");
+    let f = syn::parse_macro_input!(input as syn::ItemFn);
     let args: Vec<_> = args.into_iter().collect();
 
     let fspan = f.span();
-    let ident = f.ident;
+    let ident = f.sig.ident;
     let ident_s = ident.to_string();
     let attrs = f.attrs;
     let block = f.block;
     let stmts = block.stmts;
-    let unsafety = f.unsafety;
+    let unsafety = f.sig.unsafety;
 
     let chip = if let Some(tree) = args.get(0) {
         if let proc_macro::TokenTree::Ident(ident) = tree {
@@ -41,14 +41,14 @@ pub fn interrupt(
         .into();
     };
 
-    let valid_signature = f.constness.is_none()
+    let valid_signature = f.sig.constness.is_none()
         && f.vis == syn::Visibility::Inherited
-        && f.abi.is_none()
-        && f.decl.inputs.is_empty()
-        && f.decl.generics.params.is_empty()
-        && f.decl.generics.where_clause.is_none()
-        && f.decl.variadic.is_none()
-        && match f.decl.output {
+        && f.sig.abi.is_none()
+        && f.sig.inputs.is_empty()
+        && f.sig.generics.params.is_empty()
+        && f.sig.generics.where_clause.is_none()
+        && f.sig.variadic.is_none()
+        && match f.sig.output {
             syn::ReturnType::Default => true,
             syn::ReturnType::Type(_, ref ty) => match **ty {
                 syn::Type::Tuple(ref tuple) => tuple.elems.is_empty(),
