@@ -1,4 +1,5 @@
 _include:
   - "common/ac.yaml"
+  - "common/adc.yaml"
   - "common/spi.yaml"
   - "common/usart.yaml"

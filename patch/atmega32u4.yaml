@@ -1,5 +1,6 @@
 _include:
   - "common/ac.yaml"
+  - "common/adc.yaml"
   - "common/pll.yaml"
   - "common/spi.yaml"
   - "common/timer/tc0.yaml"
