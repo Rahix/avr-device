@@ -5,3 +5,19 @@ ADC:
   _modify:
     ADCSRA:
       access: read-write
+  ADCSRA:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+  ADMUX:
+    REFS:
+      _replace_enum:
+        AREF: [0, "Aref Internal Vref turned off"]
+        AVCC: [1, "AVcc with external capacitor at AREF pin"]
+        INTERNAL: [3, "Internal 1.1V Voltage Reference with external capacitor at AREF pin"]
