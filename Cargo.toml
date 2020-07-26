@@ -33,3 +33,6 @@ vcell = "0.1.2"
 [dependencies.avr-device-macros]
 path = "macros/"
 optional = true
+
+[package.metadata.docs.rs]
+all-features = true
