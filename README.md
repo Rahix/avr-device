@@ -1,8 +1,26 @@
 avr-device [![Build Status](https://travis-ci.org/Rahix/avr-device.svg?branch=master)](https://travis-ci.org/Rahix/avr-device)
 ==========
-Auto-generated wrappers around registers for avr chips.
+Auto-generated wrappers around registers for AVR microcontrollers.
 
 ## Usage
+Add the following to `Cargo.toml`:
+```toml
+[dependencies.avr-device]
+version = "0.1.0"
+features = ["atmega32u4"]
+```
+
+Via the feature you can select which chip you want the register specifications for.  The following list is what is currently supported:
+* `atmega1280`
+* `atmega8`
+* `atmega328p`
+* `atmega32u4`
+* `atmega64`
+* `attiny85`
+
+## Build Instructions
+The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
+
 You need to have [atdf2svd](https://github.com/Rahix/atdf2svd), [svd2rust](https://github.com/rust-embedded/svd2rust), [form](https://github.com/djmcgill/form), [rustfmt](https://github.com/rust-lang/rustfmt)(for the *nightly* toolchain) and [PyYAML](https://github.com/yaml/pyyaml) installed:
 ```bash
 rustup component add --toolchain nightly rustfmt
@@ -22,21 +40,6 @@ make
 # I suggest building documentation as well
 cargo +nightly doc --features <chip> --open
 ```
-
-In your project add the following lines to `Cargo.toml`:
-```toml
-[dependencies.avr-device]
-path = "path/to/avr-device/"
-features = ["atmega32u4"]
-```
-
-Via the feature you can select which chip you want the register specifications for.  The following list is what is currently supported:
-* `atmega1280`
-* `atmega8`
-* `atmega328p`
-* `atmega32u4`
-* `atmega64`
-* `attiny85`
 
 ## Internals
 *avr-device* is generated using [`atdf2svd`](https://github.com/Rahix/atdf2svd) and [`svd2rust`](https://github.com/rust-embedded/svd2rust).  The vendor-provided *atdf* files can be found in `vendor/`.  The intermediate svd files are patched by `svdpatch.py` (Adapted from [`svdpatch.py`](https://github.com/stm32-rs/stm32-rs/blob/master/scripts/svdpatch.py) in [stm32-rs](https://github.com/stm32-rs/stm32-rs)) with device-dependent patches in `patch/`, mainly to improve undescriptive names and missing descriptions.
