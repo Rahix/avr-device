@@ -1,8 +1,12 @@
 [package]
 name = "avr-device-macros"
 version = "0.1.0"
+
 authors = ["Rahix <rahix@rahix.de>"]
 edition = "2018"
+description = "Attribute macros for re-export in `avr-device`"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Rahix/avr-device"
 
 [lib]
 proc-macro = true
