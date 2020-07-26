@@ -1,4 +1,4 @@
-avr-device [![Build Status](https://travis-ci.org/Rahix/avr-device.svg?branch=master)](https://travis-ci.org/Rahix/avr-device)
+avr-device [![crates.io page](http://meritbadge.herokuapp.com/avr-device)](https://crates.io/crates/avr-device) [![docs.rs](https://docs.rs/avr-device/badge.svg)](https://docs.rs/avr-device) [![Build Status](https://travis-ci.org/Rahix/avr-device.svg?branch=master)](https://travis-ci.org/Rahix/avr-device)
 ==========
 Auto-generated wrappers around registers for AVR microcontrollers.
 
