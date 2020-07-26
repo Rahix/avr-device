@@ -25,8 +25,37 @@ use generic::*;
 #[doc = r"Common register and bit access and modify traits"]
 pub mod generic;
 
+/// Attribute to declare an interrupt service routine
+///
+/// ```
+/// #[avr_device::interrupt(atmega32u4)]
+/// fn INT6() {
+///     // ...
+/// }
+/// ```
+///
+/// # Constraints
+/// - The name of the function must be the name of an interrupt.  Each chip's
+///   module has a `Interrupt` enum defining the available names.
+/// - The attribute needs the chip-name to correctly map the interrupt to its
+///   vector.  This is an unfortunate requirement of the current crate
+///   architecture and might change in the future.
+/// - The function must have a signature of `[unsafe] fn() [-> !]`.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::interrupt;
+
+/// Attribute to declare the entry point of the program
+///
+/// Exactly one entry point must be declared in the entire dependency tree.
+///
+/// ```
+/// #[avr_device::entry]
+/// fn main() -> ! {
+///     // ...
+/// }
+/// ```
+///
+/// The entry function must have a signature of `[unsafe] fn() -> !`.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::entry;
 
