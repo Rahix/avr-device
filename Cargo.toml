@@ -11,7 +11,11 @@ readme = "README.md"
 keywords = ["avr", "arduino"]
 categories = ["no-std", "embedded", "hardware-support"]
 
-build = "build.rs"
+include = [
+    "/src/**/*.rs",
+    "/LICENSE-*",
+    "/README.md",
+]
 
 [features]
 atmega1280 = []

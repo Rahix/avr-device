@@ -8,6 +8,10 @@ description = "Attribute macros for re-export in `avr-device`"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Rahix/avr-device"
 
+include = [
+    "src/*.rs"
+]
+
 [lib]
 proc-macro = true
 
