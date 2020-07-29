@@ -1,0 +1,32 @@
+TCCR?,GTCCR:
+  COM??:
+    _replace_enum:
+      DISCONNECTED:  [0, "Normal port operation, OCix disconnected"]
+      MATCH_TOGGLE:  [1, "Toggle OCix on Compare Match"]
+      MATCH_CLEAR:   [2, "Clear OCix on Compare Match"]
+      MATCH_SET:     [3, "Set OCix on Compare Match"]
+
+TCCR?:
+  CS?:
+    _replace_enum:
+      NO_CLOCK:       [0,  "No clock source (Timer/Counter stopped)"]
+      DIRECT:         [1,  "Running, No Prescaling"]
+      PRESCALE_2:     [2,  "Running, CLK/2"]
+      PRESCALE_4:     [3,  "Running, CLK/4"]
+      PRESCALE_8:     [4,  "Running, CLK/8"]
+      PRESCALE_16:    [5,  "Running, CLK/16"]
+      PRESCALE_32:    [6,  "Running, CLK/32"]
+      PRESCALE_64:    [7,  "Running, CLK/64"]
+      PRESCALE_128:   [8,  "Running, CLK/128"]
+      PRESCALE_256:   [9,  "Running, CLK/256"]
+      PRESCALE_512:   [10, "Running, CLK/512"]
+      PRESCALE_1024:  [11, "Running, CLK/1024"]
+      PRESCALE_2048:  [12, "Running, CLK/2048"]
+      PRESCALE_4096:  [13, "Running, CLK/4096"]
+      PRESCALE_8192:  [14, "Running, CLK/8192"]
+      PRESCALE_16384: [15, "Running, CLK/16384"]
+
+GTCCR:
+  _modify:
+    FOC??:
+      access: write-only

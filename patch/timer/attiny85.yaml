@@ -1,6 +1,16 @@
 # This intermediate file is needed because peripheral-level includes are not
 # supported in top-level files.
 
+_modify:
+  TC0:
+    description: "Timer/Counter0, 8-bit, PWM"
+  TC1:
+    description: "Timer/Counter1, 8-bit"
+
 TC0:
   _include:
     - "dev/8bit.yaml"
+
+TC1:
+  _include:
+    - "dev/8bit-tiny.yaml"
