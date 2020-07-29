@@ -1,0 +1,39 @@
+TCCR?A:
+  _modify:
+    COM?A:
+      description: "Compare Output A Mode"
+      _write_constraint: enum
+    COM?B:
+      description: "Compare Output B Mode"
+      _write_constraint: enum
+    WGM?:
+      _write_constraint: enum
+  COM??:
+    _replace_enum:
+      DISCONNECTED:  [0, "Normal port operation, OCix disconnected"]
+      MATCH_TOGGLE:  [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+      MATCH_CLEAR:   [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at TOP)"]
+      MATCH_SET:     [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at TOP)"]
+  WGM?:
+    _replace_enum:
+      NORMAL_TOP:    [0, "Normal, Top: `0xff`, Update: *Immediate*, Flag: *MAX*"]
+      PWM_PHASE:     [1, "Phase Correct PWM, Top: `0xff`, Update: *TOP*, Flag: *BOTTOM*"]
+      CTC:           [2, "CTC, Top: *OCRA*, Update: *Immediate*, Flag: *MAX*"]
+      PWM_FAST:      [3, "Fast PWM, Top: `0xff`, Update: *TOP*, Flag: *MAX*"]
+
+TCCR?B:
+  _modify:
+    WGM?2:
+      description: "Waveform Generation Mode High Bit (Enable Top: *OCRA* for `PWM` modes)"
+    FOC??:
+      access: write-only
+  CS?:
+    _replace_enum:
+      NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+      DIRECT:        [1, "Running, No Prescaling"]
+      PRESCALE_8:    [2, "Running, CLK/8"]
+      PRESCALE_32:   [3, "Running, CLK/32"]
+      PRESCALE_64:   [4, "Running, CLK/64"]
+      PRESCALE_128:  [5, "Running, CLK/128"]
+      PRESCALE_256:  [6, "Running, CLK/256"]
+      PRESCALE_1024: [7, "Running, CLK/1024"]
