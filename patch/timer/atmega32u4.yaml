@@ -8,3 +8,7 @@ TC0:
 TC1,TC3:
   _include:
     - "dev/16bit.yaml"
+
+TC4:
+  _include:
+    - "dev/10bit.yaml"
