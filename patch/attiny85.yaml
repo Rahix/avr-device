@@ -1,7 +1,8 @@
 _include:
   - "common/ac.yaml"
   - "common/wdt.yaml"
-  - "common/timer/tc0.yaml"
+
+  - "timer/attiny85.yaml"
 
 USI:
   USICR:
