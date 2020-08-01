@@ -135,3 +135,22 @@ impl attiny85::Peripherals {
         })
     }
 }
+
+/// [ATtiny88](https://www.microchip.com/wwwproducts/en/ATtiny88)
+#[cfg(feature = "attiny88")]
+pub mod attiny88;
+
+#[cfg(feature = "attiny88")]
+impl attiny88::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { attiny88::Peripherals::steal() })
+            }
+        })
+    }
+}

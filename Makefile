@@ -1,6 +1,6 @@
 all: deps chips
 
-CHIPS := atmega1280 atmega2560 atmega8 atmega328p atmega32u4 atmega64 attiny85
+CHIPS := atmega1280 atmega2560 atmega8 atmega328p atmega32u4 atmega64 attiny85 attiny88
 
 RUSTUP_TOOLCHAIN ?= nightly
 
