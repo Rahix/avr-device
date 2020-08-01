@@ -6,6 +6,7 @@
 #![cfg_attr(feature = "atmega32u4", doc = "**atmega32u4**,")]
 #![cfg_attr(feature = "atmega64", doc = "**atmega64**,")]
 #![cfg_attr(feature = "attiny85", doc = "**attiny85**,")]
+#![cfg_attr(feature = "attiny88", doc = "**attiny88**,")]
 //! and a few things which apply to AVR microcontrollers generally.
 //!
 //! Which chips the crate is built for depends on the feature flag used.
@@ -17,6 +18,7 @@
 //! * `atmega32u4`
 //! * `atmega64`
 //! * `attiny85`
+//! * `attiny88`
 #![no_std]
 #![feature(llvm_asm)]
 
@@ -78,6 +80,8 @@ pub use crate::devices::atmega8;
 pub use crate::devices::atmega64;
 #[cfg(feature = "attiny85")]
 pub use crate::devices::attiny85;
+#[cfg(feature = "attiny88")]
+pub use crate::devices::attiny88;
 
 #[cfg(not(any(
     feature = "atmega1280",
@@ -87,5 +91,6 @@ pub use crate::devices::attiny85;
     feature = "atmega32u4",
     feature = "atmega64",
     feature = "attiny85",
+    feature = "attiny88",
 )))]
 compile_error!("You need to select at least one chip as a feature!");

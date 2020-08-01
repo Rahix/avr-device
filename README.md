@@ -18,6 +18,7 @@ Via the feature you can select which chip you want the register specifications f
 * `atmega32u4`
 * `atmega64`
 * `attiny85`
+* `attiny88`
 
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.

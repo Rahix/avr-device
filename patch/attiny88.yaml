@@ -1,0 +1,127 @@
+_include:
+  - "common/ac.yaml"
+  - "common/spi.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/attiny88.yaml"
+
+ADC:
+  ADMUX:
+    _modify:
+      MUX:
+        description: "Analog Channel Selection Bits"
+    MUX:
+      _replace_enum:
+        ADC0: [0, "ADC Single Ended Input pin 0"]
+        ADC1: [1, "ADC Single Ended Input pin 1"]
+        ADC2: [2, "ADC Single Ended Input pin 2"]
+        ADC3: [3, "ADC Single Ended Input pin 3"]
+        ADC4: [4, "ADC Single Ended Input pin 4"]
+        ADC5: [5, "ADC Single Ended Input pin 5"]
+        ADC6: [6, "ADC Single Ended Input pin 6"]
+        ADC7: [7, "ADC Single Ended Input pin 7"]
+        TEMPSENS: [8, "Temperature sensor"]
+        ADC_VBG: [14, "Internal Reference (VBG)"]
+        ADC_GND: [15, "0V (GND)"]
+    REFS0:
+      _replace_enum:
+        INTERNAL: [0, "Internal 1.1V Voltage Reference"]
+        AVCC: [1, "AVcc Reference"]
+  ADCSRA:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+  ADCSRB:
+    ADTS:
+      _replace_enum:
+        FREE: [0, "Free Running mode"]
+        AC: [1, "Analog Comparator"]
+        INT0: [2, "External Interrupt Request 0"]
+        TC0_CMA: [3, "Timer/Counter0 Compare Match A"]
+        TC0_OVF: [4, "Timer/Counter0 Overflow"]
+        TC1_CMB: [5, "Timer/Counter1 Compare Match B"]
+        TC1_OVF: [6, "Timer/Counter1 Overflow"]
+        TC1_CE: [7, "Timer/Counter1 Capture Event"]
+CPU:
+  _modify:
+    CLKPR:
+      access: read-write
+    OSCCAL:
+      access: read-write
+    PORTCR:
+      access: read-write
+    PRR:
+      access: read-write
+  CLKPR:
+    CLKPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+        PRESCALER_256: [8, "Prescaler Value 256"]
+  SMCR:
+    SM:
+      _replace_enum:
+        IDLE: [0, "Idle"]
+        ADC: [1, "ADC Noise Reduction"]
+        PDOWN: [2, "Power-down"]
+EEPROM:
+  EECR:
+    EEPM:
+      _replace_enum:
+        ATOMIC: [0, "Atomic (erase and write in one operation)"]
+        ERASE: [1, "Erase only"]
+        WRITE: [2, "Write only"]
+EXINT:
+  EICRA:
+    ISC0:
+      _replace_enum:
+        LOW: [0, "The low level of INT0 generates an interrupt request"]
+        TOGGLE: [1, "Any logical change on INT0 generates an interrupt request"]
+        FALLING: [2, "The falling edge of INT0 generates an interrupt request"]
+        RISING: [3, "The rising edge of INT0 generates an interrupt request"]
+    ISC1:
+      _replace_enum:
+        LOW: [0, "The low level of INT1 generates an interrupt request"]
+        TOGGLE: [1, "Any logical change on INT1 generates an interrupt request"]
+        FALLING: [2, "The falling edge of INT1 generates an interrupt request"]
+        RISING: [3, "The rising edge of INT1 generates an interrupt request"]
+  _modify:
+    PCICR:
+      description: "Pin Change Interrupt Control Register"
+PORTA:
+  _modify:
+    PORTA:
+      access: read-write
+    DDRA:
+      access: read-write
+TWI:
+  TWCR:
+    _modify:
+      TWWC:
+        access: read-only
+  TWAMR:
+    _modify:
+      TWAM:
+        description: "TWI (Slave) Address Mask Bits"
+  TWSR:
+    _modify:
+      TWS:
+        access: read-only
+    TWPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_4: [1, "Prescaler Value 4"]
+        PRESCALER_16: [2, "Prescaler Value 16"]
+        PRESCALER_64: [3, "Prescaler Value 64"]
