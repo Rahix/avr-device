@@ -1,5 +1,6 @@
 //! This crate contains register definitions for
 #![cfg_attr(feature = "atmega1280", doc = "**atmega1280**,")]
+#![cfg_attr(feature = "atmega168", doc = "**atmega168**,")]
 #![cfg_attr(feature = "atmega2560", doc = "**atmega2560**,")]
 #![cfg_attr(feature = "atmega8", doc = "**atmega8**,")]
 #![cfg_attr(feature = "atmega328p", doc = "**atmega328p**,")]
@@ -12,6 +13,7 @@
 //! Which chips the crate is built for depends on the feature flag used.
 //! The following chips are available (using feature flags of the same name):
 //! * `atmega1280`
+//! * `atmega168`
 //! * `atmega2560`
 //! * `atmega8`
 //! * `atmega328p`
@@ -69,6 +71,8 @@ mod devices;
 
 #[cfg(feature = "atmega1280")]
 pub use crate::devices::atmega1280;
+#[cfg(feature = "atmega168")]
+pub use crate::devices::atmega168;
 #[cfg(feature = "atmega2560")]
 pub use crate::devices::atmega2560;
 #[cfg(feature = "atmega328p")]
@@ -86,6 +90,7 @@ pub use crate::devices::attiny88;
 
 #[cfg(not(any(
     feature = "atmega1280",
+    feature = "atmega168",
     feature = "atmega2560",
     feature = "atmega8",
     feature = "atmega328p",
