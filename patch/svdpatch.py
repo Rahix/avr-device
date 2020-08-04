@@ -11,6 +11,7 @@ Additional changes:
     - Support for _replace_enum to overwrite existing <enumeratedValues>
     - Fix field modifications not being able to add new elements
     - Add _write_constraint modifier for changing the <writeConstraint>
+    - Fix peripheral modifications not being able to add new elements
 """
 
 import copy
@@ -215,7 +216,12 @@ def process_peripheral_modify(ptag, rspec, rmod):
     """Modify rspec inside ptag according to rmod."""
     for rtag in iter_registers(ptag, rspec):
         for (key, value) in rmod.items():
-            rtag.find(key).text = value
+            field = rtag.find(key)
+            if field is not None:
+                field.text = value
+            else:
+                field = ET.SubElement(rtag, key)
+                field.text = value
 
 
 def process_register_modify(rtag, fspec, fmod):
