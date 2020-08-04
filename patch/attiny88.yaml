@@ -1,6 +1,7 @@
 _include:
   - "common/ac.yaml"
   - "common/spi.yaml"
+  - "common/twi.yaml"
   - "common/wdt.yaml"
 
   - "timer/attiny88.yaml"
@@ -85,18 +86,12 @@ EEPROM:
         WRITE: [2, "Write only"]
 EXINT:
   EICRA:
-    ISC0:
+    ISC?:
       _replace_enum:
-        LOW: [0, "The low level of INT0 generates an interrupt request"]
-        TOGGLE: [1, "Any logical change on INT0 generates an interrupt request"]
-        FALLING: [2, "The falling edge of INT0 generates an interrupt request"]
-        RISING: [3, "The rising edge of INT0 generates an interrupt request"]
-    ISC1:
-      _replace_enum:
-        LOW: [0, "The low level of INT1 generates an interrupt request"]
-        TOGGLE: [1, "Any logical change on INT1 generates an interrupt request"]
-        FALLING: [2, "The falling edge of INT1 generates an interrupt request"]
-        RISING: [3, "The rising edge of INT1 generates an interrupt request"]
+        LOW: [0, "The low level of INTx generates an interrupt request"]
+        TOGGLE: [1, "Any logical change on INTx generates an interrupt request"]
+        FALLING: [2, "The falling edge of INTx generates an interrupt request"]
+        RISING: [3, "The rising edge of INTx generates an interrupt request"]
   _modify:
     PCICR:
       description: "Pin Change Interrupt Control Register"
@@ -106,22 +101,3 @@ PORTA:
       access: read-write
     DDRA:
       access: read-write
-TWI:
-  TWCR:
-    _modify:
-      TWWC:
-        access: read-only
-  TWAMR:
-    _modify:
-      TWAM:
-        description: "TWI (Slave) Address Mask Bits"
-  TWSR:
-    _modify:
-      TWS:
-        access: read-only
-    TWPS:
-      _replace_enum:
-        PRESCALER_1: [0, "Prescaler Value 1"]
-        PRESCALER_4: [1, "Prescaler Value 4"]
-        PRESCALER_16: [2, "Prescaler Value 16"]
-        PRESCALER_64: [3, "Prescaler Value 64"]
