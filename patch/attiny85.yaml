@@ -5,6 +5,9 @@ _include:
   - "timer/attiny85.yaml"
 
 USI:
+  _modify:
+    USISR:
+      access: read-write
   USICR:
     _modify:
       USICLK:
@@ -22,3 +25,7 @@ USI:
       TC0:      [1, "Timer/Counter0 Compare Match"]
       EXT_POS:  [2, "External, positive edge"]
       EXT_NEG:  [3, "External, negative edge"]
+  USISR:
+    _modify:
+      USIDC:
+        access: read-only
