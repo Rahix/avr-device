@@ -4,26 +4,12 @@ rust:
 
 cache:
   - cargo
-  - directories:
-      - $TRAVIS_BUILD_DIR/atdf2svd/
 
 addons:
   apt:
     packages:
       - python3-pip
       - python3-dev
-
-env:
-  matrix:
-    - CHIP=atmega1280
-    - CHIP=atmega8
-    - CHIP=atmega328p
-    - CHIP=atmega32u4
-    - CHIP=attiny85
-    # Check building all at once
-    - CHIP=atmega1280,atmega8,atmega328p,atmega32u4,attiny85
-    # Check building rt
-    - CHIP=atmega32u4,attiny85,rt
 
 install:
   - rustup component add rustfmt
@@ -34,5 +20,4 @@ install:
 
 script:
   - make RUSTUP_TOOLCHAIN=nightly-2020-07-12
-  - echo $CHIP
-  - cargo build --features $CHIP
+  - cargo build --all-features
