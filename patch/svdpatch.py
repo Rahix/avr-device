@@ -632,24 +632,28 @@ def process_field_enum(pname, rtag, fspec, field, usage="read-write"):
         field = field["_replace_enum"]
         replace_if_exists = True
 
-    derived = None
+    derived, enum, enum_name, enum_usage = None, None, None, None
     for ftag in iter_fields(rtag, fspec):
         name = ftag.find('name').text
-        if derived is None:
+
+        if enum is None:
             enum = make_enumerated_values(name, field, usage=usage)
             enum_name = enum.find('name').text
             enum_usage = enum.find('usage').text
-            for ev in ftag.iter('enumeratedValues'):
-                ev_usage_tag = ev.find('usage')
-                ev_usage = ev_usage_tag.text if ev_usage_tag is not None else 'read-write'
-                if ev_usage == enum_usage or ev_usage == "read-write":
-                    if replace_if_exists:
-                        ftag.remove(ev)
-                    else:
-                        print(pname, fspec, field)
-                        raise SvdPatchError(
-                            "{}: field {} already has enumeratedValues for {}. Use '_replace_enum' to overwrite."
-                            .format(pname, name, ev_usage))
+
+        for ev in ftag.iter('enumeratedValues'):
+            ev_usage_tag = ev.find('usage')
+            ev_usage = ev_usage_tag.text if ev_usage_tag is not None else 'read-write'
+            if ev_usage == enum_usage or ev_usage == "read-write":
+                if replace_if_exists:
+                    ftag.remove(ev)
+                else:
+                    print(pname, fspec, field)
+                    raise SvdPatchError(
+                        "{}: field {} already has enumeratedValues for {}. Use '_replace_enum' to overwrite."
+                        .format(pname, name, ev_usage))
+
+        if derived is None:
             ftag.append(enum)
             derived = make_derived_enumerated_values(enum_name)
         else:
