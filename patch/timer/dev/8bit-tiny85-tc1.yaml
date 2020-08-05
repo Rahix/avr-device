@@ -26,7 +26,29 @@ TCCR?:
       PRESCALE_8192:  [14, "Running, CLK/8192"]
       PRESCALE_16384: [15, "Running, CLK/16384"]
 
+_modify:
+  DT1A:
+    description: "Dead Time Value Register A"
+  DT1B:
+    description: "Dead Time Value Register B"
+  OCR1A:
+    description: "Output Compare Register A"
+  OCR1B:
+    description: "Output Compare Register B"
+  OCR1C:
+    description: "Output Compare Register C"
+  TCNT?:
+    access: read-write
+
 GTCCR:
   _modify:
     FOC??:
       access: write-only
+
+DTPS:
+  DTPS:
+    _replace_enum:
+      DIRECT: [0, "No Prescaling"]
+      PRESCALE_2: [1, "Division factor 2"]
+      PRESCALE_4: [2, "Division factor 4"]
+      PRESCALE_8: [3, "Division factor 8"]
