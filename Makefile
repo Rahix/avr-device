@@ -61,6 +61,8 @@ clean:
 	@rm -rf svd/
 	@echo -e "\tCLEAN\t\t./src/devices"
 	@rm -rf src/devices/at*
+	@echo -e "\tCLEAN\t\t./src/generic.rs"
+	@rm -f src/generic.rs
 	@echo -e "\tCLEAN\t\t./.deps/"
 	@rm -rf .deps/
 	@echo -e "\tCLEAN\t\t./macros/src/vector.rs"
