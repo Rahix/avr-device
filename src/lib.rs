@@ -23,6 +23,7 @@
 #![feature(llvm_asm)]
 
 pub mod interrupt;
+pub mod asm;
 
 #[allow(unused_imports)]
 use generic::*;
