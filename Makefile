@@ -7,7 +7,7 @@ RUSTUP_TOOLCHAIN ?= nightly
 PATCHES := $(foreach chip, $(CHIPS), $(wildcard patch/$(chip).yaml))
 DEPS := $(foreach patch, $(PATCHES), $(patsubst patch/%.yaml, .deps/%.d, $(patch)))
 
-.PHONY: chips deps $(CHIPS) vector
+.PHONY: chips deps $(CHIPS) vector all clean
 chips: $(CHIPS)
 deps: $(DEPS)
 vector: macros/src/vector.rs
