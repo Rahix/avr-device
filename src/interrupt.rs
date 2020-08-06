@@ -26,12 +26,10 @@ pub fn disable() {
 /// # Safety
 ///
 /// - Do not call this function inside an [crate::interrupt::free] critical section
-pub fn enable() {
-    unsafe {
-        llvm_asm!(
-            "sei" :::: "volatile"
-        );
-    }
+pub unsafe fn enable() {
+    llvm_asm!(
+        "sei" :::: "volatile"
+    );
 }
 
 /// Execute closure `f` in an interrupt-free context.
@@ -61,7 +59,7 @@ where
 
     // Restore interrupt state
     if sreg & 0x80 != 0x00 {
-        enable();
+        unsafe { enable(); }
     }
 
     r
