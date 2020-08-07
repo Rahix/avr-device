@@ -44,7 +44,7 @@ where
     // Store current state
     unsafe {
         llvm_asm!(
-            "in $0,0x35"
+            "in $0,0x3F"
             : "=r"(sreg)
             :
             :
