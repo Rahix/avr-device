@@ -7,10 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATtiny88`.
+- An `asm` module with wrapper functions for various assembly
+  instructions.
 
 ### Changed
 - Various patches for `ATtiny85`, fixing up a lot of the remaining
   inconsistencies.
+- `interrupt::enable()` is now unsafe, as it would otherwise be possible
+  to enable interrupts safely inside a critical section.
 
 
 ## [0.1.1] - 2020-07-31
