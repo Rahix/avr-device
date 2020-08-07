@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+
+## [0.2.0] - 2020-08-07
 ### Added
 - Support for `ATtiny88`.
 - An `asm` module with wrapper functions for various assembly
@@ -30,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial release with support for `ATmega1280`, `ATmega328P`, `ATmega32U4`,
 `ATmega64`, `ATmega8`, `ATtiny85`.
 
-[Unreleased]: https://github.com/Rahix/avr-device/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/Rahix/avr-device/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Rahix/avr-device/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/Rahix/avr-device/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Rahix/avr-device/releases/tag/v0.1.0
