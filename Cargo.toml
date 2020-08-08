@@ -19,6 +19,7 @@ include = [
 
 [features]
 atmega1280 = []
+atmega168 = []
 atmega2560 = []
 atmega8 = []
 atmega328p = []
