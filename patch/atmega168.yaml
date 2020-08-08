@@ -4,3 +4,6 @@ _include:
   - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/usart.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/atmega328p.yaml"
