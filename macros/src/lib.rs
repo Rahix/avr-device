@@ -58,7 +58,14 @@ pub fn entry(
     let stmts = block.stmts;
     let unsafety = f.sig.unsafety;
 
-    quote::quote!(
+    quote::quote! (
+        #[cfg(not(any(doc, target_arch = "avr")))]
+        compile_error!(
+            "Ensure that you are using an AVR target! You may need to change \
+       directories or pass a --target flag to cargo. See
+       https://github.com/Rahix/avr-device/pull/41 for more details."
+        );
+
         #(#attrs)*
         #[doc(hidden)]
         #[export_name = "main"]
