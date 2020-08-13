@@ -5,6 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for `ATmega168`
+
+### Changed
+- `#[entry]` causes a (readable) compile-error when attempting to build
+  for non-AVR targets.
+
+### Fixed
+- inline-assembly is now only emitted when building for AVR targets to
+  prevent weird compiler errors where AVR instructions are emitted on e.g.
+  x86_64.
+- Fixed an issue in the build-system in preparation for the next svd2rust
+  release.
 
 
 ## [0.2.1] - 2020-08-07
