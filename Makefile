@@ -45,7 +45,7 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@mv $(@D)/lib.rs $@
 	@RUSTUP_TOOLCHAIN=$(RUSTUP_TOOLCHAIN) rustfmt $@
 	@# Remove the `extern crate` lines
-	@sed -i'' -e "1,7d" $@
+	@sed -i'' -e "/^extern crate/d" $@
 	@# Remove DEVICE_PERIPHERALS declaration and replace it with a reference
 	@# to the global version
 	@patch --no-backup-if-mismatch --quiet $@ patch/modrs.patch
