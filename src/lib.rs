@@ -98,5 +98,6 @@ pub use crate::devices::attiny88;
     feature = "atmega64",
     feature = "attiny85",
     feature = "attiny88",
+    feature = "shared",
 )))]
 compile_error!("You need to select at least one chip as a feature!");

@@ -30,6 +30,7 @@ atmega32u4 = []
 atmega64 = []
 attiny85 = []
 attiny88 = []
+shared = []
 rt = ["avr-device-macros"]
 
 [dependencies]
