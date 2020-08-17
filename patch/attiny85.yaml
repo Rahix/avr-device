@@ -51,7 +51,7 @@ ADC:
         ADC0_ADC0_1X: [8, "Differential Inputs Positive ADC0 Negative ADC0 1x Gain"]
         ADC0_ADC0_20X: [9, "Differential Inputs Positive ADC0 Negative ADC0 20x Gain"]
         ADC0_ADC1_1X: [10, "Differential Inputs Positive ADC0 Negative ADC1 1x Gain"]
-        ADC0_ADC1_20X: [11, "Differential Inputs Postive ADC0 Negative ADC1 20x Gain"]
+        ADC0_ADC1_20X: [11, "Differential Inputs Positive ADC0 Negative ADC1 20x Gain"]
         ADC_VBG: [12, "Internal Reference (VBG)"]
         ADC_GND: [13, "0V (GND)"]
         TEMPSENS: [15, "Temperature sensor"]
