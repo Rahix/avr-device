@@ -2,6 +2,7 @@ _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
   - "common/pll.yaml"
+  - "common/port.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/usart.yaml"

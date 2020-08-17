@@ -1,5 +1,6 @@
 _include:
   - "common/ac.yaml"
+  - "common/port.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/wdt.yaml"

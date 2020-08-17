@@ -1,5 +1,6 @@
 _include:
   - "common/ac.yaml"
+  - "common/port.yaml"
   - "common/wdt.yaml"
 
   - "timer/attiny85.yaml"
