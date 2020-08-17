@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `#[entry]` causes a (readable) compile-error when attempting to build
   for non-AVR targets.
+- `PINx` registers are now writeable, which enables efficient toggling
+  of bits in the corresponding `PORTx` register.
 
 ### Fixed
 - inline-assembly is now only emitted when building for AVR targets to
