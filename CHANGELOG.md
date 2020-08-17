@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATmega168`
+- Support for `Attiny84`
 
 ### Changed
 - `#[entry]` causes a (readable) compile-error when attempting to build
