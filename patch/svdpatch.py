@@ -376,10 +376,13 @@ def process_peripheral_add_int(ptag, iname, iadd):
 def process_register_add(rtag, fname, fadd):
     """Add fname given by fadd to rtag."""
     parent = rtag.find('fields')
-    for ftag in parent.iter('field'):
-        if ftag.find('name').text == fname:
-            raise SvdPatchError('register {} already has a field {}'
-                                .format(rtag.find('name').text, fname))
+    if parent is None:
+        parent = ET.SubElement(rtag, 'fields')
+    else:
+        for ftag in parent.iter('field'):
+            if ftag.find('name').text == fname:
+                raise SvdPatchError('register {} already has a field {}'
+                                    .format(rtag.find('name').text, fname))
     fnew = ET.SubElement(parent, 'field')
     ET.SubElement(fnew, 'name').text = fname
     for (key, value) in fadd.items():
