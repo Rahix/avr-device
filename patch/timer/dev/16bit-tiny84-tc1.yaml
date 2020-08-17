@@ -1,0 +1,30 @@
+TCCR?A:
+  _modify:
+    COM??:
+      _write_constraint: enum
+  COM??:
+    _replace_enum:
+        DISCONNECTED:  [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE:  [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR:   [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET:     [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
+
+TCCR?B:
+  _modify:
+    CS?:
+      _write_constraint: enum
+  CS?:
+    _replace_enum:
+      NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+      DIRECT:        [1, "Running, No Prescaling"]
+      PRESCALE_8:    [2, "Running, CLK/8"]
+      PRESCALE_64:   [3, "Running, CLK/64"]
+      PRESCALE_256:  [4, "Running, CLK/256"]
+      PRESCALE_1024: [5, "Running, CLK/1024"]
+      EXT_FALLING:   [6, "Running, ExtClk Tx Falling Edge"]
+      EXT_RISING:    [7, "Running, ExtClk Tx Rising Edge"]
+
+TCCR?C:
+  _modify:
+    FOC??:
+      access: write-only

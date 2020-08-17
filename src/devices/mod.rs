@@ -155,6 +155,25 @@ impl atmega64::Peripherals {
     }
 }
 
+/// [ATtiny84](https://www.microchip.com/wwwproducts/en/ATtiny84)
+#[cfg(feature = "attiny84")]
+pub mod attiny84;
+
+#[cfg(feature = "attiny84")]
+impl attiny84::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { attiny84::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATtiny85](https://www.microchip.com/wwwproducts/en/ATtiny85)
 #[cfg(feature = "attiny85")]
 pub mod attiny85;
