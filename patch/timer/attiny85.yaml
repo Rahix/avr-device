@@ -9,7 +9,7 @@ _modify:
 
 TC0:
   _include:
-    - "dev/8bit-tiny85-tc0.yaml"
+    - "dev/8bit-tiny8n-tc0.yaml"
 
 TC1:
   _include:
