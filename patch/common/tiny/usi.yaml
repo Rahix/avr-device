@@ -1,0 +1,25 @@
+USI:
+  _modify:
+    USISR:
+      access: read-write
+  USICR:
+    _modify:
+      USICLK:
+        access: write-only
+      USITC:
+        access: write-only
+    USIWM:
+      _replace_enum:
+        DISABLED:        [0, "All detectors disabled. Port pins operates as normal."]
+        THREE_WIRE:      [1, "Three-wire mode. Uses DO, DI, and USCK pins."]
+        TWO_WIRE_SLAVE:  [2, "Two-wire mode (Slave). Uses SDA (DI) and SCL (USCK) pins."]
+        TWO_WIRE_MASTER: [3, "Two-wire mode (Master). Uses SDA and SCL pins."]
+    USICS:
+      NO_CLOCK: [0, "No Clock/Software clock strobe"]
+      TC0:      [1, "Timer/Counter0 Compare Match"]
+      EXT_POS:  [2, "External, positive edge"]
+      EXT_NEG:  [3, "External, negative edge"]
+  USISR:
+    _modify:
+      USIDC:
+        access: read-only
