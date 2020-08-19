@@ -2,8 +2,10 @@ _include:
   - "common/ac.yaml"
   - "common/eeprom.yaml"
   - "common/port.yaml"
-  - "common/tiny/usi.yaml"
   - "common/wdt.yaml"
+
+  - "common/tiny/exint.yaml"
+  - "common/tiny/usi.yaml"
 
   - "timer/attiny85.yaml"
 
@@ -106,22 +108,3 @@ CPU:
     _modify:
       PLOCK:
         access: read-only
-EXINT:
-  _modify:
-    GIFR:
-      access: read-write
-  MCUCR:
-    _delete:
-      ISC??:
-    _add:
-      ISC0:
-        description: "Interrupt Sense Control 0 bits"
-        bitOffset: 0
-        bitWidth: 2
-        access: read-write
-    ISC0:
-      _replace_enum:
-        LOW: [0, "The low level of INTx generates an interrupt request"]
-        TOGGLE: [1, "Any logical change on INTx generates an interrupt request"]
-        FALLING: [2, "The falling edge of INTx generates an interrupt request"]
-        RISING: [3, "The rising edge of INTx generates an interrupt request"]
