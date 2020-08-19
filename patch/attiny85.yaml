@@ -1,5 +1,6 @@
 _include:
   - "common/ac.yaml"
+  - "common/eeprom.yaml"
   - "common/port.yaml"
   - "common/tiny/usi.yaml"
   - "common/wdt.yaml"
@@ -105,13 +106,6 @@ CPU:
     _modify:
       PLOCK:
         access: read-only
-EEPROM:
-  EECR:
-    EEPM:
-      _replace_enum:
-        ATOMIC: [0, "Atomic (erase and write in one operation)"]
-        ERASE: [1, "Erase only"]
-        WRITE: [2, "Write only"]
 EXINT:
   _modify:
     GIFR:
