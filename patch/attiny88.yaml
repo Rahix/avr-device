@@ -1,5 +1,6 @@
 _include:
   - "common/ac.yaml"
+  - "common/eeprom.yaml"
   - "common/port.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
@@ -78,13 +79,6 @@ CPU:
         IDLE: [0, "Idle"]
         ADC: [1, "ADC Noise Reduction"]
         PDOWN: [2, "Power-down"]
-EEPROM:
-  EECR:
-    EEPM:
-      _replace_enum:
-        ATOMIC: [0, "Atomic (erase and write in one operation)"]
-        ERASE: [1, "Erase only"]
-        WRITE: [2, "Write only"]
 EXINT:
   EICRA:
     ISC?:
