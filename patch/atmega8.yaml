@@ -1,2 +1,4 @@
+_svd: ../svd/atmega8.svd
+
 _include:
   - "common/port.yaml"

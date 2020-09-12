@@ -1,3 +1,5 @@
+_svd: ../svd/atmega1280.svd
+
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"

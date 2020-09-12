@@ -1,3 +1,5 @@
+_svd: ../svd/atmega168.svd
+
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
