@@ -15,23 +15,24 @@ vector: macros/src/vector.rs
 $(foreach chip, $(CHIPS), $(eval $(chip): src/devices/$(chip)/mod.rs))
 
 .SECONDARY:
-svd/%.bare.svd: vendor/%.atdf
+svd/%.svd: vendor/%.atdf
 	@mkdir -p svd
 	@echo -e "\tATDF2SVD\t$*"
 	@atdf2svd $< $@ 2>/dev/null
 
-$(foreach patch, $(PATCHES), $(eval $(patsubst patch/%.yaml, svd/%.patched.svd, $(patch)): $(patch)))
+$(foreach patch, $(PATCHES), $(eval $(patsubst patch/%.yaml, svd/%.svd.patched, $(patch)): $(patch)))
 
-svd/%.patched.svd: svd/%.bare.svd patch/svdpatch.py
+svd/%.svd.patched: svd/%.svd .deps/%.d
 	@if [ -f patch/$*.yaml ] ; then \
 		echo -e "\tPATCH\t\t$*"; \
-		python3 patch/svdpatch.py patch/$*.yaml $< $@; \
+		svd patch patch/$*.yaml; \
+		test -e $@; \
 	else \
 		echo -e "\t  - No patches found for $*"; \
 		cp $< $@; \
 	fi
 
-src/devices/%/mod.full.rs: svd/%.patched.svd
+src/devices/%/mod.full.rs: svd/%.svd.patched
 	@mkdir -p $(@D)
 	@echo -e "\tSVD2RUST\t$*"
 	@cd $(@D); svd2rust --generic_mod --target none -i $(realpath $<)
@@ -69,9 +70,10 @@ clean:
 	@rm -rf macros/src/vector.rs
 
 # Patch dependencies
+patch/%.yaml: .deps/%.d
 .deps/%.d: patch/%.yaml
 	@mkdir -p .deps
 	@echo -e "\tMAKEDEPS\t$*"
-	@python3 patch/makedeps.py $< >$@
+	@svd makedeps $< $@
 
 -include $(DEPS)
