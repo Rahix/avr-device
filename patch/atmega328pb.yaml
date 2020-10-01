@@ -1,0 +1,42 @@
+_svd: ../svd/atmega328pb.svd
+
+# Remove index suffix from all registers and fields
+SPI0:
+  _strip_end:
+    - "0"
+SPI1:
+  _strip_end:
+    - "1"
+  SPSR:
+    _strip_end:
+      - "1"
+  SPCR:
+    _strip_end:
+      - "1"
+
+# Remove index suffix from all registers and fields
+TWI0:
+  _strip_end:
+    - "0"
+TWI1:
+  _strip_end:
+    - "1"
+  TWCR:
+    _strip_end:
+      - "1"
+  TWSR:
+    _strip_end:
+      - "1"
+
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/port.yaml"
+  - "common/usart.yaml"
+  - "common/spi.yaml"
+  - "common/twi.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/atmega328pb.yaml"
+
+
