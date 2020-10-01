@@ -1,0 +1,77 @@
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/port.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/atmega328p.yaml"
+
+# Patches for the SPI peripheral
+#
+# Fix the SP2X status register bit to have write access
+
+SPI0:
+  _strip_end:
+    - "0"
+SPI1:
+  _strip_end:
+    - "1"
+
+SPI?:
+  _modify:
+    SPSR:
+      access: read-write
+  SPSR:
+    _modify:
+      SPIF:
+        access: read-only
+      WCOL:
+        access: read-only
+      SPI2X:
+        access: read-write
+
+# Patches for the Two-Wire-Interface peripheral (i2c)
+#
+# - Make the Control Register read-write with only the
+#   "Write Collision Flag" being read-only
+# - Fix the "Slave Address Mask" description
+# - Fix the Prescaler enumerated values
+
+TWI0:
+  _strip_end:
+    - "0"
+TWI1:
+  _strip_end:
+    - "1"
+  TWSR:
+    _delete:
+      - TWPS1
+    _add:
+      TWPS:
+        bitOffset: 0
+        bitWidth: 2
+        access: read-write
+
+TWI?:
+  _modify:
+    TWCR:
+      access: read-write
+  TWCR:
+    _modify:
+      TWWC:
+        access: read-only
+  TWAMR:
+    _modify:
+      TWAM:
+        description: "TWI (Slave) Address Mask Bits"
+  TWSR:
+    _modify:
+      TWS:
+        access: read-only
+    TWPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_4: [1, "Prescaler Value 4"]
+        PRESCALER_16: [2, "Prescaler Value 16"]
+        PRESCALER_64: [3, "Prescaler Value 64"]
