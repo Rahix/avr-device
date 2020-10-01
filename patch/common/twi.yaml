@@ -4,7 +4,7 @@
 #   "Write Collision Flag" being read-only
 # - Fix the "Slave Address Mask" description
 # - Fix the Prescaler enumerated values
-TWI:
+TWI*:
   _modify:
     TWCR:
       access: read-write

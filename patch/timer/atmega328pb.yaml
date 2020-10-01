@@ -1,0 +1,44 @@
+# This intermediate file is needed because peripheral-level includes are not
+# supported in top-level files.
+
+TC0:
+  _include:
+    - "dev/8bit.yaml"
+
+TC1:
+  _include:
+    - "dev/16bit.yaml"
+
+TC2:
+  _include:
+    - "dev/8bit-async.yaml"
+
+TC3:
+  TCCR3B:
+    # Merge WGM32 and WGM33
+    _delete:
+      - "WGM3*"
+    _add:
+      WGM3:
+        description: Waveform Generation Mode
+        bitOffset: 3
+        bitWidth: 2
+        access: read-write
+  _include:
+    - "dev/16bit.yaml"
+
+TC4:
+  TCCR4B:
+    # Merge WGM42 and WGM43
+    _delete:
+      - "WGM4*"
+    _add:
+      WGM4:
+        description: Waveform Generation Mode
+        bitOffset: 3
+        bitWidth: 2
+        access: read-write
+
+  _include:
+    - "dev/16bit.yaml"
+

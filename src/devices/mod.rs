@@ -79,6 +79,26 @@ impl atmega328p::Peripherals {
     }
 }
 
+/// [ATmega328PB](https://www.microchip.com/wwwproducts/en/ATmega328PB)
+#[cfg(feature = "atmega328pb")]
+pub mod atmega328pb;
+
+#[cfg(feature = "atmega328pb")]
+impl atmega328pb::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { atmega328pb::Peripherals::steal() })
+            }
+        })
+    }
+}
+
+
 /// [ATmega32U4](https://www.microchip.com/wwwproducts/en/ATmega32U4)
 #[cfg(feature = "atmega32u4")]
 pub mod atmega32u4;
