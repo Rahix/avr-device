@@ -254,6 +254,53 @@
             <register-group name="WDT" name-in-module="WDT" offset="0x00" address-space="data"/>
           </instance>
         </module>
+        <module name="PTC">
+          <instance name="PTC">
+            <signals>
+              <signal group="X" index="00" function="default" pad="PD0"/>
+              <signal group="X" index="01" function="default" pad="PD1"/>
+              <signal group="X" index="02" function="default" pad="PD2"/>
+              <signal group="X" index="03" function="default" pad="PD3"/>
+			  <signal group="X" index="04" function="default" pad="PD4"/>
+              <signal group="X" index="05" function="default" pad="PD5"/>
+              <signal group="X" index="06" function="default" pad="PD6"/>
+              <signal group="X" index="07" function="default" pad="PD7"/>
+			  <signal group="X" index="08" function="default" pad="PE0"/>
+              <signal group="X" index="09" function="default" pad="PE1"/>
+              <signal group="X" index="10" function="default" pad="PB0"/>
+              <signal group="X" index="11" function="default" pad="PB1"/>
+			  <signal group="X" index="12" function="default" pad="PB2"/>
+              <signal group="X" index="13" function="default" pad="PB3"/>
+              <signal group="X" index="14" function="default" pad="PB4"/>
+              <signal group="X" index="15" function="default" pad="PB5"/>
+
+			  <signal group="Y" index="00" function="default" pad="PC0"/>
+              <signal group="Y" index="01" function="default" pad="PC1"/>
+              <signal group="Y" index="02" function="default" pad="PC2"/>
+              <signal group="Y" index="03" function="default" pad="PC3"/>
+			  <signal group="Y" index="04" function="default" pad="PC4"/>
+              <signal group="Y" index="05" function="default" pad="PC5"/>
+              <signal group="Y" index="06" function="default" pad="PE2"/>
+              <signal group="Y" index="07" function="default" pad="PE3"/>
+			  <signal group="Y" index="08" function="default" pad="PD0"/>
+              <signal group="Y" index="09" function="default" pad="PD1"/>
+              <signal group="Y" index="10" function="default" pad="PD2"/>
+              <signal group="Y" index="11" function="default" pad="PD3"/>
+			  <signal group="Y" index="12" function="default" pad="PD4"/>
+              <signal group="Y" index="13" function="default" pad="PD5"/>
+              <signal group="Y" index="14" function="default" pad="PD6"/>
+              <signal group="Y" index="15" function="default" pad="PD7"/>
+			  <signal group="Y" index="16" function="default" pad="PE0"/>
+              <signal group="Y" index="17" function="default" pad="PE1"/>
+			  <signal group="Y" index="18" function="default" pad="PB0"/>
+              <signal group="Y" index="19" function="default" pad="PB1"/>
+              <signal group="Y" index="20" function="default" pad="PB2"/>
+              <signal group="Y" index="21" function="default" pad="PB3"/>
+			  <signal group="Y" index="22" function="default" pad="PB4"/>
+              <signal group="Y" index="23" function="default" pad="PB5"/>
+            </signals>
+          </instance>
+        </module>
         <module name="CPU">
           <instance name="CPU">
             <register-group name="CPU" name-in-module="CPU" offset="0x00" address-space="data"/>
