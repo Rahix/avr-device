@@ -22,7 +22,12 @@ SPI?:
   _modify:
     SPSR:
       access: read-write
+  SPCR:
+    _strip_end:
+      - "1"
   SPSR:
+    _strip_end:
+      - "1"
     _modify:
       SPIF:
         access: read-only
@@ -58,6 +63,8 @@ TWI?:
     TWCR:
       access: read-write
   TWCR:
+    _strip_end:
+      - "1"
     _modify:
       TWWC:
         access: read-only
@@ -66,6 +73,8 @@ TWI?:
       TWAM:
         description: "TWI (Slave) Address Mask Bits"
   TWSR:
+    _strip_end:
+      - "1"
     _modify:
       TWS:
         access: read-only
