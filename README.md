@@ -59,30 +59,7 @@ cargo +nightly doc --features <chip> --open
 ### Adding a new Chip
 To add a new chip, download the *atdf* from <http://packs.download.atmel.com/> and place it in `vendor/`.  Be sure to name it like the Rust module that should be generated.  Next, you need to integrate it into the base crate and build system.  Follow what was done in commit [290613454fbd ("Add basic support for ATmega64")](https://github.com/Rahix/avr-device/commit/290613454fbdc5e4ac98e53deccaf74dafc88963).  Please adhere to the alphabetical sorting that is present so far.
 
-If patches need to be applied, create a `<chipname>.yaml` in `patch/`. The patching format is compatible to the [YAML patching format of stm32](https://github.com/stm32-rs/stm32-rs/#device-and-peripheral-yaml-format), except that you do not need to provide the path to the svd file (`_svd: ...`) since it is generated in the build process. Additionally, the following patching was added:
-```yaml
-PERIPHERIAL:
-    REGISTER:
-        _modify:
-          FIELD:
-            # If a field already contains a write-constraint, you can
-            # change it using the _write_constraint modifier.  The
-            # following values are allowed:
-
-            # "enum": Only allow enumerated values (<useEnumeratedValues>)
-            _write_constraint: "enum"
-
-            # Remove any existing writeConstraint tag
-            _write_constraint: "none"
-
-            # Constrain to a range of values (<range>)
-            _write_constraint: [min, max]
-        FIELD:
-            # Replaces the enumeratedValues definition for this field.
-            # If it does not exist yet, it is created.
-            _replace_enum:
-                NAME: [VALUE, DESCRIPTION]
-```
+If patches need to be applied, create a `<chipname>.yaml` in `patch/`. The patching format is documented in the [`svdtools` README](https://github.com/stm32-rs/svdtools#device-and-peripheral-yaml-format).  Ideally, try to reuse the exisiting patches in `patch/common/` or `patch/timer/`.
 
 ## License
 *avr-device* is licensed under either of
