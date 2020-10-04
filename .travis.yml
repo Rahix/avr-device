@@ -1,6 +1,6 @@
 language: rust
 rust:
-  - nightly-2020-07-12
+  - nightly
 
 cache:
   - cargo
@@ -19,5 +19,5 @@ install:
   - python3 -c "__import__('yaml')" || pip3 install --user pyyaml
 
 script:
-  - make RUSTUP_TOOLCHAIN=nightly-2020-07-12
+  - make
   - cargo build --all-features
