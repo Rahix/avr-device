@@ -27,14 +27,20 @@ Via the feature you can select which chip you want the register specifications f
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
 
-You need to have [atdf2svd](https://github.com/Rahix/atdf2svd), [svd2rust](https://github.com/rust-embedded/svd2rust), [form](https://github.com/djmcgill/form), [rustfmt](https://github.com/rust-lang/rustfmt)(for the *nightly* toolchain) and [PyYAML](https://github.com/yaml/pyyaml) installed:
+You need to have [atdf2svd][], [svd2rust][], [form][], [rustfmt][](for the *nightly* toolchain) and [svdtools][] (>= 0.1.9) installed:
 ```bash
-rustup component add --toolchain nightly rustfmt
-cargo install form
-cargo install svd2rust
 cargo install atdf2svd
-pip3 install --user pyyaml
+cargo install svd2rust
+cargo install form
+rustup component add --toolchain nightly rustfmt
+pip3 install --user svdtools
 ```
+
+[atdf2svd]: https://github.com/Rahix/atdf2svd
+[svd2rust]: https://github.com/rust-embedded/svd2rust
+[form]: https://github.com/djmcgill/form
+[rustfmt]: https://github.com/rust-lang/rustfmt
+[svdtools]: https://github.com/stm32-rs/svdtools
 
 Next, clone this repo and build the device definitions:
 ```bash
