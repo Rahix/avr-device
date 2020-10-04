@@ -3,21 +3,21 @@ rust:
   - nightly
 
 cache:
-  - cargo
-
-addons:
-  apt:
-    packages:
-      - python3-pip
-      - python3-dev
+  cargo: true
+  pip: true
+  directories:
+    - /opt/pyenv
 
 install:
+  - pyenv install 3.6.3
+  - pyenv global 3.6.3
+  - python3 -c "__import__('svdtools')" || pip3 install --user svdtools
   - rustup component add rustfmt
   - cargo install form || true
   - cargo install svd2rust || true
   - cargo install atdf2svd || true
-  - python3 -c "__import__('yaml')" || pip3 install --user pyyaml
 
 script:
+  - pyenv global 3.6.3
   - make
   - cargo build --all-features
