@@ -28,6 +28,9 @@ AC:
         bitWidth: 1
         access: read-write
 ADC:
+  _modify:
+    ADCSRA:
+      access: read-write
   ADCSRA:
     ADPS:
       _replace_enum:
