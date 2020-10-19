@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATmega644`
+- Support for `ATmega328PB`
 
 ### Changed
 - Rewired svd-patching infrastructure to use upstream
   [`svdtools`][svdtools] instead of the locally vendored script.
+
+### Fixed
+- Made `ADCSRA` for ATtiny84 read-write.
+- Made `TIFR` registers for ATmega timers read-write.
 
 [svdtools]: https://github.com/stm32-rs/svdtools
 
