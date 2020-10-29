@@ -1,4 +1,5 @@
 //! This crate contains register definitions for
+#![cfg_attr(feature = "at90usb1286", doc = "**at90usb1286**,")]
 #![cfg_attr(feature = "atmega1280", doc = "**atmega1280**,")]
 #![cfg_attr(feature = "atmega168", doc = "**atmega168**,")]
 #![cfg_attr(feature = "atmega2560", doc = "**atmega2560**,")]
@@ -20,6 +21,7 @@
 //!
 //! Which chips the crate is built for depends on the feature flag used.
 //! The following chips are available (using feature flags of the same name):
+//! * `at90usb1286`
 //! * `atmega1280`
 //! * `atmega168`
 //! * `atmega2560`
@@ -111,6 +113,8 @@ compile_error!(
 #[allow(non_camel_case_types, unused_attributes, unreachable_patterns)]
 mod devices;
 
+#[cfg(feature = "at90usb1286")]
+pub use crate::devices::at90usb1286;
 #[cfg(feature = "atmega1280")]
 pub use crate::devices::atmega1280;
 #[cfg(feature = "atmega168")]
