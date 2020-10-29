@@ -3,6 +3,25 @@
 #[no_mangle]
 pub(crate) static mut DEVICE_PERIPHERALS: bool = false;
 
+/// [AT90USB1286](https://www.microchip.com/wwwproducts/en/AT90USB1286)
+#[cfg(feature = "at90usb1286")]
+pub mod at90usb1286;
+
+#[cfg(feature = "at90usb1286")]
+impl at90usb1286::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { at90usb1286::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATmega1280](https://www.microchip.com/wwwproducts/en/ATmega1280)
 #[cfg(feature = "atmega1280")]
 pub mod atmega1280;
