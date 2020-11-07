@@ -1,6 +1,6 @@
 language: rust
 rust:
-  - nightly
+  - nightly-2020-10-25
 
 cache:
   cargo: true
@@ -19,5 +19,5 @@ install:
 
 script:
   - pyenv global 3.6.3
-  - make
+  - make RUSTUP_TOOLCHAIN=nightly-2020-10-25
   - cargo build --all-features
