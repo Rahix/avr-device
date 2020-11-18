@@ -118,6 +118,25 @@ impl atmega32u4::Peripherals {
     }
 }
 
+/// [ATmega4809](https://www.microchip.com/wwwproducts/en/ATmega4809)
+#[cfg(feature = "atmega4809")]
+pub mod atmega4809;
+
+#[cfg(feature = "atmega4809")]
+impl atmega48p::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { atmega4809::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATmega48P](https://www.microchip.com/wwwproducts/en/ATmega48P)
 #[cfg(feature = "atmega48p")]
 pub mod atmega48p;
