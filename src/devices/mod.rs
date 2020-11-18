@@ -98,7 +98,6 @@ impl atmega328pb::Peripherals {
     }
 }
 
-
 /// [ATmega32U4](https://www.microchip.com/wwwproducts/en/ATmega32U4)
 #[cfg(feature = "atmega32u4")]
 pub mod atmega32u4;
@@ -123,7 +122,7 @@ impl atmega32u4::Peripherals {
 pub mod atmega4809;
 
 #[cfg(feature = "atmega4809")]
-impl atmega48p::Peripherals {
+impl atmega4809::Peripherals {
     /// Returns all the peripherals *once*
     #[inline]
     pub fn take() -> Option<Self> {
