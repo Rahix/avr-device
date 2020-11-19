@@ -13,3 +13,10 @@ SPI*:
         access: read-only
       SPI2X:
         access: read-write
+  SPCR:
+    SPR:
+      _replace_enum:
+        FOSC_4_2: [0, "Fosc/4 if SPI2X == 0 else Fosc/2"]
+        FOSC_16_8: [1, "Fosc/16 if SPI2X == 0 else Fosc/8"]
+        FOSC_64_32: [2, "Fosc/64 if SPI2X == 0 else Fosc/32"]
+        FOSC_128_64: [3, "Fosc/128 if SPI2X == 0 else Fosc/64"]
