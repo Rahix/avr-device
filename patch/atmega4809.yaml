@@ -1,0 +1,5 @@
+_svd: ../svd/atmega4809.svd
+
+_include:
+  - "common/port.yaml"
+
