@@ -6,3 +6,9 @@ _include:
   - "common/port.yaml"
   - "common/spi.yaml"
   - "common/usart.yaml"
+
+USART?:
+  UCSR?C:
+    _modify:
+      UMSEL?:
+        bitRange: "[7:6]"
