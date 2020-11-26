@@ -59,7 +59,14 @@ cargo +nightly doc --features <chip> --open
 ### Adding a new Chip
 To add a new chip, download the *atdf* from <http://packs.download.atmel.com/> (or [avr-mcu/packs/](https://github.com/avr-rust/avr-mcu/tree/master/packs)) and place it in `vendor/`.  Be sure to name it like the Rust module that should be generated.  Next, you need to integrate it into the base crate and build system.  Follow what was done in commit [290613454fbd ("Add basic support for ATmega64")](https://github.com/Rahix/avr-device/commit/290613454fbdc5e4ac98e53deccaf74dafc88963).  Please adhere to the alphabetical sorting that is present so far.
 
-If patches need to be applied, create a `<chipname>.yaml` in `patch/`. The patching format is documented in the [`svdtools` README](https://github.com/stm32-rs/svdtools#device-and-peripheral-yaml-format).  Ideally, try to reuse the exisiting patches in `patch/common/` or `patch/timer/`.
+Next, you **must** create a `<chipname>.yaml` in `patch/` which has at least the following content:
+```yaml
+_svd: ../svd/<chipname>.svd
+```
+
+If more patches need to be applied (most likely!), they should be added into this file as well.  The patching format is documented in the [`svdtools` README](https://github.com/stm32-rs/svdtools#device-and-peripheral-yaml-format).  Ideally, try to reuse the exisiting patches in `patch/common/` or `patch/timer/`.
+
+Finally, try building the crate for your MCU with `make <chipname>`.
 
 ## License
 *avr-device* is licensed under either of
