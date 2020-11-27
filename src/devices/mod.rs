@@ -231,6 +231,25 @@ impl attiny84::Peripherals {
     }
 }
 
+/// [ATtiny841](https://www.microchip.com/wwwproducts/en/ATtiny841)
+#[cfg(feature = "attiny841")]
+pub mod attiny841;
+
+#[cfg(feature = "attiny841")]
+impl attiny841::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { attiny841::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATtiny85](https://www.microchip.com/wwwproducts/en/ATtiny85)
 #[cfg(feature = "attiny85")]
 pub mod attiny85;
@@ -245,6 +264,25 @@ impl attiny85::Peripherals {
                 None
             } else {
                 Some(unsafe { attiny85::Peripherals::steal() })
+            }
+        })
+    }
+}
+
+/// [ATtiny861](https://www.microchip.com/wwwproducts/en/ATtiny861)
+#[cfg(feature = "attiny861")]
+pub mod attiny861;
+
+#[cfg(feature = "attiny861")]
+impl attiny861::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { attiny861::Peripherals::steal() })
             }
         })
     }

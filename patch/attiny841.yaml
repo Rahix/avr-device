@@ -1,0 +1,51 @@
+_svd: ../svd/attiny841.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/port.yaml"
+  - "common/spi.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/attiny841.yaml"
+
+ADC:
+  _modify:
+    ADCSRA:
+      access: read-write
+  ADCSRA:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+  ADMUXB:
+    REFS:
+      _replace_enum:
+        VCC: [0, "Vcc"]
+        INTERNAL_1: [1, "Internal 1.1V Voltage Reference with AREF disconnected"]
+        INTERNAL_2: [2, "Internal 2.2V Voltage Reference with AREF disconnected"]
+        INTERNAL_4: [3, "Internal 4.096V Voltage Reference with AREF disconnected"]
+        AREF: [4, "AREF with internal reference off"]
+        AREF_INTERNAL_1: [5, "Internal 1.1V Voltage Reference with external capacitor at AREF pin"]
+        AREF_INTERNAL_2: [6, "Internal 2.2V Voltage Reference with external capacitor at AREF pin"]
+        AREF_INTERNAL_4: [7, "Internal 4.096V Voltage Reference with external capacitor at AREF pin"]
+
+# While this chip does have a TWI peripheral, it only performs as a
+# slave, so it doesn't have many of the fields that the common peripheral
+# does, like TWWC, TWAMR, and TWPS
+TWI*:
+  _modify:
+    TWCR:
+      access: read-write
+  TWSCRB:
+    TWAA:
+      _replace_enum:
+        ACK_WRITE: [0, "Send ACK when TWCMD is written as 10 or 11"]
+        ACK_READ: [1, "Send ACK when TWSD is read"]
+        NACK_WRITE: [2, "Send NACK when TWCMD is written as 10 or 11"]
+        NACK_READ: [3, "Send NACK when TWSD is read"]
