@@ -1,0 +1,11 @@
+_svd: ../svd/attiny861.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/port.yaml"
+  - "common/tiny/usi.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/attiny861.yaml"
+

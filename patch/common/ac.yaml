@@ -6,15 +6,15 @@
 # - Fix the "Interrupt Mode Select" enumerated values
 AC:
   _modify:
-    ACSR:
+    ACSR,ACSR?A,ACSRA:
       access: read-write
-  ACSR:
+  ACSR,ACSR?A,ACSRA:
     _modify:
-      ACIS:
+      ACIS,ACIS?:
         description: "Analog Comparator Interrupt Mode Select"
       ACO:
         access: read-only
-    ACIS:
+    ACIS,ACIS?:
       _replace_enum:
         ON_TOGGLE: [0, "Interrupt on Toggle"]
         # Leaving [1, 'Reserved'] out

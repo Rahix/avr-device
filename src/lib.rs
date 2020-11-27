@@ -11,7 +11,9 @@
 #![cfg_attr(feature = "atmega64", doc = "**atmega64**,")]
 #![cfg_attr(feature = "atmega644", doc = "**atmega644**,")]
 #![cfg_attr(feature = "attiny84", doc = "**attiny84**,")]
+#![cfg_attr(feature = "attiny841", doc = "**attiny841**,")]
 #![cfg_attr(feature = "attiny85", doc = "**attiny85**,")]
+#![cfg_attr(feature = "attiny861", doc = "**attiny861**,")]
 #![cfg_attr(feature = "attiny88", doc = "**attiny88**,")]
 //! and a few things which apply to AVR microcontrollers generally.
 //!
@@ -27,7 +29,9 @@
 //! * `atmega4809`
 //! * `atmega48p`
 //! * `atmega64`
+//! * `attiny841`
 //! * `attiny85`
+//! * `attiny861`
 //! * `attiny88`
 #![no_std]
 #![feature(llvm_asm)]
@@ -101,8 +105,12 @@ pub use crate::devices::atmega644;
 pub use crate::devices::atmega8;
 #[cfg(feature = "attiny84")]
 pub use crate::devices::attiny84;
+#[cfg(feature = "attiny841")]
+pub use crate::devices::attiny841;
 #[cfg(feature = "attiny85")]
 pub use crate::devices::attiny85;
+#[cfg(feature = "attiny861")]
+pub use crate::devices::attiny861;
 #[cfg(feature = "attiny88")]
 pub use crate::devices::attiny88;
 
@@ -119,7 +127,9 @@ pub use crate::devices::attiny88;
     feature = "atmega64",
     feature = "atmega644",
     feature = "attiny84",
+    feature = "attiny841",
     feature = "attiny85",
+    feature = "attiny861",
     feature = "attiny88",
 )))]
 compile_error!("You need to select at least one chip as a feature!");
