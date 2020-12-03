@@ -7,12 +7,10 @@ echo     "pub fn lookup_vector(chip: &str, intr: &str) -> Option<usize> {"
 echo     "    match chip {"
 
 for intr_path in "$@"; do
-    chip="$(basename "$(dirname "$intr_path")")"
+    chip="$(basename "${intr_path%%.*}")"
     echo "        \"$chip\" => match intr {"
 
-    sed '/=> Ok(Interrupt::.\+),$/!d
-    s/ \+\(.\+\) => Ok(Interrupt::\(.\+\)),$/            "\2" => Some(\1),/' "$intr_path"
-
+    svd interrupts --no-gaps $intr_path | awk '{print "            \""substr($2, 1, length($2)-1)"\"" " => Some(" $1"),"}'
     echo "            _ => None,"
     echo "        },"
 done
