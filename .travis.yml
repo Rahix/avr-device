@@ -7,6 +7,7 @@ cache:
   pip: true
   directories:
     - /opt/pyenv
+    - ~/svd2rust
 
 install:
   - pyenv install 3.6.3
@@ -14,7 +15,10 @@ install:
   - python3 -c "__import__('svdtools')" || pip3 install --user svdtools
   - rustup component add rustfmt
   - cargo install form || true
-  - cargo install svd2rust || true
+  # TODO: Hack to use the latest version of svd2rust
+  # - cargo install svd2rust || true
+  - ! test -d svd2rust || (mkdir svd2rust && cd svd2rust && git init && git remote add origin https://github.com/rust-embedded/svd2rust.git)
+  - (cd svd2rust && git fetch origin 56be78729279eeebef65110c13be8d96c0b9270f && git checkout FETCH_HEAD && cargo install --path .)
   - cargo install atdf2svd || true
 
 script:
