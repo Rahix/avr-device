@@ -53,7 +53,6 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@./gen-intr-lut.sh svd/*.patched >macros/src/vector.rs
 
 macros/src/vector.rs: svd/*.patched
-	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
 	@./gen-intr-lut.sh $^ >$@
 
 clean:
