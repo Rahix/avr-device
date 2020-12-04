@@ -50,9 +50,11 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@# Remove DEVICE_PERIPHERALS declaration and replace it with a reference
 	@# to the global version
 	@patch --no-backup-if-mismatch --quiet $@ patch/modrs.patch
+	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
 	@./gen-intr-lut.sh svd/*.patched >macros/src/vector.rs
 
 macros/src/vector.rs: svd/*.patched
+	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
 	@./gen-intr-lut.sh $^ >$@
 
 clean:
