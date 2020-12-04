@@ -7,7 +7,7 @@ echo     "pub fn lookup_vector(chip: &str, intr: &str) -> Option<usize> {"
 echo     "    match chip {"
 
 for intr_path in "$@"; do
-    chip="$(basename "${intr_path%%.*}")"
+    chip="$(basename "${intr_path%.svd.patched}")"
     echo "        \"$chip\" => match intr {"
 
     svd interrupts --no-gaps $intr_path | awk '{print "            \""toupper(substr($2, 1, length($2)-1))"\"" " => Some(" $1"),"}'
