@@ -51,9 +51,9 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@# to the global version
 	@patch --no-backup-if-mismatch --quiet $@ patch/modrs.patch
 	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
-	@./gen-intr-lut.sh src/devices/*/interrupt.rs >macros/src/vector.rs
+	@./gen-intr-lut.sh svd/*.patched >macros/src/vector.rs
 
-macros/src/vector.rs: src/devices/*/interrupt.rs
+macros/src/vector.rs: svd/*.patched
 	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
 	@./gen-intr-lut.sh $^ >$@
 
