@@ -29,6 +29,8 @@
 //! * `atmega4809`
 //! * `atmega48p`
 //! * `atmega64`
+//! * `atmega644`
+//! * `attiny84`
 //! * `attiny841`
 //! * `attiny85`
 //! * `attiny861`
