@@ -10,8 +10,8 @@ TCCR?A:
     _replace_enum:
         DISCONNECTED:  [0, "Normal port operation, OCix disconnected"]
         MATCH_TOGGLE:  [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
-        MATCH_CLEAR:   [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at TOP)"]
-        MATCH_SET:     [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at TOP)"]
+        MATCH_CLEAR:   [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET:     [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
 
 TCCR?B:
   _modify:
