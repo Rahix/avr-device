@@ -28,8 +28,27 @@ TWI1:
     _strip_end:
       - "1"
 
+# the svd has a register called ACSRA with no fields that
+# messes up the patch when using `common/ac.yaml`, so the
+# ac has to be patched here instead.
+AC:
+  _modify:
+    ACSR:
+      access: read-write
+  ACSR:
+    _modify:
+      ACIS:
+        description: "Analog Comparator Interrupt Mode Select"
+      ACO:
+        access: read-only
+    ACIS:
+      _replace_enum:
+        ON_TOGGLE: [0, "Interrupt on Toggle"]
+        # Leaving [1, 'Reserved'] out
+        ON_FALLING_EDGE: [2, "Interrupt on Falling Edge"]
+        ON_RISING_EDGE: [3, "Interrupt on Rising Edge"]
+
 _include:
-  - "common/ac.yaml"
   - "common/adc.yaml"
   - "common/port.yaml"
   - "common/usart.yaml"
