@@ -3,7 +3,6 @@ _svd: ../svd/atmega328p.svd
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
-  - "common/cpu.yaml"
   - "common/port.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
@@ -11,3 +10,8 @@ _include:
   - "common/wdt.yaml"
 
   - "timer/atmega328p.yaml"
+
+CPU:
+  _modify:
+    PRR:
+      access: read-write
