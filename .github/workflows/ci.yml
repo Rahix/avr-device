@@ -1,0 +1,73 @@
+name: Continuous Integration
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  ci:
+    name: "Test-build avr-device with all targets and runtime enabled"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly-2021-01-07
+          override: true
+          components: rustfmt
+
+      # Python Dependencies
+      - name: Install Python dependencies
+        run: |
+          pip3 install --user setuptools wheel
+          pip3 install --user svdtools
+      - name: Put pip binary directory into path
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      # Rust Dependencies
+      - name: Cache Cargo installed binaries
+        uses: actions/cache@v1
+        id: cache-cargo
+        with:
+          path: ~/cargo-bin
+          key: rust-tools-001
+      - name: Install svd2rust
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: |
+          mkdir svd2rust
+          cd svd2rust
+          git init
+          git remote add origin https://github.com/rust-embedded/svd2rust.git
+          git fetch origin 56be78729279eeebef65110c13be8d96c0b9270f
+          git checkout FETCH_HEAD
+          cargo install --path .
+      - name: Install cargo-form
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        uses: actions-rs/install@v0.1
+        with:
+          crate: form
+          version: 0.7.0
+      - name: Install atdf2svd
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        uses: actions-rs/install@v0.1
+        with:
+          crate: atdf2svd
+          version: 0.2.0
+      - name: Copy tools to cache directory
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: |
+          mkdir ~/cargo-bin
+          cp ~/.cargo/bin/svd2rust ~/cargo-bin
+          cp ~/.cargo/bin/form ~/cargo-bin
+          cp ~/.cargo/bin/atdf2svd ~/cargo-bin
+      - name: Put new cargo binary directory into path
+        run: echo "$HOME/cargo-bin" >> $GITHUB_PATH
+
+      # Actual test run
+      - name: Generate chip description sources
+        run: make RUSTUP_TOOLCHAIN=nightly-2021-01-07
+      - name: Test-compile the crate
+        run: cargo check --all-features
