@@ -10,3 +10,8 @@ _include:
   - "common/wdt.yaml"
 
   - "timer/atmega328p.yaml"
+
+CPU:
+  _modify:
+    PRR:
+      access: read-write
