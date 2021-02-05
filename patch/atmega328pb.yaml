@@ -58,4 +58,18 @@ _include:
 
   - "timer/atmega328pb.yaml"
 
+CPU:
+  _modify:
+    PRR0:
+      access: read-write
+    PRR1:
+      access: read-write
+
+EXINT:
+  EIMSK:
+    _modify:
+      INT:
+        description: External Interrupt Request Enable
+    _split: [INT]
+
 
