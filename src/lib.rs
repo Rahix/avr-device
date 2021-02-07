@@ -80,6 +80,31 @@ pub use avr_device_macros::interrupt;
 #[cfg(feature = "rt")]
 pub use avr_device_macros::entry;
 
+#[cfg(not(feature = "device-selected"))]
+compile_error!(
+    "This crate requires you to specify your target chip as a feature.
+
+    Please select one of the following:
+
+    * atmega1280
+    * atmega168
+    * atmega2560
+    * atmega328p
+    * atmega328pb
+    * atmega32u4
+    * atmega4809
+    * atmega48p
+    * atmega64
+    * atmega644
+    * atmega8
+    * attiny84
+    * attiny841
+    * attiny85
+    * attiny861
+    * attiny88
+    "
+);
+
 #[allow(non_camel_case_types, unused_attributes, unreachable_patterns)]
 mod devices;
 
@@ -115,23 +140,3 @@ pub use crate::devices::attiny85;
 pub use crate::devices::attiny861;
 #[cfg(feature = "attiny88")]
 pub use crate::devices::attiny88;
-
-#[cfg(not(any(
-    feature = "atmega1280",
-    feature = "atmega168",
-    feature = "atmega2560",
-    feature = "atmega8",
-    feature = "atmega328p",
-    feature = "atmega328pb",
-    feature = "atmega32u4",
-    feature = "atmega4809",
-    feature = "atmega48p",
-    feature = "atmega64",
-    feature = "atmega644",
-    feature = "attiny84",
-    feature = "attiny841",
-    feature = "attiny85",
-    feature = "attiny861",
-    feature = "attiny88",
-)))]
-compile_error!("You need to select at least one chip as a feature!");
