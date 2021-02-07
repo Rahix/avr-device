@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **BREAKING**: Updated the enumerated values for the SPI clock
   prescaler field ([#64]).
+- **BREAKING**: Split the `EIMSK` register fields into per-bit fields on
+  `ATmega328P` and `ATmega328PB` ([#74]).
 - Switched to using the `svd interrupts` command for extracting
   a list of interrupts instead of parsing generated rust source
   files for this ([#69]).
@@ -20,11 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ATmega64`: Fixed wrong field size for `UMSELn` fields in `USART` peripherals ([#64]).
 - (via [`atdf2svd` v0.2.0]): Removed invalid enumerated values from all fields.
 - Fixed an error in the 16-bit timer documentation ([#67]).
+- Fixed the `PRR`, `PRR0`, and `PRR1` registers for `ATmega328P` and
+  `ATmega328PB` wrongly being read-only ([#73], [#74])
 
 [#63]: https://github.com/Rahix/avr-device/pull/63
 [#64]: https://github.com/Rahix/avr-device/pull/64
 [#67]: https://github.com/Rahix/avr-device/pull/67
 [#69]: https://github.com/Rahix/avr-device/pull/69
+[#73]: https://github.com/Rahix/avr-device/pull/73
+[#74]: https://github.com/Rahix/avr-device/pull/74
 [`atdf2svd` v0.2.0]: https://github.com/Rahix/atdf2svd/blob/master/CHANGELOG.md#020---2020-11-25
 
 
