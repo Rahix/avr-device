@@ -6,7 +6,7 @@ Auto-generated wrappers around registers for AVR microcontrollers.
 Add the following to `Cargo.toml`:
 ```toml
 [dependencies.avr-device]
-version = "0.2.3"
+version = "0.3.0"
 features = ["atmega32u4"]
 ```
 
