@@ -15,6 +15,7 @@ Via the feature you can select which chip you want the register specifications f
 * `atmega168`
 * `atmega2560`
 * `atmega8`
+* `atmega8u2`
 * `atmega328p`
 * `atmega32u4`
 * `atmega4809`

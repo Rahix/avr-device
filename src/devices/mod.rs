@@ -174,6 +174,25 @@ impl atmega8::Peripherals {
     }
 }
 
+/// [ATmega8u2](https://www.microchip.com/wwwproducts/en/ATmega8u2)
+#[cfg(feature = "atmega8u2")]
+pub mod atmega8u2;
+
+#[cfg(feature = "atmega8u2")]
+impl atmega8u2::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { atmega8u2::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATmega64](https://www.microchip.com/wwwproducts/en/ATmega64)
 #[cfg(feature = "atmega64")]
 pub mod atmega64;
