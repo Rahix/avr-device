@@ -5,9 +5,6 @@
 # - Fix the "Slave Address Mask" description
 # - Fix the Prescaler enumerated values
 TWI*:
-  _modify:
-    TWCR:
-      access: read-write
   TWCR:
     _modify:
       TWWC:

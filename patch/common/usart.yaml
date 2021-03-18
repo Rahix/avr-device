@@ -1,7 +1,4 @@
 USART?:
-  _modify:
-    UCSR?A:
-      access: read-write
   UCSR?A:
     _modify:
       UPE?:

@@ -1,7 +1,4 @@
 EXINT:
-  _modify:
-    GIFR:
-      access: read-write
   MCUCR:
     _delete:
       ISC??:

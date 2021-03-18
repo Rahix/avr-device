@@ -37,8 +37,6 @@ _modify:
     description: "Output Compare Register B"
   OCR1C:
     description: "Output Compare Register C"
-  TCNT?:
-    access: read-write
 
 GTCCR:
   _modify:

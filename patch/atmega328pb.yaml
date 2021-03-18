@@ -32,9 +32,6 @@ TWI1:
 # messes up the patch when using `common/ac.yaml`, so the
 # ac has to be patched here instead.
 AC:
-  _modify:
-    ACSR:
-      access: read-write
   ACSR:
     _modify:
       ACIS:
@@ -50,20 +47,12 @@ AC:
 
 _include:
   - "common/adc.yaml"
-  - "common/port.yaml"
   - "common/usart.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/wdt.yaml"
 
   - "timer/atmega328pb.yaml"
-
-CPU:
-  _modify:
-    PRR0:
-      access: read-write
-    PRR1:
-      access: read-write
 
 EXINT:
   EIMSK:

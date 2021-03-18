@@ -1,7 +1,3 @@
-_modify:
-  TIFR?:
-    access: read-write
-
 TCCR?A:
   _modify:
     COM?A:

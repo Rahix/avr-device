@@ -2,7 +2,6 @@ _svd: ../svd/attiny841.svd
 
 _include:
   - "common/ac.yaml"
-  - "common/port.yaml"
   - "common/spi.yaml"
   - "common/usart.yaml"
   - "common/wdt.yaml"
@@ -10,9 +9,6 @@ _include:
   - "timer/attiny841.yaml"
 
 ADC:
-  _modify:
-    ADCSRA:
-      access: read-write
   ADCSRA:
     ADPS:
       _replace_enum:
@@ -39,9 +35,6 @@ ADC:
 # slave, so it doesn't have many of the fields that the common peripheral
 # does, like TWWC, TWAMR, and TWPS
 TWI*:
-  _modify:
-    TWCR:
-      access: read-write
   TWSCRB:
     TWAA:
       _replace_enum:

@@ -5,9 +5,6 @@
 # - Make just the Output field of ACSR read-only
 # - Fix the "Interrupt Mode Select" enumerated values
 AC:
-  _modify:
-    ACSR,ACSR?A,ACSRA:
-      access: read-write
   ACSR,ACSR?A,ACSRA:
     _modify:
       ACIS,ACIS?:

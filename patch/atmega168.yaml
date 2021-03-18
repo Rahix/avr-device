@@ -3,7 +3,6 @@ _svd: ../svd/atmega168.svd
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
-  - "common/port.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/usart.yaml"

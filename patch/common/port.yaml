@@ -1,7 +1,0 @@
-# Patches for I/O Ports
-#
-# - Make the PINx register writable (toggles the corresponding PORTx bit)
-PORT?:
-  _modify:
-    PIN?:
-      access: read-write

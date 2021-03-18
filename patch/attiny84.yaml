@@ -3,7 +3,6 @@ _svd: ../svd/attiny84.svd
 _include:
   - "common/ac.yaml"
   - "common/eeprom.yaml"
-  - "common/port.yaml"
   - "common/wdt.yaml"
 
   - "common/tiny/exint.yaml"
@@ -28,9 +27,6 @@ AC:
         bitWidth: 1
         access: read-write
 ADC:
-  _modify:
-    ADCSRA:
-      access: read-write
   ADCSRA:
     ADPS:
       _replace_enum:
@@ -142,9 +138,6 @@ ADC:
       AREF: [1, "External Voltage Reference at AREF pin, Internal Voltage Reference turned off"]
       INTERNAL: [2, "Internal 1.1V Voltage Reference"]
 CPU:
-  _modify:
-    OSCCAL:
-      access: read-write
   CLKPR:
     CLKPS:
       _replace_enum:
@@ -168,8 +161,4 @@ CPU:
         description: "BOD Sleep Enable (available on some devices)"
         bitOffset: 2
         bitWidth: 1
-        access: read-write
-  OSCCAL:
-    _modify:
-      CAL:
         access: read-write

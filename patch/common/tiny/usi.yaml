@@ -1,7 +1,4 @@
 USI:
-  _modify:
-    USISR:
-      access: read-write
   USICR:
     _modify:
       USICLK:

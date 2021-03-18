@@ -3,7 +3,6 @@ _svd: ../svd/attiny85.svd
 _include:
   - "common/ac.yaml"
   - "common/eeprom.yaml"
-  - "common/port.yaml"
   - "common/wdt.yaml"
 
   - "common/tiny/exint.yaml"
@@ -69,13 +68,6 @@ ADC:
         INTERNAL: [2, "Internal Voltage Reference (1.1V when REFS2 is cleared, 2.56V when REFS2 is set) without external bypass"]
         INTERNAL_BYPASS: [3, "Internal 2.56V Voltage Reference with external bypass capacitor at AREF pin (REFS2 must be set)"]
 CPU:
-  _modify:
-    CLKPR:
-      access: read-write
-    MCUSR:
-      access: read-write
-    OSCCAL:
-      access: read-write
   CLKPR:
     CLKPS:
       _replace_enum:
@@ -101,10 +93,6 @@ CPU:
         description: "BOD Sleep Enable (available on some devices)"
         bitOffset: 2
         bitWidth: 1
-        access: read-write
-  OSCCAL:
-    _modify:
-      CAL:
         access: read-write
   PLLCSR:
     _modify:

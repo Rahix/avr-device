@@ -2,9 +2,6 @@
 #
 # - Make the control-register actually writable
 ADC:
-  _modify:
-    ADCSRA:
-      access: read-write
   ADCSRA:
     ADPS:
       _replace_enum:

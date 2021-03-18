@@ -3,7 +3,6 @@ _svd: ../svd/attiny88.svd
 _include:
   - "common/ac.yaml"
   - "common/eeprom.yaml"
-  - "common/port.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/wdt.yaml"
@@ -54,15 +53,6 @@ ADC:
         TC1_OVF: [6, "Timer/Counter1 Overflow"]
         TC1_CE: [7, "Timer/Counter1 Capture Event"]
 CPU:
-  _modify:
-    CLKPR:
-      access: read-write
-    OSCCAL:
-      access: read-write
-    PORTCR:
-      access: read-write
-    PRR:
-      access: read-write
   CLKPR:
     CLKPS:
       _replace_enum:
@@ -92,9 +82,3 @@ EXINT:
   _modify:
     PCICR:
       description: "Pin Change Interrupt Control Register"
-PORTA:
-  _modify:
-    PORTA:
-      access: read-write
-    DDRA:
-      access: read-write
