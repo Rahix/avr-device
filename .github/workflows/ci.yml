@@ -11,7 +11,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Rust
+
+      - name: Install Stable Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: false
+      - name: Install Nightly Rust
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -43,7 +50,7 @@ jobs:
           git remote add origin https://github.com/rust-embedded/svd2rust.git
           git fetch origin 56be78729279eeebef65110c13be8d96c0b9270f
           git checkout FETCH_HEAD
-          cargo install --path .
+          cargo +stable install --path .
       - name: Install cargo-form
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         uses: actions-rs/install@v0.1
