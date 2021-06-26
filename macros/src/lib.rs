@@ -93,6 +93,13 @@ pub fn entry(
         .collect::<Vec<_>>();
 
     quote::quote! (
+        #[cfg(not(any(doc, target_arch = "avr")))]
+        compile_error!(
+            "Ensure that you are using an AVR target! You may need to change \
+       directories or pass a --target flag to cargo. See
+       https://github.com/Rahix/avr-device/pull/41 for more details."
+        );
+
         #[doc(hidden)]
         #[export_name = "main"]
         pub unsafe extern "C" fn #tramp_ident() {
@@ -101,6 +108,7 @@ pub fn entry(
             )
         }
 
+        #[doc(hidden)]
         #f
     )
     .into()
@@ -222,6 +230,7 @@ pub fn interrupt(
             )
         }
 
+        #[doc(hidden)]
         #f
     )
     .into()
