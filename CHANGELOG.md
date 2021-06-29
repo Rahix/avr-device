@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATmega8U2` ([#77]).
+- Support for `AT90USB1286` ([#80]).
+- Convert `static mut`s into `&mut` references inside `#[entry]` and interrupt
+  handlers.  This behavior mirrors what `cortex-m-rt` does ([#79]).
 
 [#77]: https://github.com/Rahix/avr-device/pull/77
+[#79]: https://github.com/Rahix/avr-device/pull/79
+[#80]: https://github.com/Rahix/avr-device/pull/80
 
 
 ## [0.3.0] - 2021-02-07
