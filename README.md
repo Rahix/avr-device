@@ -23,6 +23,7 @@ Via the feature you can select which chip you want the register specifications f
 * `atmega48p`
 * `atmega64`
 * `atmega644`
+* `attiny202`
 * `attiny84`
 * `attiny841`
 * `attiny85`

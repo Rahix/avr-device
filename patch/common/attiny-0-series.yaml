@@ -1,0 +1,57 @@
+# This is probably good for at least ATtiny202/204/402/404/406, but may not be valid for ATtiny80* and ATtiny160*
+
+TCB0:
+  CTRLB:
+    _modify:
+      # 'async' is reserved
+      ASYNC:
+        name: "TCB_ASYNC"
+
+# Split this in 2 for ease of use
+TWI0:
+  SADDR:
+    _add:
+      # FIXME: Make this so we don't need 'unsafe'
+      ADDR:
+        description: "Client Address"
+        bitRange: "[7:1]"
+        access: read-write
+      GCE:
+        description: "General Call Recognition Enable Bit"
+        bitRange: "[0:0]"
+        access: read-write
+
+USERROW:
+  _modify:
+    "USERROW*":
+      description: "User Row Bytes"
+  _array:
+    "USERROW*": {}
+
+GPIO:
+  _modify:
+    "GPIO*":
+      description: "General Purpose IO Registers"
+  _array:
+    "GPIO*": {}
+
+SIGROW:
+  _modify:
+    "DEVICEID*":
+      description: "Device IO Bytes"
+    "SERNUM*":
+      description: "Serial Number Bytes"
+    "TEMPSENSE0":
+      description: "Temperature Sensor Calibration: Gain/Slope"
+    "TEMPSENSE1":
+      description: "Temperature Sensor Calibration: Offset"
+  _array:
+    "DEVICEID*" : {}
+    "SERNUM*" : {}
+
+# All FUSEs are read-only from the CPU (can only be modified with UPDI)
+FUSE:
+  _modify:
+    "*":
+      access: read-only
+
