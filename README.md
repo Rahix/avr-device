@@ -1,4 +1,4 @@
-avr-device [![crates.io page](http://meritbadge.herokuapp.com/avr-device)](https://crates.io/crates/avr-device) [![docs.rs](https://docs.rs/avr-device/badge.svg)](https://docs.rs/avr-device) ![Continuous Integration](https://github.com/Rahix/avr-device/workflows/Continuous%20Integration/badge.svg)
+avr-device [![crates.io page](https://img.shields.io/crates/v/avr-device.svg)](https://crates.io/crates/avr-device) [![docs.rs](https://docs.rs/avr-device/badge.svg)](https://docs.rs/avr-device) ![Continuous Integration](https://github.com/Rahix/avr-device/workflows/Continuous%20Integration/badge.svg)
 ==========
 Auto-generated wrappers around registers for AVR microcontrollers.
 
