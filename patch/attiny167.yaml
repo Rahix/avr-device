@@ -31,7 +31,7 @@ ADC:
         ADC10: [10, "ADC Single Ended Input pin 10"]
         TEMPSENS: [11, "Temperature sensor"]
         ADC_VBG: [12, "Internal Reference (VBG)"]
-        AVCC_4: [13, "AVcc/4"]
+        ADC_AVCC_4: [13, "AVcc/4"]
         ADC_GND: [14, "0V (GND)"]
     REFS:
       _replace_enum:
