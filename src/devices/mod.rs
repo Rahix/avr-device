@@ -250,6 +250,25 @@ impl atmega644::Peripherals {
     }
 }
 
+/// [ATtiny167](https://www.microchip.com/wwwproducts/en/ATtiny167)
+#[cfg(feature = "attiny167")]
+pub mod attiny167;
+
+#[cfg(feature = "attiny167")]
+impl attiny167::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { attiny167::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATtiny202](https://www.microchip.com/wwwproducts/en/ATtiny202)
 #[cfg(feature = "attiny202")]
 pub mod attiny202;
