@@ -1,0 +1,29 @@
+_include:
+  - "common/ac.yaml"
+  - "common/eeprom.yaml"
+  - "common/usart-single.yaml"
+  - "common/wdt.yaml"
+  - "common/tiny/usi.yaml"
+
+  - "timer/attiny2313-common.yaml"
+
+CPU:
+  MCUCR:
+    ISC?:
+      _replace_enum:
+        LOW: [0, "The low level of INTx generates an interrupt request"]
+        TOGGLE: [1, "Any logical change on INTx generates an interrupt request"]
+        FALLING: [2, "The falling edge of INTx generates an interrupt request"]
+        RISING: [3, "The rising edge of INTx generates an interrupt request"]
+  CLKPR:
+    CLKPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+        PRESCALER_256: [8, "Prescaler Value 256"]

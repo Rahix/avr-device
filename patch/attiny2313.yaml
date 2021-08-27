@@ -1,1 +1,4 @@
 _svd: ../svd/attiny2313.svd
+
+_include:
+  - "attiny2313-common.yaml"
