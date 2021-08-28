@@ -38,7 +38,5 @@ TWI*:
   TWSCRB:
     TWAA:
       _replace_enum:
-        ACK_WRITE: [0, "Send ACK when TWCMD is written as 10 or 11"]
-        ACK_READ: [1, "Send ACK when TWSD is read"]
-        NACK_WRITE: [2, "Send NACK when TWCMD is written as 10 or 11"]
-        NACK_READ: [3, "Send NACK when TWSD is read"]
+        SEND_ACK: [0, "Send ACK (timing depends on `TWSME`)"]
+        SEND_NACK: [1, "Send NACK (timing depends on `TWSME`)"]
