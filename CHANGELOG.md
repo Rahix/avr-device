@@ -5,6 +5,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for `ATtiny202` ([#82]).
+- Support for `ATtiny167` ([#84]).
+- Support for `ATtiny2313` and `ATtiny2313A` ([#85]).
+
+#### Changed
+- Upgraded to `svd2rust` version 0.19 ([#86]).  Please check the upstream
+  changelog for details about what changes this has lead to.
+
+### Fixed
+- Fixed enumerated values for `TWAA` field in `ATtiny841` ([`c0db0422b9ca`]).
+
+[#82]: https://github.com/Rahix/avr-device/pull/82
+[#84]: https://github.com/Rahix/avr-device/pull/84
+[#85]: https://github.com/Rahix/avr-device/pull/85
+[#86]: https://github.com/Rahix/avr-device/pull/86
+[`c0db0422b9ca`]: https://github.com/Rahix/avr-device/commit/c0db0422b9ca8c7ff4cef39807b05f1cfca26028
 
 
 ## [0.3.1] - 2021-06-29
