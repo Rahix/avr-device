@@ -37,7 +37,6 @@ USART:
       CHR6: [1, "Character Size: 6 bit"]
       CHR7: [2, "Character Size: 7 bit"]
       CHR8: [3, "Character Size: 8 bit"]
-      CHR9: [7, "Character Size: 9 bit"]
     UCPOL:
       _replace_enum:
         RISING_EDGE:  [0, "Transmit on Rising XCKn Edge, Receive on Falling XCKn Edge"]
