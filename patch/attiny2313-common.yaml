@@ -1,7 +1,6 @@
 _include:
   - "common/ac.yaml"
   - "common/eeprom.yaml"
-  - "common/usart-single.yaml"
   - "common/wdt.yaml"
   - "common/tiny/usi.yaml"
 

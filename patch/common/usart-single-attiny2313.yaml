@@ -1,0 +1,43 @@
+USART:
+  UCSRA:
+    _modify:
+      UPE:
+        access: read-only
+      DOR:
+        access: read-only
+      FE:
+        access: read-only
+      UDRE:
+        access: read-only
+      TXC:
+        description: "USART Transmit Complete"
+      RXC:
+        access: read-only
+  UCSRB:
+    _modify:
+      RXB8:
+        access: read-only
+  UCSRC:
+    UMSEL:
+      _replace_enum:
+        USART_ASYNC: [0, "Asynchronous USART"]
+        USART_SYNC:  [1, "Synchronous USART"]
+    UPM:
+      _replace_enum:
+        DISABLED:    [0, "Disabled"]
+        PARITY_EVEN: [2, "Enabled, Even Parity"]
+        PARITY_ODD:  [3, "Enabled, Odd Parity"]
+    USBS:
+      _replace_enum:
+        STOP1: [0, "1-bit"]
+        STOP2: [1, "2-bit"]
+    UCSZ:
+      CHR5: [0, "Character Size: 5 bit"]
+      CHR6: [1, "Character Size: 6 bit"]
+      CHR7: [2, "Character Size: 7 bit"]
+      CHR8: [3, "Character Size: 8 bit"]
+      CHR9: [7, "Character Size: 9 bit"]
+    UCPOL:
+      _replace_enum:
+        RISING_EDGE:  [0, "Transmit on Rising XCKn Edge, Receive on Falling XCKn Edge"]
+        FALLING_EDGE: [1, "Transmit on Falling XCKn Edge, Receive on Rising XCKn Edge"]
