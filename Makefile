@@ -35,8 +35,8 @@ svd/%.svd.patched: svd/%.svd .deps/%.d
 src/devices/%/mod.full.rs: svd/%.svd.patched
 	@mkdir -p $(@D)
 	@echo -e "\tSVD2RUST\t$*"
-	@cd $(@D); svd2rust --generic_mod --target none -i $(realpath $<)
-	@mv $(@D)/lib.rs $@
+	@cd $(@D); svd2rust --generic_mod --make_mod --target none -i $(realpath $<)
+	@mv $(@D)/mod.rs $@
 	@mv $(@D)/generic.rs $(@D)/../../generic.rs
 
 src/devices/%/mod.rs: src/devices/%/mod.full.rs
