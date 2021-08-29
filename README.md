@@ -11,26 +11,18 @@ features = ["atmega32u4"]
 ```
 
 Via the feature you can select which chip you want the register specifications for.  The following list is what is currently supported:
-* `at90usb1286`
-* `atmega1280`
-* `atmega168`
-* `atmega2560`
-* `atmega8`
-* `atmega8u2`
-* `atmega328p`
-* `atmega32u4`
-* `atmega4809`
-* `atmega48p`
-* `atmega64`
-* `atmega644`
-* `attiny202`
-* `attiny2313`
-* `attiny2313a`
-* `attiny84`
-* `attiny841`
-* `attiny85`
-* `attiny861`
-* `attiny88`
+
+|     ATmega    |  ATmega USB  | ATmega 0,1 Series |      AT90     |     ATtiny    |
+|:-------------:|:------------:|:-----------------:|:-------------:|:-------------:|
+|   `atmega8`   |  `atmega8u2` |    `atmega4809`   | `at90usb1286` |  `attiny167`  |
+|  `atmega48p`  | `atmega32u4` |                   |               |  `attiny202`  |
+|   `atmega64`  |              |                   |               |   `attiny84`  |
+|  `atmega644`  |              |                   |               |   `attiny85`  |
+|  `atmega168`  |              |                   |               |   `attiny88`  |
+|  `atmega328p` |              |                   |               |  `attiny841`  |
+| `atmega328pb` |              |                   |               |  `attiny861`  |
+|  `atmega1280` |              |                   |               |  `attiny2313` |
+|  `atmega2560` |              |                   |               | `attiny2313a` |
 
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
