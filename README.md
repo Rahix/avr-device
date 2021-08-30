@@ -19,10 +19,11 @@ Via the feature you can select which chip you want the register specifications f
 |   `atmega64`  |              |                   |               |   `attiny84`  |
 |  `atmega644`  |              |                   |               |   `attiny85`  |
 |  `atmega168`  |              |                   |               |   `attiny88`  |
-|  `atmega328p` |              |                   |               |  `attiny841`  |
-| `atmega328pb` |              |                   |               |  `attiny861`  |
-|  `atmega1280` |              |                   |               |  `attiny2313` |
-|  `atmega2560` |              |                   |               | `attiny2313a` |
+|  `atmega328p` |              |                   |               |  `attiny816`  |
+| `atmega328pb` |              |                   |               |  `attiny841`  |
+|  `atmega1280` |              |                   |               |  `attiny861`  |
+|  `atmega2560` |              |                   |               |  `attiny2313` |
+|               |              |                   |               | `attiny2313a` |
 
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
