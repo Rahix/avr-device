@@ -12,10 +12,19 @@ pub use bare_metal::{CriticalSection, Mutex, Nr};
 
 #[inline]
 /// Disables all interrupts
-pub fn disable() {
+///
+/// Returns a bool, reflecting whether interrupts were enabled prior to calling this method.
+pub fn disable() -> bool {
     cfg_if::cfg_if! {
         if #[cfg(target_arch = "avr")] {
+            // Store current state
+            let sreg: u8;
+            unsafe { llvm_asm!("in $0,0x3F" :"=r"(sreg) ::: "volatile") };
+
+            // Disable interrupts
             unsafe { llvm_asm!("cli" :::: "volatile") };
+
+            sreg & 0x80 == 0x80
         } else {
             unimplemented!()
         }
@@ -47,20 +56,13 @@ where
 {
     cfg_if::cfg_if! {
         if #[cfg(target_arch = "avr")] {
-            let sreg: u8;
-
-            // Store current state
-            unsafe {
-                llvm_asm!("in $0,0x3F" :"=r"(sreg) ::: "volatile");
-            }
-
             // Disable interrupts
-            disable();
+            let interrupts_enabled = disable();
 
             let r = f(unsafe { &CriticalSection::new() });
 
             // Restore interrupt state
-            if sreg & 0x80 != 0x00 {
+            if interrupts_enabled {
                 unsafe { enable(); }
             }
 
