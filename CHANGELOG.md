@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Changed
 - Upgraded to `svd2rust` version 0.19 ([#86]).  Please check the upstream
   changelog for details about what changes this has lead to.
+- `interrupt::disable()` now returns a boolean, indicating whether interrupts
+  were previously enabled ([#89]).
 
 ### Fixed
 - Fixed enumerated values for `TWAA` field in `ATtiny841` ([`c0db0422b9ca`]).
@@ -21,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#84]: https://github.com/Rahix/avr-device/pull/84
 [#85]: https://github.com/Rahix/avr-device/pull/85
 [#86]: https://github.com/Rahix/avr-device/pull/86
+[#89]: https://github.com/Rahix/avr-device/pull/89
 [`c0db0422b9ca`]: https://github.com/Rahix/avr-device/commit/c0db0422b9ca8c7ff4cef39807b05f1cfca26028
 
 
