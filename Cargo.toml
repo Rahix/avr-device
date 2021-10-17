@@ -45,6 +45,7 @@ attiny841 = ["device-selected"]
 attiny85 = ["device-selected"]
 attiny861 = ["device-selected"]
 attiny88 = ["device-selected"]
+attiny1614 = ["device-selected"]
 rt = ["avr-device-macros"]
 
 [dependencies]

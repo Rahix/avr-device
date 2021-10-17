@@ -269,6 +269,25 @@ impl attiny167::Peripherals {
     }
 }
 
+/// [ATtiny1614](https://www.microchip.com/wwwproducts/en/ATtiny1614)
+#[cfg(feature = "attiny1614")]
+pub mod attiny1614;
+
+#[cfg(feature = "attiny1614")]
+impl attiny1614::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { attiny1614::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATtiny202](https://www.microchip.com/wwwproducts/en/ATtiny202)
 #[cfg(feature = "attiny202")]
 pub mod attiny202;

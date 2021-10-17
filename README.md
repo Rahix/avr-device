@@ -22,7 +22,8 @@ Via the feature you can select which chip you want the register specifications f
 |  `atmega328p` |              |                   |               |  `attiny816`  |
 | `atmega328pb` |              |                   |               |  `attiny841`  |
 |  `atmega1280` |              |                   |               |  `attiny861`  |
-|  `atmega2560` |              |                   |               |  `attiny2313` |
+|  `atmega2560` |              |                   |               |  `attiny1614` |
+|               |              |                   |               |  `attiny2313` |
 |               |              |                   |               | `attiny2313a` |
 
 ## Build Instructions
