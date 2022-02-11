@@ -7,8 +7,6 @@ USART?:
         access: read-only
       FE?:
         access: read-only
-      UDRE?:
-        access: read-only
       TXC?:
         description: "USART Transmit Complete"
       RXC?:
