@@ -33,10 +33,11 @@ USART?:
         STOP1: [0, "1-bit"]
         STOP2: [1, "2-bit"]
     UCSZ?:
-      CHR5: [0, "Character Size: 5 bit"]
-      CHR6: [1, "Character Size: 6 bit"]
-      CHR7: [2, "Character Size: 7 bit"]
-      CHR8: [3, "Character Size: 8 bit"]
+      _replace_enum:
+        CHR5: [0, "Character Size: 5 bit"]
+        CHR6: [1, "Character Size: 6 bit"]
+        CHR7: [2, "Character Size: 7 bit"]
+        CHR8: [3, "Character Size: 8 bit"]
     UCPOL?:
       _replace_enum:
         RISING_EDGE:  [0, "Transmit on Rising XCKn Edge, Receive on Falling XCKn Edge"]

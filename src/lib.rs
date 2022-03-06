@@ -1,6 +1,7 @@
 //! This crate contains register definitions for
 #![cfg_attr(feature = "at90usb1286", doc = "**at90usb1286**,")]
 #![cfg_attr(feature = "atmega1280", doc = "**atmega1280**,")]
+#![cfg_attr(feature = "atmega128rfa1", doc = "**atmega128rfa1**,")]
 #![cfg_attr(feature = "atmega168", doc = "**atmega168**,")]
 #![cfg_attr(feature = "atmega2560", doc = "**atmega2560**,")]
 #![cfg_attr(feature = "atmega8", doc = "**atmega8**,")]
@@ -29,6 +30,7 @@
 //! The following chips are available (using feature flags of the same name):
 //! * `at90usb1286`
 //! * `atmega1280`
+//! * `atmega128rfa1`
 //! * `atmega168`
 //! * `atmega2560`
 //! * `atmega8`
@@ -103,6 +105,7 @@ compile_error!(
     Please select one of the following:
 
     * atmega1280
+    * atmega128rfa1
     * atmega168
     * atmega2560
     * atmega328p
@@ -135,6 +138,8 @@ mod devices;
 pub use crate::devices::at90usb1286;
 #[cfg(feature = "atmega1280")]
 pub use crate::devices::atmega1280;
+#[cfg(feature = "atmega128rfa1")]
+pub use crate::devices::atmega128rfa1;
 #[cfg(feature = "atmega168")]
 pub use crate::devices::atmega168;
 #[cfg(feature = "atmega2560")]

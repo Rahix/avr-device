@@ -1,0 +1,18 @@
+_svd: ../svd/atmega128rfa1.svd
+
+# this isn't complete, but the MAN_ID_0 field is broken into bits, and has an
+# associated 8-bit wide enum which is associated with bit 0 rather than the
+# entire register. many other registers within the TRX24 are incorrectly split
+# into bits, however they have not been patched yet as this is the only one
+# which causes a build failure.
+TRX24:
+  MAN_ID_0:
+    _merge:
+      - "*"
+
+_include:
+  - "common/adc.yaml"
+  - "common/spi.yaml"
+  - "common/twi.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
