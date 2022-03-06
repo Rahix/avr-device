@@ -24,6 +24,7 @@ all-features = true
 device-selected = []
 at90usb1286 = ["device-selected"]
 atmega1280 = ["device-selected"]
+atmega128rfa1 = ["device-selected"]
 atmega168 = ["device-selected"]
 atmega2560 = ["device-selected"]
 atmega8 = ["device-selected"]

@@ -41,6 +41,25 @@ impl atmega1280::Peripherals {
     }
 }
 
+/// [ATmega128RFA1](https://www.microchip.com/en-us/product/ATmega128RFA1)
+#[cfg(feature = "atmega128rfa1")]
+pub mod atmega128rfa1;
+
+#[cfg(feature = "atmega128rfa1")]
+impl atmega128rfa1::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { atmega128rfa1::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATmega168](https://www.microchip.com/wwwproducts/en/ATmega168)
 #[cfg(feature = "atmega168")]
 pub mod atmega168;
