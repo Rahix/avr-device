@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATtiny1614` ([#90]).
+- Support for `ATmega128RFA1` ([#93]).
 
 [#90]: https://github.com/Rahix/avr-device/pull/90
+[#93]: https://github.com/Rahix/avr-device/pull/93
 
 
 ## [0.3.2] - 2021-10-15
