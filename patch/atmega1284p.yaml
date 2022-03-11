@@ -1,0 +1,33 @@
+_svd: ../svd/atmega1284p.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/spi.yaml"
+  - "common/twi.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/atmega1284p.yaml"
+
+EXINT:
+  EIMSK:
+    _split:
+      INT:
+        name: INT%s
+        description: External Interrupt %s Request Enable
+  EIFR:
+    _split:
+      INTF:
+        name: INTF%s
+        description: External Interrupt Flags %s
+  PCICR:
+    _split:
+      PCIE:
+        name: PCIE%s
+        description: Pin Change Interrupt Enable %s
+  PCIFR:
+    _split:
+      PCIF:
+        name: PCIF%s
+        description: Pin Change Interrupt Flag %s
