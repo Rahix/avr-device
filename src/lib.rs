@@ -56,7 +56,8 @@
 //! * `attiny861`
 //! * `attiny88`
 #![no_std]
-#![feature(llvm_asm)]
+#![cfg_attr(avr_device_asm_macro, feature(asm_experimental_arch))]
+#![cfg_attr(not(avr_device_asm_macro), feature(llvm_asm))]
 
 pub mod asm;
 pub mod interrupt;
@@ -167,10 +168,10 @@ pub use crate::devices::atmega644;
 pub use crate::devices::atmega8;
 #[cfg(feature = "atmega8u2")]
 pub use crate::devices::atmega8u2;
-#[cfg(feature = "attiny167")]
-pub use crate::devices::attiny167;
 #[cfg(feature = "attiny1614")]
 pub use crate::devices::attiny1614;
+#[cfg(feature = "attiny167")]
+pub use crate::devices::attiny167;
 #[cfg(feature = "attiny202")]
 pub use crate::devices::attiny202;
 #[cfg(feature = "attiny2313")]
