@@ -32,7 +32,7 @@ The version on `crates.io` is pre-built.  The following is only necessary when t
 You need to have [atdf2svd][] (= 0.3.1), [svd2rust][] (= 0.19), [form][] (>= 0.8), [rustfmt][](for the *nightly* toolchain) and [svdtools][] (>= 0.1.9) installed:
 ```bash
 cargo install atdf2svd --version 0.3.1
-cargo install svd2rust --version 0.19
+cargo install svd2rust --version 0.19.0
 cargo install form
 rustup component add --toolchain nightly rustfmt
 pip3 install --user svdtools
