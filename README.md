@@ -25,7 +25,7 @@ Via the feature you can select which chip you want the register specifications f
 |  `atmega1284p`  |              |                   |               |   `attiny861` |
 | `atmega128rfa1` |              |                   |               |   `attiny1614`|
 |  `atmega2560`   |              |                   |               |   `attiny2313`|
-|                 |              |                   |               |  `attiny2313a`|
+|  `atmega164pa`  |              |                   |               |  `attiny2313a`|
 
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
