@@ -79,6 +79,25 @@ impl atmega128rfa1::Peripherals {
     }
 }
 
+/// [ATmega164PA](https://www.microchip.com/en-us/product/ATmega164PA)
+#[cfg(feature = "atmega164pa")]
+pub mod atmega164pa;
+
+#[cfg(feature = "atmega164pa")]
+impl atmega164pa::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { atmega164pa::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATmega168](https://www.microchip.com/wwwproducts/en/ATmega168)
 #[cfg(feature = "atmega168")]
 pub mod atmega168;
