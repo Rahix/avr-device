@@ -7,3 +7,5 @@ _include:
   - "common/twi.yaml"
   - "common/usart.yaml"
   - "common/wdt.yaml"
+
+  - "timer/atmega1280-2560.yaml"
