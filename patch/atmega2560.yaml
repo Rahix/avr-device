@@ -8,4 +8,4 @@ _include:
   - "common/usart.yaml"
   - "common/wdt.yaml"
 
-  - "timer/atmega2560.yaml"
+  - "timer/atmega1280-2560.yaml"
