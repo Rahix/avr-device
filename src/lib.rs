@@ -28,6 +28,10 @@
 #![cfg_attr(feature = "attiny88", doc = "**attiny88**,")]
 //! and a few things which apply to AVR microcontrollers generally.
 //!
+#![cfg_attr(
+    feature = "docsrs",
+    doc = "**Warning**: The doc-build here on docs.rs is only for a subset of supported chips.  Please build documentation locally if your MCU's registers are not documented here.\n\n"
+)]
 //! Which chips the crate is built for depends on the feature flag used.
 //! The following chips are available (using feature flags of the same name):
 //! * `at90usb1286`

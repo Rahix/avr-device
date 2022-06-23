@@ -19,7 +19,7 @@ include = [
 ]
 
 [package.metadata.docs.rs]
-all-features = true
+features = ["docsrs"]
 
 [features]
 device-selected = []
@@ -51,6 +51,11 @@ attiny861 = ["device-selected"]
 attiny88 = ["device-selected"]
 attiny1614 = ["device-selected"]
 rt = ["avr-device-macros"]
+
+# Unfortunately, we can only build documentation for a subset of the supported
+# MCUs on docs.rs.  If you think a very popular chip is missing from the list,
+# feel free to add it here.
+docsrs = ["rt", "atmega328p", "atmega32u4", "atmega2560", "attiny85", "atmega4809"]
 
 [dependencies]
 bare-metal = "0.2.5"
