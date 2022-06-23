@@ -1,6 +1,6 @@
 [package]
 name = "avr-device"
-version = "0.3.3"
+version = "0.3.4"
 
 authors = ["Rahix <rahix@rahix.de>"]
 edition = "2018"
@@ -64,7 +64,7 @@ cfg-if = "0.1.10"
 
 [dependencies.avr-device-macros]
 path = "macros/"
-version = "=0.3.3"
+version = "=0.3.4"
 optional = true
 
 [build-dependencies]
