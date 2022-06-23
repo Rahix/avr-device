@@ -1,0 +1,80 @@
+_svd: ../svd/attiny13a.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/eeprom.yaml"
+  - "common/wdt.yaml"
+
+  - "common/tiny/exint.yaml"
+
+  - "timer/attiny13a.yaml"
+
+AC:
+  _modify:
+    DIDR0:
+      description: "Digital Input Disable Register 0"
+ADC:
+  _modify:
+    ADCSRA:
+      description: "ADC Control and Status Register A"
+  ADCSRA:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+  ADCSRB:
+    ADTS:
+      _replace_enum:
+        FREE: [0, "Free Running mode"]
+        AC: [1, "Analog Comparator"]
+        INT0: [2, "External Interrupt Request 0"]
+        TC0_CMA: [3, "Timer/Counter0 Compare Match A"]
+        TC0_OVF: [4, "Timer/Counter0 Overflow"]
+        TC0_CMB: [5, "Timer/Counter0 Compare Match B"]
+        PCIR: [6, "Pin Change Interrupt Request"]
+  ADMUX:
+    _modify:
+      MUX:
+        _write_constraint: enum
+    MUX:
+      _replace_enum:
+        ADC0: [0, "Single-ended Input ADC0"]
+        ADC1: [1, "Single-ended Input ADC1"]
+        ADC2: [2, "Single-ended Input ADC2"]
+        ADC3: [3, "Single-ended Input ADC3"]
+    REFS0:
+      _replace_enum:
+        VCC: [0, "Vcc used as Voltage Reference"]
+        INTERNAL: [1, "Internal Voltage Reference of 1.1V "]
+CPU:
+  CLKPR:
+    CLKPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+        PRESCALER_256: [8, "Prescaler Value 256"]
+  MCUCR:
+    _delete:
+      ISC?:
+    _add:
+      BODS:
+        description: "BOD Sleep (available on some devices)"
+        bitOffset: 7
+        bitWidth: 1
+        access: read-write
+      BODSE:
+        description: "BOD Sleep Enable (available on some devices)"
+        bitOffset: 2
+        bitWidth: 1
+        access: read-write
