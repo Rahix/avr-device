@@ -5,10 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for `ATtiny13A` ([#100]).
+
 ### Changed
 - Fixed timer registers for `ATmega1280` ([#99]).
 
 [#99]: https://github.com/Rahix/avr-device/pull/99
+[#100]: https://github.com/Rahix/avr-device/pull/100
 
 
 ## [0.3.3] - 2022-05-10
