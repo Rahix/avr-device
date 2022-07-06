@@ -7,9 +7,7 @@ _include:
 #  - "common/twi.yaml"
   - "common/wdt.yaml"
   - "common/tiny/usi.yaml"
-
- 
-#  - "timer/attiny88.yaml"
+  - "timer/attiny167.yaml"
 
 ADC:
   ADMUX:

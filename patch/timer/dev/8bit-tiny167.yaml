@@ -1,0 +1,15 @@
+TCCR?B:
+  _modify:
+    CS?:
+      _write_constraint: enum
+
+  CS?:
+    _replace_enum:
+      NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+      DIRECT:        [1, "Running, No Prescaling"]
+      PRESCALE_8:    [2, "Running, CLK/8"]
+      PRESCALE_32:   [3, "Running, CLK/32"]
+      PRESCALE_64:   [4, "Running, CLK/64"]
+      PRESCALE_128:  [5, "Running, CLK/128"]
+      PRESCALE_256:  [6, "Running, CLK/256"]
+      PRESCALE_1024: [7, "Running, CLK/1024"]
