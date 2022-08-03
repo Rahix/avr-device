@@ -3,9 +3,29 @@
 //! For the most part, [crate::interrupt::free] is what you want:
 //!
 //! ```
-//! atmega32u4::interrupt::free(|cs| {
+//! avr_device::interrupt::free(|cs| {
 //!     // Interrupts are disabled here
-//! })
+//! });
+//! ```
+//!
+//! To access shared state, Mutex can be used:
+//!
+//! ```
+//! use avr_device::interrupt::Mutex;
+//! use core::cell::Cell;
+//!
+//! // Use Cell, if the wrapped type is Copy.
+//! // Use RefCell, if the wrapped type is not Copy or if you need a reference to it for other reasons.
+//! static MYGLOBAL: Mutex<Cell<u16>> = Mutex::new(Cell::new(0));
+//!
+//! avr_device::interrupt::free(|cs| {
+//!     // Interrupts are disabled here
+//!
+//!     // Acquire mutex to global variable.
+//!     let myglobal_ref = MYGLOBAL.borrow(&cs);
+//!     // Write to the global variable.
+//!     myglobal_ref.set(42);
+//! });
 //! ```
 
 pub use bare_metal::{CriticalSection, Mutex, Nr};

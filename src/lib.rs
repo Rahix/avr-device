@@ -35,34 +35,101 @@
 )]
 //! Which chips the crate is built for depends on the feature flag used.
 //! The following chips are available (using feature flags of the same name):
-//! * `at90usb1286`
-//! * `atmega1280`
-//! * `atmega1284p`
-//! * `atmega128rfa1`
-//! * `atmega164pa`
-//! * `atmega168`
-//! * `atmega2560`
-//! * `atmega8`
-//! * `atmega8u2`
-//! * `atmega328p`
-//! * `atmega328pb`
-//! * `atmega32u4`
-//! * `atmega4809`
-//! * `atmega48p`
-//! * `atmega64`
-//! * `atmega644`
-//! * `attiny13a`
-//! * `attiny167`
-//! * `attiny1614`
-//! * `attiny202`
-//! * `attiny2313`
-//! * `attiny2313a`
-//! * `attiny816`
-//! * `attiny84`
-//! * `attiny841`
-//! * `attiny85`
-//! * `attiny861`
-//! * `attiny88`
+//! `at90usb1286`,
+//! `atmega1280`,
+//! `atmega1284p`,
+//! `atmega128rfa1`,
+//! `atmega164pa`,
+//! `atmega168`,
+//! `atmega2560`,
+//! `atmega8`,
+//! `atmega8u2`,
+//! `atmega328p`,
+//! `atmega328pb`,
+//! `atmega32u4`,
+//! `atmega4809`,
+//! `atmega48p`,
+//! `atmega64`,
+//! `atmega644`,
+//! `attiny13a`,
+//! `attiny167`,
+//! `attiny1614`,
+//! `attiny202`,
+//! `attiny2313`,
+//! `attiny2313a`,
+//! `attiny816`,
+//! `attiny84`,
+//! `attiny841`,
+//! `attiny85`,
+//! `attiny861`,
+//! `attiny88`,
+//!
+//! # How to use this crate?
+//!
+//! In most cases you probably don't want to use this crate directly.
+//!
+//! This is a low level peripheral access crate (PAC).
+//! There are more high level crates, like `avr-hal`, that implement a more convenient
+//! and higher level API built ontop of `avr-device`.
+//! However, sometimes it's required to operate on bare device register level.
+//! That's what this crate is for.
+//!
+//! ## Main program entry point
+//!
+//! ```
+//! #[avr_device::entry] // requires avr_device's rt feature.
+//! fn main() -> ! {
+//!     loop {
+//!         // Your code here.
+//!     }
+//! }
+//! ```
+//!
+//! ## Get access to the device peripherals
+//!
+//! ```ignore
+//! // To get access to the Peripherals struct, use this *once*:
+//! let dp = avr_device::atmega328p::Peripherals::take().unwrap();
+//! ```
+//!
+//! ## Example: Digital I/O port access
+//!
+//! ```ignore
+//! // Configure bit 5 of port B as output:
+//! dp.PORTB.ddrb.write(|w| w.pb5().set_bit());
+//! // Clear bit 5 of port B:
+//! dp.PORTB.portb.write(|w| w.pb5().clear_bit());
+//! // Set bit 5 of port B:
+//! dp.PORTB.portb.write(|w| w.pb5().set_bit());
+//!
+//! // Configure bit 6 of port B as input with pullup:
+//! dp.PORTB.ddrb.write(|w| w.pb6().clear_bit());
+//! dp.PORTB.portb.write(|w| w.pb6().set_bit());
+//! // Read bit 6 of pin B:
+//! let _mybit = dp.PORTB.pinb.read().pb6().bit_is_set();
+//! // Read bit 6 and write to bit 5 of port B:
+//! dp.PORTB.portb.modify(|r, w| w.pb6().bit(r.pb5().bit_is_set()))
+//! ```
+//!
+//! ## Example: Other peripheral register access
+//!
+//! Other peripheral register accesses are similar to I/O port access.
+//! Please read the documentation of the `struct R` and `struct W`
+//! for the register of interest.
+//!
+//! e.g. [crate::atmega328p::spi::spcr::W]
+//!
+//! ```ignore
+//! // Set SPE in SPCR (Enable SPI):
+//! dp.SPI.spcr.write(|w| w.spe().set_bit());
+//! ```
+//!
+//! # Crate feature flags
+//!
+//! * Device selection: To enable your device, select the crate feature that matches your device.
+//!   For a full list of supported devices, see the list at the beginning of this documentation.
+//! * To enable the crate's runtime environment, use the `rt` feature.
+
 #![no_std]
 #![cfg_attr(avr_device_asm_macro, feature(asm_experimental_arch))]
 #![cfg_attr(not(avr_device_asm_macro), feature(llvm_asm))]
@@ -91,6 +158,7 @@ pub mod generic;
 ///   vector.  This is an unfortunate requirement of the current crate
 ///   architecture and might change in the future.
 /// - The function must have a signature of `[unsafe] fn() [-> !]`.
+/// - This macro requires the avr-device `rt` crate feature.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::interrupt;
 
@@ -105,7 +173,9 @@ pub use avr_device_macros::interrupt;
 /// }
 /// ```
 ///
-/// The entry function must have a signature of `[unsafe] fn() -> !`.
+/// # Constraints
+/// - The entry function must have a signature of `[unsafe] fn() -> !`.
+/// - This macro requires the avr-device `rt` crate feature.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::entry;
 
