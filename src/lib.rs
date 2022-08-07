@@ -273,3 +273,24 @@ pub use crate::devices::attiny85;
 pub use crate::devices::attiny861;
 #[cfg(feature = "attiny88")]
 pub use crate::devices::attiny88;
+
+/// Safely retrieve an instance of the device's `struct Peripherals` once.
+///
+/// This macro can only be used once in the whole program.
+/// Multiple uses will result in a linker abort.
+#[macro_export]
+macro_rules! peripherals {
+    ($device_name: ident) => {
+        {
+            {
+                #[no_mangle]
+                #[link_section=".__peripherals_usage_restriction__"]
+                #[export_name="__ERROR__avr_device__peripherals__macro_must_only_be_used_once__"]
+                static _x: () = ();
+            }
+            unsafe {
+                avr_device::$device_name::Peripherals::steal()
+            }
+        }
+    }
+}
