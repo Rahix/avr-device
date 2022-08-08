@@ -1,16 +1,14 @@
 //! Assembly instructions
 
-#[cfg(all(target_arch = "avr", avr_device_asm_macro))]
+#[cfg(target_arch = "avr")]
 use core::arch::asm;
 
 /// No Operation
 #[inline(always)]
 pub fn nop() {
     cfg_if::cfg_if! {
-        if #[cfg(all(target_arch = "avr", avr_device_asm_macro))] {
+        if #[cfg(target_arch = "avr")] {
             unsafe { asm!("nop") }
-        } else if #[cfg(target_arch = "avr")] {
-            unsafe { llvm_asm!("nop") }
         } else {
             unimplemented!()
         }
@@ -21,10 +19,8 @@ pub fn nop() {
 #[inline(always)]
 pub fn sleep() {
     cfg_if::cfg_if! {
-        if #[cfg(all(target_arch = "avr", avr_device_asm_macro))] {
+        if #[cfg(target_arch = "avr")] {
             unsafe { asm!("sleep") }
-        } else if #[cfg(target_arch = "avr")] {
-            unsafe { llvm_asm!("sleep") }
         } else {
             unimplemented!()
         }
@@ -35,10 +31,8 @@ pub fn sleep() {
 #[inline(always)]
 pub fn wdr() {
     cfg_if::cfg_if! {
-        if #[cfg(all(target_arch = "avr", avr_device_asm_macro))] {
+        if #[cfg(target_arch = "avr")] {
             unsafe { asm!("wdr") }
-        } else if #[cfg(target_arch = "avr")] {
-            unsafe { llvm_asm!("wdr") }
         } else {
             unimplemented!()
         }
