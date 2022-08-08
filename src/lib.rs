@@ -131,8 +131,7 @@
 //! * To enable the crate's runtime environment, use the `rt` feature.
 
 #![no_std]
-#![cfg_attr(avr_device_asm_macro, feature(asm_experimental_arch))]
-#![cfg_attr(not(avr_device_asm_macro), feature(llvm_asm))]
+#![cfg_attr(target_arch = "avr", feature(asm_experimental_arch))] // for experimental AVR asm! macro.
 
 pub mod asm;
 pub mod interrupt;

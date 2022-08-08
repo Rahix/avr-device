@@ -30,7 +30,7 @@
 
 pub use bare_metal::{CriticalSection, Mutex, Nr};
 
-#[cfg(all(target_arch = "avr", avr_device_asm_macro))]
+#[cfg(target_arch = "avr")]
 use core::arch::asm;
 
 #[inline]
@@ -39,7 +39,7 @@ use core::arch::asm;
 /// Returns a bool, reflecting whether interrupts were enabled prior to calling this method.
 pub fn disable() -> bool {
     cfg_if::cfg_if! {
-        if #[cfg(all(target_arch = "avr", avr_device_asm_macro))] {
+        if #[cfg(target_arch = "avr")] {
             // Store current state
             let sreg: u8;
 
@@ -52,15 +52,6 @@ pub fn disable() -> bool {
 
             // Disable interrupts
             unsafe { asm!("cli") };
-
-            sreg & 0x80 == 0x80
-        } else if #[cfg(target_arch = "avr")] {
-            // Store current state
-            let sreg: u8;
-            unsafe { llvm_asm!("in $0,0x3F" :"=r"(sreg) ::: "volatile") };
-
-            // Disable interrupts
-            unsafe { llvm_asm!("cli" :::: "volatile") };
 
             sreg & 0x80 == 0x80
         } else {
@@ -77,10 +68,8 @@ pub fn disable() -> bool {
 /// - Do not call this function inside an [crate::interrupt::free] critical section
 pub unsafe fn enable() {
     cfg_if::cfg_if! {
-        if #[cfg(all(target_arch = "avr", avr_device_asm_macro))] {
+        if #[cfg(target_arch = "avr")] {
             asm!("sei");
-        } else if #[cfg(target_arch = "avr")] {
-            llvm_asm!("sei" :::: "volatile");
         } else {
             unimplemented!()
         }

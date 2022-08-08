@@ -67,6 +67,3 @@ cfg-if = "0.1.10"
 path = "macros/"
 version = "=0.3.4"
 optional = true
-
-[build-dependencies]
-rustversion = "1.0"
