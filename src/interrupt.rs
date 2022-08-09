@@ -28,7 +28,7 @@
 //! });
 //! ```
 
-pub use bare_metal::{CriticalSection, Mutex, Nr};
+pub use bare_metal::{CriticalSection, Mutex};
 
 #[cfg(target_arch = "avr")]
 use core::arch::asm;
@@ -215,14 +215,14 @@ pub fn is_enabled() -> bool {
 #[inline(always)]
 pub fn free<F, R>(f: F) -> R
 where
-    F: FnOnce(&CriticalSection) -> R,
+    F: FnOnce(CriticalSection) -> R,
 {
     cfg_if::cfg_if! {
         if #[cfg(target_arch = "avr")] {
             // Disable interrupts. This is an optimization fence.
             let irq_flag = disable_save();
 
-            let r = f(unsafe { &CriticalSection::new() });
+            let r = f(unsafe { CriticalSection::new() });
 
             // Restore interrupt state. This is an optimization fence.
             unsafe { restore(irq_flag); }
