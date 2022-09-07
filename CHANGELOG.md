@@ -5,10 +5,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for `ATmega164PA` ([#101]).
+- Added a new, safer, API for manually managing interrupts ([#104]).
+
 ### Changed
 - Fixed timer registers for `ATtiny167` ([#102]).
+- Improved codegen of the interrupt management functions ([#104]).
 
+### Removed
+- Support for very old `rustc` versions which need `llvm_asm!()` ([#106]).
+
+[#101]: https://github.com/Rahix/avr-device/pull/101
 [#102]: https://github.com/Rahix/avr-device/pull/102
+[#104]: https://github.com/Rahix/avr-device/pull/104
+[#106]: https://github.com/Rahix/avr-device/pull/106
 
 
 ## [0.3.4] - 2022-06-23
