@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+
+## [0.4.0] - 2022-09-08
 ### Added
 - Support for `ATmega164PA` ([#101]).
 - Added a new, safer, API for manually managing interrupts ([#104]).
@@ -187,7 +190,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial release with support for `ATmega1280`, `ATmega328P`, `ATmega32U4`,
 `ATmega64`, `ATmega8`, `ATtiny85`.
 
-[Unreleased]: https://github.com/Rahix/avr-device/compare/v0.3.4...HEAD
+[Unreleased]: https://github.com/Rahix/avr-device/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/Rahix/avr-device/compare/v0.3.4...v0.4.0
 [0.3.4]: https://github.com/Rahix/avr-device/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/Rahix/avr-device/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/Rahix/avr-device/compare/v0.3.1...v0.3.2
