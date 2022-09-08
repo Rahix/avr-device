@@ -3,7 +3,7 @@ name = "avr-device"
 version = "0.3.4"
 
 authors = ["Rahix <rahix@rahix.de>"]
-edition = "2018"
+edition = "2021"
 description = "Register access crate for AVR microcontrollers"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Rahix/avr-device"
