@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Fixed timer registers for `ATtiny167` ([#102]).
 - Improved codegen of the interrupt management functions ([#104]).
+- Updated to `bare-metal` version 1.0.0.  This changes the
+  `interrupt::free()` function slightly.  Please check the docs for
+  details ([#108]).
 
 ### Removed
 - Support for very old `rustc` versions which need `llvm_asm!()` ([#106]).
@@ -20,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#102]: https://github.com/Rahix/avr-device/pull/102
 [#104]: https://github.com/Rahix/avr-device/pull/104
 [#106]: https://github.com/Rahix/avr-device/pull/106
+[#108]: https://github.com/Rahix/avr-device/pull/108
 
 
 ## [0.3.4] - 2022-06-23
