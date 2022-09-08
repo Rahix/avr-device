@@ -38,7 +38,7 @@ use core::arch::asm;
 /// This structure does not implement `Copy` and `Clone`,
 /// because the user shall not duplicate and pass it twice to [crate::interrupt::restore].
 #[derive(Debug)]
-#[cfg_attr(feature = "udebug", derive(ufmt::derive::uDebug))]
+#[cfg_attr(feature = "ufmt", derive(ufmt::derive::uDebug))]
 pub struct IrqFlag {
     // The saved SREG.
     sreg: u8,

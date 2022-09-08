@@ -56,10 +56,7 @@ rt = ["avr-device-macros"]
 # Unfortunately, we can only build documentation for a subset of the supported
 # MCUs on docs.rs.  If you think a very popular chip is missing from the list,
 # feel free to add it here.
-docsrs = ["rt", "atmega328p", "atmega32u4", "atmega2560", "attiny85", "atmega4809"]
-
-# Enable ufmt::uDebug impls for certain types to aid efficient debugging.
-udebug = ["dep:ufmt"]
+docsrs = ["rt", "ufmt", "atmega328p", "atmega32u4", "atmega2560", "attiny85", "atmega4809"]
 
 [dependencies]
 bare-metal = "1.0.0"
