@@ -17,13 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   details ([#108]).
 
 ### Removed
-- Support for very old `rustc` versions which need `llvm_asm!()` ([#106]).
+- Support for very old `rustc` versions which need `llvm_asm!()` ([#106], [#109]).
 
 [#101]: https://github.com/Rahix/avr-device/pull/101
 [#102]: https://github.com/Rahix/avr-device/pull/102
 [#104]: https://github.com/Rahix/avr-device/pull/104
 [#106]: https://github.com/Rahix/avr-device/pull/106
 [#108]: https://github.com/Rahix/avr-device/pull/108
+[#109]: https://github.com/Rahix/avr-device/pull/109
 
 
 ## [0.3.4] - 2022-06-23
