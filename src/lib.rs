@@ -129,6 +129,7 @@
 //! * Device selection: To enable your device, select the crate feature that matches your device.
 //!   For a full list of supported devices, see the list at the beginning of this documentation.
 //! * To enable the crate's runtime environment, use the `rt` feature.
+//! * To enable `ufmt` formatting (e.g. `uDebug`), use the `ufmt` feature.
 
 #![no_std]
 #![cfg_attr(target_arch = "avr", feature(asm_experimental_arch))] // for experimental AVR asm! macro.

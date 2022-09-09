@@ -18,14 +18,16 @@
 //! // Use RefCell, if the wrapped type is not Copy or if you need a reference to it for other reasons.
 //! static MYGLOBAL: Mutex<Cell<u16>> = Mutex::new(Cell::new(0));
 //!
-//! avr_device::interrupt::free(|cs| {
-//!     // Interrupts are disabled here
+//! fn my_fun() {
+//!     avr_device::interrupt::free(|cs| {
+//!         // Interrupts are disabled here
 //!
-//!     // Acquire mutex to global variable.
-//!     let myglobal_ref = MYGLOBAL.borrow(&cs);
-//!     // Write to the global variable.
-//!     myglobal_ref.set(42);
-//! });
+//!         // Acquire mutex to global variable.
+//!         let myglobal_ref = MYGLOBAL.borrow(cs);
+//!         // Write to the global variable.
+//!         myglobal_ref.set(42);
+//!     });
+//! }
 //! ```
 
 pub use bare_metal::{CriticalSection, Mutex};
