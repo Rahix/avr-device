@@ -3,7 +3,7 @@ name = "avr-device-macros"
 version = "0.4.0"
 
 authors = ["Rahix <rahix@rahix.de>"]
-edition = "2018"
+edition = "2021"
 description = "Attribute macros for re-export in `avr-device`"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Rahix/avr-device"
