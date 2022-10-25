@@ -1,0 +1,4 @@
+_svd: ../svd/attiny404.svd
+
+_include:
+  - common/attiny-0-series.yaml
