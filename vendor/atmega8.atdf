@@ -557,9 +557,7 @@
           <bitfield caption="Timer/Counter0 Overflow Flag" mask="0x01" name="TOV0"/>
         </register>
         <register caption="Timer/Counter0 Control Register" name="TCCR0" offset="0x53" size="1">
-          <bitfield caption="Clock Select0 bit 2" mask="0x04" name="CS02"/>
-          <bitfield caption="Clock Select0 bit 1" mask="0x02" name="CS01"/>
-          <bitfield caption="Clock Select0 bit 0" mask="0x01" name="CS00" values="CLK_SEL_3BIT_EXT"/>
+          <bitfield caption="Clock Select0 bit 0" mask="0x07" name="CS0" values="CLK_SEL_3BIT_EXT"/>
         </register>
         <register caption="Timer Counter 0" name="TCNT0" offset="0x52" size="1" mask="0xFF"/>
       </register-group>
@@ -629,9 +627,8 @@
         </register>
         <register caption="Timer/Counter2 Control Register" name="TCCR2" offset="0x45" size="1">
           <bitfield caption="Force Output Compare" mask="0x80" name="FOC2"/>
-          <bitfield caption="Waveform Genration Mode" mask="0x40" name="WGM20" values="WAVEFORM_GEN_MODE"/>
+          <bitfield caption="Waveform Genration Mode" mask="0x48" name="WGM2" values="WAVEFORM_GEN_MODE"/>
           <bitfield caption="Compare Output Mode bits" mask="0x30" name="COM2"/>
-          <bitfield caption="Waveform Generation Mode" mask="0x08" name="WGM21"/>
           <bitfield caption="Clock Select bits" mask="0x07" name="CS2" values="CLK_SEL_3BIT"/>
         </register>
         <register caption="Timer/Counter2" name="TCNT2" offset="0x44" size="1" mask="0xFF"/>
