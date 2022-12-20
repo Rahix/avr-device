@@ -78,7 +78,7 @@ WDT:
     WDPL:
       CYCLES_16K:      [0, "- 16K (16384) cycles, ~16ms"]
       CYCLES_32K:      [1, "- 32K (32768) cycles, ~32ms"]
-      CYCLES_64K:      [2, "- 64K (65536) cycles, ~65s"]
+      CYCLES_64K:      [2, "- 64K (65536) cycles, ~65ms"]
       CYCLES_128K:     [3, "- 128K (131072) cycles, ~0.13s"]
       CYCLES_256K:     [4, "- 256K (262144) cycles, ~0.26s"]
       CYCLES_512K:     [5, "- 512K (524288) cycles, ~0.52s"]
