@@ -23,6 +23,21 @@ TWI:
         PRESCALER_16: [2, "Prescaler Value 16"]
         PRESCALER_64: [3, "Prescaler Value 64"]
 
+ADC:
+  ADMUX:
+    MUX:
+      _replace_enum:
+        ADC0: [0, "ADC Single Ended Input pin 0"]
+        ADC1: [1, "ADC Single Ended Input pin 1"]
+        ADC2: [2, "ADC Single Ended Input pin 2"]
+        ADC3: [3, "ADC Single Ended Input pin 3"]
+        ADC4: [4, "ADC Single Ended Input pin 4"]
+        ADC5: [5, "ADC Single Ended Input pin 5"]
+        ADC6: [6, "ADC Single Ended Input pin 6"]
+        ADC7: [7, "ADC Single Ended Input pin 7"]
+        ADC_VBG: [14, "Internal Reference (VBG)"]
+        ADC_GND: [15, "0V (GND)"]
+
 USART:
   UCSRA:
     _modify:
