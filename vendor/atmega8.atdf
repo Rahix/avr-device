@@ -557,7 +557,9 @@
           <bitfield caption="Timer/Counter0 Overflow Flag" mask="0x01" name="TOV0"/>
         </register>
         <register caption="Timer/Counter0 Control Register" name="TCCR0" offset="0x53" size="1">
-          <bitfield caption="Clock Select0 bit 0" mask="0x07" name="CS0" values="CLK_SEL_3BIT_EXT"/>
+          <bitfield caption="Clock Select0 bit 2" mask="0x04" name="CS02"/>
+          <bitfield caption="Clock Select0 bit 1" mask="0x02" name="CS01"/>
+          <bitfield caption="Clock Select0 bit 0" mask="0x01" name="CS00" values="CLK_SEL_3BIT_EXT"/>
         </register>
         <register caption="Timer Counter 0" name="TCNT0" offset="0x52" size="1" mask="0xFF"/>
       </register-group>
