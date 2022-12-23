@@ -629,8 +629,9 @@
         </register>
         <register caption="Timer/Counter2 Control Register" name="TCCR2" offset="0x45" size="1">
           <bitfield caption="Force Output Compare" mask="0x80" name="FOC2"/>
-          <bitfield caption="Waveform Genration Mode" mask="0x48" name="WGM2" values="WAVEFORM_GEN_MODE"/>
+          <bitfield caption="Waveform Genration Mode" mask="0x40" name="WGM20" values="WAVEFORM_GEN_MODE"/>
           <bitfield caption="Compare Output Mode bits" mask="0x30" name="COM2"/>
+          <bitfield caption="Waveform Generation Mode" mask="0x08" name="WGM21"/>
           <bitfield caption="Clock Select bits" mask="0x07" name="CS2" values="CLK_SEL_3BIT"/>
         </register>
         <register caption="Timer/Counter2" name="TCNT2" offset="0x44" size="1" mask="0xFF"/>

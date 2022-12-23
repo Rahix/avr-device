@@ -2,8 +2,6 @@ TCCR?:
   _modify:
     COM?:
       _write_constraint: enum
-    WGM?:
-      _write_constraint: enum
     FOC?:
       access: write-only
   COM?:
@@ -11,16 +9,6 @@ TCCR?:
       DISCONNECTED:  [0, "Normal port operation, OC2 disconnected"]
       MATCH_CLEAR:   [2, "Clear OC2 on Compare Match (If PWM is enabled, OC2 is set at BOTTOM)"]
       MATCH_SET:     [3, "Set OC2 on Compare Match (If PWM is enabled, OC2 is cleared at BOTTOM)"]
-  WGM?:
-    _replace_enum:
-      # NOTE that the WGMs are in reverse order in the reigster
-      # (WGM20 is at position 6, WGM21 is at position 3), thus
-      # the numbering here is not the same as in datasheet
-      # where it is specified for WGM21 WGM20
-      NORMAL_TOP:    [0, "Normal, Top: `0xff`, Update: *Immediate*, Flag: *MAX*"]
-      PWM_PHASE:     [2, "Phase Correct PWM, Top: `0xff`, Update: *TOP*, Flag: *BOTTOM*"]
-      CTC:           [1, "CTC, Top: *OCR2*, Update: *Immediate*, Flag: *MAX*"]
-      PWM_FAST:      [3, "Fast PWM, Top: `0xff`, Update: *BOTTOM*, Flag: *MAX*"]
   CS?:
     _replace_enum:
       NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
