@@ -16,12 +16,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Stable Rust
-        uses: actions-rs/toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          profile: minimal
           toolchain: stable
-          override: false
-          default: true
 
       # Python Dependencies
       - name: Install Python dependencies
@@ -67,11 +64,9 @@ jobs:
         run: echo "$HOME/cargo-bin" >> $GITHUB_PATH
 
       - name: Install Nightly Rust
-        uses: actions-rs/toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          profile: minimal
           toolchain: nightly-2022-06-13
-          override: true
           components: rustfmt
 
       # Actual test run
