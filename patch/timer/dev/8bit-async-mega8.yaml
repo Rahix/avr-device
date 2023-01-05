@@ -1,0 +1,21 @@
+TCCR?:
+  _modify:
+    COM?:
+      _write_constraint: enum
+    FOC?:
+      access: write-only
+  COM?:
+    _replace_enum:
+      DISCONNECTED:  [0, "Normal port operation, OC2 disconnected"]
+      MATCH_CLEAR:   [2, "Clear OC2 on Compare Match (If PWM is enabled, OC2 is set at BOTTOM)"]
+      MATCH_SET:     [3, "Set OC2 on Compare Match (If PWM is enabled, OC2 is cleared at BOTTOM)"]
+  CS?:
+    _replace_enum:
+      NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+      DIRECT:        [1, "Running, No Prescaling"]
+      PRESCALE_8:    [2, "Running, CLK/8"]
+      PRESCALE_32:   [3, "Running, CLK/32"]
+      PRESCALE_64:   [4, "Running, CLK/64"]
+      PRESCALE_128:  [5, "Running, CLK/128"]
+      PRESCALE_256:  [6, "Running, CLK/256"]
+      PRESCALE_1024: [7, "Running, CLK/1024"]
