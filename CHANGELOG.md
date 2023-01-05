@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATtiny404` ([#111]).
+- Support for the [`critical-section`] crate via a `critical-section-impl`
+  feature flag ([#116]).
+
+### Changed
+- Patched registers for `ATmega8` ([#112]).
 
 [#111]: https://github.com/Rahix/avr-device/pull/111
+[#112]: https://github.com/Rahix/avr-device/pull/112
+[#116]: https://github.com/Rahix/avr-device/pull/116
+[`critical-section`]: https://crates.io/crates/critical-section
 
 
 ## [0.4.0] - 2022-09-08
