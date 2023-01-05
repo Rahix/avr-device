@@ -12,10 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Patched registers for `ATmega8` ([#112]).
+- Upgraded to svd2rust 0.28.  This changes the register API slightly, please
+  check upstream docs for details ([#118]).
 
 [#111]: https://github.com/Rahix/avr-device/pull/111
 [#112]: https://github.com/Rahix/avr-device/pull/112
 [#116]: https://github.com/Rahix/avr-device/pull/116
+[#118]: https://github.com/Rahix/avr-device/pull/118
 [`critical-section`]: https://crates.io/crates/critical-section
 
 
