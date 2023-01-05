@@ -62,7 +62,7 @@ docsrs = ["rt", "ufmt", "atmega328p", "atmega32u4", "atmega2560", "attiny85", "a
 [dependencies]
 bare-metal = "1.0.0"
 vcell = "0.1.2"
-cfg-if = "0.1.10"
+cfg-if = "1.0.0"
 ufmt = { version = "0.2.0", optional = true }
 
 [dependencies.avr-device-macros]
