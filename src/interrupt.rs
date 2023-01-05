@@ -49,9 +49,7 @@ pub struct IrqFlag {
 impl IrqFlag {
     #[inline(always)]
     fn new(sreg: u8) -> IrqFlag {
-        IrqFlag {
-            sreg,
-        }
+        IrqFlag { sreg }
     }
 
     /// Check the status of the saved global interrupt flag.
@@ -233,6 +231,24 @@ where
         } else {
             let _ = f;
             unimplemented!()
+        }
+    }
+}
+
+#[cfg(feature = "critical-section-impl")]
+mod cs {
+    use critical_section::RawRestoreState;
+
+    struct AvrCriticalSection;
+    critical_section::set_impl!(AvrCriticalSection);
+
+    unsafe impl critical_section::Impl for AvrCriticalSection {
+        unsafe fn acquire() -> RawRestoreState {
+            crate::interrupt::disable_save().sreg
+        }
+
+        unsafe fn release(restore_state: RawRestoreState) {
+            crate::interrupt::restore(crate::interrupt::IrqFlag::new(restore_state))
         }
     }
 }
