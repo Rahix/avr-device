@@ -33,7 +33,7 @@ jobs:
 
       # Rust Dependencies
       - name: Cache Cargo installed binaries
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         id: cache-cargo
         with:
           path: ~/cargo-bin
