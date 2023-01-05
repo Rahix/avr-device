@@ -50,6 +50,9 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@# Remove DEVICE_PERIPHERALS declaration and replace it with a reference
 	@# to the global version
 	@patch --no-backup-if-mismatch --quiet $@ patch/modrs.patch
+	@# Fixup the take() implementation
+	@sed -i'' -e '/#\[cfg(feature = "critical-section")]/d' $@
+	@sed -i'' -e 's/critical_section::with/crate::interrupt::free/' $@
 	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
 	@./gen-intr-lut.sh svd/*.patched >macros/src/vector.rs
 

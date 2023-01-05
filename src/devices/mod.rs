@@ -7,549 +7,114 @@ pub(crate) static mut DEVICE_PERIPHERALS: bool = false;
 #[cfg(feature = "at90usb1286")]
 pub mod at90usb1286;
 
-#[cfg(feature = "at90usb1286")]
-impl at90usb1286::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { at90usb1286::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega1280](https://www.microchip.com/wwwproducts/en/ATmega1280)
 #[cfg(feature = "atmega1280")]
 pub mod atmega1280;
-
-#[cfg(feature = "atmega1280")]
-impl atmega1280::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega1280::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATmega1284P](https://www.microchip.com/en-us/product/ATmega1284P)
 #[cfg(feature = "atmega1284p")]
 pub mod atmega1284p;
 
-#[cfg(feature = "atmega1284p")]
-impl atmega1284p::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega1284p::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega128RFA1](https://www.microchip.com/en-us/product/ATmega128RFA1)
 #[cfg(feature = "atmega128rfa1")]
 pub mod atmega128rfa1;
-
-#[cfg(feature = "atmega128rfa1")]
-impl atmega128rfa1::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega128rfa1::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATmega164PA](https://www.microchip.com/en-us/product/ATmega164PA)
 #[cfg(feature = "atmega164pa")]
 pub mod atmega164pa;
 
-#[cfg(feature = "atmega164pa")]
-impl atmega164pa::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega164pa::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega168](https://www.microchip.com/wwwproducts/en/ATmega168)
 #[cfg(feature = "atmega168")]
 pub mod atmega168;
-
-#[cfg(feature = "atmega168")]
-impl atmega168::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega168::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATmega2560](https://www.microchip.com/wwwproducts/en/ATmega2560)
 #[cfg(feature = "atmega2560")]
 pub mod atmega2560;
 
-#[cfg(feature = "atmega2560")]
-impl atmega2560::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega2560::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P)
 #[cfg(feature = "atmega328p")]
 pub mod atmega328p;
-
-#[cfg(feature = "atmega328p")]
-impl atmega328p::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega328p::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATmega328PB](https://www.microchip.com/wwwproducts/en/ATmega328PB)
 #[cfg(feature = "atmega328pb")]
 pub mod atmega328pb;
 
-#[cfg(feature = "atmega328pb")]
-impl atmega328pb::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega328pb::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega32U4](https://www.microchip.com/wwwproducts/en/ATmega32U4)
 #[cfg(feature = "atmega32u4")]
 pub mod atmega32u4;
-
-#[cfg(feature = "atmega32u4")]
-impl atmega32u4::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega32u4::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATmega4809](https://www.microchip.com/wwwproducts/en/ATmega4809)
 #[cfg(feature = "atmega4809")]
 pub mod atmega4809;
 
-#[cfg(feature = "atmega4809")]
-impl atmega4809::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega4809::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega48P](https://www.microchip.com/wwwproducts/en/ATmega48P)
 #[cfg(feature = "atmega48p")]
 pub mod atmega48p;
-
-#[cfg(feature = "atmega48p")]
-impl atmega48p::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega48p::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATmega8](https://www.microchip.com/wwwproducts/en/ATmega8)
 #[cfg(feature = "atmega8")]
 pub mod atmega8;
 
-#[cfg(feature = "atmega8")]
-impl atmega8::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega8::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega8u2](https://www.microchip.com/wwwproducts/en/ATmega8u2)
 #[cfg(feature = "atmega8u2")]
 pub mod atmega8u2;
-
-#[cfg(feature = "atmega8u2")]
-impl atmega8u2::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega8u2::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATmega64](https://www.microchip.com/wwwproducts/en/ATmega64)
 #[cfg(feature = "atmega64")]
 pub mod atmega64;
 
-#[cfg(feature = "atmega64")]
-impl atmega64::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega64::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATmega644](https://www.microchip.com/wwwproducts/en/ATmega644)
 #[cfg(feature = "atmega644")]
 pub mod atmega644;
-
-#[cfg(feature = "atmega644")]
-impl atmega644::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { atmega644::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATtiny13A](https://www.microchip.com/wwwproducts/en/ATtiny13A)
 #[cfg(feature = "attiny13a")]
 pub mod attiny13a;
 
-#[cfg(feature = "attiny13a")]
-impl attiny13a::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny13a::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATtiny167](https://www.microchip.com/wwwproducts/en/ATtiny167)
 #[cfg(feature = "attiny167")]
 pub mod attiny167;
-
-#[cfg(feature = "attiny167")]
-impl attiny167::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny167::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATtiny1614](https://www.microchip.com/wwwproducts/en/ATtiny1614)
 #[cfg(feature = "attiny1614")]
 pub mod attiny1614;
 
-#[cfg(feature = "attiny1614")]
-impl attiny1614::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny1614::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATtiny202](https://www.microchip.com/wwwproducts/en/ATtiny202)
 #[cfg(feature = "attiny202")]
 pub mod attiny202;
-
-#[cfg(feature = "attiny202")]
-impl attiny202::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny202::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATtiny2313](https://www.microchip.com/wwwproducts/en/ATtiny2313)
 #[cfg(feature = "attiny2313")]
 pub mod attiny2313;
 
-#[cfg(feature = "attiny2313")]
-impl attiny2313::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny2313::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATtiny2313A](https://www.microchip.com/wwwproducts/en/ATtiny2313A)
 #[cfg(feature = "attiny2313a")]
 pub mod attiny2313a;
-
-#[cfg(feature = "attiny2313a")]
-impl attiny2313a::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny2313a::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATtiny404](https://www.microchip.com/en-us/product/ATTINY404)
 #[cfg(feature = "attiny404")]
 pub mod attiny404;
 
-#[cfg(feature = "attiny404")]
-impl attiny404::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny404::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATtiny816](https://www.microchip.com/wwwproducts/en/ATtiny816)
 #[cfg(feature = "attiny816")]
 pub mod attiny816;
-
-#[cfg(feature = "attiny816")]
-impl attiny816::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny816::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATtiny84](https://www.microchip.com/wwwproducts/en/ATtiny84)
 #[cfg(feature = "attiny84")]
 pub mod attiny84;
 
-#[cfg(feature = "attiny84")]
-impl attiny84::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny84::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATtiny841](https://www.microchip.com/wwwproducts/en/ATtiny841)
 #[cfg(feature = "attiny841")]
 pub mod attiny841;
-
-#[cfg(feature = "attiny841")]
-impl attiny841::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny841::Peripherals::steal() })
-            }
-        })
-    }
-}
 
 /// [ATtiny85](https://www.microchip.com/wwwproducts/en/ATtiny85)
 #[cfg(feature = "attiny85")]
 pub mod attiny85;
 
-#[cfg(feature = "attiny85")]
-impl attiny85::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny85::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATtiny861](https://www.microchip.com/wwwproducts/en/ATtiny861)
 #[cfg(feature = "attiny861")]
 pub mod attiny861;
 
-#[cfg(feature = "attiny861")]
-impl attiny861::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny861::Peripherals::steal() })
-            }
-        })
-    }
-}
-
 /// [ATtiny88](https://www.microchip.com/wwwproducts/en/ATtiny88)
 #[cfg(feature = "attiny88")]
 pub mod attiny88;
-
-#[cfg(feature = "attiny88")]
-impl attiny88::Peripherals {
-    /// Returns all the peripherals *once*
-    #[inline]
-    pub fn take() -> Option<Self> {
-        crate::interrupt::free(|_| {
-            if unsafe { DEVICE_PERIPHERALS } {
-                None
-            } else {
-                Some(unsafe { attiny88::Peripherals::steal() })
-            }
-        })
-    }
-}
