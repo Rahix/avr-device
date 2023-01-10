@@ -12,21 +12,21 @@ features = ["atmega32u4"]
 
 Via the feature you can select which chip you want the register specifications for.  The following list is what is currently supported:
 
-|      ATmega     |  ATmega USB  | ATmega 0,1 Series |      AT90     |     ATtiny    |
-|:---------------:|:------------:|:-----------------:|:-------------:|:-------------:|
-|    `atmega8`    |  `atmega8u2` |    `atmega4809`   | `at90usb1286` |   `attiny13a` |
-|   `atmega48p`   | `atmega32u4` |                   |               |   `attiny167` |
-|    `atmega64`   |              |                   |               |   `attiny202` |
-|   `atmega644`   |              |                   |               |    `attiny84` |
-|   `atmega168`   |              |                   |               |    `attiny85` |
-|   `atmega328p`  |              |                   |               |    `attiny88` |
-|  `atmega328pb`  |              |                   |               |   `attiny816` |
-|  `atmega1280`   |              |                   |               |   `attiny841` |
-|  `atmega1284p`  |              |                   |               |   `attiny861` |
-| `atmega128rfa1` |              |                   |               |   `attiny1614`|
-|  `atmega2560`   |              |                   |               |   `attiny2313`|
-|  `atmega164pa`  |              |                   |               |  `attiny2313a`|
-|                 |              |                   |               |   `attiny404` |
+|     ATmega      |  ATmega USB  | ATmega 0,1 Series |     AT90      |    ATtiny     |
+| :-------------: | :----------: | :---------------: | :-----------: | :-----------: |
+|    `atmega8`    | `atmega8u2`  |   `atmega4809`    | `at90usb1286` |  `attiny13a`  |
+|   `atmega48p`   | `atmega32u4` |                   |               |  `attiny167`  |
+|   `atmega64`    |              |                   |               |  `attiny202`  |
+|   `atmega644`   |              |                   |               |  `attiny84`   |
+|   `atmega168`   |              |                   |               |  `attiny85`   |
+|  `atmega324pa`  |              |                   |               |  `attiny88`   |
+|  `atmega328p`   |              |                   |               |  `attiny816`  |
+|  `atmega328pb`  |              |                   |               |  `attiny841`  |
+|  `atmega1280`   |              |                   |               |  `attiny861`  |
+|  `atmega1284p`  |              |                   |               | `attiny1614`  |
+| `atmega128rfa1` |              |                   |               | `attiny2313`  |
+|  `atmega2560`   |              |                   |               | `attiny2313a` |
+|  `atmega164pa`  |              |                   |               |  `attiny404`  |
 
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.

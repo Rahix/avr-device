@@ -1,0 +1,15 @@
+_svd: ../svd/atmega324pa.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/twi.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
+
+EXINT:
+  EIMSK:
+    _modify:
+      INT:
+        description: External Interrupt Request Enable
+    _split: [INT]
