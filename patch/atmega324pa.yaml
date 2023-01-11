@@ -3,13 +3,31 @@ _svd: ../svd/atmega324pa.svd
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
+  - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/usart.yaml"
   - "common/wdt.yaml"
 
+  - "timer/atmega324pa.yaml"
+
 EXINT:
   EIMSK:
-    _modify:
+    _split:
       INT:
-        description: External Interrupt Request Enable
-    _split: [INT]
+        name: INT%s
+        description: External Interrupt %s Request Enable
+  EIFR:
+    _split:
+      INTF:
+        name: INTF%s
+        description: External Interrupt Flags %s
+  PCICR:
+    _split:
+      PCIE:
+        name: PCIE%s
+        description: Pin Change Interrupt Enable %s
+  PCIFR:
+    _split:
+      PCIF:
+        name: PCIF%s
+        description: Pin Change Interrupt Flag %s
