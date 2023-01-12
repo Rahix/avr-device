@@ -12,7 +12,3 @@ TC1:
 TC2:
   _include:
     - "dev/8bit-async.yaml"
-
-TC3:
-  _include:
-    - "dev/16bit.yaml"
