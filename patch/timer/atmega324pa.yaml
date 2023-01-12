@@ -1,0 +1,14 @@
+# This intermediate file is needed because peripheral-level includes are not
+# supported in top-level files.
+
+TC0:
+  _include:
+    - "dev/8bit.yaml"
+
+TC1:
+  _include:
+    - "dev/16bit.yaml"
+
+TC2:
+  _include:
+    - "dev/8bit-async.yaml"

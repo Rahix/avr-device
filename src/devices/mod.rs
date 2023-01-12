@@ -31,6 +31,10 @@ pub mod atmega168;
 #[cfg(feature = "atmega2560")]
 pub mod atmega2560;
 
+/// [ATmega324PA](https://www.microchip.com/wwwproducts/en/ATmega324PA)
+#[cfg(feature = "atmega324pa")]
+pub mod atmega324pa;
+
 /// [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P)
 #[cfg(feature = "atmega328p")]
 pub mod atmega328p;
