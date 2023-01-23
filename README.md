@@ -18,15 +18,16 @@ Via the feature you can select which chip you want the register specifications f
 |   `atmega48p`   | `atmega32u4` |                   |               |  `attiny167`  |
 |   `atmega64`    |              |                   |               |  `attiny202`  |
 |   `atmega644`   |              |                   |               |  `attiny84`   |
-|   `atmega168`   |              |                   |               |  `attiny85`   |
-|  `atmega324pa`  |              |                   |               |  `attiny88`   |
-|  `atmega328p`   |              |                   |               |  `attiny816`  |
-|  `atmega328pb`  |              |                   |               |  `attiny841`  |
-|  `atmega1280`   |              |                   |               |  `attiny861`  |
-|  `atmega1284p`  |              |                   |               | `attiny1614`  |
-| `atmega128rfa1` |              |                   |               | `attiny2313`  |
-|  `atmega2560`   |              |                   |               | `attiny2313a` |
-|  `atmega164pa`  |              |                   |               |  `attiny404`  |
+|   `atmega88p`   |              |                   |               |  `attiny85`   |
+|   `atmega168`   |              |                   |               |  `attiny88`   |               
+|  `atmega324pa`  |              |                   |               |  `attiny816`  |
+|  `atmega328p`   |              |                   |               |  `attiny841`  |
+|  `atmega328pb`  |              |                   |               |  `attiny861`  |
+|  `atmega1280`   |              |                   |               | `attiny1614`  | 
+|  `atmega1284p`  |              |                   |               | `attiny2313`  |
+| `atmega128rfa1` |              |                   |               | `attiny2313a` |
+|  `atmega2560`   |              |                   |               | `attiny404`   |
+|  `atmega164pa`  |              |                   |               |               |
 
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
