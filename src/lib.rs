@@ -1,7 +1,9 @@
 //! This crate contains register definitions for
+
 #![cfg_attr(feature = "at90usb1286", doc = "**at90usb1286**,")]
 #![cfg_attr(feature = "atmega1280", doc = "**atmega1280**,")]
 #![cfg_attr(feature = "atmega1284p", doc = "**atmega1284p**,")]
+#![cfg_attr(feature = "atmega128a", doc = "**atmega128a**,")]
 #![cfg_attr(feature = "atmega128rfa1", doc = "**atmega128rfa1**,")]
 #![cfg_attr(feature = "atmega164pa", doc = "**atmega164pa**,")]
 #![cfg_attr(feature = "atmega168", doc = "**atmega168**,")]
@@ -40,6 +42,7 @@
 //! `at90usb1286`,
 //! `atmega1280`,
 //! `atmega1284p`,
+//! `atmega128a`,
 //! `atmega128rfa1`,
 //! `atmega164pa`,
 //! `atmega168`,
@@ -188,9 +191,9 @@ compile_error!(
     "This crate requires you to specify your target chip as a feature.
 
     Please select one of the following:
-
     * atmega1280
     * atmega1284p
+    * atmega128a
     * atmega128rfa1
     * atmega164pa
     * atmega168
@@ -229,6 +232,8 @@ pub use crate::devices::at90usb1286;
 pub use crate::devices::atmega1280;
 #[cfg(feature = "atmega1284p")]
 pub use crate::devices::atmega1284p;
+#[cfg(feature = "atmega128a")]
+pub use crate::devices::atmega128a;
 #[cfg(feature = "atmega128rfa1")]
 pub use crate::devices::atmega128rfa1;
 #[cfg(feature = "atmega164pa")]
