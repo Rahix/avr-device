@@ -4,5 +4,7 @@ _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
   - "common/spi.yaml"
+  - "common/usart-atmega128a.yaml"
+  - "common/twi-atmega128a.yaml"
   - "common/wdt.yaml"
   - "timer/atmega128a.yaml"

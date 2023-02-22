@@ -1,0 +1,20 @@
+# Patches for the Two-Wire-Interface peripheral (i2c)
+#
+# - Make the Control Register read-write with only the
+#   "Write Collision Flag" being read-only
+# - Fix the Prescaler enumerated values
+TWI*:
+  TWCR:
+    _modify:
+      TWWC:
+        access: read-only
+  TWSR:
+    _modify:
+      TWS:
+        access: read-only
+    TWPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_4: [1, "Prescaler Value 4"]
+        PRESCALER_16: [2, "Prescaler Value 16"]
+        PRESCALER_64: [3, "Prescaler Value 64"]
