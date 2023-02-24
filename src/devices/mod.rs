@@ -3,6 +3,7 @@
 #[no_mangle]
 pub(crate) static mut DEVICE_PERIPHERALS: bool = false;
 
+
 /// [AT90USB1286](https://www.microchip.com/wwwproducts/en/AT90USB1286)
 #[cfg(feature = "at90usb1286")]
 pub mod at90usb1286;
@@ -14,6 +15,10 @@ pub mod atmega1280;
 /// [ATmega1284P](https://www.microchip.com/en-us/product/ATmega1284P)
 #[cfg(feature = "atmega1284p")]
 pub mod atmega1284p;
+
+/// [ATmega128A](https://www.microchip.com/wwwproducts/en/ATmega128A)
+#[cfg(feature = "atmega128a")]
+pub mod atmega128a;
 
 /// [ATmega128RFA1](https://www.microchip.com/en-us/product/ATmega128RFA1)
 #[cfg(feature = "atmega128rfa1")]

@@ -1,0 +1,53 @@
+_svd: ../svd/atmega128a.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/spi.yaml"
+  - "common/usart.yaml"
+  - "timer/atmega128a.yaml"
+
+USART?:
+  UCSR?C:
+    _modify:
+      UMSEL?:
+        bitRange: "[7:6]"
+
+# Patches for the Two-Wire-Interface peripheral (i2c)
+#
+# - Make the Control Register read-write with only the
+#   "Write Collision Flag" being read-only
+# - Fix the Prescaler enumerated values
+TWI*:
+  TWCR:
+    _modify:
+      TWWC:
+        access: read-only
+  TWSR:
+    _modify:
+      TWS:
+        access: read-only
+    TWPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_4: [1, "Prescaler Value 4"]
+        PRESCALER_16: [2, "Prescaler Value 16"]
+        PRESCALER_64: [3, "Prescaler Value 64"]
+
+WDT:
+  WDTCR:
+    _delete:
+      - WDP
+    _add:
+      WDPL:
+        description: "Watchdog Timer Prescaler - Low Bits"
+        bitRange: "[2:0]"
+    WDPL:
+      CYCLES_16K:      [0, "- 16K (16,384) cycles, ~14ms"]
+      CYCLES_32K:      [1, "- 32K (32,768) cycles, ~28ms"]
+      CYCLES_64K:      [2, "- 64K (65,536) cycles, ~56ms"]
+      CYCLES_128K:     [3, "- 128K (131,072) cycles, ~0.11s"]
+      CYCLES_256K:     [4, "- 256K (262,144) cycles, ~0.22s"]
+      CYCLES_512K:     [5, "- 512K (524,288) cycles, ~0.45s"]
+      CYCLES_1024K:     [6, "- 1024K (1,048,576) cycles, ~0.9s"]
+      CYCLES_2048K:     [7, "- 2048K (2,097,152) cycles, ~1.8s"]
