@@ -48,6 +48,10 @@ pub mod atmega328p;
 #[cfg(feature = "atmega328pb")]
 pub mod atmega328pb;
 
+/// [ATmega32A](https://www.microchip.com/wwwproducts/en/ATmega32A)
+#[cfg(feature = "atmega32a")]
+pub mod atmega32a;
+
 /// [ATmega32U4](https://www.microchip.com/wwwproducts/en/ATmega32U4)
 #[cfg(feature = "atmega32u4")]
 pub mod atmega32u4;
