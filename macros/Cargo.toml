@@ -1,6 +1,6 @@
 [package]
 name = "avr-device-macros"
-version = "0.5.0"
+version = "0.5.1"
 
 authors = ["Rahix <rahix@rahix.de>"]
 edition = "2021"
