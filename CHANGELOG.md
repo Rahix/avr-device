@@ -9,10 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for `ATmega128A` ([#121]).
 - Support for `ATmega324PA` ([#119]).
 - Support for `ATmega88P` ([#120]).
+- Support for `ATmega32A` ([#123]).
 
 [#119]: https://github.com/Rahix/avr-device/pull/119
 [#120]: https://github.com/Rahix/avr-device/pull/120
 [#121]: https://github.com/Rahix/avr-device/pull/121
+[#123]: https://github.com/Rahix/avr-device/pull/123
 
 
 ## [0.5.0] - 2023-01-05
