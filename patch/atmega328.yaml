@@ -1,0 +1,18 @@
+_svd: ../svd/atmega328.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/spi.yaml"
+  - "common/twi.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/atmega328p.yaml"
+
+EXINT:
+  EIMSK:
+    _modify:
+      INT:
+        description: External Interrupt Request Enable
+    _split: [INT]
