@@ -21,9 +21,9 @@ Via the feature you can select which chip you want the register specifications f
 |   `atmega88p`   |              |                   |               |  `attiny85`   |
 |   `atmega168`   |              |                   |               |  `attiny88`   |
 |  `atmega324pa`  |              |                   |               |  `attiny816`  |
-|  `atmega328p`   |              |                   |               |  `attiny841`  |
-|  `atmega328pb`  |              |                   |               |  `attiny861`  |
-|   `atmega32a`   |              |                   |               |               |
+|  `atmega328p`   |              |                   |               |  `attiny828`  |
+|  `atmega328pb`  |              |                   |               |  `attiny841`  |
+|   `atmega32a`   |              |                   |               |  `attiny861`  |
 |  `atmega1280`   |              |                   |               | `attiny1614`  |
 |  `atmega1284p`  |              |                   |               | `attiny2313`  |
 |  `atmega128a`   |              |                   |               | `attiny2313a` |
