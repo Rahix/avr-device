@@ -841,7 +841,6 @@
     </module>
     <module caption="EEPROM" name="EEPROM">
       <register-group caption="EEPROM" name="EEPROM">
-        <register caption="EEPROM Read/Write Access" name="EEAR" offset="0x41" size="1" mask="0xFF"/>
         <register caption="EEPROM Read/Write Access" name="EEARL" offset="0x41" size="1" mask="0xFF"/>
         <register caption="EEPROM Data Register" name="EEDR" offset="0x40" size="1" mask="0xFF"/>
         <register caption="EEPROM Control Register" name="EECR" offset="0x3F" size="1">
