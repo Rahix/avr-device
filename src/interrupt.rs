@@ -211,7 +211,7 @@ pub fn is_enabled() -> bool {
 
 /// Execute closure `f` in an interrupt-free context.
 ///
-/// This as also known as a "critical section".
+/// This is also known as a "critical section".
 #[inline(always)]
 pub fn free<F, R>(f: F) -> R
 where
