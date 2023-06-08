@@ -98,3 +98,36 @@ CPU:
     _modify:
       PLOCK:
         access: read-only
+EXINT:
+  PCMSK:
+    _add:
+      PCINT0:
+        description: Enable pin change interrupt on pin 0
+        bitOffset: 0
+        bitWidth: 1
+        access: read-write
+      PCINT1:
+        description: Enable pin change interrupt on pin 1
+        bitOffset: 1
+        bitWidth: 1
+        access: read-write
+      PCINT2:
+        description: Enable pin change interrupt on pin 2
+        bitOffset: 2
+        bitWidth: 1
+        access: read-write
+      PCINT3:
+        description: Enable pin change interrupt on pin 3
+        bitOffset: 3
+        bitWidth: 1
+        access: read-write
+      PCINT4:
+        description: Enable pin change interrupt on pin 4
+        bitOffset: 4
+        bitWidth: 1
+        access: read-write
+      PCINT5:
+        description: Enable pin change interrupt on pin 5
+        bitOffset: 5
+        bitWidth: 1
+        access: read-write
