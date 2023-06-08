@@ -99,6 +99,10 @@ CPU:
       PLOCK:
         access: read-only
 EXINT:
+  # This doesn't work:
+  # _modify:
+  #   PCMSK:
+  #     _write_constraint: [0, 63]
   PCMSK:
     _add:
       PCINT0:
