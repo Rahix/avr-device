@@ -44,51 +44,15 @@
         <module name="PORT">
           <instance name="PORTA" caption="I/O Port">
             <register-group name="PORTA" name-in-module="PORTA" offset="0x00" address-space="data" caption="I/O Port"/>
-            <signals>
-              <signal function="PORTA" group="P" index="0" pad="PA0"/>
-              <signal function="PORTA" group="P" index="1" pad="PA1"/>
-              <signal function="PORTA" group="P" index="2" pad="PA2"/>
-              <signal function="PORTA" group="P" index="3" pad="PA3"/>
-              <signal function="PORTA" group="P" index="4" pad="PA4"/>
-              <signal function="PORTA" group="P" index="5" pad="PA5"/>
-              <signal function="PORTA" group="P" index="6" pad="PA6"/>
-              <signal function="PORTA" group="P" index="7" pad="PA7"/>
-            </signals>
           </instance>
           <instance name="PORTB" caption="I/O Port">
             <register-group name="PORTB" name-in-module="PORTB" offset="0x00" address-space="data" caption="I/O Port"/>
-            <signals>
-              <signal function="PORTB" group="P" index="0" pad="PB0"/>
-              <signal function="PORTB" group="P" index="1" pad="PB1"/>
-              <signal function="PORTB" group="P" index="2" pad="PB2"/>
-              <signal function="PORTB" group="P" index="3" pad="PB3"/>
-              <signal function="PORTB" group="P" index="4" pad="PB4"/>
-              <signal function="PORTB" group="P" index="5" pad="PB5"/>
-              <signal function="PORTB" group="P" index="6" pad="PB6"/>
-              <signal function="PORTB" group="P" index="7" pad="PB7"/>
-            </signals>
           </instance>
           <instance name="PORTC" caption="I/O Port">
             <register-group name="PORTC" name-in-module="PORTC" offset="0x00" address-space="data" caption="I/O Port"/>
-            <signals>
-              <signal function="PORTC" group="P" index="0" pad="PC0"/>
-              <signal function="PORTC" group="P" index="1" pad="PC1"/>
-              <signal function="PORTC" group="P" index="2" pad="PC2"/>
-              <signal function="PORTC" group="P" index="3" pad="PC3"/>
-              <signal function="PORTC" group="P" index="4" pad="PC4"/>
-              <signal function="PORTC" group="P" index="5" pad="PC5"/>
-              <signal function="PORTC" group="P" index="6" pad="PC6"/>
-              <signal function="PORTC" group="P" index="7" pad="PC7"/>
-            </signals>
           </instance>
           <instance name="PORTD" caption="I/O Port">
             <register-group name="PORTD" name-in-module="PORTD" offset="0x00" address-space="data" caption="I/O Port"/>
-            <signals>
-              <signal function="PORTD" group="P" index="0" pad="PD0"/>
-              <signal function="PORTD" group="P" index="1" pad="PD1"/>
-              <signal function="PORTD" group="P" index="2" pad="PD2"/>
-              <signal function="PORTD" group="P" index="3" pad="PD3"/>
-            </signals>
           </instance>
         </module>
         <module name="CPU">
@@ -841,6 +805,7 @@
     </module>
     <module caption="EEPROM" name="EEPROM">
       <register-group caption="EEPROM" name="EEPROM">
+        <register caption="EEPROM Read/Write Access" name="EEAR" offset="0x41" size="1" mask="0xFF"/>
         <register caption="EEPROM Read/Write Access" name="EEARL" offset="0x41" size="1" mask="0xFF"/>
         <register caption="EEPROM Data Register" name="EEDR" offset="0x40" size="1" mask="0xFF"/>
         <register caption="EEPROM Control Register" name="EECR" offset="0x3F" size="1">
@@ -946,74 +911,4 @@
       </value-group>
     </module>
   </modules>
-  <pinouts>
-    <pinout name="MLF32">
-      <pin pad="PC1" position="32"/>
-      <pin pad="PC0" position="31"/>
-      <pin pad="PD3" position="30"/>
-      <pin pad="PD2" position="29"/>
-      <pin pad="PD1" position="28"/>
-      <pin pad="PD0" position="27"/>
-      <pin pad="PB7" position="26"/>
-      <pin pad="PB6" position="25"/>
-      <pin pad="PB5" position="24"/>
-      <pin pad="PB4" position="23"/>
-      <pin pad="PB3" position="22"/>
-      <pin pad="GND" position="21"/>
-      <pin pad="PB2" position="20"/>
-      <pin pad="PB1" position="19"/>
-      <pin pad="AVCC" position="18"/>
-      <pin pad="PB0" position="17"/>
-      <pin pad="PA7" position="16"/>
-      <pin pad="PA6" position="15"/>
-      <pin pad="PA5" position="14"/>
-      <pin pad="PA4" position="13"/>
-      <pin pad="PA3" position="12"/>
-      <pin pad="PA2" position="11"/>
-      <pin pad="PA1" position="10"/>
-      <pin pad="PA0" position="9"/>
-      <pin pad="PC7" position="8"/>
-      <pin pad="PC6" position="7"/>
-      <pin pad="PC5" position="6"/>
-      <pin pad="GND" position="5"/>
-      <pin pad="VCC" position="4"/>
-      <pin pad="PC4" position="3"/>
-      <pin pad="PC3" position="2"/>
-      <pin pad="PC2" position="1"/>
-    </pinout>
-    <pinout name="TQFP32">
-      <pin pad="PC1" position="32"/>
-      <pin pad="PC0" position="31"/>
-      <pin pad="PD3" position="30"/>
-      <pin pad="PD2" position="29"/>
-      <pin pad="PD1" position="28"/>
-      <pin pad="PD0" position="27"/>
-      <pin pad="PB7" position="26"/>
-      <pin pad="PB6" position="25"/>
-      <pin pad="PB5" position="24"/>
-      <pin pad="PB4" position="23"/>
-      <pin pad="PB3" position="22"/>
-      <pin pad="GND" position="21"/>
-      <pin pad="PB2" position="20"/>
-      <pin pad="PB1" position="19"/>
-      <pin pad="AVCC" position="18"/>
-      <pin pad="PB0" position="17"/>
-      <pin pad="PA7" position="16"/>
-      <pin pad="PA6" position="15"/>
-      <pin pad="PA5" position="14"/>
-      <pin pad="PA4" position="13"/>
-      <pin pad="PA3" position="12"/>
-      <pin pad="PA2" position="11"/>
-      <pin pad="PA1" position="10"/>
-      <pin pad="PA0" position="9"/>
-      <pin pad="PC7" position="8"/>
-      <pin pad="PC6" position="7"/>
-      <pin pad="PC5" position="6"/>
-      <pin pad="GND" position="5"/>
-      <pin pad="VCC" position="4"/>
-      <pin pad="PC4" position="3"/>
-      <pin pad="PC3" position="2"/>
-      <pin pad="PC2" position="1"/>
-    </pinout>
-  </pinouts>
 </avr-tools-device-file>
