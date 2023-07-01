@@ -44,6 +44,11 @@ CPU:
         ADC: [ 1, "ADC Noise Reduction" ]
         PDOWN: [ 2, "Power Down" ]
 
+# Remove EEAR register duplicate declaration
+EEPROM:
+  _delete:
+    - "EEAR"
+
 EXINT:
   EICRA:
     ISC0:
