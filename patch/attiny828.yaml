@@ -1,0 +1,106 @@
+_svd: ../svd/attiny828.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/eeprom.yaml"
+  - "common/spi.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/attiny828.yaml"
+
+ADC:
+  ADCSRA:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+  ADCSRB:
+    ADTS:
+      _replace_enum:
+        FREE_RUNNING: [0, "Free Running Mode"]
+        ANALOG_COMPARATOR: [1, "Analog Comparator"]
+        EXTERNAL_INTERRUPT: [2, "External Interrupt Request 0"]
+        TIMER0_COMPARE_MATCH_A: [3, "Timer/Counter0 Compare Match A"]
+        TIMER0_OVERFLOW: [4, "Timer/Counter0 Overflow"]
+        TIMER1_COMPARE_MATCH_B: [5, "Timer/Counter1 Compare Match B"]
+        TIMER1_OVERFLOW: [6, "Timer/Counter1 Overflow"]
+        TIMER1_CAPTURE_EVENT: [7, "Timer/Counter1 Capture Event"]
+  ADMUXB:
+    REFS:
+      _replace_enum:
+        AREF: [0, "Aref Internal Vref turned off"]
+        INTERNAL: [1, "Internal 1.1V Voltage Reference"]
+
+CPU:
+  SMCR:
+    SM:
+      _replace_enum:
+        IDLE: [ 0, "Idle" ]
+        ADC: [ 1, "ADC Noise Reduction" ]
+        PDOWN: [ 2, "Power Down" ]
+
+# Remove EEAR register duplicate declaration
+EEPROM:
+  _delete:
+    - "EEAR"
+
+EXINT:
+  EICRA:
+    ISC0:
+      _replace_enum:
+        LOW: [0, "The low level of INTx generates an interrupt request"]
+        TOGGLE: [1, "Any logical change on INTx generates an interrupt request"]
+        FALLING: [2, "The falling edge of INTx generates an interrupt request"]
+        RISING: [3, "The rising edge of INTx generates an interrupt request"]
+
+# ATtiny828 has only one USART peripheral and it's not is not compatible with common USARTn pattern.
+USART:
+  UCSRA:
+    _modify:
+      UPE:
+        access: read-only
+      DOR:
+        access: read-only
+      FE:
+        access: read-only
+      UDRE:
+        access: read-only
+      TXC:
+        description: "USART Transmit Complete"
+      RXC:
+        access: read-only
+  UCSRB:
+    _modify:
+      RXB8:
+        access: read-only
+  UCSRC:
+    UMSEL:
+      _replace_enum:
+        USART_ASYNC: [0, "Asynchronous USART"]
+        USART_SYNC:  [1, "Synchronous USART"]
+        # The following option is missing from atdf file, but it's present in the datasheet
+        SPI_MASTER:  [3, "Master SPI (MSPIM)"]
+    UPM:
+      _replace_enum:
+        DISABLED:    [0, "Disabled"]
+        PARITY_EVEN: [2, "Enabled, Even Parity"]
+        PARITY_ODD:  [3, "Enabled, Odd Parity"]
+    USBS:
+      _replace_enum:
+        STOP1: [0, "1-bit"]
+        STOP2: [1, "2-bit"]
+    UCSZ:
+      _replace_enum:
+        CHR5: [0, "Character Size: 5 bit"]
+        CHR6: [1, "Character Size: 6 bit"]
+        CHR7: [2, "Character Size: 7 bit"]
+        CHR8: [3, "Character Size: 8 bit"]
+    UCPOL:
+      _replace_enum:
+        RISING_EDGE:  [0, "Transmit on Rising XCKn Edge, Receive on Falling XCKn Edge"]
+        FALLING_EDGE: [1, "Transmit on Falling XCKn Edge, Receive on Rising XCKn Edge"]
