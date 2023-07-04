@@ -5,3 +5,11 @@ _include:
   - "common/twi.yaml"
   - "common/usart.yaml"
   - "common/wdt.yaml"
+
+EEPROM:
+  EECR:
+    EEPM:
+      _replace_enum:
+        VAL_0x00: [0, "Atomic (erase and write in one operation)"]
+        VAL_0x01: [1, "Erase only"]
+        VAL_0x02: [2, "Write only"]
