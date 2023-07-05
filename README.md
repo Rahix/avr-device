@@ -41,6 +41,13 @@ cargo install svd2rust --version 0.28.0
 cargo install form
 rustup component add --toolchain nightly rustfmt
 pip3 install --user svdtools
+
+# check svdtools
+svd --version
+# if a "command not found" error is printed instead of a version,
+# either svdtools is installed incorrectly, or its installation path is missing from the PATH variable.
+# Temporary solution to PATH variable issue is to manually add the path. Like so:
+export PATH=$PATH:~/.local/bin
 ```
 
 [atdf2svd]: https://github.com/Rahix/atdf2svd
