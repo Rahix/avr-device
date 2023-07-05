@@ -119,7 +119,8 @@ pub fn interrupt(
     args: proc_macro::TokenStream,
     input: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
-    let mut f: syn::ItemFn = syn::parse(input).expect("`#[interrupt]` must be applied to a function");
+    let mut f: syn::ItemFn =
+        syn::parse(input).expect("`#[interrupt]` must be applied to a function");
     let args: Vec<_> = args.into_iter().collect();
 
     let fspan = f.span();
@@ -176,17 +177,25 @@ pub fn interrupt(
         Ok(x) => x,
     };
 
-    f.sig.ident = syn::Ident::new(&format!("__avr_device_rt_{}", f.sig.ident), proc_macro2::Span::call_site());
+    f.sig.ident = syn::Ident::new(
+        &format!("__avr_device_rt_{}", f.sig.ident),
+        proc_macro2::Span::call_site(),
+    );
     f.sig.inputs.extend(statics.iter().map(|statik| {
         let ident = &statik.ident;
         let ty = &statik.ty;
         let attrs = &statik.attrs;
-        syn::parse::<syn::FnArg>(quote::quote!(#[allow(non_snake_case)] #(#attrs)* #ident: &mut #ty).into())
-            .unwrap()
+        syn::parse::<syn::FnArg>(
+            quote::quote!(#[allow(non_snake_case)] #(#attrs)* #ident: &mut #ty).into(),
+        )
+        .unwrap()
     }));
     f.block.stmts = stmts;
 
-    let tramp_ident = syn::Ident::new(&format!("{}_trampoline", f.sig.ident), proc_macro2::Span::call_site());
+    let tramp_ident = syn::Ident::new(
+        &format!("{}_trampoline", f.sig.ident),
+        proc_macro2::Span::call_site(),
+    );
     let ident = &f.sig.ident;
 
     let resource_args = statics

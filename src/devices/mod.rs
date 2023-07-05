@@ -3,7 +3,6 @@
 #[no_mangle]
 pub(crate) static mut DEVICE_PERIPHERALS: bool = false;
 
-
 /// [AT90USB1286](https://www.microchip.com/wwwproducts/en/AT90USB1286)
 #[cfg(feature = "at90usb1286")]
 pub mod at90usb1286;
