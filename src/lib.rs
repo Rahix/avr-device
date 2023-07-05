@@ -180,7 +180,9 @@ pub use avr_device_macros::interrupt;
 /// ```
 /// #[avr_device::entry]
 /// fn main() -> ! {
-///     // ...
+///     loop {
+///         // ...
+///     }
 /// }
 /// ```
 ///
