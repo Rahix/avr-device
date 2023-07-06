@@ -33,7 +33,7 @@ ADC:
   ADMUXB:
     REFS:
       _replace_enum:
-        AREF: [0, "Aref Internal Vref turned off"]
+        VCC: [0, "Vcc used as analog reference"]
         INTERNAL: [1, "Internal 1.1V Voltage Reference"]
 
 CPU:
