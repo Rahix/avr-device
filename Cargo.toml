@@ -1,6 +1,6 @@
 [package]
 name = "avr-device"
-version = "0.5.1"
+version = "0.5.2"
 
 authors = ["Rahix <rahix@rahix.de>"]
 edition = "2021"
@@ -75,5 +75,5 @@ critical-section = { version = "1.1.1", optional = true }
 
 [dependencies.avr-device-macros]
 path = "macros/"
-version = "=0.5.1"
+version = "=0.5.2"
 optional = true
