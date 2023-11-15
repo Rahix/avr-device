@@ -107,6 +107,10 @@ pub mod attiny2313;
 #[cfg(feature = "attiny2313a")]
 pub mod attiny2313a;
 
+/// [ATtiny402](https://www.microchip.com/en-us/product/ATTINY402)
+#[cfg(feature = "attiny402")]
+pub mod attiny402;
+
 /// [ATtiny404](https://www.microchip.com/en-us/product/ATTINY404)
 #[cfg(feature = "attiny404")]
 pub mod attiny404;
