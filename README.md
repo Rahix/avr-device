@@ -17,18 +17,18 @@ Via the feature you can select which chip you want the register specifications f
 |    `atmega8`    | `atmega8u2`  |   `atmega4808`    | `at90usb1286` |  `attiny13a`  |
 |   `atmega48p`   | `atmega32u4` |   `atmega4809`    |               |  `attiny167`  |
 |   `atmega64`    |              |                   |               |  `attiny202`  |
-|   `atmega644`   |              |                   |               |  `attiny84`   |
-|   `atmega88p`   |              |                   |               |  `attiny85`   |
-|   `atmega168`   |              |                   |               |  `attiny88`   |
-|  `atmega324pa`  |              |                   |               |  `attiny816`  |
-|  `atmega328p`   |              |                   |               |  `attiny828`  |
-|  `atmega328pb`  |              |                   |               |  `attiny841`  |
-|   `atmega32a`   |              |                   |               |  `attiny861`  |
-|  `atmega1280`   |              |                   |               | `attiny1614`  |
-|  `atmega1284p`  |              |                   |               | `attiny2313`  |
-|  `atmega128a`   |              |                   |               | `attiny2313a` |
-| `atmega128rfa1` |              |                   |               |  `attiny404`  |
-|  `atmega2560`   |              |                   |               |               |
+|   `atmega644`   |              |                   |               |  `attiny402`  |
+|   `atmega88p`   |              |                   |               |  `attiny404`  |
+|   `atmega168`   |              |                   |               |  `attiny84`   |
+|  `atmega324pa`  |              |                   |               |  `attiny85`   |
+|  `atmega328p`   |              |                   |               |  `attiny88`   |
+|  `atmega328pb`  |              |                   |               |  `attiny816`  |
+|   `atmega32a`   |              |                   |               |  `attiny828`  |
+|  `atmega1280`   |              |                   |               |  `attiny841`  |
+|  `atmega1284p`  |              |                   |               |  `attiny861`  |
+|  `atmega128a`   |              |                   |               | `attiny1614`  |
+| `atmega128rfa1` |              |                   |               | `attiny2313`  |
+|  `atmega2560`   |              |                   |               | `attiny2313a` |
 |  `atmega164pa`  |              |                   |               |               |
 
 ## Build Instructions
