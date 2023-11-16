@@ -7,12 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATmega4808` ([#137]).
+- Support for `ATtiny402` ([#140]).
 
 ### Changed
 - Patched EEPROM registers for `ATmega164PA` ([#139]).
 
 [#137]: https://github.com/Rahix/avr-device/pull/137
 [#139]: https://github.com/Rahix/avr-device/pull/139
+[#140]: https://github.com/Rahix/avr-device/pull/140
 
 
 ## [0.5.2] - 2023-08-24
