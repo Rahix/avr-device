@@ -11,7 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Patched EEPROM registers for `ATmega164PA` ([#139]).
+- Patched added fields to the `PCMSK` register on `ATtiny85` ([#131]).
 
+[#131]: https://github.com/Rahix/avr-device/pull/131
 [#137]: https://github.com/Rahix/avr-device/pull/137
 [#139]: https://github.com/Rahix/avr-device/pull/139
 [#140]: https://github.com/Rahix/avr-device/pull/140
