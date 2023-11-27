@@ -28,6 +28,7 @@
 #![cfg_attr(feature = "attiny2313a", doc = "**attiny2313a**,")]
 #![cfg_attr(feature = "attiny402", doc = "**attiny402**,")]
 #![cfg_attr(feature = "attiny404", doc = "**attiny404**,")]
+#![cfg_attr(feature = "attiny44a", doc = "**attiny44a**,")]
 #![cfg_attr(feature = "attiny816", doc = "**attiny816**,")]
 #![cfg_attr(feature = "attiny828", doc = "**attiny828**,")]
 #![cfg_attr(feature = "attiny84", doc = "**attiny84**,")]
@@ -71,6 +72,7 @@
 //! `attiny2313a`,
 //! `attiny402`,
 //! `attiny404`,
+//! `attiny44a`,
 //! `attiny816`,
 //! `attiny828`,
 //! `attiny84`,
@@ -227,6 +229,7 @@ compile_error!(
     * attiny2313
     * attiny2313a
     * attiny402
+    * attiny44a
     * attiny816
     * attiny828
     * attiny84
@@ -296,6 +299,8 @@ pub use crate::devices::attiny2313a;
 pub use crate::devices::attiny402;
 #[cfg(feature = "attiny404")]
 pub use crate::devices::attiny404;
+#[cfg(feature = "attiny44a")]
+pub use crate::devices::attiny44a;
 #[cfg(feature = "attiny816")]
 pub use crate::devices::attiny816;
 #[cfg(feature = "attiny828")]
