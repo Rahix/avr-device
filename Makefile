@@ -32,7 +32,7 @@ svd/%.svd.patched: svd/%.svd .deps/%.d patch/%.yaml
 src/devices/%/mod.full.rs: svd/%.svd.patched
 	@mkdir -p $(@D)
 	@echo -e "\tSVD2RUST\t$*"
-	@cd $(@D); svd2rust --generic_mod --make_mod --target none -i $(realpath $<)
+	@cd $(@D); svd2rust --generic_mod --make_mod --target avr -i $(realpath $<)
 	@mv $(@D)/mod.rs $@
 	@mv $(@D)/generic.rs $(@D)/../../generic.rs
 
