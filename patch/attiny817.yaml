@@ -1,1 +1,99 @@
 _svd: ../svd/attiny817.svd
+
+CRCSCAN:
+  CTRLB:
+    SRC:
+      _replace_enum:
+        FLASH: [0, "CRC on entire flash"]
+        BOOTAPP: [1, "CRC on boot and appl section of flash"]
+        BOOT: [2, "CRC on boot section of flash"]
+    MODE:
+      _replace_enum:
+        PRIORITY: [0, "Priority to flash"]
+
+NVMCTRL:
+  CTRLA:
+    CMD:
+      _replace_enum:
+        NONE: [0, "No command"]
+        WP: [1, "Write page"]
+        ER: [2, "Erase page"]
+        ERWP: [3, "Erase and write page"]
+        PBC: [4, "Page buffer clear"]
+        CHER: [5, "Chip erase"]
+        EEER: [6, "EEPROM erase"]
+        WFU: [7, "Write fuse (PDI only)"]
+
+SLPCTRL:
+  CTRLA:
+    SMODE:
+      _replace_enum:
+        IDLE: [0, "Idle mode"]
+        STANDBY: [1, "Standby Mode"]
+        PDOWN: [2, "Power-down Mode"]
+
+TCD0:
+  EVCTRL?:
+    CFG:
+      _replace_enum:
+        NEITHER: [0, "Neither Filter nor Asynchronous Event is enabled"]
+        FILTERON: [1, "Input Capture Noise Cancellation Filter enabled"]
+        ASYNCON: [2, "Asynchronous Event output qualification enabled"]
+
+"PORT?":
+  DIR:
+    "P*":
+      # Make all Pins use the same enum
+      _replace_enum:
+        Input: [0, "Input"]
+        Output: [1, "Output"]
+
+  # make PINxCTRL a rust slice
+  _array:
+    "PIN?CTRL": {}
+
+"USART?":
+  STATUS:
+    _modify:
+      # The RXSIF bit is actually writable to clear the flag
+      RXSIF:
+        access: read-write
+      # The WFB bit is write-only
+      WFB:
+        access: write-only
+
+"SPI?":
+  CTRLA:
+    DORD:
+      # Make it an enum
+      _replace_enum:
+        MsbFirst: [0, "Most significant byte first"]
+        LsbFirst: [1, "Least significant byte first"]
+
+CCL:
+  _cluster:
+    "LUT%s":
+      description: "CCL LUT configuration cluster"
+      "LUT?CTRLA": {}
+      "LUT?CTRLB": {}
+      "LUT?CTRLC": {}
+      "TRUTH?": {}
+
+  # turn all SEQCTRL-registers into slices
+  _array:
+    "SEQCTRL?": {}
+
+CPUINT:
+  CTRLA:
+    IVSEL:
+      _replace_enum:
+        AFTERBOOT: [0, "Interrupt vectors are placed after the BOOT section of the Flash"]
+        INBOOT: [1, "Interrupt vectors are placed at the start of the BOOT section of the Flash"]
+    CVT:
+      _replace_enum:
+        NORMAL: [0, "Compact Vector Table function is disabled"]
+        COMPACT: [1, "Compact Vector Table function is enabled"]
+    LVL0RR:
+      _replace_enum:
+        FIXED: [0, "Priority is fixed for priority level 0 interrupt requests: The lowest interrupt vector address has the highest priority."]
+        ROUNDROBIN: [1, "The round robin priority scheme is enabled for priority level 0 interrupt requests"]

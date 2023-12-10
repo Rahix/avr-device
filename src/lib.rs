@@ -1,4 +1,5 @@
 //! This crate contains register definitions for
+#![feature(asm_const)]
 
 #![cfg_attr(feature = "at90usb1286", doc = "**at90usb1286**,")]
 #![cfg_attr(feature = "atmega1280", doc = "**atmega1280**,")]
@@ -320,3 +321,9 @@ pub use crate::devices::attiny85;
 pub use crate::devices::attiny861;
 #[cfg(feature = "attiny88")]
 pub use crate::devices::attiny88;
+
+#[allow(non_camel_case_types, unused_attributes, unreachable_patterns)]
+pub mod ccp;
+
+#[cfg(feature = "attiny817")]
+pub use crate::ccp::attiny817 as attiny817_ccp;
