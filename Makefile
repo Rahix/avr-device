@@ -1,7 +1,6 @@
 all: deps chips
 
-CHIPS := at90usb1286 atmega1280 atmega1284p atmega128a atmega128rfa1 atmega164pa atmega168 atmega2560 atmega8 atmega8u2 atmega324pa atmega328p atmega328pb atmega32a atmega32u4 atmega4808 atmega4809 atmega48p atmega64 atmega644 atmega88p attiny13a attiny202 attiny2313 attiny2313a attiny402 attiny404 attiny44a attiny84 attiny85 attiny88 attiny816 attiny828 attiny841 attiny861 attiny167 attiny1614
-
+CHIPS := at90usb1286 atmega1280 atmega1284p atmega128a atmega128rfa1 atmega164pa atmega168 atmega2560 atmega8 atmega8u2 atmega324pa atmega328p atmega328pb atmega32a atmega32u4 atmega4808 atmega4809 atmega48p atmega64 atmega644 atmega88p attiny13a attiny202 attiny2313 attiny2313a attiny402 attiny404 attiny44a attiny84 attiny85 attiny88 attiny816 attiny817 attiny828 attiny841 attiny861 attiny167 attiny1614
 RUSTUP_TOOLCHAIN ?= nightly
 
 PATCHES := $(foreach chip, $(CHIPS), $(wildcard patch/$(chip).yaml))
@@ -35,7 +34,7 @@ svd/%.svd.patched: svd/%.svd .deps/%.d
 src/devices/%/mod.full.rs: svd/%.svd.patched
 	@mkdir -p $(@D)
 	@echo -e "\tSVD2RUST\t$*"
-	@cd $(@D); svd2rust --generic_mod --make_mod --target none -i $(realpath $<)
+	@cd $(@D); svd2rust --generic_mod --make_mod --target avr -i $(realpath $<)
 	@mv $(@D)/mod.rs $@
 	@mv $(@D)/generic.rs $(@D)/../../generic.rs
 
