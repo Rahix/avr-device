@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Support for `ATtiny44` ([#141]).
+- Support for `ATtiny44A` ([#141]).
+- Support for `ATtiny84A` ([#143]).
 
 [#141]: https://github.com/Rahix/avr-device/pull/141
+[#143]: https://github.com/Rahix/avr-device/pull/143
 
 
 ## [0.5.3] - 2023-11-17
