@@ -1,0 +1,4 @@
+_svd: ../svd/attiny84a.svd
+
+_include:
+  - "common/eeprom.yaml"
