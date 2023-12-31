@@ -97,3 +97,11 @@ CPUINT:
       _replace_enum:
         FIXED: [0, "Priority is fixed for priority level 0 interrupt requests: The lowest interrupt vector address has the highest priority."]
         ROUNDROBIN: [1, "The round robin priority scheme is enabled for priority level 0 interrupt requests"]
+
+EVSYS:
+  # make ASYNCCHx, SYNCCHx, ASYNCUSERx and SYNCUSERx a rust slice
+  _array:
+    "ASYNCCH*": {}
+    "SYNCCH*": {}
+    "ASYNCUSER*": {}
+    "SYNCUSER*": {}
