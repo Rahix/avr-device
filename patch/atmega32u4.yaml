@@ -10,3 +10,24 @@ _include:
   - "common/wdt.yaml"
 
   - "timer/atmega32u4.yaml"
+
+# Pin F7 is not present in the ATDF file for some reason.
+PORTF:
+  DDRF:
+    _add:
+      PF7:
+        description: "Pin F7"
+        bitRange: "[7:7]"
+        access: read-write
+  PINF:
+    _add:
+      PF7:
+        description: "Pin F7"
+        bitRange: "[7:7]"
+        access: read-write
+  PORTF:
+    _add:
+      PF7:
+        description: "Pin F7"
+        bitRange: "[7:7]"
+        access: read-write
