@@ -10,9 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for `ATtiny84A` ([#143]).
 - Added an example of bare `avr-device` usage (without `avr-hal`) ([#146]).
 
+### Fixed
+- Added missing pin fields in `DDR`,`PIN`,`PORT` registers for `ATtiny167`,
+  `ATtiny84`, `ATtiny2313`, and `ATtiny2313A` ([#148], [#149]).
+
 [#141]: https://github.com/Rahix/avr-device/pull/141
 [#143]: https://github.com/Rahix/avr-device/pull/143
 [#146]: https://github.com/Rahix/avr-device/pull/146
+[#148]: https://github.com/Rahix/avr-device/pull/148
+[#149]: https://github.com/Rahix/avr-device/pull/149
 
 
 ## [0.5.3] - 2023-11-17
