@@ -26,3 +26,243 @@ CPU:
         PRESCALER_64: [6, "Prescaler Value 64"]
         PRESCALER_128: [7, "Prescaler Value 128"]
         PRESCALER_256: [8, "Prescaler Value 256"]
+
+PORTA:
+  DDRA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+  PINA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+  PORTA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+
+PORTB:
+  DDRB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+      PB4:
+        description: "Pin B4"
+        bitRange: "[4:4]"
+        access: read-write
+      PB5:
+        description: "Pin B5"
+        bitRange: "[5:5]"
+        access: read-write
+      PB6:
+        description: "Pin B6"
+        bitRange: "[6:6]"
+        access: read-write
+      PB7:
+        description: "Pin B7"
+        bitRange: "[7:7]"
+        access: read-write
+  PINB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+      PB4:
+        description: "Pin B4"
+        bitRange: "[4:4]"
+        access: read-write
+      PB5:
+        description: "Pin B5"
+        bitRange: "[5:5]"
+        access: read-write
+      PB6:
+        description: "Pin B6"
+        bitRange: "[6:6]"
+        access: read-write
+      PB7:
+        description: "Pin B7"
+        bitRange: "[7:7]"
+        access: read-write
+  PORTB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+      PB4:
+        description: "Pin B4"
+        bitRange: "[4:4]"
+        access: read-write
+      PB5:
+        description: "Pin B5"
+        bitRange: "[5:5]"
+        access: read-write
+      PB6:
+        description: "Pin B6"
+        bitRange: "[6:6]"
+        access: read-write
+      PB7:
+        description: "Pin B7"
+        bitRange: "[7:7]"
+        access: read-write
+
+PORTD:
+  DDRD:
+    _add:
+      PD0:
+        description: "Pin D0"
+        bitRange: "[0:0]"
+        access: read-write
+      PD1:
+        description: "Pin D1"
+        bitRange: "[1:1]"
+        access: read-write
+      PD2:
+        description: "Pin D2"
+        bitRange: "[2:2]"
+        access: read-write
+      PD3:
+        description: "Pin D3"
+        bitRange: "[3:3]"
+        access: read-write
+      PD4:
+        description: "Pin D4"
+        bitRange: "[4:4]"
+        access: read-write
+      PD5:
+        description: "Pin D5"
+        bitRange: "[5:5]"
+        access: read-write
+      PD6:
+        description: "Pin D6"
+        bitRange: "[6:6]"
+        access: read-write
+  PIND:
+    _add:
+      PD0:
+        description: "Pin D0"
+        bitRange: "[0:0]"
+        access: read-write
+      PD1:
+        description: "Pin D1"
+        bitRange: "[1:1]"
+        access: read-write
+      PD2:
+        description: "Pin D2"
+        bitRange: "[2:2]"
+        access: read-write
+      PD3:
+        description: "Pin D3"
+        bitRange: "[3:3]"
+        access: read-write
+      PD4:
+        description: "Pin D4"
+        bitRange: "[4:4]"
+        access: read-write
+      PD5:
+        description: "Pin D5"
+        bitRange: "[5:5]"
+        access: read-write
+      PD6:
+        description: "Pin D6"
+        bitRange: "[6:6]"
+        access: read-write
+  PORTD:
+    _add:
+      PD0:
+        description: "Pin D0"
+        bitRange: "[0:0]"
+        access: read-write
+      PD1:
+        description: "Pin D1"
+        bitRange: "[1:1]"
+        access: read-write
+      PD2:
+        description: "Pin D2"
+        bitRange: "[2:2]"
+        access: read-write
+      PD3:
+        description: "Pin D3"
+        bitRange: "[3:3]"
+        access: read-write
+      PD4:
+        description: "Pin D4"
+        bitRange: "[4:4]"
+        access: read-write
+      PD5:
+        description: "Pin D5"
+        bitRange: "[5:5]"
+        access: read-write
+      PD6:
+        description: "Pin D6"
+        bitRange: "[6:6]"
+        access: read-write
