@@ -2,3 +2,52 @@ _svd: ../svd/attiny84a.svd
 
 _include:
   - "common/eeprom.yaml"
+
+AC:
+  _modify:
+    DIDR0:
+      description: "Digital Input Disable Register"
+ADC:
+  ADCSRA:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+  ADMUX:
+    MUX:
+      ADC0: [0, "Single-ended Input ADC0"]
+      ADC1: [1, "Single-ended Input ADC1"]
+      ADC2: [2, "Single-ended Input ADC2"]
+      ADC3: [3, "Single-ended Input ADC3"]
+      ADC4: [4, "Single-ended Input ADC4"]
+      ADC5: [5, "Single-ended Input ADC5"]
+      ADC6: [6, "Single-ended Input ADC6"]
+      ADC7: [7, "Single-ended Input ADC7"]
+
+      ADC_GND: [32, "0V (GND)"]
+      ADC_VBG: [33, "Internal Reference (VBG)"]
+      TEMPSENS: [34, "Temperature sensor"]
+    REFS:
+      _replace_enum:
+        VCC: [0, "VCC used as analog reference, disconnected from PA0 (AREF)"]
+        AREF: [1, "External voltage reference at PA0 (AREF) pin, internal reference turned off"]
+        INTERNAL: [2, "Internal 1.1V voltage reference"]
+
+CPU:
+  CLKPR:
+    CLKPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+        PRESCALER_256: [8, "Prescaler Value 256"]
