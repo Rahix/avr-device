@@ -16,8 +16,8 @@ Via the feature you can select which chip you want the register specifications f
 | :-------------: | :----------: | :---------------: | :-----------: | :-----------: |
 |    `atmega8`    | `atmega8u2`  |   `atmega4808`    | `at90usb1286` |  `attiny13a`  |
 |   `atmega48p`   | `atmega32u4` |   `atmega4809`    |               |  `attiny167`  |
-|   `atmega64`    |              |                   |               |  `attiny202`  |
-|   `atmega644`   |              |                   |               |  `attiny402`  |
+|   `atmega64`    | `avr64du32`  |                   |               |  `attiny202`  |
+|   `atmega644`   | `avr64du28`  |                   |               |  `attiny402`  |
 |   `atmega88p`   |              |                   |               |  `attiny404`  |
 |   `atmega168`   |              |                   |               |  `attiny44a`  |
 |  `atmega324pa`  |              |                   |               |  `attiny84`   |
