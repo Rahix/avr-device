@@ -150,3 +150,11 @@ pub mod attiny861;
 /// [ATtiny88](https://www.microchip.com/wwwproducts/en/ATtiny88)
 #[cfg(feature = "attiny88")]
 pub mod attiny88;
+
+/// [AVR64DU32](https://www.microchip.com/wwwproducts/en/AVR64DU32)
+#[cfg(feature = "avr64du32")]
+pub mod avr64du32;
+
+/// [AVR64DU28](https://www.microchip.com/wwwproducts/en/AVR64DU28)
+#[cfg(feature = "avr64du28")]
+pub mod avr64du28;
