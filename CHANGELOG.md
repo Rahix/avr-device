@@ -5,10 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Added support for AVR64DU32 and AVR64DU28 ([#152]).
+
 ### Fixed
 - Patched the ADC registers of ATtiny84A ([#151]).
 
 [#151]: https://github.com/Rahix/avr-device/pull/151
+[#152]: https://github.com/Rahix/avr-device/pull/152
 
 
 ## [0.5.4] - 2024-01-28
