@@ -5,6 +5,7 @@
 #![cfg_attr(feature = "atmega1284p", doc = "**atmega1284p**,")]
 #![cfg_attr(feature = "atmega128a", doc = "**atmega128a**,")]
 #![cfg_attr(feature = "atmega128rfa1", doc = "**atmega128rfa1**,")]
+#![cfg_attr(feature = "atmega16", doc = "**atmega16**,")]
 #![cfg_attr(feature = "atmega164pa", doc = "**atmega164pa**,")]
 #![cfg_attr(feature = "atmega168", doc = "**atmega168**,")]
 #![cfg_attr(feature = "atmega2560", doc = "**atmega2560**,")]
@@ -52,6 +53,7 @@
 //! `atmega1284p`,
 //! `atmega128a`,
 //! `atmega128rfa1`,
+//! `atmega16`,
 //! `atmega164pa`,
 //! `atmega168`,
 //! `atmega2560`,
@@ -213,6 +215,7 @@ compile_error!(
     * atmega1284p
     * atmega128a
     * atmega128rfa1
+    * atmega16
     * atmega164pa
     * atmega168
     * atmega2560
@@ -262,6 +265,8 @@ pub use crate::devices::atmega1284p;
 pub use crate::devices::atmega128a;
 #[cfg(feature = "atmega128rfa1")]
 pub use crate::devices::atmega128rfa1;
+#[cfg(feature = "atmega16")]
+pub use crate::devices::atmega16;
 #[cfg(feature = "atmega164pa")]
 pub use crate::devices::atmega164pa;
 #[cfg(feature = "atmega168")]
@@ -326,7 +331,7 @@ pub use crate::devices::attiny85;
 pub use crate::devices::attiny861;
 #[cfg(feature = "attiny88")]
 pub use crate::devices::attiny88;
-#[cfg(feature = "avr64du32")]
-pub use crate::devices::avr64du32;
 #[cfg(feature = "avr64du28")]
 pub use crate::devices::avr64du28;
+#[cfg(feature = "avr64du32")]
+pub use crate::devices::avr64du32;

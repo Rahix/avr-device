@@ -1,0 +1,62 @@
+TC0:
+  TCCR0:
+    _delete:
+      - CS00
+      - CS01
+      - CS02
+    _add:
+      CS:
+        description: "Clock Select"
+        bitRange: "[2:0]"
+    CS:
+      _replace_enum:
+        NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+        DIRECT:        [1, "Running, No Prescaling"]
+        PRESCALE_8:    [2, "Running, CLK/8"]
+        PRESCALE_64:   [3, "Running, CLK/64"]
+        PRESCALE_256:  [4, "Running, CLK/256"]
+        PRESCALE_1024: [5, "Running, CLK/1024"]
+        EXT_FALLING:   [6, "Running, ExtClk T0 Falling Edge"]
+        EXT_RISING:    [7, "Running, ExtClk T0 Rising Edge"]
+TC1:
+  # TCCR1A is too complex for me to implement right now, because it has 3 different
+  # modes depending on bits which are set elsewhere.
+  TCCR1B: # ICNC1 ICES1 - WGM13 WGM12 CS12 CS11 CS10
+    _delete:
+      - CS10
+      - CS11
+      - CS12
+    _add:
+      CS:
+        description: "Clock Select"
+        bitRange: "[2:0]"
+    CS:
+      _replace_enum:
+        NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+        DIRECT:        [1, "Running, No Prescaling"]
+        PRESCALE_8:    [2, "Running, CLK/8"]
+        PRESCALE_64:   [3, "Running, CLK/64"]
+        PRESCALE_256:  [4, "Running, CLK/256"]
+        PRESCALE_1024: [5, "Running, CLK/1024"]
+        EXT_FALLING:   [6, "Running, ExtClk T1 Falling Edge"]
+        EXT_RISING:    [7, "Running, ExtClk T1 Rising Edge"]
+TC2:
+  TCCR2:
+    _delete:
+      - CS20
+      - CS21
+      - CS22
+    _add:
+      CS:
+        description: "Clock Select"
+        bitRange: "[2:0]"
+    CS:
+      _replace_enum:
+        NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+        DIRECT:        [1, "Running, No Prescaling"]
+        PRESCALE_8:    [2, "Running, CLK/8"]
+        PRESCALE_32:   [3, "Running, CLK/32"]
+        PRESCALE_64:   [4, "Running, CLK/64"]
+        PRESCALE_128:  [5, "Running, CLK/128"]
+        PRESCALE_256:  [6, "Running, CLK/256"]
+        PRESCALE_1024: [7, "Running, CLK/1024"]

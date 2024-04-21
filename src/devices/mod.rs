@@ -23,6 +23,10 @@ pub mod atmega128a;
 #[cfg(feature = "atmega128rfa1")]
 pub mod atmega128rfa1;
 
+/// [ATmega16](https://www.microchip.com/wwwproducts/en/ATmega16)
+#[cfg(feature = "atmega16")]
+pub mod atmega16;
+
 /// [ATmega164PA](https://www.microchip.com/en-us/product/ATmega164PA)
 #[cfg(feature = "atmega164pa")]
 pub mod atmega164pa;

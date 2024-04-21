@@ -1,0 +1,125 @@
+_svd: ../svd/atmega16.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/adc.yaml"
+  - "common/spi.yaml"
+  
+  - "timer/atmega16.yaml"
+
+ADC:
+  ADMUX:
+    MUX:
+      ADC0: [0, "Single-ended Input ADC0"]
+      ADC1: [1, "Single-ended Input ADC1"]
+      ADC2: [2, "Single-ended Input ADC2"]
+      ADC3: [3, "Single-ended Input ADC3"]
+      ADC4: [4, "Single-ended Input ADC4"]
+      ADC5: [5, "Single-ended Input ADC5"]
+      ADC6: [6, "Single-ended Input ADC6"]
+      ADC7: [7, "Single-ended Input ADC7"]
+
+      ADC0_ADC0_10X: [8, "Differential Input: Positive - ADC0, Negative - ADC0, Gain - 10x"]
+      ADC1_ADC0_10X: [9, "Differential Input: Positive - ADC1, Negative - ADC0, Gain - 10x"]
+      ADC0_ADC0_200X: [10, "Differential Input: Positive - ADC0, Negative - ADC0, Gain - 200x"]
+      ADC1_ADC0_200X: [11, "Differential Input: Positive - ADC1, Negative - ADC0, Gain - 200x"]
+      ADC2_ADC2_10X: [12, "Differential Input: Positive - ADC2, Negative - ADC2, Gain - 10x"]
+      ADC3_ADC2_10X: [13, "Differential Input: Positive - ADC3, Negative - ADC2, Gain - 10x"]
+      ADC2_ADC2_200X: [14, "Differential Input: Positive - ADC2, Negative - ADC2, Gain - 200x"]
+      ADC3_ADC2_200X: [15, "Differential Input: Positive - ADC3, Negative - ADC2, Gain - 200x"]
+      ADC0_ADC1_1X: [16, "Differential Input: Positive - ADC0, Negative - ADC1, Gain - 1x"]
+      ADC1_ADC1_1X: [17, "Differential Input: Positive - ADC1, Negative - ADC1, Gain - 1x"]
+      ADC2_ADC1_1X: [18, "Differential Input: Positive - ADC2, Negative - ADC1, Gain - 1x"]
+      ADC3_ADC1_1X: [19, "Differential Input: Positive - ADC3, Negative - ADC1, Gain - 1x"]
+      ADC4_ADC1_1X: [20, "Differential Input: Positive - ADC4, Negative - ADC1, Gain - 1x"]
+      ADC5_ADC1_1X: [21, "Differential Input: Positive - ADC5, Negative - ADC1, Gain - 1x"]
+      ADC6_ADC1_1X: [22, "Differential Input: Positive - ADC6, Negative - ADC1, Gain - 1x"]
+      ADC7_ADC1_1X: [23, "Differential Input: Positive - ADC7, Negative - ADC1, Gain - 1x"]
+      ADC0_ADC2_1X: [24, "Differential Input: Positive - ADC0, Negative - ADC2, Gain - 1x"]
+      ADC1_ADC2_1X: [25, "Differential Input: Positive - ADC1, Negative - ADC2, Gain - 1x"]
+      ADC2_ADC2_1X: [26, "Differential Input: Positive - ADC2, Negative - ADC2, Gain - 1x"]
+      ADC3_ADC2_1X: [27, "Differential Input: Positive - ADC3, Negative - ADC2, Gain - 1x"]
+      ADC4_ADC2_1X: [28, "Differential Input: Positive - ADC4, Negative - ADC2, Gain - 1x"]
+      ADC5_ADC2_1X: [29, "Differential Input: Positive - ADC5, Negative - ADC2, Gain - 1x"]
+
+      ADC_VBG: [30, "Internal Reference (VBG)"]
+      ADC_GND: [31, "0V (GND)"]
+
+TWI:
+  TWCR:
+    _modify:
+      TWWC:
+        access: read-only
+  TWSR:
+    _modify:
+      TWS:
+        access: read-only
+    TWPS:
+      _replace_enum:
+        PRESCALER_1: [0, "Prescaler Value 1"]
+        PRESCALER_4: [1, "Prescaler Value 4"]
+        PRESCALER_16: [2, "Prescaler Value 16"]
+        PRESCALER_64: [3, "Prescaler Value 64"]
+
+WDT:
+  WDTCR:
+    _delete:
+      - WDP
+    _add:
+      WDPL:
+        description: "Watchdog Timer Prescaler - Low Bits"
+        bitRange: "[2:0]"
+    WDPL:
+      CYCLES_16K: [0, "- 16K (16384) cycles, ~16ms"]
+      CYCLES_32K: [1, "- 32K (32768) cycles, ~32ms"]
+      CYCLES_64K: [2, "- 64K (65536) cycles, ~65ms"]
+      CYCLES_128K: [3, "- 128K (131072) cycles, ~0.13s"]
+      CYCLES_256K: [4, "- 256K (262144) cycles, ~0.26s"]
+      CYCLES_512K: [5, "- 512K (524288) cycles, ~0.52s"]
+      CYCLES_1024K: [6, "- 1024K (1048576) cycles, ~1.0s"]
+      CYCLES_2048K: [7, "- 2048K (2097152) cycles, ~2.1s"]
+
+USART:
+  UCSRA:
+    _modify:
+      UPE:
+        access: read-only
+        name: PE
+      DOR:
+        access: read-only
+      FE:
+        access: read-only
+      UDRE:
+        access: read-only
+      TXC:
+        description: "USART Transmit Complete"
+      RXC:
+        access: read-only
+  UCSRB:
+    _modify:
+      RXB8:
+        access: read-only
+  UCSRC:
+    UMSEL:
+      _replace_enum:
+        USART_ASYNC: [0, "Asynchronous USART"]
+        USART_SYNC:  [1, "Synchronous USART"]
+    UPM:
+      _replace_enum:
+        DISABLED:    [0, "Disabled"]
+        PARITY_EVEN: [2, "Enabled, Even Parity"]
+        PARITY_ODD:  [3, "Enabled, Odd Parity"]
+    USBS:
+      _replace_enum:
+        STOP1: [0, "1-bit"]
+        STOP2: [1, "2-bit"]
+    UCSZ:
+      _replace_enum:
+        CHR5: [0, "Character Size: 5 bit"]
+        CHR6: [1, "Character Size: 6 bit"]
+        CHR7: [2, "Character Size: 7 bit"]
+        CHR8: [3, "Character Size: 8 bit"]
+    UCPOL:
+      _replace_enum:
+        RISING_EDGE:  [0, "Transmit on Rising XCK Edge, Receive on Falling XCK Edge"]
+        FALLING_EDGE: [1, "Transmit on Falling XCK Edge, Receive on Rising XCK Edge"]
