@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Added support for AVR64DU32 and AVR64DU28 ([#152]).
-- Added support for ATmega16 ([#153]).
+- Added support for `AVR64DU32` and `AVR64DU28` ([#152]).
+- Added support for `ATmega16` ([#153]).
+
+### Changed
+- Upgraded to `atdf2svd` version 0.4.0 ([#154]).
+- The split peripherals of `ATmega4808`, `ATtiny402`, `ATtiny404` are now represented ([#154] and [atdf2svd#48]).
 
 ### Fixed
 - Patched the ADC registers of ATtiny84A ([#151]).
@@ -15,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#151]: https://github.com/Rahix/avr-device/pull/151
 [#152]: https://github.com/Rahix/avr-device/pull/152
 [#153]: https://github.com/Rahix/avr-device/pull/153
+[#154]: https://github.com/Rahix/avr-device/pull/154
+[atdf2svd#48]: https://github.com/Rahix/atdf2svd/pull/48
 
 
 ## [0.5.4] - 2024-01-28
