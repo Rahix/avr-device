@@ -66,12 +66,12 @@ jobs:
       - name: Install Nightly Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          toolchain: nightly-2023-08-08
+          toolchain: nightly-2024-03-22
           components: rustfmt
 
       # Actual test run
       - name: Generate chip description sources
-        run: make RUSTUP_TOOLCHAIN=nightly-2023-08-08
+        run: make RUSTUP_TOOLCHAIN=nightly-2024-03-22
       - name: Test-compile the crate
         run: cargo check --all-features
 
@@ -84,7 +84,7 @@ jobs:
       - name: Install Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          toolchain: nightly-2023-12-28
+          toolchain: nightly-2024-03-22
           components: rust-src,rustfmt
       - name: Install AVR gcc, binutils, and libc
         run: sudo apt-get install -y avr-libc binutils-avr gcc-avr
