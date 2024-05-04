@@ -52,7 +52,7 @@ jobs:
         uses: actions-rs/install@v0.1
         with:
           crate: atdf2svd
-          version: 0.3.3
+          version: 0.4.0
       - name: Copy tools to cache directory
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
