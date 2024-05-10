@@ -14,11 +14,13 @@ TWI0:
       # FIXME: Make this so we don't need 'unsafe'
       ADDR:
         description: "Client Address"
-        bitRange: "[7:1]"
+        bitOffset: 1
+        bitWidth: 7
         access: read-write
       GCE:
         description: "General Call Recognition Enable Bit"
-        bitRange: "[0:0]"
+        bitOffset: 0
+        bitWidth: 1
         access: read-write
 
 USERROW:

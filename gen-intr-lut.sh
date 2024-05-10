@@ -10,7 +10,7 @@ for intr_path in "$@"; do
     chip="$(basename "${intr_path%.svd.patched}")"
     echo "        \"$chip\" => match intr {"
     # toupper() to be compliant with svd2rust interrupts name
-    svd interrupts --no-gaps $intr_path | awk '{print "            \""toupper(substr($2, 1, length($2)-1))"\"" " => Some(" $1"),"}'
+    svdtools interrupts --no-gaps $intr_path | awk '{print "            \""toupper(substr($2, 1, length($2)-1))"\"" " => Some(" $1"),"}'
     echo "            _ => None,"
     echo "        },"
 done

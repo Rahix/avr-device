@@ -17,17 +17,20 @@ PORTF:
     _add:
       PF7:
         description: "Pin F7"
-        bitRange: "[7:7]"
+        bitOffset: 7
+        bitWidth: 1
         access: read-write
   PINF:
     _add:
       PF7:
         description: "Pin F7"
-        bitRange: "[7:7]"
+        bitOffset: 7
+        bitWidth: 1
         access: read-write
   PORTF:
     _add:
       PF7:
         description: "Pin F7"
-        bitRange: "[7:7]"
+        bitOffset: 7
+        bitWidth: 1
         access: read-write

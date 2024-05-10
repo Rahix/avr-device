@@ -10,4 +10,5 @@ USART?:
   UCSR?C:
     _modify:
       UMSEL?:
-        bitRange: "[7:6]"
+        bitOffset: 6
+        bitWidth: 1

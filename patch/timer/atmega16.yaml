@@ -1,14 +1,6 @@
 TC0:
   TCCR0:
-    _delete:
-      - CS00
-      - CS01
-      - CS02
-    _add:
-      CS:
-        description: "Clock Select"
-        bitRange: "[2:0]"
-    CS:
+    CS0:
       _replace_enum:
         NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
         DIRECT:        [1, "Running, No Prescaling"]
@@ -22,15 +14,7 @@ TC1:
   # TCCR1A is too complex for me to implement right now, because it has 3 different
   # modes depending on bits which are set elsewhere.
   TCCR1B: # ICNC1 ICES1 - WGM13 WGM12 CS12 CS11 CS10
-    _delete:
-      - CS10
-      - CS11
-      - CS12
-    _add:
-      CS:
-        description: "Clock Select"
-        bitRange: "[2:0]"
-    CS:
+    CS1:
       _replace_enum:
         NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
         DIRECT:        [1, "Running, No Prescaling"]
@@ -42,15 +26,7 @@ TC1:
         EXT_RISING:    [7, "Running, ExtClk T1 Rising Edge"]
 TC2:
   TCCR2:
-    _delete:
-      - CS20
-      - CS21
-      - CS22
-    _add:
-      CS:
-        description: "Clock Select"
-        bitRange: "[2:0]"
-    CS:
+    CS2:
       _replace_enum:
         NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
         DIRECT:        [1, "Running, No Prescaling"]

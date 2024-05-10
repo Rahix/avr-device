@@ -25,7 +25,7 @@ $(foreach patch, $(PATCHES), $(eval $(patsubst patch/%.yaml, svd/%.svd.patched, 
 svd/%.svd.patched: svd/%.svd .deps/%.d
 	@if [ -f patch/$*.yaml ] ; then \
 		echo -e "\tPATCH\t\t$*"; \
-		svd patch patch/$*.yaml; \
+		svdtools patch patch/$*.yaml; \
 		test -e $@; \
 	else \
 		echo -e "\t  - No patches found for $*"; \
@@ -77,6 +77,6 @@ patch/%.yaml: .deps/%.d
 .deps/%.d: patch/%.yaml
 	@mkdir -p .deps
 	@echo -e "\tMAKEDEPS\t$*"
-	@svd makedeps $< $@
+	@svdtools makedeps $< $@
 
 -include $(DEPS)
