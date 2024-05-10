@@ -6,7 +6,8 @@ TCCR?:
   _add:
     CS0:
       description: "Clock Select 0"
-      bitRange: "[2:0]"
+      bitOffset: 0
+      bitWidth: 3
   CS0:
     _replace_enum:
       NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]

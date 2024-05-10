@@ -5,7 +5,8 @@
 #
 # - Remove the overlapping WDP (Prescaler) field and replace
 #   it with two separate fields.
-# - TODO: See if svd2rust would support some kind of mask?
+# - TODO(@LuigiPiucco): When svdtools+svd2rust support dont-cares, merge the
+#   field again and mark unowned bits with those.
 WDT:
   WDTCSR,WDTCR:
     _delete:
@@ -13,10 +14,12 @@ WDT:
     _add:
       WDPL:
         description: "Watchdog Timer Prescaler - Low Bits"
-        bitRange: "[2:0]"
+        bitOffset: 0
+        bitWidth: 3
       WDPH:
         description: "Watchdog Timer Prescaler - High Bit"
-        bitRange: "[5:5]"
+        bitOffset: 5
+        bitWidth: 1
     WDPL:
       CYCLES_2K_512K:  [0, "- 2048 cycles, ~16ms/512K (524288) cycles, ~4s if WDPH is set"]
       CYCLES_4K_1024K: [1, "- 4096 cycles, ~32ms/1024K (1048576) cycles, ~8s if WDPH is set"]

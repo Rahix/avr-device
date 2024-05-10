@@ -143,19 +143,19 @@
 //!
 //! ```ignore
 //! // Configure bit 5 of port B as output:
-//! dp.PORTB.ddrb.write(|w| w.pb5().set_bit());
+//! dp.portb.ddrb().write(|w| w.pb5().set_bit());
 //! // Clear bit 5 of port B:
-//! dp.PORTB.portb.write(|w| w.pb5().clear_bit());
+//! dp.portb.portb().write(|w| w.pb5().clear_bit());
 //! // Set bit 5 of port B:
-//! dp.PORTB.portb.write(|w| w.pb5().set_bit());
+//! dp.portb.portb().write(|w| w.pb5().set_bit());
 //!
 //! // Configure bit 6 of port B as input with pullup:
-//! dp.PORTB.ddrb.write(|w| w.pb6().clear_bit());
-//! dp.PORTB.portb.write(|w| w.pb6().set_bit());
+//! dp.portb.ddrb().write(|w| w.pb6().clear_bit());
+//! dp.portb.portb().write(|w| w.pb6().set_bit());
 //! // Read bit 6 of pin B:
-//! let _mybit = dp.PORTB.pinb.read().pb6().bit_is_set();
+//! let _mybit = dp.portb.pinb().read().pb6().bit_is_set();
 //! // Read bit 6 and write to bit 5 of port B:
-//! dp.PORTB.portb.modify(|r, w| w.pb6().bit(r.pb5().bit_is_set()))
+//! dp.portb.portb().modify(|r, w| w.pb6().bit(r.pb5().bit_is_set()))
 //! ```
 //!
 //! ## Example: Other peripheral register access
@@ -168,7 +168,7 @@
 //!
 //! ```ignore
 //! // Set SPE in SPCR (Enable SPI):
-//! dp.SPI.spcr.write(|w| w.spe().set_bit());
+//! dp.spi.spcr().write(|w| w.spe().set_bit());
 //! ```
 //!
 //! # Crate feature flags
