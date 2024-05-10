@@ -1,5 +1,3 @@
-_svd: ../svd/atmega16u2.svd
-
 _include:
   - "common/ac.yaml"
   - "common/eeprom.yaml"

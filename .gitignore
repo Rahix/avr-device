@@ -2,9 +2,3 @@
 /macros/target/
 **/*.rs.bk
 Cargo.lock
-
-svd/
-.deps/
-src/devices/*/*
-src/generic.rs
-__pycache__/

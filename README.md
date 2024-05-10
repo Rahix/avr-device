@@ -38,48 +38,67 @@ Via the feature you can select which chip you want the register specifications f
 |                 |              |                   |               | `attiny2313a` |
 
 ## Build Instructions
-The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
-
-You need to have [atdf2svd][] (= 0.5.0), [svd2rust][] (= 0.28), [form][] (>= 0.8), [rustfmt][](for the *nightly* toolchain) and [svdtools][] (= 0.4.0) installed:
-```bash
-cargo install atdf2svd --version 0.5.0 --locked
-cargo install svd2rust --version 0.28.0 --locked
-cargo install form
-rustup component add --toolchain nightly rustfmt
-cargo install svdtools --version 0.4.0 --locked
-```
-
-[atdf2svd]: https://github.com/Rahix/atdf2svd
-[svd2rust]: https://github.com/rust-embedded/svd2rust
-[form]: https://github.com/djmcgill/form
-[rustfmt]: https://github.com/rust-lang/rustfmt
-[svdtools]: https://github.com/stm32-rs/svdtools
-
-Next, clone this repo and build the device definitions:
-```bash
-git clone https://github.com/Rahix/avr-device
-cd avr-device
-make
-# You can build for just one specific chip using
-# make atmega32u4
-# I suggest building documentation as well
-cargo +nightly doc --features <chip> --open
-```
-
-## Internals
-*avr-device* is generated using [`atdf2svd`](https://github.com/Rahix/atdf2svd) and [`svd2rust`](https://github.com/rust-embedded/svd2rust).  The vendor-provided *atdf* files can be found in `vendor/`.  The intermediate svd files are patched by `svdpatch.py` (Adapted from [`svdpatch.py`](https://github.com/stm32-rs/stm32-rs/blob/master/scripts/svdpatch.py) in [stm32-rs](https://github.com/stm32-rs/stm32-rs)) with device-dependent patches in `patch/`, mainly to improve undescriptive names and missing descriptions.
+The PACs (Peripheral Access Crates, or really modules, in our case) **are not**
+checked into git. Rather, we generate them at build time, via an automated
+process implemented in [`build.rs`](./build.rs). It takes the ATDF files
+Microchip (former Atmel) provides plus some patches of our own making as inputs,
+and outputs a module generated from those device descriptions. These inputs
+**are** checked-in. The process is similar to what the `*bindgen` crates
+provide, just has more steps. So, in short, building should be a matter of
+selecting the features and running cargo.
 
 ### Adding a new Chip
-To add a new chip, download the *atdf* from <http://packs.download.atmel.com/> (or [avr-mcu/packs/](https://github.com/avr-rust/avr-mcu/tree/master/packs)) and place it in `vendor/` ***note: file name may need to be modified***.  Be sure to name it like the Rust module that should be generated.  Next, you need to integrate it into the base crate and build system.  Follow what was done in commit [290613454fbd ("Add basic support for ATmega64")](https://github.com/Rahix/avr-device/commit/290613454fbdc5e4ac98e53deccaf74dafc88963).  Please adhere to the alphabetical sorting that is present so far.
+To add a new chip:
 
-Next, you **must** create a `<chipname>.yaml` in `patch/` which has at least the following content:
-```yaml
-_svd: ../svd/<chipname>.svd
-```
+1. Download the ATDF from <http://packs.download.atmel.com/> and place it in
+   `vendor/`. Be sure to name it like the Rust module that should be generated.
+2. Add a feature of the same name to `Cargo.toml` (it should enable
+   `device-selected`);
+3. Add any needed patches to a yaml file with the same name under the `patch`
+   directory, ideally by including some of the snippets present in
+   `patch/common` and `patch/timer`; The format is decribed
+   [here](https://github.com/rust-embedded/svdtools#device-and-peripheral-yaml-format),
+   but it should not include the top-level `_svd` key, as that's handled by the
+   build system; If patching is unneeded (it's almost always needed!), the file
+   can be omitted.
+4. Include the module into the tree, in [`devices.rs`](./src/devices.rs),
+   following the format used by other modules in that file;
+5. Update [`lib.rs`](./src/lib.rs) to conditionally `use` the new MCU module,
+   and add it to the lists of selected and available MCUs in the doc comment.
+6. Finally, try building the crate for your MCU with
+   `cargo build --features <mcu>,rt`.
+7. Also check the built documentation for inconsistencies, via
+   `cargo doc --features <mcu>,rt --open` (it will pop up in your browser).
+8. Update this README.md, adding the MCU to the table.
+   
+## Internals
+Since the vendor does not provide SVDs we can pass to [`svd2rust`][], we
+generate one via [`atdf2svd`][]. The sequence is as follows:
 
-If more patches need to be applied (most likely!), they should be added into this file as well.  The patching format is documented in the [`svdtools` README](https://github.com/stm32-rs/svdtools#device-and-peripheral-yaml-format).  Ideally, try to reuse the exisiting patches in `patch/common/` or `patch/timer/`.
+1. Check which MCUs are known to the crate
+   ([build.rs:get_available_mcus](./build.rs));
+2. Select which to build for by checking enabled features
+   ([build.rs:select_mcu](./build.rs));
+3. Generate the Rust module ([build.rs:build_mcu_module](./build.rs));
+   
+   Substeps are:
+   1. Register inputs with cargo;
+   2. Get a temporary directory;
+   3. Apply `atdf2svd`;
+   4. If a yaml patch exists, use it via [`svdtools`][] and read the new content
+      / else, read the content of the unpatched file to continue;
+   5. Get the output directory;
+   6. Apply `svd2rust`;
+   7. Run [`prettyplease`][] on the module to make it readable in [`docs.rs`][];
+4. It will be included from `$OUT_DIR/pac/<mcu>.rs` into the path
+   `avr_device::devices::<mcu>` (private), and re-exported as
+   `avr_device::<mcu>` (public).
 
-Finally, try building the crate for your MCU with `make <chipname>`.
+[`atdf2svd`]: https://github.com/Rahix/atdf2svd
+[`svd2rust`]: https://github.com/rust-embedded/svd2rust
+[`svdtools`]: https://github.com/rust-embedded/svdtools
+[`prettyplease`]: https://github.com/dtolnay/prettyplease
+[`docs.rs`]: https://docs.rs/avr-device/latest/avr_device
 
 ## License
 *avr-device* is licensed under either of

@@ -1,5 +1,3 @@
-_svd: ../svd/atmega32u4.svd
-
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
