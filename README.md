@@ -55,7 +55,7 @@ export PATH=$PATH:~/.local/bin
 [svd2rust]: https://github.com/rust-embedded/svd2rust
 [form]: https://github.com/djmcgill/form
 [rustfmt]: https://github.com/rust-lang/rustfmt
-[svdtools]: https://github.com/stm32-rs/svdtools
+[svdtools]: https://github.com/rust-embedded/svdtools
 
 Next, clone this repo and build the device definitions:
 ```bash

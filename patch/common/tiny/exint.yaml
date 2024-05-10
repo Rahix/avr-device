@@ -1,13 +1,7 @@
 EXINT:
   MCUCR:
-    _delete:
-      ISC??:
-    _add:
-      ISC0:
-        description: "Interrupt Sense Control 0 bits"
-        bitOffset: 0
-        bitWidth: 2
-        access: read-write
+    _merge:
+      - "ISC0?"
     ISC0:
       _replace_enum:
         LOW: [0, "The low level of INTx generates an interrupt request"]
