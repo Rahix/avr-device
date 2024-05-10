@@ -1,5 +1,3 @@
-_svd: ../svd/atmega48p.svd
-
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"

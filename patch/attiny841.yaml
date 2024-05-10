@@ -1,5 +1,3 @@
-_svd: ../svd/attiny841.svd
-
 _include:
   - "common/ac.yaml"
   - "common/spi.yaml"

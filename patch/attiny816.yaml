@@ -1,5 +1,3 @@
-_svd: ../svd/attiny816.svd
-
 CRCSCAN:
   CTRLB:
     SRC:

@@ -1,5 +1,3 @@
-_svd: ../svd/attiny85.svd
-
 _include:
   - "common/ac.yaml"
   - "common/eeprom.yaml"

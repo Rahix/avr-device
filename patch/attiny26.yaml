@@ -1,5 +1,3 @@
-_svd: ../svd/attiny26.svd
-
 _include:
   - "common/ac.yaml"
   - "common/wdt.yaml"

@@ -1,4 +1,2 @@
-_svd: ../svd/atmega3208.svd
-
 _include:
   - "common/mega0/port.yaml"
