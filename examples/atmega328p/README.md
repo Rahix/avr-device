@@ -4,6 +4,12 @@ This example showcases a minimal Rust program that solely utilizes bare
 register writes without relying on a Hardware Abstraction Layer.  If you want
 to use a HAL, you can use [`avr-hal`], which uses `avr-device` under the hood.
 
+Also note that to use this directory as a template for new crates,
+`Cargo.toml.example` must be renamed to `Cargo.toml`. The `.example` is there
+because examples of a crate shouldn't be crates themselves. You may also need
+files from the crate root, namely `.cargo/config.toml`, and a nightly toolchain,
+since the AVR target and the `-Zbuild-std=core` flag are unstable.
+
 [`avr-hal`]: https://github.com/Rahix/avr-hal
 
 ## Demonstrated Features
@@ -52,22 +58,16 @@ a panic is raised and our custom panic handler is called.
 ## Trying it out
 1. First of all, check the README of the [`avr-hal`][avr-hal-readme] crate for
    an overview of required build dependencies.
-2. Change into the example directory:
+2. Build the program:
    ```bash
-   cd examples/atmega328p/
+   cargo build --example atmega328p --features=atmega328p,rt
    ```
-3. Build the program:
-   ```bash
-   cargo build
-   ```
-4. If you want to run the example on an Arduino Uno board, you can use
-   [`ravedude`] to flash the microcontroller.  The project is preconfigured for
+3. If you want to run the example on an Arduino Uno board, you can use
+   [`ravedude`] to flash the microcontroller. The project is preconfigured for
    this, so all you need to do is:
    ```bash
-   cargo run
+   cargo run --example atmega328p --features=atmega328p,rt
    ```
-   You can configure a different ATmega328P board by editing the
-   `.cargo/config.toml` file.
 
 [avr-hal-readme]: https://github.com/Rahix/avr-hal#quickstart
 [`ravedude`]: https://github.com/Rahix/avr-hal/tree/main/ravedude

@@ -4,7 +4,10 @@
 
 use core::cell::Cell;
 
-use avr_device::interrupt::{self, Mutex};
+use avr_device::{
+    atmega328p::Peripherals,
+    interrupt::{self, Mutex},
+};
 
 static LED_STATE: Mutex<Cell<bool>> = Mutex::new(Cell::new(true));
 
@@ -22,7 +25,7 @@ fn panic(_info: &core::panic::PanicInfo) -> ! {
     // SAFETY: Because main() already has references to the peripherals this is an unsafe
     // operation - but because no other code can run after the panic handler was called,
     // we know it is okay.
-    let dp = unsafe { avr_device::atmega328p::Peripherals::steal() };
+    let dp = unsafe { Peripherals::steal() };
 
     loop {
         avr_device::asm::delay_cycles(1_000_000);
@@ -53,7 +56,7 @@ fn TIMER0_OVF() {
 
 #[avr_device::entry]
 fn main() -> ! {
-    let dp = avr_device::atmega328p::Peripherals::take().unwrap();
+    let dp = Peripherals::take().unwrap();
 
     // As you can see, we use .write() instead of .modify(), so the register
     // will be written value + the modified bits
