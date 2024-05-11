@@ -35,7 +35,7 @@ fn panic(_info: &core::panic::PanicInfo) -> ! {
     }
 }
 
-#[avr_device::interrupt(atmega328p)]
+#[avr_device::interrupt]
 fn TIMER0_OVF() {
     // This interrupt should raise every (1024*255)/16MHz s ≈ 0.01s
     // We then count 61 times to approximate 1s.

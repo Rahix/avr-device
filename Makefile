@@ -7,10 +7,9 @@ RUSTUP_TOOLCHAIN ?= nightly
 PATCHES := $(foreach chip, $(CHIPS), $(wildcard patch/$(chip).yaml))
 DEPS := $(foreach patch, $(PATCHES), $(patsubst patch/%.yaml, .deps/%.d, $(patch)))
 
-.PHONY: chips deps $(CHIPS) vector all clean
+.PHONY: chips deps $(CHIPS) all clean
 chips: $(CHIPS)
 deps: $(DEPS)
-vector: macros/src/vector.rs
 
 $(foreach chip, $(CHIPS), $(eval $(chip): src/devices/$(chip)/mod.rs))
 
@@ -51,12 +50,6 @@ src/devices/%/mod.rs: src/devices/%/mod.full.rs
 	@# Fixup the take() implementation
 	@sed -i'' -e '/#\[cfg(feature = "critical-section")]/d' $@
 	@sed -i'' -e 's/critical_section::with/crate::interrupt::free/' $@
-	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
-	@./gen-intr-lut.sh svd/*.patched >macros/src/vector.rs
-
-macros/src/vector.rs: svd/*.patched
-	@echo -e "\tGEN-VECTOR\t>macros/src/vector.rs"
-	@./gen-intr-lut.sh $^ >$@
 
 clean:
 	@echo -e "\tCLEAN\t\t./svd/"
@@ -67,8 +60,6 @@ clean:
 	@rm -f src/generic.rs
 	@echo -e "\tCLEAN\t\t./.deps/"
 	@rm -rf .deps/
-	@echo -e "\tCLEAN\t\t./macros/src/vector.rs"
-	@rm -rf macros/src/vector.rs
 
 # Patch dependencies
 patch/%.yaml: .deps/%.d

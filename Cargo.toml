@@ -69,10 +69,8 @@ rt = ["avr-device-macros"]
 
 critical-section-impl = ["critical-section/restore-state-u8"]
 
-# Unfortunately, we can only build documentation for a subset of the supported
-# MCUs on docs.rs.  If you think a very popular chip is missing from the list,
-# feel free to add it here.
-docsrs = ["rt", "ufmt", "atmega328p", "atmega32u4", "atmega2560", "attiny85", "atmega4809"]
+# Unfortunately, we can only build documentation for a single MCU.
+docsrs = ["rt", "ufmt", "atmega328p"]
 
 [dependencies]
 bare-metal = "1.0.0"

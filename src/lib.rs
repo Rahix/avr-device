@@ -45,7 +45,7 @@
 //!
 #![cfg_attr(
     feature = "docsrs",
-    doc = "**Warning**: The doc-build here on docs.rs is only for a subset of supported chips.  Please build documentation locally if your MCU's registers are not documented here.\n\n"
+    doc = "**Warning**: The doc-build here on docs.rs is only for a single one of the supported chips. Please build documentation locally if your MCU's registers are not documented here.\n\n"
 )]
 //! Which chips the crate is built for depends on the feature flag used.
 //! The following chips are available (using feature flags of the same name):
@@ -172,20 +172,24 @@ pub mod generic;
 /// Attribute to declare an interrupt service routine
 ///
 /// ```
-/// #[avr_device::interrupt(atmega32u4)]
+/// #[avr_device::interrupt]
 /// fn INT6() {
 ///     // ...
 /// }
 /// ```
 ///
 /// # Constraints
-/// - The name of the function must be the name of an interrupt.  Each chip's
+/// - The name of the function must be the name of an interrupt. Each chip's
 ///   module has a `Interrupt` enum defining the available names.
-/// - The attribute needs the chip-name to correctly map the interrupt to its
-///   vector.  This is an unfortunate requirement of the current crate
-///   architecture and might change in the future.
+/// - Any function-local persistent data (such as any inner `static`s it may
+///   have) must come in the beginning, as the macro performs special processing
+///   on those to make them safer.
 /// - The function must have a signature of `[unsafe] fn() [-> !]`.
 /// - This macro requires the avr-device `rt` crate feature.
+/// - The function will not be callable in any way other than as an interrupt
+///   routine. It would be unsound to call it anyway, and we need to perform
+///   some renaming to conform to the linker's expectations, which prevents that
+///   fully.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::interrupt;
 
@@ -205,6 +209,10 @@ pub use avr_device_macros::interrupt;
 /// # Constraints
 /// - The entry function must have a signature of `[unsafe] fn() -> !`.
 /// - This macro requires the avr-device `rt` crate feature.
+/// - The function will not be callable in any way other than as the entrypoint.
+///   It would be unsound to call it again anyway, and we need to perform some
+///   renaming to conform to the linker's expectations, which prevents that
+///   fully.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::entry;
 
@@ -259,84 +267,84 @@ compile_error!(
 mod devices;
 
 #[cfg(feature = "at90usb1286")]
-pub use crate::devices::at90usb1286;
+pub use crate::devices::at90usb1286::{self, Interrupt};
 #[cfg(feature = "atmega1280")]
-pub use crate::devices::atmega1280;
+pub use crate::devices::atmega1280::{self, Interrupt};
 #[cfg(feature = "atmega1284p")]
-pub use crate::devices::atmega1284p;
+pub use crate::devices::atmega1284p::{self, Interrupt};
 #[cfg(feature = "atmega128a")]
-pub use crate::devices::atmega128a;
+pub use crate::devices::atmega128a::{self, Interrupt};
 #[cfg(feature = "atmega128rfa1")]
-pub use crate::devices::atmega128rfa1;
+pub use crate::devices::atmega128rfa1::{self, Interrupt};
 #[cfg(feature = "atmega16")]
-pub use crate::devices::atmega16;
+pub use crate::devices::atmega16::{self, Interrupt};
 #[cfg(feature = "atmega164pa")]
-pub use crate::devices::atmega164pa;
+pub use crate::devices::atmega164pa::{self, Interrupt};
 #[cfg(feature = "atmega168")]
-pub use crate::devices::atmega168;
+pub use crate::devices::atmega168::{self, Interrupt};
 #[cfg(feature = "atmega2560")]
-pub use crate::devices::atmega2560;
+pub use crate::devices::atmega2560::{self, Interrupt};
 #[cfg(feature = "atmega324pa")]
-pub use crate::devices::atmega324pa;
+pub use crate::devices::atmega324pa::{self, Interrupt};
 #[cfg(feature = "atmega328p")]
-pub use crate::devices::atmega328p;
+pub use crate::devices::atmega328p::{self, Interrupt};
 #[cfg(feature = "atmega328pb")]
-pub use crate::devices::atmega328pb;
+pub use crate::devices::atmega328pb::{self, Interrupt};
 #[cfg(feature = "atmega32a")]
-pub use crate::devices::atmega32a;
+pub use crate::devices::atmega32a::{self, Interrupt};
 #[cfg(feature = "atmega32u4")]
-pub use crate::devices::atmega32u4;
+pub use crate::devices::atmega32u4::{self, Interrupt};
 #[cfg(feature = "atmega4808")]
-pub use crate::devices::atmega4808;
+pub use crate::devices::atmega4808::{self, Interrupt};
 #[cfg(feature = "atmega4809")]
-pub use crate::devices::atmega4809;
+pub use crate::devices::atmega4809::{self, Interrupt};
 #[cfg(feature = "atmega48p")]
-pub use crate::devices::atmega48p;
+pub use crate::devices::atmega48p::{self, Interrupt};
 #[cfg(feature = "atmega64")]
-pub use crate::devices::atmega64;
+pub use crate::devices::atmega64::{self, Interrupt};
 #[cfg(feature = "atmega644")]
-pub use crate::devices::atmega644;
+pub use crate::devices::atmega644::{self, Interrupt};
 #[cfg(feature = "atmega8")]
-pub use crate::devices::atmega8;
+pub use crate::devices::atmega8::{self, Interrupt};
 #[cfg(feature = "atmega8u2")]
-pub use crate::devices::atmega8u2;
+pub use crate::devices::atmega8u2::{self, Interrupt};
 #[cfg(feature = "attiny13a")]
-pub use crate::devices::attiny13a;
+pub use crate::devices::attiny13a::{self, Interrupt};
 #[cfg(feature = "attiny1614")]
-pub use crate::devices::attiny1614;
+pub use crate::devices::attiny1614::{self, Interrupt};
 #[cfg(feature = "attiny167")]
-pub use crate::devices::attiny167;
+pub use crate::devices::attiny167::{self, Interrupt};
 #[cfg(feature = "attiny202")]
-pub use crate::devices::attiny202;
+pub use crate::devices::attiny202::{self, Interrupt};
 #[cfg(feature = "attiny2313")]
-pub use crate::devices::attiny2313;
+pub use crate::devices::attiny2313::{self, Interrupt};
 #[cfg(feature = "attiny2313a")]
-pub use crate::devices::attiny2313a;
+pub use crate::devices::attiny2313a::{self, Interrupt};
 #[cfg(feature = "attiny26")]
-pub use crate::devices::attiny26;
+pub use crate::devices::attiny26::{self, Interrupt};
 #[cfg(feature = "attiny402")]
-pub use crate::devices::attiny402;
+pub use crate::devices::attiny402::{self, Interrupt};
 #[cfg(feature = "attiny404")]
-pub use crate::devices::attiny404;
+pub use crate::devices::attiny404::{self, Interrupt};
 #[cfg(feature = "attiny44a")]
-pub use crate::devices::attiny44a;
+pub use crate::devices::attiny44a::{self, Interrupt};
 #[cfg(feature = "attiny816")]
-pub use crate::devices::attiny816;
+pub use crate::devices::attiny816::{self, Interrupt};
 #[cfg(feature = "attiny828")]
-pub use crate::devices::attiny828;
+pub use crate::devices::attiny828::{self, Interrupt};
 #[cfg(feature = "attiny84")]
-pub use crate::devices::attiny84;
+pub use crate::devices::attiny84::{self, Interrupt};
 #[cfg(feature = "attiny841")]
-pub use crate::devices::attiny841;
+pub use crate::devices::attiny841::{self, Interrupt};
 #[cfg(feature = "attiny84a")]
-pub use crate::devices::attiny84a;
+pub use crate::devices::attiny84a::{self, Interrupt};
 #[cfg(feature = "attiny85")]
-pub use crate::devices::attiny85;
+pub use crate::devices::attiny85::{self, Interrupt};
 #[cfg(feature = "attiny861")]
-pub use crate::devices::attiny861;
+pub use crate::devices::attiny861::{self, Interrupt};
 #[cfg(feature = "attiny88")]
-pub use crate::devices::attiny88;
+pub use crate::devices::attiny88::{self, Interrupt};
 #[cfg(feature = "avr64du28")]
-pub use crate::devices::avr64du28;
+pub use crate::devices::avr64du28::{self, Interrupt};
 #[cfg(feature = "avr64du32")]
-pub use crate::devices::avr64du32;
+pub use crate::devices::avr64du32::{self, Interrupt};
