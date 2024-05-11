@@ -55,7 +55,7 @@
 //!
 #![cfg_attr(
     feature = "docsrs",
-    doc = "**Warning**: The doc-build here on docs.rs is only for a subset of supported chips.  Please build documentation locally if your MCU's registers are not documented here.\n\n"
+    doc = "**Warning**: The doc-build here on docs.rs is for all of the supported chips. In practice, you'd only select the MCU you're using as a feature, and that'll be the only module available.\n\n"
 )]
 //! Which chips the crate is built for depends on the feature flag used.
 //! The following chips are available (using feature flags of the same name):
@@ -184,28 +184,35 @@
 pub mod asm;
 pub mod interrupt;
 
-#[allow(unused_imports)]
-use generic::*;
+pub(crate) use generic::*;
 #[doc = r"Common register and bit access and modify traits"]
-pub mod generic;
+pub mod generic {
+    include!(concat!(env!("OUT_DIR"), "/pac/generic.rs"));
+}
 
 /// Attribute to declare an interrupt service routine
 ///
 /// ```
-/// #[avr_device::interrupt(atmega32u4)]
+/// #[avr_device::interrupt]
 /// fn INT6() {
 ///     // ...
 /// }
 /// ```
 ///
 /// # Constraints
-/// - The name of the function must be the name of an interrupt.  Each chip's
+/// - The name of the function must be the name of an interrupt. Each chip's
 ///   module has a `Interrupt` enum defining the available names.
-/// - The attribute needs the chip-name to correctly map the interrupt to its
-///   vector.  This is an unfortunate requirement of the current crate
-///   architecture and might change in the future.
+/// - Any function-local persistent data (such as any inner `static`s it may
+///   have) must come in the beginning, as the macro performs special processing
+///   on those to make them safer.
 /// - The function must have a signature of `[unsafe] fn() [-> !]`.
 /// - This macro requires the avr-device `rt` crate feature.
+/// - The function will not be callable in any way other than as an interrupt
+///   routine. It would be unsound to call it anyway, and we need to perform
+///   some renaming to conform to the linker's expectations, which prevents that
+///   fully.
+/// - If more than one MCUs have been selected, the macro must take as an
+///   argument which one you mean to attach the interrupt for.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::interrupt;
 
@@ -225,6 +232,10 @@ pub use avr_device_macros::interrupt;
 /// # Constraints
 /// - The entry function must have a signature of `[unsafe] fn() -> !`.
 /// - This macro requires the avr-device `rt` crate feature.
+/// - The function will not be callable in any way other than as the entrypoint.
+///   It would be unsound to call it again anyway, and we need to perform some
+///   renaming to conform to the linker's expectations, which prevents that
+///   fully.
 #[cfg(feature = "rt")]
 pub use avr_device_macros::entry;
 
@@ -288,6 +299,8 @@ compile_error!(
 #[allow(non_camel_case_types, unused_attributes, unreachable_patterns)]
 mod devices;
 
+include!(concat!(env!("OUT_DIR"), "/pac/vector.rs"));
+
 #[cfg(feature = "at90usb1286")]
 pub use crate::devices::at90usb1286;
 #[cfg(feature = "atmega1280")]
@@ -308,6 +321,10 @@ pub use crate::devices::atmega168;
 pub use crate::devices::atmega16u2;
 #[cfg(feature = "atmega2560")]
 pub use crate::devices::atmega2560;
+#[cfg(feature = "atmega3208")]
+pub use crate::devices::atmega3208;
+#[cfg(feature = "atmega3209")]
+pub use crate::devices::atmega3209;
 #[cfg(feature = "atmega324pa")]
 pub use crate::devices::atmega324pa;
 #[cfg(feature = "atmega328p")]
@@ -320,10 +337,6 @@ pub use crate::devices::atmega32a;
 pub use crate::devices::atmega32u2;
 #[cfg(feature = "atmega32u4")]
 pub use crate::devices::atmega32u4;
-#[cfg(feature = "atmega3208")]
-pub use crate::devices::atmega3208;
-#[cfg(feature = "atmega3209")]
-pub use crate::devices::atmega3209;
 #[cfg(feature = "atmega4808")]
 pub use crate::devices::atmega4808;
 #[cfg(feature = "atmega4809")]
@@ -390,3 +403,105 @@ pub use crate::devices::attiny88;
 pub use crate::devices::avr64du28;
 #[cfg(feature = "avr64du32")]
 pub use crate::devices::avr64du32;
+#[cfg(all(feature = "at90usb1286", single_mcu))]
+pub use at90usb1286::Interrupt;
+#[cfg(all(feature = "atmega1280", single_mcu))]
+pub use atmega1280::Interrupt;
+#[cfg(all(feature = "atmega1284p", single_mcu))]
+pub use atmega1284p::Interrupt;
+#[cfg(all(feature = "atmega128a", single_mcu))]
+pub use atmega128a::Interrupt;
+#[cfg(all(feature = "atmega128rfa1", single_mcu))]
+pub use atmega128rfa1::Interrupt;
+#[cfg(all(feature = "atmega16", single_mcu))]
+pub use atmega16::Interrupt;
+#[cfg(all(feature = "atmega164pa", single_mcu))]
+pub use atmega164pa::Interrupt;
+#[cfg(all(feature = "atmega168", single_mcu))]
+pub use atmega168::Interrupt;
+#[cfg(all(feature = "atmega16u2", single_mcu))]
+pub use atmega16u2::Interrupt;
+#[cfg(all(feature = "atmega2560", single_mcu))]
+pub use atmega2560::Interrupt;
+#[cfg(all(feature = "atmega3208", single_mcu))]
+pub use atmega3208::Interrupt;
+#[cfg(all(feature = "atmega3209", single_mcu))]
+pub use atmega3209::Interrupt;
+#[cfg(all(feature = "atmega324pa", single_mcu))]
+pub use atmega324pa::Interrupt;
+#[cfg(all(feature = "atmega328p", single_mcu))]
+pub use atmega328p::Interrupt;
+#[cfg(all(feature = "atmega328pb", single_mcu))]
+pub use atmega328pb::Interrupt;
+#[cfg(all(feature = "atmega32a", single_mcu))]
+pub use atmega32a::Interrupt;
+#[cfg(all(feature = "atmega32u2", single_mcu))]
+pub use atmega32u2::Interrupt;
+#[cfg(all(feature = "atmega32u4", single_mcu))]
+pub use atmega32u4::Interrupt;
+#[cfg(all(feature = "atmega4808", single_mcu))]
+pub use atmega4808::Interrupt;
+#[cfg(all(feature = "atmega4809", single_mcu))]
+pub use atmega4809::Interrupt;
+#[cfg(all(feature = "atmega48p", single_mcu))]
+pub use atmega48p::Interrupt;
+#[cfg(all(feature = "atmega64", single_mcu))]
+pub use atmega64::Interrupt;
+#[cfg(all(feature = "atmega644", single_mcu))]
+pub use atmega644::Interrupt;
+#[cfg(all(feature = "atmega8", single_mcu))]
+pub use atmega8::Interrupt;
+#[cfg(all(feature = "atmega88p", single_mcu))]
+pub use atmega88p::Interrupt;
+#[cfg(all(feature = "atmega8u2", single_mcu))]
+pub use atmega8u2::Interrupt;
+#[cfg(all(feature = "attiny13a", single_mcu))]
+pub use attiny13a::Interrupt;
+#[cfg(all(feature = "attiny1614", single_mcu))]
+pub use attiny1614::Interrupt;
+#[cfg(all(feature = "attiny167", single_mcu))]
+pub use attiny167::Interrupt;
+#[cfg(all(feature = "attiny202", single_mcu))]
+pub use attiny202::Interrupt;
+#[cfg(all(feature = "attiny212", single_mcu))]
+pub use attiny212::Interrupt;
+#[cfg(all(feature = "attiny214", single_mcu))]
+pub use attiny214::Interrupt;
+#[cfg(all(feature = "attiny2313", single_mcu))]
+pub use attiny2313::Interrupt;
+#[cfg(all(feature = "attiny2313a", single_mcu))]
+pub use attiny2313a::Interrupt;
+#[cfg(all(feature = "attiny26", single_mcu))]
+pub use attiny26::Interrupt;
+#[cfg(all(feature = "attiny402", single_mcu))]
+pub use attiny402::Interrupt;
+#[cfg(all(feature = "attiny404", single_mcu))]
+pub use attiny404::Interrupt;
+#[cfg(all(feature = "attiny412", single_mcu))]
+pub use attiny412::Interrupt;
+#[cfg(all(feature = "attiny414", single_mcu))]
+pub use attiny414::Interrupt;
+#[cfg(all(feature = "attiny416", single_mcu))]
+pub use attiny416::Interrupt;
+#[cfg(all(feature = "attiny44a", single_mcu))]
+pub use attiny44a::Interrupt;
+#[cfg(all(feature = "attiny816", single_mcu))]
+pub use attiny816::Interrupt;
+#[cfg(all(feature = "attiny828", single_mcu))]
+pub use attiny828::Interrupt;
+#[cfg(all(feature = "attiny84", single_mcu))]
+pub use attiny84::Interrupt;
+#[cfg(all(feature = "attiny841", single_mcu))]
+pub use attiny841::Interrupt;
+#[cfg(all(feature = "attiny84a", single_mcu))]
+pub use attiny84a::Interrupt;
+#[cfg(all(feature = "attiny85", single_mcu))]
+pub use attiny85::Interrupt;
+#[cfg(all(feature = "attiny861", single_mcu))]
+pub use attiny861::Interrupt;
+#[cfg(all(feature = "attiny88", single_mcu))]
+pub use attiny88::Interrupt;
+#[cfg(all(feature = "avr64du28", single_mcu))]
+pub use avr64du28::Interrupt;
+#[cfg(all(feature = "avr64du32", single_mcu))]
+pub use avr64du32::Interrupt;
