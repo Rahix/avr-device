@@ -25,7 +25,7 @@ fn panic(_info: &core::panic::PanicInfo) -> ! {
     // SAFETY: Because main() already has references to the peripherals this is an unsafe
     // operation - but because no other code can run after the panic handler was called,
     // we know it is okay.
-    let dp = unsafe { atmega328p::Peripherals::steal() };
+    let dp = unsafe { Peripherals::steal() };
 
     loop {
         avr_device::asm::delay_cycles(1_000_000);

@@ -12,10 +12,13 @@ keywords = ["avr", "arduino"]
 categories = ["no-std", "embedded", "hardware-support"]
 
 include = [
-    "/src/**/*.rs",
     "/LICENSE-*",
     "/README.md",
     "/build.rs",
+    "/patch/**/*.yaml",
+    "/src/**/*.rs",
+    "/vendor/*.atdf",
+    "/vendor/LICENSE",
 ]
 
 [package.metadata.docs.rs]
@@ -64,8 +67,9 @@ attiny88 = ["device-selected"]
 attiny1614 = ["device-selected"]
 avr64du32 = ["device-selected"]
 avr64du28 = ["device-selected"]
-rt = ["avr-device-macros"]
+rt = ["avr-device-macros", "critical-section"]
 
+critical-section = ["critical-section-impl"]
 critical-section-impl = ["critical-section/restore-state-u8"]
 
 # Unfortunately, we can only build documentation for a single MCU.
@@ -83,9 +87,18 @@ path = "macros/"
 version = "=0.5.4"
 optional = true
 
+[build-dependencies]
+svd2rust = "0.33.2"
+svdtools = "0.3.14"
+atdf2svd = "0.4.0"
+
 [dev-dependencies]
 nb = "0.1.2"
 embedded-hal = "0.2.3"
+
+[lib]
+test = false
+bench = false
 
 [[example]]
 name = "atmega328p"

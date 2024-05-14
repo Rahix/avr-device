@@ -162,10 +162,11 @@
 pub mod asm;
 pub mod interrupt;
 
-#[allow(unused_imports)]
-use generic::*;
+pub(crate) use generic::*;
 #[doc = r"Common register and bit access and modify traits"]
-pub mod generic;
+pub mod generic {
+    include!(concat!(env!("OUT_DIR"), "/pac/generic.rs"));
+}
 
 /// Attribute to declare an interrupt service routine
 ///
