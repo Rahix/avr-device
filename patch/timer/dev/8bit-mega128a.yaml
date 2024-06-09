@@ -1,13 +1,5 @@
 TCCR?:
-  _delete:
-    - CS00
-    - CS01
-    - CS02
-  _add:
-    CS0:
-      description: "Clock Select 0"
-      bitRange: "[2:0]"
-  CS0:
+  CS?:
     _replace_enum:
       NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
       DIRECT:        [1, "Running, No Prescaling"]

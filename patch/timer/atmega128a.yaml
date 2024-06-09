@@ -11,7 +11,7 @@ TC1:
 
 TC2:
   _include:
-    - "dev/8bit-mega8.yaml"
+    - "dev/8bit-mega128a.yaml"
 
 TC3:
   _include:
