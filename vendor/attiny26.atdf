@@ -1,0 +1,638 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<avr-tools-device-file xmlns:xalan="http://xml.apache.org/xalan" xmlns:NumHelper="NumHelper" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schema-version="0.3" xsi:noNamespaceSchemaLocation="../../schema/avr_tools_device_file.xsd">
+  <variants>
+    <variant tempmin="0" tempmax="0" speedmax="0" package="" ordercode="standard" vccmin="2.7" vccmax="5.5"/>
+  </variants>
+  <devices>
+    <device name="ATtiny26" architecture="AVR8" family="tinyAVR">
+      <address-spaces>
+        <address-space endianness="little" name="prog" id="prog" start="0x0000" size="0x0800">
+          <memory-segment start="0x0000" size="0x0800" type="flash" rw="RW" exec="1" name="FLASH" pagesize="0x20"/>
+        </address-space>
+        <address-space endianness="little" name="signatures" id="signatures" start="0" size="3">
+          <memory-segment start="0" size="3" type="signatures" rw="R" exec="0" name="SIGNATURES"/>
+        </address-space>
+        <address-space endianness="little" name="fuses" id="fuses" start="0" size="0x0002">
+          <memory-segment start="0" size="0x0002" type="fuses" rw="RW" exec="0" name="FUSES"/>
+        </address-space>
+        <address-space endianness="little" name="lockbits" id="lockbits" start="0" size="0x0001">
+          <memory-segment start="0" size="0x0001" type="lockbits" rw="RW" exec="0" name="LOCKBITS"/>
+        </address-space>
+        <address-space endianness="little" name="data" id="data" start="0x0000" size="0x00e0">
+          <memory-segment external="false" type="regs" size="0x0020" start="0x0000" name="REGISTERS"/>
+          <memory-segment name="MAPPED_IO" start="0x0020" size="0x0040" type="io" external="false"/>
+          <memory-segment name="IRAM" start="0x0060" size="0x0080" type="ram" external="false"/>
+        </address-space>
+        <address-space endianness="little" name="eeprom" id="eeprom" start="0x0000" size="0x0080">
+          <memory-segment start="0x0000" size="0x0080" type="eeprom" rw="RW" exec="0" name="EEPROM" pagesize="0x04"/>
+        </address-space>
+        <address-space size="0x40" start="0x00" endianness="little" name="io" id="io"/>
+        <address-space endianness="little" name="osccal" id="osccal" start="0" size="4">
+          <memory-segment start="0" size="4" type="osccal" rw="R" exec="0" name="OSCCAL"/>
+        </address-space>
+      </address-spaces>
+      <peripherals>
+        <module name="ADC">
+          <instance name="ADC" caption="Analog-to-Digital Converter">
+            <register-group name="ADC" name-in-module="ADC" offset="0x00" address-space="data" caption="Analog-to-Digital Converter"/>
+          </instance>
+        </module>
+        <module name="AC">
+          <instance name="AC" caption="Analog Comparator">
+            <register-group name="AC" name-in-module="AC" offset="0x00" address-space="data" caption="Analog Comparator"/>
+          </instance>
+        </module>
+        <module name="USI">
+          <instance name="USI" caption="Universal Serial Interface">
+            <register-group name="USI" name-in-module="USI" offset="0x00" address-space="data" caption="Universal Serial Interface"/>
+          </instance>
+        </module>
+        <module name="PORT">
+          <instance name="PORTA" caption="I/O Port">
+            <register-group name="PORTA" name-in-module="PORTA" offset="0x00" address-space="data" caption="I/O Port"/>
+          </instance>
+          <instance name="PORTB" caption="I/O Port">
+            <register-group name="PORTB" name-in-module="PORTB" offset="0x00" address-space="data" caption="I/O Port"/>
+          </instance>
+        </module>
+        <module name="EEPROM">
+          <instance name="EEPROM" caption="EEPROM">
+            <register-group name="EEPROM" name-in-module="EEPROM" offset="0x00" address-space="data" caption="EEPROM"/>
+          </instance>
+        </module>
+        <module name="WDT">
+          <instance name="WDT" caption="Watchdog Timer">
+            <register-group name="WDT" name-in-module="WDT" offset="0x00" address-space="data" caption="Watchdog Timer"/>
+          </instance>
+        </module>
+        <module name="CPU">
+          <instance name="CPU" caption="CPU Registers">
+            <register-group name="CPU" name-in-module="CPU" offset="0x00" address-space="data" caption="CPU Registers"/>
+          <parameters>
+        <param name="CORE_VERSION" value="V1"/>
+        <param name="NEW_INSTRUCTIONS" value="lpm rd,z"/>
+      </parameters></instance>
+        </module>
+        <module name="TC8">
+          <instance name="TC0" caption="Timer/Counter, 8-bit">
+            <register-group name="TC0" name-in-module="TC0" offset="0x00" address-space="data" caption="Timer/Counter, 8-bit"/>
+          </instance>
+          <instance name="TC1" caption="Timer/Counter, 8-bit">
+            <register-group name="TC1" name-in-module="TC1" offset="0x00" address-space="data" caption="Timer/Counter, 8-bit"/>
+          </instance>
+        </module>
+        <module name="EXINT">
+          <instance name="EXINT" caption="External Interrupts">
+            <register-group name="EXINT" name-in-module="EXINT" offset="0x00" address-space="data" caption="External Interrupts"/>
+          </instance>
+        </module>
+        <module name="FUSE">
+          <instance name="FUSE" caption="Fuses">
+            <register-group name="FUSE" name-in-module="FUSE" offset="0" address-space="fuses" caption="Fuses"/>
+          </instance>
+        </module>
+        <module name="LOCKBIT">
+          <instance name="LOCKBIT" caption="Lockbits">
+            <register-group name="LOCKBIT" name-in-module="LOCKBIT" offset="0" address-space="lockbits" caption="Lockbits"/>
+          </instance>
+        </module>
+      </peripherals>
+      <interrupts>
+        <interrupt index="0" name="RESET" caption="External Reset, Power-on Reset and Watchdog Reset"/>
+        <interrupt index="1" name="INT0" caption="External Interrupt 0"/>
+        <interrupt index="2" name="IO_PINS" caption="External Interrupt Request 0"/>
+        <interrupt index="3" name="TIMER1_CMPA" caption="Timer/Counter1 Compare Match 1A"/>
+        <interrupt index="4" name="TIMER1_CMPB" caption="Timer/Counter1 Compare Match 1B"/>
+        <interrupt index="5" name="TIMER1_OVF1" caption="Timer/Counter1 Overflow"/>
+        <interrupt index="6" name="TIMER0_OVF0" caption="Timer/Counter0 Overflow"/>
+        <interrupt index="7" name="USI_STRT" caption="USI Start"/>
+        <interrupt index="8" name="USI_OVF" caption="USI Overflow"/>
+        <interrupt index="9" name="EE_RDY" caption="EEPROM Ready"/>
+        <interrupt index="10" name="ANA_COMP" caption="Analog Comparator"/>
+        <interrupt index="11" name="ADC" caption="ADC Conversion Complete"/>
+      </interrupts>
+      <interfaces>
+        <interface name="ISP" type="isp"/>
+        <interface name="HVPP" type="hvpp"/>
+      </interfaces>
+      <property-groups>
+        <property-group name="SIGNATURES">
+          <property name="SIGNATURE0" value="0x1e"/>
+          <property name="SIGNATURE1" value="0x91"/>
+          <property name="SIGNATURE2" value="0x09"/>
+        </property-group>
+        <property-group name="ISP_INTERFACE">
+          <property name="IspEnterProgMode_timeout" value="200"/>
+          <property name="IspEnterProgMode_stabDelay" value="100"/>
+          <property name="IspEnterProgMode_cmdexeDelay" value="25"/>
+          <property name="IspEnterProgMode_synchLoops" value="32"/>
+          <property name="IspEnterProgMode_byteDelay" value="0"/>
+          <property name="IspEnterProgMode_pollIndex" value="3"/>
+          <property name="IspEnterProgMode_pollValue" value="0x53"/>
+          <property name="IspLeaveProgMode_preDelay" value="1"/>
+          <property name="IspLeaveProgMode_postDelay" value="1"/>
+          <property name="IspChipErase_eraseDelay" value="20"/>
+          <property name="IspChipErase_pollMethod" value="0"/>
+          <property name="IspProgramFlash_mode" value="0x21"/>
+          <property name="IspProgramFlash_blockSize" value="16"/>
+          <property name="IspProgramFlash_delay" value="10"/>
+          <property name="IspProgramFlash_cmd1" value="0x40"/>
+          <property name="IspProgramFlash_cmd2" value="0x4C"/>
+          <property name="IspProgramFlash_cmd3" value="0x20"/>
+          <property name="IspProgramFlash_pollVal1" value="0xFF"/>
+          <property name="IspProgramFlash_pollVal2" value="0x00"/>
+          <property name="IspProgramEeprom_mode" value="0x04"/>
+          <property name="IspProgramEeprom_blockSize" value="64"/>
+          <property name="IspProgramEeprom_delay" value="20"/>
+          <property name="IspProgramEeprom_cmd1" value="0xC0"/>
+          <property name="IspProgramEeprom_cmd2" value="0x00"/>
+          <property name="IspProgramEeprom_cmd3" value="0xA0"/>
+          <property name="IspProgramEeprom_pollVal1" value="0xFF"/>
+          <property name="IspProgramEeprom_pollVal2" value="0xFF"/>
+          <property name="IspReadFlash_blockSize" value="256"/>
+          <property name="IspReadEeprom_blockSize" value="256"/>
+          <property name="IspReadFuse_pollIndex" value="4"/>
+          <property name="IspReadLock_pollIndex" value="4"/>
+          <property name="IspReadSign_pollIndex" value="4"/>
+          <property name="IspReadOsccal_pollIndex" value="4"/>
+        </property-group>
+        <property-group name="PP_INTERFACE">
+          <property name="PpControlStack" value="0xC4 0xE4 0xC4 0xE4 0xCC 0xEC 0xCC 0xEC 0xD4 0xF4 0xD4 0xF4 0xDC 0xFC 0xDC 0xFC 0xC8 0xE8 0xD8 0xF8 0x4C 0x6C 0x5C 0x7C 0xEC 0xBC 0x00 0x06 0x00 0x00 0x00 0x00"/>
+          <property name="PpEnterProgMode_stabDelay" value="100"/>
+          <property name="PpEnterProgMode_progModeDelay" value="0"/>
+          <property name="PpEnterProgMode_latchCycles" value="5"/>
+          <property name="PpEnterProgMode_toggleVtg" value="1"/>
+          <property name="PpEnterProgMode_powerOffDelay" value="15"/>
+          <property name="PpEnterProgMode_resetDelayMs" value="2"/>
+          <property name="PpEnterProgMode_resetDelayUs" value="0"/>
+          <property name="PpLeaveProgMode_stabDelay" value="15"/>
+          <property name="PpLeaveProgMode_resetDelay" value="15"/>
+          <property name="PpChipErase_pulseWidth" value="0"/>
+          <property name="PpChipErase_pollTimeout" value="20"/>
+          <property name="PpProgramFlash_pollTimeout" value="10"/>
+          <property name="PpProgramFlash_mode" value="0x0B"/>
+          <property name="PpProgramFlash_blockSize" value="256"/>
+          <property name="PpReadFlash_blockSize" value="256"/>
+          <property name="PpProgramEeprom_pollTimeout" value="10"/>
+          <property name="PpProgramEeprom_mode" value="0x05"/>
+          <property name="PpProgramEeprom_blockSize" value="256"/>
+          <property name="PpReadEeprom_blockSize" value="256"/>
+          <property name="PpProgramFuse_pulseWidth" value="0"/>
+          <property name="PpProgramFuse_pollTimeout" value="10"/>
+          <property name="PpProgramLock_pulseWidth" value="0"/>
+          <property name="PpProgramLock_pollTimeout" value="10"/>
+        </property-group>
+        <property-group name="ISP_INTERFACE_STK600">
+          <property name="IspEnterProgMode_timeout" value="200"/>
+          <property name="IspEnterProgMode_stabDelay" value="100"/>
+          <property name="IspEnterProgMode_cmdexeDelay" value="25"/>
+          <property name="IspEnterProgMode_synchLoops" value="32"/>
+          <property name="IspEnterProgMode_byteDelay" value="0"/>
+          <property name="IspEnterProgMode_pollIndex" value="3"/>
+          <property name="IspEnterProgMode_pollValue" value="0x53"/>
+          <property name="IspLeaveProgMode_preDelay" value="1"/>
+          <property name="IspLeaveProgMode_postDelay" value="1"/>
+          <property name="IspChipErase_eraseDelay" value="20"/>
+          <property name="IspChipErase_pollMethod" value="0"/>
+          <property name="IspProgramFlash_mode" value="0x21"/>
+          <property name="IspProgramFlash_blockSize" value="16"/>
+          <property name="IspProgramFlash_delay" value="6"/>
+          <property name="IspProgramFlash_cmd1" value="0x40"/>
+          <property name="IspProgramFlash_cmd2" value="0x4C"/>
+          <property name="IspProgramFlash_cmd3" value="0x20"/>
+          <property name="IspProgramFlash_pollVal1" value="0xFF"/>
+          <property name="IspProgramFlash_pollVal2" value="0x00"/>
+          <property name="IspProgramEeprom_mode" value="0x04"/>
+          <property name="IspProgramEeprom_blockSize" value="64"/>
+          <property name="IspProgramEeprom_delay" value="10"/>
+          <property name="IspProgramEeprom_cmd1" value="0xC0"/>
+          <property name="IspProgramEeprom_cmd2" value="0x00"/>
+          <property name="IspProgramEeprom_cmd3" value="0xA0"/>
+          <property name="IspProgramEeprom_pollVal1" value="0xFF"/>
+          <property name="IspProgramEeprom_pollVal2" value="0xFF"/>
+          <property name="IspReadFlash_blockSize" value="256"/>
+          <property name="IspReadEeprom_blockSize" value="256"/>
+          <property name="IspReadFuse_pollIndex" value="4"/>
+          <property name="IspReadLock_pollIndex" value="4"/>
+          <property name="IspReadSign_pollIndex" value="4"/>
+          <property name="IspReadOsccal_pollIndex" value="4"/>
+        </property-group>
+        <property-group name="PP_INTERFACE_STK600">
+          <property name="PpControlStack" value="0x0E 0x1E 0x0E 0x1E 0x2E 0x3E 0x2E 0x3E 0x4E 0x5E 0x4E 0x5E 0x6E 0x7E 0x6E 0x7E 0x06 0x16 0x46 0x56 0x0A 0x1A 0x4A 0x5A 0x1E 0x7C 0x00 0x01 0x00 0x00 0x00 0x00"/>
+          <property name="PpEnterProgMode_stabDelay" value="100"/>
+          <property name="PpEnterProgMode_progModeDelay" value="0"/>
+          <property name="PpEnterProgMode_latchCycles" value="5"/>
+          <property name="PpEnterProgMode_toggleVtg" value="1"/>
+          <property name="PpEnterProgMode_powerOffDelay" value="20"/>
+          <property name="PpEnterProgMode_resetDelayMs" value="2"/>
+          <property name="PpEnterProgMode_resetDelayUs" value="0"/>
+          <property name="PpLeaveProgMode_stabDelay" value="15"/>
+          <property name="PpLeaveProgMode_resetDelay" value="15"/>
+          <property name="PpChipErase_pulseWidth" value="0"/>
+          <property name="PpChipErase_pollTimeout" value="20"/>
+          <property name="PpProgramFlash_pollTimeout" value="10"/>
+          <property name="PpProgramFlash_mode" value="0x0B"/>
+          <property name="PpProgramFlash_blockSize" value="256"/>
+          <property name="PpReadFlash_blockSize" value="256"/>
+          <property name="PpProgramEeprom_pollTimeout" value="10"/>
+          <property name="PpProgramEeprom_mode" value="0x05"/>
+          <property name="PpProgramEeprom_blockSize" value="256"/>
+          <property name="PpReadEeprom_blockSize" value="256"/>
+          <property name="PpProgramFuse_pulseWidth" value="0"/>
+          <property name="PpProgramFuse_pollTimeout" value="10"/>
+          <property name="PpProgramLock_pulseWidth" value="0"/>
+          <property name="PpProgramLock_pollTimeout" value="10"/>
+        </property-group>
+        <property-group name="PP_INTERFACE_AVRDRAGON">
+          <property name="PpControlStack" value="0xC4 0xE4 0xC4 0xE4 0xCC 0xEC 0xCC 0xEC 0xD4 0xF4 0xD4 0xF4 0xDC 0xFC 0xDC 0xFC 0xC8 0xE8 0xD8 0xF8 0x4C 0x6C 0x5C 0x7C 0xEC 0xBC 0x80 0x06 0x00 0x00 0x00 0x00"/>
+          <property name="PpEnterProgMode_stabDelay" value="100"/>
+          <property name="PpEnterProgMode_progModeDelay" value="0"/>
+          <property name="PpEnterProgMode_latchCycles" value="5"/>
+          <property name="PpEnterProgMode_toggleVtg" value="1"/>
+          <property name="PpEnterProgMode_powerOffDelay" value="15"/>
+          <property name="PpEnterProgMode_resetDelayMs" value="2"/>
+          <property name="PpEnterProgMode_resetDelayUs" value="0"/>
+          <property name="PpLeaveProgMode_stabDelay" value="15"/>
+          <property name="PpLeaveProgMode_resetDelay" value="15"/>
+          <property name="PpChipErase_pulseWidth" value="0"/>
+          <property name="PpChipErase_pollTimeout" value="20"/>
+          <property name="PpProgramFlash_pollTimeout" value="10"/>
+          <property name="PpProgramFlash_mode" value="0x0B"/>
+          <property name="PpProgramFlash_blockSize" value="256"/>
+          <property name="PpReadFlash_blockSize" value="256"/>
+          <property name="PpProgramEeprom_pollTimeout" value="10"/>
+          <property name="PpProgramEeprom_mode" value="0x05"/>
+          <property name="PpProgramEeprom_blockSize" value="256"/>
+          <property name="PpReadEeprom_blockSize" value="256"/>
+          <property name="PpProgramFuse_pulseWidth" value="0"/>
+          <property name="PpProgramFuse_pollTimeout" value="10"/>
+          <property name="PpProgramLock_pulseWidth" value="0"/>
+          <property name="PpProgramLock_pollTimeout" value="10"/>
+        </property-group>
+      </property-groups>
+    </device>
+  </devices>
+  <modules>
+    <module caption="Fuses" name="FUSE">
+      <register-group caption="Fuses" name="FUSE">
+        <register name="HIGH" offset="0x01" size="1" initval="0xF7">
+          <bitfield caption="Reset Disabled (Enable PB7 as i/o pin)" mask="0x10" name="RSTDISBL"/>
+          <bitfield caption="Serial program downloading (SPI) enabled" mask="0x08" name="SPIEN"/>
+          <bitfield caption="Preserve EEPROM through the Chip Erase cycle" mask="0x04" name="EESAVE"/>
+          <bitfield caption="Brownout detector trigger level" mask="0x02" name="BODLEVEL" values="ENUM_BODLEVEL"/>
+          <bitfield caption="Brown-out detection enabled" mask="0x01" name="BODEN"/>
+        </register>
+        <register name="LOW" offset="0x00" size="1" initval="0xE1">
+          <bitfield caption="CKOPT fuse (operation dependent of CKSEL fuses)" mask="0x40" name="CKOPT"/>
+          <bitfield caption="Select Clock Source" mask="0xBF" name="PLLCK_SUT_CKSEL" values="ENUM_PLLCK_SUT_CKSEL"/>
+        </register>
+      </register-group>
+      <value-group name="ENUM_PLLCK_SUT_CKSEL">
+        <value caption="PLL Clock; Start-up time: 1K CK + 0 ms" name="PLLCLK_1KCK_0MS" value="0x01"/>
+        <value caption="PLL Clock; Start-up time: 1K CK + 4 ms" name="PLLCLK_1KCK_4MS" value="0x11"/>
+        <value caption="PLL Clock; Start-up time: 1K CK + 64 ms" name="PLLCLK_1KCK_64MS" value="0x21"/>
+        <value caption="PLL Clock; Start-up time: 16K CK + 64 ms" name="PLLCLK_16KCK_64MS" value="0x31"/>
+        <value caption="Ext. Clock; Start-up time: 6 CK + 0 ms" name="EXTCLK_6CK_0MS" value="0x80"/>
+        <value caption="Ext. Clock; Start-up time: 6 CK + 4 ms" name="EXTCLK_6CK_4MS" value="0x90"/>
+        <value caption="Ext. Clock; Start-up time: 6 CK + 64 ms" name="EXTCLK_6CK_64MS" value="0xA0"/>
+        <value caption="Int. RC Osc. 1 MHz; Start-up time: 6 CK + 0 ms" name="INTRCOSC_1MHZ_6CK_0MS" value="0x81"/>
+        <value caption="Int. RC Osc. 1 MHz; Start-up time: 6 CK + 4 ms" name="INTRCOSC_1MHZ_6CK_4MS" value="0x91"/>
+        <value caption="Int. RC Osc. 1 MHz; Start-up time: 6 CK + 64 ms" name="INTRCOSC_1MHZ_6CK_64MS" value="0xA1"/>
+        <value caption="Int. RC Osc. 2 MHz; Start-up time: 6 CK + 0 ms" name="INTRCOSC_2MHZ_6CK_0MS" value="0x82"/>
+        <value caption="Int. RC Osc. 2 MHz; Start-up time: 6 CK + 4 ms" name="INTRCOSC_2MHZ_6CK_4MS" value="0x92"/>
+        <value caption="Int. RC Osc. 2 MHz; Start-up time: 6 CK + 64 ms" name="INTRCOSC_2MHZ_6CK_64MS" value="0xA2"/>
+        <value caption="Int. RC Osc. 4 MHz; Start-up time: 6 CK + 0 ms" name="INTRCOSC_4MHZ_6CK_0MS" value="0x83"/>
+        <value caption="Int. RC Osc. 4 MHz; Start-up time: 6 CK + 4 ms" name="INTRCOSC_4MHZ_6CK_4MS" value="0x93"/>
+        <value caption="Int. RC Osc. 4 MHz; Start-up time: 6 CK + 64 ms" name="INTRCOSC_4MHZ_6CK_64MS" value="0xA3"/>
+        <value caption="Int. RC Osc. 8 MHz; Start-up time: 6 CK + 0 ms" name="INTRCOSC_8MHZ_6CK_0MS" value="0x84"/>
+        <value caption="Int. RC Osc. 8 MHz; Start-up time: 6 CK + 4 ms" name="INTRCOSC_8MHZ_6CK_4MS" value="0x94"/>
+        <value caption="Int. RC Osc. 8 MHz; Start-up time: 6 CK + 64 ms" name="INTRCOSC_8MHZ_6CK_64MS" value="0xA4"/>
+        <value caption="Ext. RC Osc.         -  0.9 MHz; Start-up time: 18 CK + 0 ms" name="EXTRCOSC_XX_0MHZ9_18CK_0MS" value="0x85"/>
+        <value caption="Ext. RC Osc.         -  0.9 MHz; Start-up time: 18 CK + 4 ms" name="EXTRCOSC_XX_0MHZ9_18CK_4MS" value="0x95"/>
+        <value caption="Ext. RC Osc.         -  0.9 MHz; Start-up time: 18 CK + 64 ms" name="EXTRCOSC_XX_0MHZ9_18CK_64MS" value="0xA5"/>
+        <value caption="Ext. RC Osc.         -  0.9 MHz; Start-up time: 6 CK + 4 ms" name="EXTRCOSC_XX_0MHZ9_6CK_4MS" value="0xB5"/>
+        <value caption="Ext. RC Osc. 0.9 MHz -  3.0 MHz; Start-up time: 18 CK + 0 ms" name="EXTRCOSC_0MHZ9_3MHZ_18CK_0MS" value="0x86"/>
+        <value caption="Ext. RC Osc. 0.9 MHz -  3.0 MHz; Start-up time: 18 CK + 4 ms" name="EXTRCOSC_0MHZ9_3MHZ_18CK_4MS" value="0x96"/>
+        <value caption="Ext. RC Osc. 0.9 MHz -  3.0 MHz; Start-up time: 18 CK + 64 ms" name="EXTRCOSC_0MHZ9_3MHZ_18CK_64MS" value="0xA6"/>
+        <value caption="Ext. RC Osc. 0.9 MHz -  3.0 MHz; Start-up time: 6 CK + 4 ms" name="EXTRCOSC_0MHZ9_3MHZ_6CK_4MS" value="0xB6"/>
+        <value caption="Ext. RC Osc. 3.0 MHz -  8.0 MHz; Start-up time: 18 CK + 0 ms" name="EXTRCOSC_3MHZ_8MHZ_18CK_0MS" value="0x87"/>
+        <value caption="Ext. RC Osc. 3.0 MHz -  8.0 MHz; Start-up time: 18 CK + 4 ms" name="EXTRCOSC_3MHZ_8MHZ_18CK_4MS" value="0x97"/>
+        <value caption="Ext. RC Osc. 3.0 MHz -  8.0 MHz; Start-up time: 18 CK + 64 ms" name="EXTRCOSC_3MHZ_8MHZ_18CK_64MS" value="0xA7"/>
+        <value caption="Ext. RC Osc. 3.0 MHz -  8.0 MHz; Start-up time: 6 CK + 4 ms" name="EXTRCOSC_3MHZ_8MHZ_6CK_4MS" value="0xB7"/>
+        <value caption="Ext. RC Osc. 8.0 MHz - 12.0 MHz; Start-up time: 18 CK + 0 ms" name="EXTRCOSC_8MHZ_12MHZ_18CK_0MS" value="0x88"/>
+        <value caption="Ext. RC Osc. 8.0 MHz - 12.0 MHz; Start-up time: 18 CK + 4 ms" name="EXTRCOSC_8MHZ_12MHZ_18CK_4MS" value="0x98"/>
+        <value caption="Ext. RC Osc. 8.0 MHz - 12.0 MHz; Start-up time: 18 CK + 64 ms" name="EXTRCOSC_8MHZ_12MHZ_18CK_64MS" value="0xA8"/>
+        <value caption="Ext. RC Osc. 8.0 MHz - 12.0 MHz; Start-up time: 6 CK + 4 ms" name="EXTRCOSC_8MHZ_12MHZ_6CK_4MS" value="0xB8"/>
+        <value caption="Ext. Low-Freq. Crystal; Start-up time: 1K CK + 4 ms" name="EXTLOFXTAL_1KCK_4MS" value="0x89"/>
+        <value caption="Ext. Low-Freq. Crystal; Start-up time: 1K CK + 64 ms" name="EXTLOFXTAL_1KCK_64MS" value="0x99"/>
+        <value caption="Ext. Low-Freq. Crystal; Start-up time: 32K CK + 64 ms" name="EXTLOFXTAL_32KCK_64MS" value="0xA9"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 258 CK + 4 ms" name="EXTLOFXTALRES_258CK_4MS" value="0x8A"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 258 CK + 64 ms" name="EXTLOFXTALRES_258CK_64MS" value="0x9A"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 1K CK + 0 ms" name="EXTLOFXTALRES_1KCK_0MS" value="0xAA"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 1K CK + 4 ms" name="EXTLOFXTALRES_1KCK_4MS" value="0xBA"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 1K CK + 64 ms" name="EXTLOFXTALRES_1KCK_64MS" value="0x8B"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 16K CK + 0 ms" name="EXTLOFXTALRES_16KCK_0MS" value="0x9B"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 16K CK + 4 ms" name="EXTLOFXTALRES_16KCK_4MS" value="0xAB"/>
+        <value caption="Ext. Crystal/Resonator Low Freq.; Start-up time: 16K CK + 64 ms" name="EXTLOFXTALRES_16KCK_64MS" value="0xBB"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 258 CK + 4 ms" name="EXTMEDFXTALRES_258CK_4MS" value="0x8C"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 258 CK + 64 ms" name="EXTMEDFXTALRES_258CK_64MS" value="0x9C"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 1K CK + 0 ms" name="EXTMEDFXTALRES_1KCK_0MS" value="0xAC"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 1K CK + 4 ms" name="EXTMEDFXTALRES_1KCK_4MS" value="0xBC"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 1K CK + 64 ms" name="EXTMEDFXTALRES_1KCK_64MS" value="0x8D"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 16K CK + 0 ms" name="EXTMEDFXTALRES_16KCK_0MS" value="0x9D"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 16K CK + 4 ms" name="EXTMEDFXTALRES_16KCK_4MS" value="0xAD"/>
+        <value caption="Ext. Crystal/Resonator Medium Freq.; Start-up time: 16K CK + 64 ms" name="EXTMEDFXTALRES_16KCK_64MS" value="0xBD"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 258 CK + 4 ms" name="EXTHIFXTALRES_258CK_4MS" value="0x8E"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 258 CK + 64 ms" name="EXTHIFXTALRES_258CK_64MS" value="0x9E"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 1K CK + 0 ms" name="EXTHIFXTALRES_1KCK_0MS" value="0xAE"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 1K CK + 4 ms" name="EXTHIFXTALRES_1KCK_4MS" value="0xBE"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 1K CK + 64 ms" name="EXTHIFXTALRES_1KCK_64MS" value="0x8F"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms" name="EXTHIFXTALRES_16KCK_0MS" value="0x9F"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms" name="EXTHIFXTALRES_16KCK_4MS" value="0xAF"/>
+        <value caption="Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms" name="EXTHIFXTALRES_16KCK_64MS" value="0xBF"/>
+      </value-group>
+      <value-group name="ENUM_BODLEVEL">
+        <value caption="Brown-out detection at VCC=4.0 V" name="4V0" value="0x00"/>
+        <value caption="Brown-out detection at VCC=2.7 V" name="2V7" value="0x01"/>
+      </value-group>
+    </module>
+    <module caption="Lockbits" name="LOCKBIT">
+      <register-group caption="Lockbits" name="LOCKBIT">
+        <register name="LOCKBIT" offset="0x00" size="1" initval="0xFF">
+          <bitfield caption="Memory Lock" mask="0x03" name="LB" values="ENUM_LB"/>
+        </register>
+      </register-group>
+      <value-group name="ENUM_LB">
+        <value caption="Further programming and verification disabled" name="PROG_VER_DISABLED" value="0x00"/>
+        <value caption="Further programming disabled" name="PROG_DISABLED" value="0x02"/>
+        <value caption="No memory lock features enabled" name="NO_LOCK" value="0x03"/>
+      </value-group>
+    </module>
+    <module caption="Analog-to-Digital Converter" name="ADC">
+      <register-group caption="Analog-to-Digital Converter" name="ADC">
+        <register caption="The ADC multiplexer Selection Register" name="ADMUX" offset="0x27" size="1">
+          <bitfield caption="Reference Selection Bits" mask="0xC0" name="REFS" values="ANALOG_ADC_V_REF"/>
+          <bitfield caption="Left Adjust Result" mask="0x20" name="ADLAR"/>
+          <bitfield caption="Analog Channel and Gain Selection Bits" mask="0x1F" name="MUX"/>
+        </register>
+        <register caption="The ADC Control and Status register" name="ADCSR" offset="0x26" size="1">
+          <bitfield caption="ADC Enable" mask="0x80" name="ADEN"/>
+          <bitfield caption="ADC Start Conversion" mask="0x40" name="ADSC"/>
+          <bitfield caption="ADC  Free Running Select" mask="0x20" name="ADFR"/>
+          <bitfield caption="ADC Interrupt Flag" mask="0x10" name="ADIF"/>
+          <bitfield caption="ADC Interrupt Enable" mask="0x08" name="ADIE"/>
+          <bitfield caption="ADC  Prescaler Select Bits" mask="0x07" name="ADPS" values="ANALOG_ADC_PRESCALER"/>
+        </register>
+        <register caption="ADC Data Register  Bytes" name="ADC" offset="0x24" size="2" mask="0xFFFF"/>
+      </register-group>
+      <value-group name="ANALOG_ADC_V_REF">
+        <value caption="AVCC" name="AVCC" value="0x00"/>
+        <value caption="AREF" name="AREF" value="0x01"/>
+        <value caption="Internal Voltage Referance" name="INTERNAL_VOLTAGE_REFERANCE" value="0x02"/>
+        <value caption="Internal Voltage Reference With External Capacitor at AREF Pin." name="INTERNAL_VOLTAGE_REFERENCE_WITH_EXTERNAL_CAPACITOR_AT_AREF_PIN" value="0x03"/>
+      </value-group>
+      <value-group name="ANALOG_ADC_PRESCALER">
+        <value caption="2" name="2" value="0x00"/>
+        <value caption="2" name="2" value="0x01"/>
+        <value caption="4" name="4" value="0x02"/>
+        <value caption="8" name="8" value="0x03"/>
+        <value caption="16" name="16" value="0x04"/>
+        <value caption="32" name="32" value="0x05"/>
+        <value caption="64" name="64" value="0x06"/>
+        <value caption="128" name="128" value="0x07"/>
+      </value-group>
+    </module>
+    <module caption="Analog Comparator" name="AC">
+      <register-group caption="Analog Comparator" name="AC">
+        <register caption="Analog Comparator Control And Status Register" name="ACSR" offset="0x28" size="1">
+          <bitfield caption="Analog Comparator Disable" mask="0x80" name="ACD"/>
+          <bitfield caption="Analog Comparator Bandgap Select" mask="0x40" name="ACBG"/>
+          <bitfield caption="Analog Compare Output" mask="0x20" name="ACO"/>
+          <bitfield caption="Analog Comparator Interrupt Flag" mask="0x10" name="ACI"/>
+          <bitfield caption="Analog Comparator Interrupt Enable" mask="0x08" name="ACIE"/>
+          <bitfield caption="Analog Comparator Multiplexer Enable" mask="0x04" name="ACME"/>
+          <bitfield caption="Analog Comparator Interrupt Mode Select bits" mask="0x03" name="ACIS" values="ANALOG_COMP_INTERRUPT"/>
+        </register>
+      </register-group>
+      <value-group name="ANALOG_COMP_INTERRUPT">
+        <value caption="Interrupt on Toggle" name="INTERRUPT_ON_TOGGLE" value="0x00"/>
+        <value caption="Reserved" name="RESERVED" value="0x01"/>
+        <value caption="Interrupt on Falling Edge" name="INTERRUPT_ON_FALLING_EDGE" value="0x02"/>
+        <value caption="Interrupt on Rising Edge" name="INTERRUPT_ON_RISING_EDGE" value="0x03"/>
+      </value-group>
+    </module>
+    <module caption="Universal Serial Interface" name="USI">
+      <register-group caption="Universal Serial Interface" name="USI">
+        <register caption="USI Data Register" name="USIDR" offset="0x2F" size="1" mask="0xFF"/>
+        <register caption="USI Status Register" name="USISR" offset="0x2E" size="1" ocd-rw="R">
+          <bitfield caption="Start Condition Interrupt Flag" mask="0x80" name="USISIF"/>
+          <bitfield caption="Counter Overflow Interrupt Flag" mask="0x40" name="USIOIF"/>
+          <bitfield caption="Stop Condition Flag" mask="0x20" name="USIPF"/>
+          <bitfield caption="Data Output Collision" mask="0x10" name="USIDC"/>
+          <bitfield caption="USI Counter Value Bits" mask="0x0F" name="USICNT"/>
+        </register>
+        <register caption="USI Control Register" name="USICR" offset="0x2D" size="1">
+          <bitfield caption="Start Condition Interrupt Enable" mask="0x80" name="USISIE"/>
+          <bitfield caption="Counter Overflow Interrupt Enable" mask="0x40" name="USIOIE"/>
+          <bitfield caption="USI Wire Mode Bits" mask="0x30" name="USIWM" values="COMM_USI_OP"/>
+          <bitfield caption="USI Clock Source Select Bits" mask="0x0C" name="USICS"/>
+          <bitfield caption="Clock Strobe" mask="0x02" name="USICLK"/>
+          <bitfield caption="Toggle Clock Port Pin" mask="0x01" name="USITC"/>
+        </register>
+      </register-group>
+      <value-group name="COMM_USI_OP">
+        <value caption="Normal Operation" name="NORMAL_OPERATION" value="0x00"/>
+        <value caption="Three-Wire Mode" name="THREE_WIRE_MODE" value="0x01"/>
+        <value caption="Two-Wire Mode" name="TWO_WIRE_MODE" value="0x02"/>
+        <value caption="Two-Wire Mode Held Low" name="TWO_WIRE_MODE_HELD_LOW" value="0x03"/>
+      </value-group>
+    </module>
+    <module caption="I/O Port" name="PORT">
+      <register-group caption="I/O Port" name="PORTA">
+        <register caption="Port A Data Register" name="PORTA" offset="0x3B" size="1" mask="0xFF"/>
+        <register caption="Port A Data Direction Register" name="DDRA" offset="0x3A" size="1" mask="0xFF"/>
+        <register caption="Port A Input Pins" name="PINA" offset="0x39" size="1" mask="0xFF" ocd-rw="R"/>
+      </register-group>
+      <register-group caption="I/O Port" name="PORTB">
+        <register caption="Port B Data Register" name="PORTB" offset="0x38" size="1" mask="0xFF"/>
+        <register caption="Port B Data Direction Register" name="DDRB" offset="0x37" size="1" mask="0xFF"/>
+        <register caption="Port B Input Pins" name="PINB" offset="0x36" size="1" mask="0xFF" ocd-rw="R"/>
+      </register-group>
+    </module>
+    <module caption="EEPROM" name="EEPROM">
+      <register-group caption="EEPROM" name="EEPROM">
+        <register caption="EEPROM Read/Write Access" name="EEAR" offset="0x3E" size="1" mask="0x7F"/>
+        <register caption="EEPROM Data Register" name="EEDR" offset="0x3D" size="1" mask="0xFF"/>
+        <register caption="EEPROM Control Register" name="EECR" offset="0x3C" size="1">
+          <bitfield caption="EEProm Ready Interrupt Enable" mask="0x08" name="EERIE"/>
+          <bitfield caption="EEPROM Master Write Enable" mask="0x04" name="EEMWE"/>
+          <bitfield caption="EEPROM Write Enable" mask="0x02" name="EEWE"/>
+          <bitfield caption="EEPROM Read Enable" mask="0x01" name="EERE"/>
+        </register>
+      </register-group>
+    </module>
+    <module caption="Watchdog Timer" name="WDT">
+      <register-group caption="Watchdog Timer" name="WDT">
+        <register caption="Watchdog Timer Control Register" name="WDTCR" offset="0x41" size="1">
+          <bitfield caption="Watchdog Change Enable" mask="0x10" name="WDCE"/>
+          <bitfield caption="Watch Dog Enable" mask="0x08" name="WDE"/>
+          <bitfield caption="Watch Dog Timer Prescaler bits" mask="0x07" name="WDP" values="WDOG_TIMER_PRESCALE_3BITS"/>
+        </register>
+      </register-group>
+      <value-group name="WDOG_TIMER_PRESCALE_3BITS">
+        <value caption="Oscillator Cycles 16K" name="OSCILLATOR_CYCLES_16K" value="0x00"/>
+        <value caption="Oscillator Cycles 32K" name="OSCILLATOR_CYCLES_32K" value="0x01"/>
+        <value caption="Oscillator Cycles 64K" name="OSCILLATOR_CYCLES_64K" value="0x02"/>
+        <value caption="Oscillator Cycles 128K" name="OSCILLATOR_CYCLES_128K" value="0x03"/>
+        <value caption="Oscillator Cycles 256K" name="OSCILLATOR_CYCLES_256K" value="0x04"/>
+        <value caption="Oscillator Cycles 512K" name="OSCILLATOR_CYCLES_512K" value="0x05"/>
+        <value caption="Oscillator Cycles 1024K" name="OSCILLATOR_CYCLES_1024K" value="0x06"/>
+        <value caption="Oscillator Cycles 2048K" name="OSCILLATOR_CYCLES_2048K" value="0x07"/>
+      </value-group>
+    </module>
+    <module caption="CPU Registers" name="CPU">
+      <register-group caption="CPU Registers" name="CPU">
+        <register caption="Status Register" name="SREG" offset="0x5F" size="1">
+          <bitfield caption="Global Interrupt Enable" mask="0x80" name="I"/>
+          <bitfield caption="Bit Copy Storage" mask="0x40" name="T"/>
+          <bitfield caption="Half Carry Flag" mask="0x20" name="H"/>
+          <bitfield caption="Sign Bit" mask="0x10" name="S"/>
+          <bitfield caption="Two's Complement Overflow Flag" mask="0x08" name="V"/>
+          <bitfield caption="Negative Flag" mask="0x04" name="N"/>
+          <bitfield caption="Zero Flag" mask="0x02" name="Z"/>
+          <bitfield caption="Carry Flag" mask="0x01" name="C"/>
+        </register>
+        <register caption="Stack Pointer" name="SP" offset="0x5D" size="1" mask="0xFF"/>
+        <register caption="MCU Control Register" name="MCUCR" offset="0x55" size="1">
+          <bitfield caption="Pull-up Disable" mask="0x40" name="PUD"/>
+          <bitfield caption="Sleep Enable" mask="0x20" name="SE"/>
+          <bitfield caption="Sleep Mode Select Bits" mask="0x18" name="SM" values="CPU_SLEEP_MODE"/>
+          <bitfield caption="Interrupt Sense Control 0 bits" mask="0x03" name="ISC0" values="INTERRUPT_SENSE_CONTROL2"/>
+        </register>
+        <register caption="MCU Status register" name="MCUSR" offset="0x54" size="1">
+          <bitfield caption="Watchdog Reset Flag" mask="0x08" name="WDRF"/>
+          <bitfield caption="Brown-out Reset Flag" mask="0x04" name="BORF"/>
+          <bitfield caption="External Reset Flag" mask="0x02" name="EXTRF"/>
+          <bitfield caption="Power-On Reset Flag" mask="0x01" name="PORF"/>
+        </register>
+        <register caption="Status Register" name="OSCCAL" offset="0x51" size="1" mask="0xFF">
+          <bitfield caption="Oscillator Calibration " mask="0xFF" name="OSCCAL"/>
+        </register>
+      </register-group>
+      <value-group name="CPU_SLEEP_MODE">
+        <value caption="Idle" name="IDLE" value="0x00"/>
+        <value caption="ADC Noise Reduction (If Available)" name="ADC" value="0x01"/>
+        <value caption="Power Down" name="PDOWN" value="0x02"/>
+        <value caption="Standby" name="STDBY" value="0x03"/>
+      </value-group>
+      <value-group name="INTERRUPT_SENSE_CONTROL2">
+        <value caption="Low Level of INTX" name="LOW_LEVEL_OF_INTX" value="0x00"/>
+        <value caption="Any Logical Change in INTX" name="ANY_LOGICAL_CHANGE_IN_INTX" value="0x01"/>
+        <value caption="Falling Edge of INTX" name="FALLING_EDGE_OF_INTX" value="0x02"/>
+        <value caption="Rising Edge of INTX" name="RISING_EDGE_OF_INTX" value="0x03"/>
+      </value-group>
+      <value-group caption="Oscillator Calibration Values" name="OSCCAL_VALUE_ADDRESSES">
+        <value value="0x00" caption="1.0 MHz" name="1_0_MHz"/>
+        <value value="0x01" caption="2.0 MHz" name="2_0_MHz"/>
+        <value value="0x02" caption="4.0 MHz" name="4_0_MHz"/>
+        <value value="0x03" caption="8.0 MHz" name="8_0_MHz"/>
+      </value-group>
+      
+    </module>
+    <module caption="Timer/Counter, 8-bit" name="TC8">
+      <register-group caption="Timer/Counter, 8-bit" name="TC0">
+        <register caption="Timer/Counter Interrupt Mask Register" name="TIMSK" offset="0x59" size="1">
+          <bitfield caption="Timer/Counter0 Overflow Interrupt Enable" mask="0x02" name="TOIE0"/>
+        </register>
+        <register caption="Timer/Counter Interrupt Flag register" name="TIFR" offset="0x58" size="1">
+          <bitfield caption="Timer/Counter0 Overflow Flag" mask="0x02" name="TOV0"/>
+        </register>
+        <register caption="Timer/Counter0 Control Register" name="TCCR0" offset="0x53" size="1">
+          <bitfield caption="Prescaler Reset Timer/Counter0" mask="0x08" name="PSR0"/>
+          <bitfield caption="Clock Select0 bits" mask="0x07" name="CS0" values="CLK_SEL_3BIT_EXT"/>
+        </register>
+        <register caption="Timer Counter 0" name="TCNT0" offset="0x52" size="1" mask="0xFF"/>
+      </register-group>
+      <register-group caption="Timer/Counter, 8-bit" name="TC1">
+        <register caption="Timer/Counter Control Register A" name="TCCR1A" offset="0x50" size="1">
+          <bitfield caption="Comparator A Output Mode Bits" mask="0xC0" name="COM1A" values="CLK_COMP_MATCH_OUT_MODE"/>
+          <bitfield caption="Comparator B Output Mode Bits" mask="0x30" name="COM1B" values="CLK_COMP_MATCH_OUT_MODE"/>
+          <bitfield caption="Force Output Compare Match 1A" mask="0x08" name="FOC1A"/>
+          <bitfield caption="Force Output Compare Match 1B" mask="0x04" name="FOC1B"/>
+          <bitfield caption="Pulse Width Modulator A Enable" mask="0x02" name="PWM1A"/>
+          <bitfield caption="Pulse Width Modulator B Enable" mask="0x01" name="PWM1B"/>
+        </register>
+        <register caption="Timer/Counter Control Register B" name="TCCR1B" offset="0x4F" size="1">
+          <bitfield caption="Clear Timer/Counter on Compare Match" mask="0x80" name="CTC1"/>
+          <bitfield caption="Prescaler Reset Timer/Counter1" mask="0x40" name="PSR1"/>
+          <bitfield caption="Clock Select Bits" mask="0x0F" name="CS1" values="CLK_SEL_4BIT"/>
+        </register>
+        <register caption="Timer/Counter Register" name="TCNT1" offset="0x4E" size="1" mask="0xFF"/>
+        <register caption="Output Compare Register" name="OCR1A" offset="0x4D" size="1" mask="0xFF"/>
+        <register caption="Output Compare Register" name="OCR1B" offset="0x4C" size="1" mask="0xFF"/>
+        <register caption="Output Compare Register" name="OCR1C" offset="0x4B" size="1" mask="0xFF"/>
+        <register caption="Timer/Counter Interrupt Mask Register" name="TIMSK" offset="0x59" size="1">
+          <bitfield caption="Timer/Counter1 Output Compare Interrupt Enable" mask="0x40" name="OCIE1A"/>
+          <bitfield caption="Timer/Counter1 Output Compare Interrupt Enable" mask="0x20" name="OCIE1B"/>
+          <bitfield caption="Timer/Counter1 Overflow Interrupt Enable" mask="0x04" name="TOIE1"/>
+        </register>
+        <register caption="Timer/Counter Interrupt Flag Register" name="TIFR" offset="0x58" size="1">
+          <bitfield caption="Timer/Counter1 Output Compare Flag 1A" mask="0x40" name="OCF1A"/>
+          <bitfield caption="Timer/Counter1 Output Compare Flag 1B" mask="0x20" name="OCF1B"/>
+          <bitfield caption="Timer/Counter1 Overflow Flag" mask="0x04" name="TOV1"/>
+        </register>
+        <register caption="PLL Control and Status Register" name="PLLCSR" offset="0x49" size="1">
+          <bitfield caption="PCK Enable" mask="0x04" name="PCKE"/>
+          <bitfield caption="PLL Enable" mask="0x02" name="PLLE"/>
+          <bitfield caption="PLL Lock Detector" mask="0x01" name="PLOCK"/>
+        </register>
+      </register-group>
+      <value-group name="CLK_SEL_3BIT_EXT">
+        <value caption="No Clock Source (Stopped)" name="NO_CLOCK_SOURCE_STOPPED" value="0x00"/>
+        <value caption="Running, No Prescaling" name="RUNNING_NO_PRESCALING" value="0x01"/>
+        <value caption="Running, CLK/8" name="RUNNING_CLK_8" value="0x02"/>
+        <value caption="Running, CLK/64" name="RUNNING_CLK_64" value="0x03"/>
+        <value caption="Running, CLK/256" name="RUNNING_CLK_256" value="0x04"/>
+        <value caption="Running, CLK/1024" name="RUNNING_CLK_1024" value="0x05"/>
+        <value caption="Running, ExtClk Tn Falling Edge" name="RUNNING_EXTCLK_TN_FALLING_EDGE" value="0x06"/>
+        <value caption="Running, ExtClk Tn Rising Edge" name="RUNNING_EXTCLK_TN_RISING_EDGE" value="0x07"/>
+      </value-group>
+      <value-group name="CLK_COMP_MATCH_OUT_MODE">
+        <value caption="Disconnected from OCn/PWMn" name="DISCONNECTED_FROM_OCN_PWMN" value="0x00"/>
+        <value caption="Toggle OCn/PWMn output line" name="TOGGLE_OCN_PWMN_OUTPUT_LINE" value="0x01"/>
+        <value caption="Clear OCn/PWMn output line" name="CLEAR_OCN_PWMN_OUTPUT_LINE" value="0x02"/>
+        <value caption="set OCn/PWMn output line" name="SET_OCN_PWMN_OUTPUT_LINE" value="0x03"/>
+      </value-group>
+      <value-group name="CLK_SEL_4BIT">
+        <value caption="No Clock Source (Stopped)" name="NO_CLOCK_SOURCE_STOPPED" value="0x00"/>
+        <value caption="Running, No Prescaling" name="RUNNING_NO_PRESCALING" value="0x01"/>
+        <value caption="Running, CLK/2" name="RUNNING_CLK_2" value="0x02"/>
+        <value caption="Running, CLK/4" name="RUNNING_CLK_4" value="0x03"/>
+        <value caption="Running, CLK/8" name="RUNNING_CLK_8" value="0x04"/>
+        <value caption="Running, CLK/16" name="RUNNING_CLK_16" value="0x05"/>
+        <value caption="Running, CLK/32" name="RUNNING_CLK_32" value="0x06"/>
+        <value caption="Running, CLK/64" name="RUNNING_CLK_64" value="0x07"/>
+        <value caption="Running, CLK/128" name="RUNNING_CLK_128" value="0x08"/>
+        <value caption="Running, CLK/256" name="RUNNING_CLK_256" value="0x09"/>
+        <value caption="Running, CLK/512" name="RUNNING_CLK_512" value="0x0A"/>
+        <value caption="Running, CLK/1024" name="RUNNING_CLK_1024" value="0x0B"/>
+        <value caption="Running, CLK/2048" name="RUNNING_CLK_2048" value="0x0C"/>
+        <value caption="Running, CLK/4096" name="RUNNING_CLK_4096" value="0x0D"/>
+        <value caption="Running, CLK/8192" name="RUNNING_CLK_8192" value="0x0E"/>
+        <value caption="Running, CLK/16384" name="RUNNING_CLK_16384" value="0x0F"/>
+      </value-group>
+    </module>
+    <module caption="External Interrupts" name="EXINT">
+      <register-group caption="External Interrupts" name="EXINT">
+        <register caption="General Interrupt Mask Register" name="GIMSK" offset="0x5B" size="1">
+          <bitfield caption="External Interrupt Request 0 Enable" mask="0x40" name="INT0"/>
+          <bitfield caption="Pin Change Interrupt Enables" mask="0x30" name="PCIE"/>
+        </register>
+        <register caption="General Interrupt Flag register" name="GIFR" offset="0x5A" size="1">
+          <bitfield caption="External Interrupt Flag 0" mask="0x40" name="INTF0"/>
+          <bitfield caption="Pin Change Interrupt Flag" mask="0x20" name="PCIF"/>
+        </register>
+      </register-group>
+    </module>
+  </modules>
+</avr-tools-device-file>

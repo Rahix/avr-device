@@ -1,0 +1,286 @@
+_svd: ../svd/attiny26.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/wdt.yaml"
+  - "common/tiny/usi.yaml"
+
+# All FUSEs are read-only from the CPU.
+FUSE:
+  _modify:
+    "*":
+      access: read-only
+
+ADC:
+  _modify:
+    ADCSR:
+      description: "ADC Control and Status Register"
+  ADCSR:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+  ADMUX:
+    _modify:
+      MUX:
+        _write_constraint: enum
+      REFS:
+        _write_constraint: enum
+    MUX:
+      _replace_enum:
+        ADC0: [0, "Single-ended Input ADC0"]
+        ADC1: [1, "Single-ended Input ADC1"]
+        ADC2: [2, "Single-ended Input ADC2"]
+        ADC3: [3, "Single-ended Input ADC3"]
+        ADC4: [4, "Single-ended Input ADC4"]
+        ADC5: [5, "Single-ended Input ADC5"]
+        ADC6: [6, "Single-ended Input ADC6"]
+        ADC7: [7, "Single-ended Input ADC7"]
+        ADC8: [8, "Single-ended Input ADC8"]
+        ADC9: [9, "Single-ended Input ADC9"]
+        ADC10: [10, "Single-ended Input ADC10"]
+
+        ADC0_ADC1_20X: [11, "Differential Inputs Positive ADC0 Negative ADC1 20x Gain"]
+        ADC0_ADC1_1X: [12, "Differential Inputs Positive ADC0 Negative ADC1 1x Gain"]
+        ADC1_ADC1_20X: [13, "Differential Inputs Positive ADC1 Negative ADC1 20x Gain (for offset compensation)"]
+        ADC2_ADC1_20X: [14, "Differential Inputs Positive ADC2 Negative ADC1 20x Gain"]
+        ADC2_ADC1_1X: [15, "Differential Inputs Positive ADC2 Negative ADC1 1x Gain"]
+
+        ADC2_ADC3_1X: [16, "Differential Inputs Positive ADC2 Negative ADC3 1x Gain"]
+        ADC3_ADC3_20X: [17, "Differential Inputs Positive ADC3 Negative ADC3 20x Gain (for offset compensation)"]
+        ADC4_ADC3_20X: [18, "Differential Inputs Positive ADC4 Negative ADC3 20x Gain"]
+        ADC4_ADC3_1X: [19, "Differential Inputs Positive ADC4 Negative ADC3 1x Gain"]
+
+        ADC4_ADC5_20X: [20, "Differential Inputs Positive ADC4 Negative ADC5 20x Gain"]
+        ADC4_ADC5_1X: [21, "Differential Inputs Positive ADC4 Negative ADC5 1x Gain"]
+        ADC5_ADC5_20X: [22, "Differential Inputs Positive ADC5 Negative ADC5 20x Gain (for offset compensation)"]
+        ADC6_ADC5_20X: [23, "Differential Inputs Positive ADC6 Negative ADC5 20x Gain"]
+        ADC6_ADC5_1X: [24, "Differential Inputs Positive ADC6 Negative ADC5 1x Gain"]
+
+        ADC8_ADC9_20X: [25, "Differential Inputs Positive ADC8 Negative ADC9 20x Gain"]
+        ADC8_ADC9_1X: [26, "Differential Inputs Positive ADC8 Negative ADC9 1x Gain"]
+        ADC9_ADC9_20X: [27, "Differential Inputs Positive ADC9 Negative ADC9 20x Gain (for offset compensation)"]
+        ADC10_ADC9_20X: [28, "Differential Inputs Positive ADC10 Negative ADC9 20x Gain"]
+        ADC10_ADC9_1X: [29, "Differential Inputs Positive ADC10 Negative ADC9 1x Gain"]
+
+        ADC_VBG: [30, "Internal 1.18V Reference (VBG)"]
+        ADC_GND: [31, "0V (GND)"]
+    REFS:
+      _replace_enum:
+        VCC: [0, "Vcc used as Voltage Reference, disconnected from Aref"]
+        AREF: [1, "External Voltage Reference at AREF pin, Internal Voltage Reference turned off"]
+        INTERNAL: [2, "Internal 2.56V Voltage Reference without external bypass"]
+        INTERNAL_BYPASS: [3, "Internal 2.56V Voltage Reference with external bypass capacitor at AREF pin"]
+
+PORTA:
+  DDRA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: "Pin A3"
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: "Pin A4"
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: "Pin A5"
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: "Pin A6"
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: "Pin A7"
+        bitRange: "[7:7]"
+        access: read-write
+  PINA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: "Pin A3"
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: "Pin A4"
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: "Pin A5"
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: "Pin A6"
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: "Pin A7"
+        bitRange: "[7:7]"
+        access: read-write
+  PORTA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: "Pin A3"
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: "Pin A4"
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: "Pin A5"
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: "Pin A6"
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: "Pin A7"
+        bitRange: "[7:7]"
+        access: read-write
+
+PORTB:
+  DDRB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+      PB4:
+        description: "Pin B4"
+        bitRange: "[4:4]"
+        access: read-write
+      PB5:
+        description: "Pin B5"
+        bitRange: "[5:5]"
+        access: read-write
+      PB6:
+        description: "Pin B6"
+        bitRange: "[6:6]"
+        access: read-write
+      PB7:
+        description: "Pin B7"
+        bitRange: "[7:7]"
+        access: read-write
+  PINB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+      PB4:
+        description: "Pin B4"
+        bitRange: "[4:4]"
+        access: read-write
+      PB5:
+        description: "Pin B5"
+        bitRange: "[5:5]"
+        access: read-write
+      PB6:
+        description: "Pin B6"
+        bitRange: "[6:6]"
+        access: read-write
+      PB7:
+        description: "Pin B7"
+        bitRange: "[7:7]"
+        access: read-write
+  PORTB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+      PB4:
+        description: "Pin B4"
+        bitRange: "[4:4]"
+        access: read-write
+      PB5:
+        description: "Pin B5"
+        bitRange: "[5:5]"
+        access: read-write
+      PB6:
+        description: "Pin B6"
+        bitRange: "[6:6]"
+        access: read-write
+      PB7:
+        description: "Pin B7"
+        bitRange: "[7:7]"
+        access: read-write
