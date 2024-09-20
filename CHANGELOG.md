@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added support for `AVR64DU32` and `AVR64DU28` ([#152]).
 - Added support for `ATmega16` ([#153]).
+- Added support for `ATtiny26` ([#158]).
 
 ### Changed
 - Upgraded to `atdf2svd` version 0.4.0 ([#154]).
@@ -20,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#152]: https://github.com/Rahix/avr-device/pull/152
 [#153]: https://github.com/Rahix/avr-device/pull/153
 [#154]: https://github.com/Rahix/avr-device/pull/154
+[#158]: https://github.com/Rahix/avr-device/pull/158
 [atdf2svd#48]: https://github.com/Rahix/atdf2svd/pull/48
 
 
