@@ -20,9 +20,7 @@ svd/%.svd: vendor/%.atdf
 	@echo -e "\tATDF2SVD\t$*"
 	@atdf2svd $< $@ 2>/dev/null
 
-$(foreach patch, $(PATCHES), $(eval $(patsubst patch/%.yaml, svd/%.svd.patched, $(patch)): $(patch)))
-
-svd/%.svd.patched: svd/%.svd .deps/%.d
+svd/%.svd.patched: svd/%.svd .deps/%.d patch/%.yaml
 	@if [ -f patch/$*.yaml ] ; then \
 		echo -e "\tPATCH\t\t$*"; \
 		svd patch patch/$*.yaml; \
