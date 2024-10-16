@@ -1,6 +1,6 @@
 all: deps chips
 
-CHIPS := at90usb1286 atmega1280 atmega1284p atmega128a atmega128rfa1 atmega16 atmega164pa atmega168 atmega2560 atmega8 atmega8u2 atmega324pa atmega328p atmega328pb atmega32a atmega32u4 atmega4808 atmega4809 atmega48p atmega64 atmega644 atmega88p attiny13a attiny202 attiny2313 attiny2313a attiny26 attiny402 attiny404 attiny44a attiny84 attiny85 attiny88 attiny816 attiny828 attiny841 attiny84a attiny861 attiny167 attiny1614 avr64du32 avr64du28
+CHIPS := at90usb1286 atmega1280 atmega1284p atmega128a atmega128rfa1 atmega16 atmega164pa atmega168 atmega16u2 atmega2560 atmega8 atmega8u2 atmega324pa atmega328p atmega328pb atmega32a atmega32u4 atmega4808 atmega4809 atmega48p atmega64 atmega644 atmega88p attiny13a attiny202 attiny2313 attiny2313a attiny26 attiny402 attiny404 attiny44a attiny84 attiny85 attiny88 attiny816 attiny828 attiny841 attiny84a attiny861 attiny167 attiny1614 avr64du32 avr64du28
 
 RUSTUP_TOOLCHAIN ?= nightly
 

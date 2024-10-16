@@ -13,12 +13,12 @@ features = ["atmega32u4"]
 Via the feature you can select which chip you want the register specifications for.  The following list is what is currently supported:
 
 |     ATmega      |  ATmega USB  | ATmega 0,1 Series |     AT90      |    ATtiny     |
-| :-------------: | :----------: | :---------------: | :-----------: | :-----------: |
+|:---------------:|:------------:|:-----------------:|:-------------:|:-------------:|
 |    `atmega8`    | `atmega8u2`  |   `atmega4808`    | `at90usb1286` |  `attiny13a`  |
-|   `atmega48p`   | `atmega32u4` |   `atmega4809`    |               |  `attiny167`  |
-|   `atmega64`    | `avr64du32`  |                   |               |  `attiny202`  |
-|   `atmega644`   | `avr64du28`  |                   |               |  `attiny402`  |
-|   `atmega88p`   |              |                   |               |  `attiny404`  |
+|   `atmega48p`   | `atmega16u2` |   `atmega4809`    |               |  `attiny167`  |
+|   `atmega64`    | `atmega32u4` |                   |               |  `attiny202`  |
+|   `atmega644`   | `avr64du32`  |                   |               |  `attiny402`  |
+|   `atmega88p`   | `avr64du28`  |                   |               |  `attiny404`  |
 |   `atmega16`    |              |                   |               |  `attiny44a`  |
 |   `atmega168`   |              |                   |               |  `attiny84`   |
 |  `atmega324pa`  |              |                   |               |  `attiny85`   |

@@ -35,6 +35,24 @@ pub mod atmega164pa;
 #[cfg(feature = "atmega168")]
 pub mod atmega168;
 
+/// [ATmega16u2](https://www.microchip.com/wwwproducts/en/ATmega16u2)
+pub mod atmega16u2;
+
+#[cfg(feature = "atmega64")]
+impl atmega16u2::Peripherals {
+    /// Returns all the peripherals *once*
+    #[inline]
+    pub fn take() -> Option<Self> {
+        crate::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { atmega16u2::Peripherals::steal() })
+            }
+        })
+    }
+}
+
 /// [ATmega2560](https://www.microchip.com/wwwproducts/en/ATmega2560)
 #[cfg(feature = "atmega2560")]
 pub mod atmega2560;
