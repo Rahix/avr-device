@@ -8,6 +8,7 @@
 #![cfg_attr(feature = "atmega16", doc = "**atmega16**,")]
 #![cfg_attr(feature = "atmega164pa", doc = "**atmega164pa**,")]
 #![cfg_attr(feature = "atmega168", doc = "**atmega168**,")]
+#![cfg_attr(feature = "atmega16u2", doc = "**atmega16u2**,")]
 #![cfg_attr(feature = "atmega2560", doc = "**atmega2560**,")]
 #![cfg_attr(feature = "atmega8", doc = "**atmega8**,")]
 #![cfg_attr(feature = "atmega8u2", doc = "**atmega8u2**,")]
@@ -15,7 +16,10 @@
 #![cfg_attr(feature = "atmega328p", doc = "**atmega328p**,")]
 #![cfg_attr(feature = "atmega328pb", doc = "**atmega328pb**,")]
 #![cfg_attr(feature = "atmega32a", doc = "**atmega32a**,")]
+#![cfg_attr(feature = "atmega32u2", doc = "**atmega32u2**,")]
 #![cfg_attr(feature = "atmega32u4", doc = "**atmega32u4**,")]
+#![cfg_attr(feature = "atmega3208", doc = "**atmega3208**,")]
+#![cfg_attr(feature = "atmega3209", doc = "**atmega3209**,")]
 #![cfg_attr(feature = "atmega4808", doc = "**atmega4808**,")]
 #![cfg_attr(feature = "atmega4809", doc = "**atmega4809**,")]
 #![cfg_attr(feature = "atmega48p", doc = "**atmega48p**,")]
@@ -57,6 +61,7 @@
 //! `atmega16`,
 //! `atmega164pa`,
 //! `atmega168`,
+//! `atmega16u2`,
 //! `atmega2560`,
 //! `atmega8`,
 //! `atmega8u2`,
@@ -64,7 +69,10 @@
 //! `atmega328p`,
 //! `atmega328pb`,
 //! `atmega32a`
+//! `atmega32u2`,
 //! `atmega32u4`,
+//! `atmega3208`,
+//! `atmega3209`,
 //! `atmega4808`,
 //! `atmega4809`,
 //! `atmega48p`,
@@ -220,12 +228,16 @@ compile_error!(
     * atmega16
     * atmega164pa
     * atmega168
+    * atmega16u2
     * atmega2560
     * atmega324pa
     * atmega328p
     * atmega328pb
     * atmega32a
+    * atmega32u2
     * atmega32u4
+    * atmega3208
+    * atmega3209
     * atmega4808
     * atmega4809
     * atmega48p
@@ -274,6 +286,8 @@ pub use crate::devices::atmega16;
 pub use crate::devices::atmega164pa;
 #[cfg(feature = "atmega168")]
 pub use crate::devices::atmega168;
+#[cfg(feature = "atmega16u2")]
+pub use crate::devices::atmega16u2;
 #[cfg(feature = "atmega2560")]
 pub use crate::devices::atmega2560;
 #[cfg(feature = "atmega324pa")]
@@ -284,8 +298,14 @@ pub use crate::devices::atmega328p;
 pub use crate::devices::atmega328pb;
 #[cfg(feature = "atmega32a")]
 pub use crate::devices::atmega32a;
+#[cfg(feature = "atmega32u2")]
+pub use crate::devices::atmega32u2;
 #[cfg(feature = "atmega32u4")]
 pub use crate::devices::atmega32u4;
+#[cfg(feature = "atmega3208")]
+pub use crate::devices::atmega3208;
+#[cfg(feature = "atmega3209")]
+pub use crate::devices::atmega3209;
 #[cfg(feature = "atmega4808")]
 pub use crate::devices::atmega4808;
 #[cfg(feature = "atmega4809")]

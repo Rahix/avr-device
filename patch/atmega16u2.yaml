@@ -1,0 +1,16 @@
+_svd: ../svd/atmega16u2.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/eeprom.yaml"
+  - "common/spi.yaml"
+  - "common/usart.yaml"
+  - "common/wdt.yaml"
+
+  - "timer/atmega8u2.yaml"
+
+PLL:
+  PLLCSR:
+    _modify:
+      PLOCK:
+        access: read-only

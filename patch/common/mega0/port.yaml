@@ -1,0 +1,52 @@
+PORTB:
+  _delete:
+    OUTSET:
+  _add:
+    OUTSET:
+      description: Output Value Set
+      addressOffset: 0x5
+      size: 0x8
+      access: read-write
+      fields:
+        PB0:
+          description: Pin B0
+          bitRange: "[0:0]"
+          access: read-write
+        PB1:
+          description: Pin B1
+          bitRange: "[1:1]"
+          access: read-write
+        PB2:
+          description: Pin B2
+          bitRange: "[2:2]"
+          access: read-write
+        PB3:
+          description: Pin B3
+          bitRange: "[3:3]"
+          access: read-write
+PORTC:
+  _delete:
+    OUTSET:
+  _add:
+    OUTSET:
+      description: Output Value Set
+      addressOffset: 0x5
+      size: 0x8
+      access: read-write
+      fields:
+        PC0:
+          description: Pin C0
+          bitRange: "[0:0]"
+          access: read-write
+        PC1:
+          description: Pin C1
+          bitRange: "[1:1]"
+          access: read-write
+        PC2:
+          description: Pin C2
+          bitRange: "[2:2]"
+          access: read-write
+        PC3:
+          description: Pin C3
+          bitRange: "[3:3]"
+          access: read-write
