@@ -1,5 +1,3 @@
-_svd: ../svd/atmega328pb.svd
-
 # Remove index suffix from all registers and fields
 SPI0:
   _strip_end:

@@ -1,5 +1,0 @@
-1337,1338c1337
-< #[no_mangle]
-< static mut DEVICE_PERIPHERALS: bool = false;
----
-> use crate::devices::DEVICE_PERIPHERALS;

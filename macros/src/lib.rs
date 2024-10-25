@@ -1,10 +1,14 @@
-// Adapted from https://github.com/rust-embedded/cortex-m-rt/blob/master/macros/src/lib.rs
+//! Adapted from <https://github.com/rust-embedded/cortex-m/blob/ce12620be0e51f9a8bbe6bb67cfc131201b55f34/cortex-m-rt/macros/src/lib.rs>
+//!
+//! Do not use this crate directly.
 
 extern crate proc_macro;
 
-mod vector;
-
-use syn::spanned::Spanned;
+use proc_macro::TokenStream;
+use proc_macro2::Span;
+use quote::quote;
+use std::iter;
+use syn::{parse, spanned::Spanned, Attribute, FnArg, Ident, ItemFn, ReturnType, Type, Visibility};
 
 #[proc_macro_attribute]
 pub fn entry(
@@ -15,19 +19,19 @@ pub fn entry(
 
     // check the function signature
     let valid_signature = f.sig.constness.is_none()
-        && f.vis == syn::Visibility::Inherited
+        && f.vis == Visibility::Inherited
         && f.sig.abi.is_none()
         && f.sig.inputs.is_empty()
         && f.sig.generics.params.is_empty()
         && f.sig.generics.where_clause.is_none()
         && f.sig.variadic.is_none()
         && match f.sig.output {
-            syn::ReturnType::Default => false,
-            syn::ReturnType::Type(_, ref ty) => matches!(**ty, syn::Type::Never(_)),
+            ReturnType::Default => false,
+            ReturnType::Type(_, ref ty) => matches!(**ty, Type::Never(_)),
         };
 
     if !valid_signature {
-        return syn::parse::Error::new(
+        return parse::Error::new(
             f.span(),
             "`#[entry]` function must have signature `[unsafe] fn() -> !`",
         )
@@ -36,12 +40,9 @@ pub fn entry(
     }
 
     if !args.is_empty() {
-        return syn::parse::Error::new(
-            proc_macro2::Span::call_site(),
-            "This attribute accepts no arguments",
-        )
-        .to_compile_error()
-        .into();
+        return parse::Error::new(Span::call_site(), "This attribute accepts no arguments")
+            .to_compile_error()
+            .into();
     }
 
     let (statics, stmts) = match extract_static_muts(f.block.stmts) {
@@ -50,10 +51,7 @@ pub fn entry(
     };
 
     // Rename the function so it is not callable
-    f.sig.ident = syn::Ident::new(
-        &format!("__avr_device_rt_{}", f.sig.ident),
-        proc_macro2::Span::call_site(),
-    );
+    f.sig.ident = Ident::new(&format!("__avr_device_{}", f.sig.ident), Span::call_site());
     f.sig.inputs.extend(statics.iter().map(|statik| {
         let ident = &statik.ident;
         let ty = &statik.ty;
@@ -68,10 +66,7 @@ pub fn entry(
     }));
     f.block.stmts = stmts;
 
-    let tramp_ident = syn::Ident::new(
-        &format!("{}_trampoline", f.sig.ident),
-        proc_macro2::Span::call_site(),
-    );
+    let tramp_ident = Ident::new(&format!("{}_trampoline", f.sig.ident), Span::call_site());
     let ident = &f.sig.ident;
 
     let resource_args = statics
@@ -81,7 +76,7 @@ pub fn entry(
             let ident = &statik.ident;
             let ty = &statik.ty;
             let expr = &statik.expr;
-            quote::quote! {
+            quote! {
                 #(#cfgs)*
                 {
                     #(#attrs)*
@@ -92,7 +87,13 @@ pub fn entry(
         })
         .collect::<Vec<_>>();
 
-    quote::quote! (
+    if let Err(error) = check_attr_whitelist(&f.attrs, WhiteListCaller::Entry) {
+        return error;
+    }
+
+    let (ref cfgs, ref attrs) = extract_cfgs(f.attrs.clone());
+
+    quote! (
         #[cfg(not(any(doc, target_arch = "avr")))]
         compile_error!(
             "Ensure that you are using an AVR target! You may need to change \
@@ -100,6 +101,8 @@ pub fn entry(
        https://github.com/Rahix/avr-device/pull/41 for more details."
         );
 
+        #(#cfgs)*
+        #(#attrs)*
         #[doc(hidden)]
         #[export_name = "main"]
         pub unsafe extern "C" fn #tramp_ident() {
@@ -108,63 +111,43 @@ pub fn entry(
             )
         }
 
-        #[doc(hidden)]
         #f
     )
     .into()
 }
 
 #[proc_macro_attribute]
-pub fn interrupt(
-    args: proc_macro::TokenStream,
-    input: proc_macro::TokenStream,
-) -> proc_macro::TokenStream {
-    let mut f: syn::ItemFn =
-        syn::parse(input).expect("`#[interrupt]` must be applied to a function");
-    let args: Vec<_> = args.into_iter().collect();
+pub fn interrupt(args: TokenStream, input: TokenStream) -> TokenStream {
+    let mut f: ItemFn = syn::parse(input).expect("`#[interrupt]` must be applied to a function");
+
+    if !args.is_empty() {
+        return parse::Error::new(Span::call_site(), "This attribute accepts no arguments")
+            .to_compile_error()
+            .into();
+    }
 
     let fspan = f.span();
     let ident = f.sig.ident.clone();
     let ident_s = ident.to_string();
 
-    let chip = if let Some(tree) = args.get(0) {
-        if let proc_macro::TokenTree::Ident(ident) = tree {
-            ident.to_string()
-        } else {
-            return syn::parse::Error::new(
-                proc_macro2::Span::call_site(),
-                "#[interrupt(chip)]: chip must be an ident",
-            )
-            .to_compile_error()
-            .into();
-        }
-    } else {
-        return syn::parse::Error::new(
-            proc_macro2::Span::call_site(),
-            "#[interrupt(chip)] needs a chip argument",
-        )
-        .to_compile_error()
-        .into();
-    };
-
     let valid_signature = f.sig.constness.is_none()
-        && f.vis == syn::Visibility::Inherited
+        && f.vis == Visibility::Inherited
         && f.sig.abi.is_none()
         && f.sig.inputs.is_empty()
         && f.sig.generics.params.is_empty()
         && f.sig.generics.where_clause.is_none()
         && f.sig.variadic.is_none()
         && match f.sig.output {
-            syn::ReturnType::Default => true,
-            syn::ReturnType::Type(_, ref ty) => match **ty {
-                syn::Type::Tuple(ref tuple) => tuple.elems.is_empty(),
-                syn::Type::Never(..) => true,
+            ReturnType::Default => true,
+            ReturnType::Type(_, ref ty) => match **ty {
+                Type::Tuple(ref tuple) => tuple.elems.is_empty(),
+                Type::Never(..) => true,
                 _ => false,
             },
         };
 
     if !valid_signature {
-        return syn::parse::Error::new(
+        return parse::Error::new(
             fspan,
             "`#[interrupt]` handlers must have signature `[unsafe] fn() [-> !]`",
         )
@@ -177,25 +160,25 @@ pub fn interrupt(
         Ok(x) => x,
     };
 
-    f.sig.ident = syn::Ident::new(
-        &format!("__avr_device_rt_{}", f.sig.ident),
-        proc_macro2::Span::call_site(),
-    );
+    f.sig.ident = Ident::new(&format!("__avr_device_{}", f.sig.ident), Span::call_site());
     f.sig.inputs.extend(statics.iter().map(|statik| {
         let ident = &statik.ident;
         let ty = &statik.ty;
         let attrs = &statik.attrs;
-        syn::parse::<syn::FnArg>(
-            quote::quote!(#[allow(non_snake_case)] #(#attrs)* #ident: &mut #ty).into(),
-        )
-        .unwrap()
+        syn::parse::<FnArg>(quote!(#[allow(non_snake_case)] #(#attrs)* #ident: &mut #ty).into())
+            .unwrap()
     }));
-    f.block.stmts = stmts;
+    f.block.stmts = iter::once(
+        syn::parse2(quote! {{
+            // Check that this interrupt actually exists
+            ::avr_device::Interrupt::#ident;
+        }})
+        .unwrap(),
+    )
+    .chain(stmts)
+    .collect();
 
-    let tramp_ident = syn::Ident::new(
-        &format!("{}_trampoline", f.sig.ident),
-        proc_macro2::Span::call_site(),
-    );
+    let tramp_ident = Ident::new(&format!("{}_trampoline", f.sig.ident), Span::call_site());
     let ident = &f.sig.ident;
 
     let resource_args = statics
@@ -205,7 +188,7 @@ pub fn interrupt(
             let ident = &statik.ident;
             let ty = &statik.ty;
             let expr = &statik.expr;
-            quote::quote! {
+            quote! {
                 #(#cfgs)*
                 {
                     #(#attrs)*
@@ -216,30 +199,23 @@ pub fn interrupt(
         })
         .collect::<Vec<_>>();
 
-    let vect = if let Some(v) = vector::lookup_vector(&chip, &ident_s) {
-        v
-    } else {
-        return syn::parse::Error::new(
-            proc_macro2::Span::call_site(),
-            &format!("Chip `{}` or interrupt `{}` unknown", chip, ident_s),
-        )
-        .to_compile_error()
-        .into();
-    };
-    let vector = format!("__vector_{}", vect);
-    let vector_ident = syn::Ident::new(&vector, proc_macro2::Span::call_site());
-    let vector_ident_s = vector_ident.to_string();
+    if let Err(error) = check_attr_whitelist(&f.attrs, WhiteListCaller::Interrupt) {
+        return error;
+    }
 
-    quote::quote! (
+    let (ref cfgs, ref attrs) = extract_cfgs(f.attrs.clone());
+
+    quote!(
+        #(#cfgs)*
+        #(#attrs)*
         #[doc(hidden)]
-        #[export_name = #vector_ident_s]
+        #[export_name = #ident_s]
         pub unsafe extern "avr-interrupt" fn #tramp_ident() {
             #ident(
                 #(#resource_args),*
             )
         }
 
-        #[doc(hidden)]
         #f
     )
     .into()
@@ -296,6 +272,46 @@ fn extract_cfgs(attrs: Vec<syn::Attribute>) -> (Vec<syn::Attribute>, Vec<syn::At
     }
 
     (cfgs, not_cfgs)
+}
+
+enum WhiteListCaller {
+    Entry,
+    Interrupt,
+}
+
+fn check_attr_whitelist(attrs: &[Attribute], caller: WhiteListCaller) -> Result<(), TokenStream> {
+    let whitelist = &[
+        "doc",
+        "link_section",
+        "cfg",
+        "allow",
+        "warn",
+        "deny",
+        "forbid",
+        "cold",
+        "naked",
+    ];
+
+    'o: for attr in attrs {
+        for val in whitelist {
+            if eq(attr, val) {
+                continue 'o;
+            }
+        }
+
+        let err_str = match caller {
+            WhiteListCaller::Entry => "this attribute is not allowed on an avr-device entry point",
+            WhiteListCaller::Interrupt => {
+                "this attribute is not allowed on an interrupt handler controlled by avr-device"
+            }
+        };
+
+        return Err(parse::Error::new(attr.span(), err_str)
+            .to_compile_error()
+            .into());
+    }
+
+    Ok(())
 }
 
 /// Returns `true` if `attr.path` matches `name`

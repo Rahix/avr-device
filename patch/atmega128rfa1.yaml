@@ -1,5 +1,3 @@
-_svd: ../svd/atmega128rfa1.svd
-
 # this isn't complete, but the MAN_ID_0 field is broken into bits, and has an
 # associated 8-bit wide enum which is associated with bit 0 rather than the
 # entire register. many other registers within the TRX24 are incorrectly split
