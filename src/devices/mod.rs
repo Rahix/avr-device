@@ -87,6 +87,10 @@ pub mod atmega64;
 #[cfg(feature = "atmega644")]
 pub mod atmega644;
 
+/// [ATmega88P](https://www.microchip.com/wwwproducts/en/ATmega88P)
+#[cfg(feature = "atmega88p")]
+pub mod atmega88p;
+
 /// [ATtiny13A](https://www.microchip.com/wwwproducts/en/ATtiny13A)
 #[cfg(feature = "attiny13a")]
 pub mod attiny13a;
