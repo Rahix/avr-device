@@ -82,6 +82,6 @@ ufmt = { version = "0.2.0", optional = true }
 critical-section = { version = "1.1.1", optional = true }
 
 [dependencies.avr-device-macros]
-path = "macros/"
+path = "macros"
 version = "=0.6.0"
 optional = true
