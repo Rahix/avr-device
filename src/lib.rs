@@ -26,11 +26,16 @@
 #![cfg_attr(feature = "attiny167", doc = "**attiny167**,")]
 #![cfg_attr(feature = "attiny1614", doc = "**attiny1614**,")]
 #![cfg_attr(feature = "attiny202", doc = "**attiny202**,")]
+#![cfg_attr(feature = "attiny212", doc = "**attiny212**,")]
+#![cfg_attr(feature = "attiny214", doc = "**attiny214**,")]
 #![cfg_attr(feature = "attiny2313", doc = "**attiny2313**,")]
 #![cfg_attr(feature = "attiny2313a", doc = "**attiny2313a**,")]
 #![cfg_attr(feature = "attiny26", doc = "**attiny26**,")]
 #![cfg_attr(feature = "attiny402", doc = "**attiny402**,")]
 #![cfg_attr(feature = "attiny404", doc = "**attiny404**,")]
+#![cfg_attr(feature = "attiny412", doc = "**attiny412**,")]
+#![cfg_attr(feature = "attiny414", doc = "**attiny414**,")]
+#![cfg_attr(feature = "attiny416", doc = "**attiny416**,")]
 #![cfg_attr(feature = "attiny44a", doc = "**attiny44a**,")]
 #![cfg_attr(feature = "attiny816", doc = "**attiny816**,")]
 #![cfg_attr(feature = "attiny828", doc = "**attiny828**,")]
@@ -76,11 +81,16 @@
 //! `attiny167`,
 //! `attiny1614`,
 //! `attiny202`,
+//! `attiny212`,
+//! `attiny214`,
 //! `attiny2313`,
 //! `attiny2313a`,
 //! `attiny26`,
 //! `attiny402`,
 //! `attiny404`,
+//! `attiny412`,
+//! `attiny414`,
+//! `attiny416`,
 //! `attiny44a`,
 //! `attiny816`,
 //! `attiny828`,
@@ -240,10 +250,15 @@ compile_error!(
     * attiny167
     * attiny1614
     * attiny202
+    * attiny212
+    * attiny214
     * attiny2313
     * attiny2313a
     * attiny26
     * attiny402
+    * attiny412
+    * attiny414
+    * attiny416
     * attiny44a
     * attiny816
     * attiny828
@@ -313,6 +328,10 @@ pub use crate::devices::attiny1614;
 pub use crate::devices::attiny167;
 #[cfg(feature = "attiny202")]
 pub use crate::devices::attiny202;
+#[cfg(feature = "attiny212")]
+pub use crate::devices::attiny212;
+#[cfg(feature = "attiny214")]
+pub use crate::devices::attiny214;
 #[cfg(feature = "attiny2313")]
 pub use crate::devices::attiny2313;
 #[cfg(feature = "attiny2313a")]
@@ -323,6 +342,12 @@ pub use crate::devices::attiny26;
 pub use crate::devices::attiny402;
 #[cfg(feature = "attiny404")]
 pub use crate::devices::attiny404;
+#[cfg(feature = "attiny412")]
+pub use crate::devices::attiny412;
+#[cfg(feature = "attiny414")]
+pub use crate::devices::attiny414;
+#[cfg(feature = "attiny416")]
+pub use crate::devices::attiny416;
 #[cfg(feature = "attiny44a")]
 pub use crate::devices::attiny44a;
 #[cfg(feature = "attiny816")]
