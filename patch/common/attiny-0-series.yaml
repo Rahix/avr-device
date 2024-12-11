@@ -1,4 +1,5 @@
 # This is probably good for at least ATtiny202/204/402/404/406, but may not be valid for ATtiny80* and ATtiny160*
+# This is also good for ATtiny212/214/412/414/416, but may not be valid for ATtiny81* and ATtiny161*
 
 TCB0:
   CTRLB:
@@ -46,12 +47,11 @@ SIGROW:
     "TEMPSENSE1":
       description: "Temperature Sensor Calibration: Offset"
   _array:
-    "DEVICEID*" : {}
-    "SERNUM*" : {}
+    "DEVICEID*": {}
+    "SERNUM*": {}
 
 # All FUSEs are read-only from the CPU (can only be modified with UPDI)
 FUSE:
   _modify:
     "*":
       access: read-only
-
