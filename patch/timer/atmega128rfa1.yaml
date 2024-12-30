@@ -1,0 +1,99 @@
+# This intermediate file is needed because peripheral-level includes are not
+# supported in top-level files.
+
+
+# _replace_enum for timers added due to the enum patch applied only for first COM*
+# definition (svdtools 0.1.27), works correctly with svdtools 0.3.20
+TC0:
+  _include:
+    - "dev/8bit.yaml"
+  TCCR0A:
+    COM0A:
+      _replace_enum:
+        DISCONNECTED: [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE: [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR: [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET: [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
+
+TC1:
+  _include:
+    - "dev/16bit.yaml"
+
+  TCCR1A:
+    COM1A:
+      _replace_enum:
+        DISCONNECTED: [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE: [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR: [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET: [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
+    COM1B:
+      _replace_enum:
+        disconnected: [0, "Normal port operation, OC0A disconnected"]
+        match_toggle: [1, "Toggle OC0A on Compare Match"]
+        match_clear: [2, "Clear OC0A on Compare Match"]
+        match_set: [3, "Set OC0A on Compare Match"]
+
+TC2:
+  _include:
+    - "dev/8bit-async.yaml"
+  TCCR2A:
+    COM2A:
+      _replace_enum:
+        DISCONNECTED: [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE: [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR: [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET: [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
+
+TC3:
+  _include:
+    - "dev/16bit.yaml"
+
+  TCCR3A:
+    COM3A:
+      _replace_enum:
+        DISCONNECTED: [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE: [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR: [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET: [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
+    COM3B:
+      _replace_enum:
+        disconnected: [0, "Normal port operation, OC0A disconnected"]
+        match_toggle: [1, "Toggle OC0A on Compare Match"]
+        match_clear: [2, "Clear OC0A on Compare Match"]
+        match_set: [3, "Set OC0A on Compare Match"]
+
+TC4:
+  _include:
+    - "dev/16bit.yaml"
+
+  TCCR4A:
+    COM4A:
+      _replace_enum:
+        DISCONNECTED: [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE: [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR: [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET: [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
+    COM4B:
+      _replace_enum:
+        disconnected: [0, "Normal port operation, OC0A disconnected"]
+        match_toggle: [1, "Toggle OC0A on Compare Match"]
+        match_clear: [2, "Clear OC0A on Compare Match"]
+        match_set: [3, "Set OC0A on Compare Match"]
+
+TC5:
+  _include:
+    - "dev/16bit.yaml"
+
+  TCCR5A:
+    COM5A:
+      _replace_enum:
+        DISCONNECTED: [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE: [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR: [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at BOTTOM)"]
+        MATCH_SET: [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at BOTTOM)"]
+    COM5B:
+      _replace_enum:
+        disconnected: [0, "Normal port operation, OC0A disconnected"]
+        match_toggle: [1, "Toggle OC0A on Compare Match"]
+        match_clear: [2, "Clear OC0A on Compare Match"]
+        match_set: [3, "Set OC0A on Compare Match"]
