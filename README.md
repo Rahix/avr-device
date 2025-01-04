@@ -15,11 +15,11 @@ Via the feature you can select which chip you want the register specifications f
 |     ATmega      |  ATmega USB  | ATmega 0,1 Series |     AT90      |    ATtiny     |
 | :-------------: | :----------: | :---------------: | :-----------: | :-----------: |
 |    `atmega8`    | `atmega8u2`  |   `atmega4808`    | `at90usb1286` |  `attiny13a`  |
-|   `atmega48p`   | `atmega32u4` |   `atmega4809`    |               |  `attiny167`  |
-|   `atmega64`    | `avr64du32`  |                   |               |  `attiny202`  |
-|   `atmega644`   | `avr64du28`  |                   |               |  `attiny212`  |
-|   `atmega88p`   |              |                   |               |  `attiny214`  |
-|   `atmega16`    |              |                   |               |  `attiny402`  |
+|   `atmega48p`   | `atmega16u2` |   `atmega4809`    |               |  `attiny167`  |
+|   `atmega64`    | `atmega32u2` |                   |               |  `attiny202`  |
+|   `atmega644`   | `atmega32u4` |                   |               |  `attiny212`  |
+|   `atmega88p`   | `avr64du32`  |                   |               |  `attiny214`  |
+|   `atmega16`    | `avr64du28`  |                   |               |  `attiny402`  |
 |   `atmega168`   |              |                   |               |  `attiny404`  |
 |  `atmega324pa`  |              |                   |               |  `attiny412`  |
 |  `atmega328p`   |              |                   |               |  `attiny414`  |

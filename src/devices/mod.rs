@@ -35,6 +35,10 @@ pub mod atmega164pa;
 #[cfg(feature = "atmega168")]
 pub mod atmega168;
 
+/// [ATmega16u2](https://www.microchip.com/wwwproducts/en/ATmega16u2)
+#[cfg(feature = "atmega16u2")]
+pub mod atmega16u2;
+
 /// [ATmega2560](https://www.microchip.com/wwwproducts/en/ATmega2560)
 #[cfg(feature = "atmega2560")]
 pub mod atmega2560;
@@ -54,6 +58,10 @@ pub mod atmega328pb;
 /// [ATmega32A](https://www.microchip.com/wwwproducts/en/ATmega32A)
 #[cfg(feature = "atmega32a")]
 pub mod atmega32a;
+
+/// [ATmega32u2](https://www.microchip.com/wwwproducts/en/ATmega32u2)
+#[cfg(feature = "atmega32u2")]
+pub mod atmega32u2;
 
 /// [ATmega32U4](https://www.microchip.com/wwwproducts/en/ATmega32U4)
 #[cfg(feature = "atmega32u4")]
