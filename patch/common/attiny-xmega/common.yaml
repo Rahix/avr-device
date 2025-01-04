@@ -62,3 +62,15 @@ PORT*:
     IN:
       name: INPUT
 
+SPI*:
+  CTRLA:
+    PRESC:
+      _replace_enum:
+        CLK_PER_4_2:
+          [0, "Peripheral clock / 4 if CLK2X == 0 else Peripheral clock / 2"]
+        CLK_PER_16_8:
+          [1, "Peripheral clock / 16 if CLK2X == 0 else Peripheral clock / 8"]
+        CLK_PER_64_32:
+          [2, "Peripheral clock / 64 if CLK2X == 0 else Peripheral clock / 32"]
+        CLK_PER_128_64:
+          [3, "Peripheral clock / 128 if CLK2X == 0 else Peripheral clock / 64"]
