@@ -1,0 +1,107 @@
+PORTC:
+  _delete:
+    OUTSET:
+  _add:
+    OUTSET:
+      description: Output Value Set
+      addressOffset: 0x5
+      size: 0x8
+      access: read-write
+      fields:
+        PC0:
+          description: Pin C0
+          bitRange: "[0:0]"
+          access: read-write
+        PC1:
+          description: Pin C1
+          bitRange: "[1:1]"
+          access: read-write
+        PC2:
+          description: Pin C2
+          bitRange: "[2:2]"
+          access: read-write
+        PC3:
+          description: Pin C3
+          bitRange: "[3:3]"
+          access: read-write
+PORTD:
+  _delete:
+    OUTSET:
+  _add:
+    OUTSET:
+      description: Output Value Set
+      addressOffset: 0x5
+      size: 0x8
+      access: read-write
+      fields:
+        PD0:
+          description: Pin D0
+          bitRange: "[0:0]"
+          access: read-write
+        PD1:
+          description: Pin D1
+          bitRange: "[1:1]"
+          access: read-write
+        PD2:
+          description: Pin D2
+          bitRange: "[2:2]"
+          access: read-write
+        PD3:
+          description: Pin D3
+          bitRange: "[3:3]"
+          access: read-write
+        PD4:
+          description: Pin D4
+          bitRange: "[4:4]"
+          access: read-write
+        PD5:
+          description: Pin D5
+          bitRange: "[5:5]"
+          access: read-write
+        PD6:
+          description: Pin D6
+          bitRange: "[6:6]"
+          access: read-write
+        PD7:
+          description: Pin D7
+          bitRange: "[7:7]"
+          access: read-write
+          
+PORTF:
+  _delete:
+    OUTSET:
+  _add:
+    OUTSET:
+      description: Output Value Set
+      addressOffset: 0x5
+      size: 0x8
+      access: read-write
+      fields:
+        PF0:
+          description: Pin F0
+          bitRange: "[0:0]"
+          access: read-write
+        PF1:
+          description: Pin F1
+          bitRange: "[1:1]"
+          access: read-write
+        PF2:
+          description: Pin F2
+          bitRange: "[2:2]"
+          access: read-write
+        PF3:
+          description: Pin F3
+          bitRange: "[3:3]"
+          access: read-write
+        PF4:
+          description: Pin F4
+          bitRange: "[4:4]"
+          access: read-write
+        PF5:
+          description: Pin F5
+          bitRange: "[5:5]"
+          access: read-write
+        PF6:
+          description: Pin F6
+          bitRange: "[6:6]"
+          access: read-write
