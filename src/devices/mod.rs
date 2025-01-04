@@ -67,6 +67,14 @@ pub mod atmega32u2;
 #[cfg(feature = "atmega32u4")]
 pub mod atmega32u4;
 
+/// [ATmega3208](https://www.microchip.com/wwwproducts/en/ATmega3208)
+#[cfg(feature = "atmega3208")]
+pub mod atmega3208;
+
+/// [ATmega3209](https://www.microchip.com/wwwproducts/en/ATmega3209)
+#[cfg(feature = "atmega3209")]
+pub mod atmega3209;
+
 /// [ATmega4808](https://www.microchip.com/wwwproducts/en/ATmega4808)
 #[cfg(feature = "atmega4808")]
 pub mod atmega4808;
