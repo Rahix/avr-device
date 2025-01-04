@@ -66,6 +66,21 @@ jobs:
       - name: Test-compile the crate
         run: cargo check --all-features
 
+      # Package artifacts
+      - name: Generate a cargo package for the macros
+        run: cd macros/; cargo package --no-verify --allow-dirty
+      - name: Generate a cargo package for avr-device
+        run: cargo package --no-verify --allow-dirty
+
+      # Upload artifacts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: avr-device
+          path: |
+            svd/
+            target/package/avr-device-*.crate
+            macros/target/package/avr-device-macros-*.crate
+
   ci-example:
     name: "Test-build ATmega328P example"
     runs-on: ubuntu-latest
