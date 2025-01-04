@@ -34,7 +34,7 @@ jobs:
         id: cache-cargo
         with:
           path: ~/cargo-bin
-          key: rust-tools-006
+          key: rust-tools-20250104-001
       - name: Install svd2rust
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: cargo install svd2rust --version 0.28.0 --locked
@@ -43,7 +43,7 @@ jobs:
         run: cargo install form --version 0.8.0 --locked
       - name: Install atdf2svd
         if: steps.cache-cargo.outputs.cache-hit != 'true'
-        run: cargo install atdf2svd --version 0.4.0 --locked
+        run: cargo install atdf2svd --version 0.5.0 --locked
       - name: Copy tools to cache directory
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
