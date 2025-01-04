@@ -55,3 +55,10 @@ FUSE:
   _modify:
     "*":
       access: read-only
+
+PORT*:
+  _modify:
+    # 'in' is reserved
+    IN:
+      name: INPUT
+
