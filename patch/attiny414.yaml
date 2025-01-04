@@ -1,5 +1,5 @@
 _svd: ../svd/attiny414.svd
 
 _include:
-  - common/attiny-0-series.yaml
-  - common/attiny-1-series.yaml
+  - common/attiny-xmega/common.yaml
+  - common/attiny-xmega/1-series.yaml

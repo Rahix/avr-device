@@ -1,5 +1,5 @@
-# This is probably good for at least ATtiny202/204/402/404/406, but may not be valid for ATtiny80* and ATtiny160*
-# This is also good for ATtiny212/214/412/414/416, but may not be valid for ATtiny81* and ATtiny161*
+# This is probably good for ATtiny20x, ATtiny40x, ATtiny21x, ATtiny41x
+# It may not be enough for Attiny8xx, ATtiny16xx, or ATtinyx2x
 
 TCB0:
   CTRLB:
