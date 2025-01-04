@@ -1,0 +1,4 @@
+# Nothing needed beyond common config
+# This is probably good for at least ATtiny212/214/412/414/416, but may not be valid for ATtiny81* and ATtiny161*
+
+{}
