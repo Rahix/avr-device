@@ -7,12 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Added support for `ATtiny212`, `ATtiny214`. `ATtiny412`, `ATtiny414`, `ATtiny416` ([#167]).
+- Added support for `ATmega16U2` and `ATmega32U2` ([#164]).
+- Added support for `ATmega3208` and `ATmega3209` ([#164]).
+
+### Changed
+- **BREAKING** Upgraded to `atdf2svd` version 0.5.0 ([#170]).  This is a
+  breaking change because some registers now have fields instead of safe
+  `.bits()` access.  Chech the pull-request for details.
+- **BREAKING** Renamed `in` to `input` in ATtiny-xmega PORT registers ([#171]).
 
 ### Fixed
 - Fixed `ATmega88P` not being available ([#166]).
 
+[#164]: https://github.com/Rahix/avr-device/pull/164
 [#166]: https://github.com/Rahix/avr-device/pull/166
 [#167]: https://github.com/Rahix/avr-device/pull/167
+[#170]: https://github.com/Rahix/avr-device/pull/170
+[#171]: https://github.com/Rahix/avr-device/pull/171
 
 
 ## [0.6.0] - 2024-09-20
