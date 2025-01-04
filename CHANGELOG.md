@@ -5,8 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Added support for `ATtiny212`, `ATtiny214`. `ATtiny412`, `ATtiny414`, `ATtiny416` ([#167]).
+
 ### Fixed
 - Fixed `ATmega88P` not being available ([#166]).
+
+[#166]: https://github.com/Rahix/avr-device/pull/166
+[#167]: https://github.com/Rahix/avr-device/pull/167
 
 
 ## [0.6.0] - 2024-09-20
