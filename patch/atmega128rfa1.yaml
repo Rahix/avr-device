@@ -669,14 +669,6 @@ PORTG:
         description: Pin G5
         bitRange: "[5:5]"
         access: read-write
-      PG6:
-        description: Pin G6
-        bitRange: "[6:6]"
-        access: read-write
-      PG7:
-        description: Pin G7
-        bitRange: "[7:7]"
-        access: read-write
   PORTG:
     _add:
       PG0:
@@ -702,14 +694,6 @@ PORTG:
       PG5:
         description: Pin G5
         bitRange: "[5:5]"
-        access: read-write
-      PG6:
-        description: Pin G6
-        bitRange: "[6:6]"
-        access: read-write
-      PG7:
-        description: Pin G7
-        bitRange: "[7:7]"
         access: read-write
   PING:
     _add:
