@@ -40,20 +40,13 @@ Via the feature you can select which chip you want the register specifications f
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
 
-You need to have [atdf2svd][] (= 0.5.0), [svd2rust][] (= 0.28), [form][] (>= 0.8), [rustfmt][](for the *nightly* toolchain) and [svdtools][] (>= 0.1.9) installed:
+You need to have [atdf2svd][] (= 0.5.0), [svd2rust][] (= 0.28), [form][] (>= 0.8), [rustfmt][](for the *nightly* toolchain) and [svdtools][] (= 0.3.21) installed:
 ```bash
 cargo install atdf2svd --version 0.5.0 --locked
 cargo install svd2rust --version 0.28.0 --locked
 cargo install form
 rustup component add --toolchain nightly rustfmt
-pip3 install --user svdtools
-
-# check svdtools
-svd --version
-# if a "command not found" error is printed instead of a version,
-# either svdtools is installed incorrectly, or its installation path is missing from the PATH variable.
-# Temporary solution to PATH variable issue is to manually add the path. Like so:
-export PATH=$PATH:~/.local/bin
+cargo install svdtools --version 0.3.21 --locked
 ```
 
 [atdf2svd]: https://github.com/Rahix/atdf2svd

@@ -1,6 +1,6 @@
 PORTC:
   _delete:
-    OUTSET:
+    - OUTSET
   _add:
     OUTSET:
       description: Output Value Set
@@ -26,7 +26,7 @@ PORTC:
           access: read-write
 PORTD:
   _delete:
-    OUTSET:
+    - OUTSET
   _add:
     OUTSET:
       description: Output Value Set
@@ -69,7 +69,7 @@ PORTD:
           
 PORTF:
   _delete:
-    OUTSET:
+    - OUTSET
   _add:
     OUTSET:
       description: Output Value Set
