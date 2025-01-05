@@ -82,7 +82,7 @@ CPU:
         PRESCALER_256: [8, "Prescaler Value 256"]
   MCUCR:
     _delete:
-      ISC?:
+      - ISC?
     _add:
       BODS:
         description: "BOD Sleep (available on some devices)"

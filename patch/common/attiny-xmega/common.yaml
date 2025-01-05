@@ -56,7 +56,7 @@ FUSE:
     "*":
       access: read-only
 
-PORT*:
+PORT[A-Z]:
   _modify:
     # 'in' is reserved
     IN:

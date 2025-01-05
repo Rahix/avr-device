@@ -1,7 +1,7 @@
 EXINT:
   MCUCR:
     _delete:
-      ISC??:
+      - ISC??
     _add:
       ISC0:
         description: "Interrupt Sense Control 0 bits"
