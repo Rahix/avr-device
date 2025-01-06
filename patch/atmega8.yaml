@@ -41,7 +41,8 @@ ADC:
 USART:
   UCSRA:
     _modify:
-      PE:
+      UPE:
+        name: PE
         access: read-only
       DOR:
         access: read-only

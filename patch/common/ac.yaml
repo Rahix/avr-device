@@ -9,7 +9,7 @@ AC:
     _modify:
       ACIS,ACIS?:
         description: "Analog Comparator Interrupt Mode Select"
-      ACO:
+      ACO*:
         access: read-only
     ACIS,ACIS?:
       _replace_enum:

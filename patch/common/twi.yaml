@@ -11,7 +11,7 @@ TWI*:
         access: read-only
   TWAMR:
     _modify:
-      TWAM:
+      TWAM*:
         description: "TWI (Slave) Address Mask Bits"
   TWSR:
     _modify:
