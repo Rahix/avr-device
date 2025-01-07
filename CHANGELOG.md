@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Switched to the rust version of svdtools ([#174]).
+- Better register definitions for peripherals of the ATmega128RFA1 ([#173]).
+
+[#173]: https://github.com/Rahix/avr-device/pull/173
+[#174]: https://github.com/Rahix/avr-device/pull/174
 
 
 ## [0.7.0] - 2025-01-05
