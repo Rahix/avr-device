@@ -74,13 +74,18 @@ fn build_mcu_module(mcu: &str) {
     let patch_file = patch_dir.join(format!("{}.yaml", mcu));
     println!("cargo::rerun-if-changed={}", patch_file.display());
 
+    let out_dir = env::var("OUT_DIR").unwrap();
     // Get a temporary directory to work inside.
-    let temp_dir = env::temp_dir().join(format!("avr-device-build-{}", mcu));
-    ensure_directory(&temp_dir);
+    let svd_dir = Path::new(&out_dir).join("svd");
+    ensure_directory(&svd_dir);
+    let svd_unpatched_dir = svd_dir.join("unpatched");
+    ensure_directory(&svd_unpatched_dir);
+    let svd_patched_dir = svd_dir.join("patched");
+    ensure_directory(&svd_patched_dir);
 
     // Apply atdf2svd.
     let atdf_parsed = get_atdf_parsed(mcu);
-    let svd_file = temp_dir.join("unpatched.svd");
+    let svd_file = svd_unpatched_dir.join(mcu).with_extension("svd");
     let svd_writer = File::create(&svd_file).unwrap();
     if let Err(what) = svd::generate(&atdf_parsed, svd_writer) {
         let _ = what.format(&mut io::stdout());
@@ -99,9 +104,9 @@ _include:
             svd_file.display(),
             patch_file.display()
         );
-        let includer_file = temp_dir.join("patch.yaml");
+        let includer_file = svd_dir.join("patch.yaml");
         fs::write(&includer_file, &includer_content).unwrap();
-        let svd_patched_file = temp_dir.join("patched.svd");
+        let svd_patched_file = svd_patched_dir.join(mcu).with_extension("svd");
         patch::process_file(
             &includer_file,
             Some(&svd_patched_file),
@@ -118,7 +123,6 @@ _include:
     }
 
     // Apply svd2rust.
-    let out_dir = env::var("OUT_DIR").unwrap();
     let pac_dir = Path::new(&out_dir).join("pac");
     ensure_directory(&pac_dir);
     let mut svd2rust_config = svd2rust::Config::default();

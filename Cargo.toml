@@ -19,6 +19,7 @@ include = [
     "/src/**/*.rs",
     "/vendor/*.atdf",
     "/vendor/LICENSE",
+    "/examples/**/src/*.rs"
 ]
 
 [package.metadata.docs.rs]
