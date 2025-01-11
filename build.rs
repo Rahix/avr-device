@@ -8,9 +8,9 @@ use std::{
     fs::{self, File},
     io::{self, Write},
     path::{Path, PathBuf},
-    process::{Command, Stdio},
 };
 use svdtools::patch;
+use syn::Item;
 
 fn main() {
     println!("cargo::rustc-check-cfg=cfg(single_mcu)");
@@ -135,26 +135,19 @@ _include:
     svd2rust_config.interrupt_link_section = Some(".text.vector".to_owned());
     let generated = svd2rust::generate(&svd_content, &svd2rust_config).unwrap();
 
-    // HACK: Using simple pattern replacement like this is likely to break
-    // with any formatting changes in the input. Ideally we'd parse it somehow,
-    // but that'd increase compile time. Perhaps reopening the file after
-    // rustfmt runs and patching that would be less fickle.
-    let pat = "# [no_mangle] static mut DEVICE_PERIPHERALS : bool = false ;";
-    let lib_rs = generated
-        .lib_rs
-        .replace(pat, "use super::DEVICE_PERIPHERALS;");
-    let module_file = pac_dir.join(mcu).with_extension("rs");
-    fs::write(&module_file, lib_rs).unwrap();
-
-    let status = Command::new("rustfmt")
-        .arg(module_file.to_str().unwrap())
-        .stdin(Stdio::null())
-        .stdout(Stdio::null())
-        .status()
-        .unwrap();
-    if let Err(what) = status.exit_ok() {
-        panic!("rustfmt failed to format generated source with: {}", what);
+    let mut syntax_tree = syn::parse_file(&generated.lib_rs).unwrap();
+    for item in syntax_tree.items.iter_mut().rev() {
+        {
+            let Item::Static(statik) = item else { continue };
+            if &statik.ident.to_string() != "DEVICE_PERIPHERALS" {
+                continue;
+            }
+        }
+        *item = syn::parse_quote! {use super::DEVICE_PERIPHERALS;};
     }
+    let formatted = prettyplease::unparse(&syntax_tree);
+    let module_file = pac_dir.join(mcu).with_extension("rs");
+    fs::write(&module_file, &formatted).unwrap();
 }
 
 fn ensure_directory(dir: &Path) {
