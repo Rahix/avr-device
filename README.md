@@ -20,21 +20,25 @@ Via the feature you can select which chip you want the register specifications f
 |   `atmega644`   | `atmega32u4` |   `atmega4809`    | `at90can32`   |  `attiny204`  |
 |   `atmega88p`   | `avr64du32`  |                   |               |  `attiny212`  |
 |   `atmega16`    | `avr64du28`  |                   |               |  `attiny214`  |
-|   `atmega168`   |              |                   |               |  `attiny402`  |
-|  `atmega324pa`  |              |                   |               |  `attiny404`  |
-|  `atmega328p`   |              |                   |               |  `attiny412`  |
-|  `atmega328pb`  |              |                   |               |  `attiny414`  |
-|  `atmega32a`    |              |                   |               |  `attiny416`  |
-|  `atmega1280`   |              |                   |               |  `attiny44a`  |
-|  `atmega1284p`  |              |                   |               |  `attiny84`   |
-|  `atmega128a`   |              |                   |               |  `attiny85`   |
-| `atmega128rfa1` |              |                   |               |  `attiny88`   |
-|  `atmega2560`   |              |                   |               |  `attiny804`  |
-|  `atmega164pa`  |              |                   |               |  `attiny816`  |
+|   `atmega168`   |              |                   |               |  `attiny26`   |
+|  `atmega324pa`  |              |                   |               |  `attiny261a` |
+|  `atmega328p`   |              |                   |               |  `attiny402`  |
+|  `atmega328pb`  |              |                   |               |  `attiny404`  |
+|  `atmega32a`    |              |                   |               |  `attiny412`  |
+|  `atmega1280`   |              |                   |               |  `attiny414`  |
+|  `atmega1284p`  |              |                   |               |  `attiny416`  |
+|  `atmega128a`   |              |                   |               |  `attiny44a`  |
+| `atmega128rfa1` |              |                   |               |  `attiny461a` |
+|  `atmega2560`   |              |                   |               |  `attiny84`   |
+|  `atmega164pa`  |              |                   |               |  `attiny85`   |
+|                 |              |                   |               |  `attiny88`   |
+|                 |              |                   |               |  `attiny804`  |
+|                 |              |                   |               |  `attiny816`  |
 |                 |              |                   |               |  `attiny828`  |
 |                 |              |                   |               |  `attiny841`  |
 |                 |              |                   |               |  `attiny84a`  |
 |                 |              |                   |               |  `attiny861`  |
+|                 |              |                   |               |  `attiny861a` |
 |                 |              |                   |               | `attiny1604`  |
 |                 |              |                   |               | `attiny1606`  |
 |                 |              |                   |               | `attiny1614`  |
