@@ -26,10 +26,10 @@ jobs:
         id: cache-cargo
         with:
           path: ~/cargo-bin
-          key: rust-tools-20250106-001
+          key: rust-tools-20250111-001
       - name: Install svd2rust
         if: steps.cache-cargo.outputs.cache-hit != 'true'
-        run: cargo install svd2rust --version 0.28.0 --locked
+        run: cargo install svd2rust --version 0.35.0 --locked
       - name: Install cargo-form
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: cargo install form --version 0.8.0 --locked
@@ -53,12 +53,12 @@ jobs:
       - name: Install Nightly Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          toolchain: nightly-2023-08-08
+          toolchain: nightly-2025-01-10
           components: rustfmt
 
       # Actual test run
       - name: Generate chip description sources
-        run: make RUSTUP_TOOLCHAIN=nightly-2023-08-08
+        run: make RUSTUP_TOOLCHAIN=nightly-2025-01-10
       - name: Test-compile the crate
         run: cargo check --all-features
 
@@ -86,10 +86,43 @@ jobs:
       - name: Install Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          toolchain: nightly-2023-12-28
+          toolchain: nightly-2025-01-10
           components: rust-src,rustfmt
+
+      # Rust Dependencies
+      - name: Cache Cargo installed binaries
+        uses: actions/cache@v4
+        id: cache-cargo
+        with:
+          path: ~/cargo-bin
+          key: rust-tools-20250111-001
+      - name: Install svd2rust
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: cargo install svd2rust --version 0.35.0 --locked
+      - name: Install cargo-form
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: cargo install form --version 0.8.0 --locked
+      - name: Install atdf2svd
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: cargo install atdf2svd --version 0.5.0 --locked
+      - name: Install svdtools
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: cargo install svdtools --version 0.4.0 --locked
+      - name: Copy tools to cache directory
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: |
+          mkdir ~/cargo-bin
+          cp ~/.cargo/bin/svd2rust ~/cargo-bin
+          cp ~/.cargo/bin/form ~/cargo-bin
+          cp ~/.cargo/bin/atdf2svd ~/cargo-bin
+          cp ~/.cargo/bin/svdtools ~/cargo-bin
+      - name: Put new cargo binary directory into path
+        run: echo "$HOME/cargo-bin" >> $GITHUB_PATH
+
       - name: Install AVR gcc, binutils, and libc
         run: sudo apt-get install -y avr-libc binutils-avr gcc-avr
+      - name: Generate ATmega328P PAC files
+        run: make atmega328p
       - name: Build ATmega328P example
         run: cd examples/atmega328p && cargo build
       - name: Check ATmega328P formatting
