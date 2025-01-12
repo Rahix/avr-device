@@ -5,6 +5,7 @@ Cargo.lock
 
 svd/
 .deps/
-src/devices/*/*
+src/devices/*.rs
+!src/devices/mod.rs
 src/generic.rs
 __pycache__/

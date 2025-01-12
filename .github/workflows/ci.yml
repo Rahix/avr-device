@@ -26,13 +26,10 @@ jobs:
         id: cache-cargo
         with:
           path: ~/cargo-bin
-          key: rust-tools-20250106-001
+          key: rust-tools-20250112-001
       - name: Install svd2rust
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: cargo install svd2rust --version 0.28.0 --locked
-      - name: Install cargo-form
-        if: steps.cache-cargo.outputs.cache-hit != 'true'
-        run: cargo install form --version 0.8.0 --locked
       - name: Install atdf2svd
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: cargo install atdf2svd --version 0.5.0 --locked
@@ -44,7 +41,6 @@ jobs:
         run: |
           mkdir ~/cargo-bin
           cp ~/.cargo/bin/svd2rust ~/cargo-bin
-          cp ~/.cargo/bin/form ~/cargo-bin
           cp ~/.cargo/bin/atdf2svd ~/cargo-bin
           cp ~/.cargo/bin/svdtools ~/cargo-bin
       - name: Put new cargo binary directory into path
