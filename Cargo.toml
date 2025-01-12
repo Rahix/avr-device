@@ -12,10 +12,14 @@ keywords = ["avr", "arduino"]
 categories = ["no-std", "embedded", "hardware-support"]
 
 include = [
-    "/src/**/*.rs",
     "/LICENSE-*",
     "/README.md",
     "/build.rs",
+    "/patch/**/*.yaml",
+    "/src/**/*.rs",
+    "/vendor/*.atdf",
+    "/vendor/LICENSE",
+    "/examples/**/src/*.rs"
 ]
 
 [package.metadata.docs.rs]
@@ -74,14 +78,66 @@ attiny88 = ["device-selected"]
 attiny1614 = ["device-selected"]
 avr64du32 = ["device-selected"]
 avr64du28 = ["device-selected"]
-rt = ["avr-device-macros"]
+rt = ["avr-device-macros", "critical-section"]
 
+critical-section = ["critical-section-impl"]
 critical-section-impl = ["critical-section/restore-state-u8"]
 
-# Unfortunately, we can only build documentation for a subset of the supported
-# MCUs on docs.rs.  If you think a very popular chip is missing from the list,
-# feel free to add it here.
-docsrs = ["rt", "ufmt", "atmega328p", "atmega32u4", "atmega2560", "attiny85", "atmega4809"]
+docsrs = [
+    "rt",
+    "ufmt",
+    "at90usb1286",
+    "atmega1280",
+    "atmega1284p",
+    "atmega128a",
+    "atmega128rfa1",
+    "atmega16",
+    "atmega16u2",
+    "atmega164pa",
+    "atmega168",
+    "atmega2560",
+    "atmega8",
+    "atmega8u2",
+    "atmega324pa",
+    "atmega328p",
+    "atmega328pb",
+    "atmega3208",
+    "atmega3209",
+    "atmega4808",
+    "atmega4809",
+    "atmega48p",
+    "atmega32a",
+    "atmega32u2",
+    "atmega32u4",
+    "atmega64",
+    "atmega644",
+    "atmega88p",
+    "attiny13a",
+    "attiny167",
+    "attiny202",
+    "attiny212",
+    "attiny214",
+    "attiny2313",
+    "attiny2313a",
+    "attiny26",
+    "attiny402",
+    "attiny404",
+    "attiny412",
+    "attiny414",
+    "attiny416",
+    "attiny44a",
+    "attiny816",
+    "attiny828",
+    "attiny84",
+    "attiny841",
+    "attiny84a",
+    "attiny85",
+    "attiny861",
+    "attiny88",
+    "attiny1614",
+    "avr64du32",
+    "avr64du28",
+]
 
 [dependencies]
 bare-metal = "1.0.0"
@@ -94,3 +150,32 @@ critical-section = { version = "1.1.1", optional = true }
 path = "macros/"
 version = "=0.7.0"
 optional = true
+
+[build-dependencies]
+svd2rust = "0.35.0"
+svdtools = "0.4.0"
+atdf2svd = "0.4.0"
+prettyplease = "0.2"
+syn = { version = "2", default-features = false, features = ["full", "parsing"] }
+
+[dev-dependencies]
+nb = "0.1.2"
+embedded-hal = "0.2.3"
+
+[[example]]
+name = "atmega328p"
+path = "examples/atmega328p/src/main.rs"
+required-features = ["atmega328p", "rt"]
+
+[profile.dev]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"

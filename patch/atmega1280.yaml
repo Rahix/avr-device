@@ -1,11 +1,9 @@
-_svd: ../svd/atmega1280.svd
-
 _include:
   - "common/ac.yaml"
   - "common/adc.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
-  - "common/usart.yaml"
+  - "common/usart-spi.yaml"
   - "common/wdt.yaml"
 
   - "timer/atmega1280-2560.yaml"

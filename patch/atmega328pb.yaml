@@ -1,5 +1,3 @@
-_svd: ../svd/atmega328pb.svd
-
 # Remove index suffix from all registers and fields
 SPI0:
   _strip_end:
@@ -47,7 +45,7 @@ AC:
 
 _include:
   - "common/adc.yaml"
-  - "common/usart.yaml"
+  - "common/usart-spi.yaml"
   - "common/spi.yaml"
   - "common/twi.yaml"
   - "common/wdt.yaml"

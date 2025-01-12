@@ -1,9 +1,7 @@
-_svd: ../svd/atmega164pa.svd
-
 _include:
   - "common/adc.yaml"
   - "common/twi.yaml"
-  - "common/usart.yaml"
+  - "common/usart-spi.yaml"
   - "common/wdt.yaml"
 
 EEPROM:

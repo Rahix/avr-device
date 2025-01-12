@@ -22,6 +22,7 @@ USART?:
       _replace_enum:
         USART_ASYNC: [0, "Asynchronous USART"]
         USART_SYNC:  [1, "Synchronous USART"]
+        SPI_MASTER:  [3, "Master SPI (MSPIM)"]
     UPM?:
       _replace_enum:
         DISABLED:    [0, "Disabled"]
