@@ -40,18 +40,16 @@ Via the feature you can select which chip you want the register specifications f
 ## Build Instructions
 The version on `crates.io` is pre-built.  The following is only necessary when trying to build this crate from source.
 
-You need to have [atdf2svd][] (= 0.5.0), [svd2rust][] (= 0.28), [form][] (>= 0.8), [rustfmt][](for the *nightly* toolchain) and [svdtools][] (= 0.4.0) installed:
+You need to have [atdf2svd][] (= 0.5.0), [svd2rust][] (= 0.28), [rustfmt][](for the *nightly* toolchain) and [svdtools][] (= 0.4.0) installed:
 ```bash
 cargo install atdf2svd --version 0.5.0 --locked
 cargo install svd2rust --version 0.28.0 --locked
-cargo install form
 rustup component add --toolchain nightly rustfmt
 cargo install svdtools --version 0.4.0 --locked
 ```
 
 [atdf2svd]: https://github.com/Rahix/atdf2svd
 [svd2rust]: https://github.com/rust-embedded/svd2rust
-[form]: https://github.com/djmcgill/form
 [rustfmt]: https://github.com/rust-lang/rustfmt
 [svdtools]: https://github.com/stm32-rs/svdtools
 
