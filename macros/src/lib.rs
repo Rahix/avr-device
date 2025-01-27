@@ -1,8 +1,8 @@
-// Adapted from https://github.com/rust-embedded/cortex-m-rt/blob/master/macros/src/lib.rs
+//! Adapted from <https://github.com/rust-embedded/cortex-m/blob/ce12620be0e51f9a8bbe6bb67cfc131201b55f34/cortex-m-rt/macros/src/lib.rs>
+//!
+//! Do not use this crate directly.
 
 extern crate proc_macro;
-
-mod vector;
 
 use syn::spanned::Spanned;
 
@@ -83,7 +83,7 @@ pub fn entry(
             let expr = &statik.expr;
             quote::quote! {
                 #(#cfgs)*
-                {
+                unsafe {
                     #(#attrs)*
                     static mut #ident: #ty = #expr;
                     &mut #ident
@@ -91,6 +91,12 @@ pub fn entry(
             }
         })
         .collect::<Vec<_>>();
+
+    if let Err(error) = check_attr_whitelist(&f.attrs, WhiteListCaller::Entry) {
+        return error;
+    }
+
+    let (ref cfgs, ref attrs) = extract_cfgs(f.attrs.clone());
 
     quote::quote! (
         #[cfg(not(any(doc, target_arch = "avr")))]
@@ -100,6 +106,8 @@ pub fn entry(
        https://github.com/Rahix/avr-device/pull/41 for more details."
         );
 
+        #(#cfgs)*
+        #(#attrs)*
         #[doc(hidden)]
         #[export_name = "main"]
         pub unsafe extern "C" fn #tramp_ident() {
@@ -125,11 +133,10 @@ pub fn interrupt(
 
     let fspan = f.span();
     let ident = f.sig.ident.clone();
-    let ident_s = ident.to_string();
 
     let chip = if let Some(tree) = args.get(0) {
         if let proc_macro::TokenTree::Ident(ident) = tree {
-            ident.to_string()
+            syn::Ident::new(&ident.to_string(), fspan)
         } else {
             return syn::parse::Error::new(
                 proc_macro2::Span::call_site(),
@@ -192,12 +199,6 @@ pub fn interrupt(
     }));
     f.block.stmts = stmts;
 
-    let tramp_ident = syn::Ident::new(
-        &format!("{}_trampoline", f.sig.ident),
-        proc_macro2::Span::call_site(),
-    );
-    let ident = &f.sig.ident;
-
     let resource_args = statics
         .iter()
         .map(|statik| {
@@ -207,7 +208,7 @@ pub fn interrupt(
             let expr = &statik.expr;
             quote::quote! {
                 #(#cfgs)*
-                {
+                unsafe {
                     #(#attrs)*
                     static mut #ident: #ty = #expr;
                     &mut #ident
@@ -216,32 +217,30 @@ pub fn interrupt(
         })
         .collect::<Vec<_>>();
 
-    let vect = if let Some(v) = vector::lookup_vector(&chip, &ident_s) {
-        v
-    } else {
-        return syn::parse::Error::new(
-            proc_macro2::Span::call_site(),
-            &format!("Chip `{}` or interrupt `{}` unknown", chip, ident_s),
-        )
-        .to_compile_error()
-        .into();
-    };
-    let vector = format!("__vector_{}", vect);
-    let vector_ident = syn::Ident::new(&vector, proc_macro2::Span::call_site());
-    let vector_ident_s = vector_ident.to_string();
+    if let Err(error) = check_attr_whitelist(&f.attrs, WhiteListCaller::Interrupt) {
+        return error;
+    }
 
-    quote::quote! (
-        #[doc(hidden)]
-        #[export_name = #vector_ident_s]
-        pub unsafe extern "avr-interrupt" fn #tramp_ident() {
-            #ident(
+    let (ref cfgs, ref attrs) = extract_cfgs(f.attrs.clone());
+
+    let tramp_ident = syn::Ident::new(
+        &format!("{}_trampoline", f.sig.ident),
+        proc_macro2::Span::call_site(),
+    );
+    let interrupt_ident = &f.sig.ident;
+
+    quote::quote! {
+        #(#cfgs)*
+        #(#attrs)*
+        ::avr_device::__avr_device_trampoline!(@#chip, #ident, pub extern "avr-interrupt" fn #tramp_ident() {
+            #[allow(static_mut_refs)]
+            #interrupt_ident(
                 #(#resource_args),*
             )
-        }
+        });
 
-        #[doc(hidden)]
         #f
-    )
+    }
     .into()
 }
 
@@ -296,6 +295,46 @@ fn extract_cfgs(attrs: Vec<syn::Attribute>) -> (Vec<syn::Attribute>, Vec<syn::At
     }
 
     (cfgs, not_cfgs)
+}
+
+enum WhiteListCaller {
+    Entry,
+    Interrupt,
+}
+
+fn check_attr_whitelist(attrs: &[syn::Attribute], caller: WhiteListCaller) -> Result<(), proc_macro::TokenStream> {
+    let whitelist = &[
+        "doc",
+        "link_section",
+        "cfg",
+        "allow",
+        "warn",
+        "deny",
+        "forbid",
+        "cold",
+        "naked",
+    ];
+
+    'o: for attr in attrs {
+        for val in whitelist {
+            if eq(attr, val) {
+                continue 'o;
+            }
+        }
+
+        let err_str = match caller {
+            WhiteListCaller::Entry => "this attribute is not allowed on an avr-device entry point",
+            WhiteListCaller::Interrupt => {
+                "this attribute is not allowed on an interrupt handler controlled by avr-device"
+            }
+        };
+
+        return Err(syn::parse::Error::new(attr.span(), err_str)
+            .to_compile_error()
+            .into());
+    }
+
+    Ok(())
 }
 
 /// Returns `true` if `attr.path` matches `name`
