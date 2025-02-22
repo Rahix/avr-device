@@ -38,13 +38,16 @@ fn TIMER0_OVF() {
     // We then count 61 times to approximate 1s.
     // XXX: this is a really bad way to count time
 
-    static mut OVF_COUNTER: u16 = 0;
-    const ROLLOVER: u16 = 61;
+    use core::sync::atomic::{AtomicU8, Ordering::Relaxed};
 
-    *OVF_COUNTER = OVF_COUNTER.wrapping_add(1);
-    if *OVF_COUNTER > ROLLOVER {
-        *OVF_COUNTER = 0;
+    static OVF_COUNTER: AtomicU8 = AtomicU8::new(0);
+    const ROLLOVER: u8 = 61;
 
+    let ovf = OVF_COUNTER.load(Relaxed);
+    if ovf < ROLLOVER {
+        OVF_COUNTER.store(ovf + 1, Relaxed);
+    } else {
+        OVF_COUNTER.store(0, Relaxed);
         interrupt::free(|cs| {
             LED_STATE.borrow(cs).set(!LED_STATE.borrow(cs).get());
         });
