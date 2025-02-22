@@ -2,7 +2,7 @@
 name = "mega328-test"
 version = "0.1.0"
 authors = ["Frank Villaro-Dixon <frank@villaro-dixon.eu>"]
-edition = "2021"
+edition = "2024"
 license = "MIT OR Apache-2.0"
 
 [[bin]]
@@ -18,7 +18,7 @@ embedded-hal = "0.2.3"
 
 
 [dependencies.avr-device]
-version = "0.5.3"
+version = "0.7"
 # To use the local version of avr-device instead, uncomment the following line:
 # NB: make sure to build this crate first by running `make` at the root of the project
 # path = "../.."
