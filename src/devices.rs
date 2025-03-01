@@ -177,6 +177,12 @@ pub mod attiny1606 {
     include!(concat!(env!("OUT_DIR"), "/pac/attiny1606.rs"));
 }
 
+/// [ATtiny1604](https://www.microchip.com/wwwproducts/en/ATtiny1604)
+#[cfg(feature = "attiny1604")]
+pub mod attiny1604 {
+    include!(concat!(env!("OUT_DIR"), "/pac/attiny1604.rs"));
+}
+
 /// [ATtiny1614](https://www.microchip.com/wwwproducts/en/ATtiny1614)
 #[cfg(feature = "attiny1614")]
 pub mod attiny1614 {
@@ -193,6 +199,12 @@ pub mod attiny1626 {
 #[cfg(feature = "attiny202")]
 pub mod attiny202 {
     include!(concat!(env!("OUT_DIR"), "/pac/attiny202.rs"));
+}
+
+/// [ATtiny204](https://www.microchip.com/wwwproducts/en/ATtiny204)
+#[cfg(feature = "attiny204")]
+pub mod attiny204 {
+    include!(concat!(env!("OUT_DIR"), "/pac/attiny204.rs"));
 }
 
 /// [ATtiny212](https://www.microchip.com/wwwproducts/en/ATtiny212)
@@ -259,6 +271,12 @@ pub mod attiny416 {
 #[cfg(feature = "attiny44a")]
 pub mod attiny44a {
     include!(concat!(env!("OUT_DIR"), "/pac/attiny44a.rs"));
+}
+
+/// [ATtiny804](https://www.microchip.com/wwwproducts/en/ATtiny804)
+#[cfg(feature = "attiny804")]
+pub mod attiny804 {
+    include!(concat!(env!("OUT_DIR"), "/pac/attiny804.rs"));
 }
 
 /// [ATtiny816](https://www.microchip.com/wwwproducts/en/ATtiny816)
