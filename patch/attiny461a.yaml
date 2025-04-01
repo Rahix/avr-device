@@ -1,0 +1,16 @@
+_svd: ../svd/attiny461a.svd
+
+_include:
+  - "common/ac.yaml"
+  - "common/tiny/attinyx61a-adc.yaml"
+  - "common/tiny/attinyx61a-ports.yaml"
+  - "common/tiny/usi.yaml"
+  - "common/wdt.yaml"
+  - "timer/attiny861.yaml"
+  - "common/tiny/attinyx61a-timers.yaml"
+
+# All FUSEs are read-only from the CPU.
+FUSE:
+  _modify:
+    "*":
+      access: read-only
