@@ -272,6 +272,7 @@ compile_error!(
     * attiny414
     * attiny416
     * attiny44a
+    * attiny804
     * attiny816
     * attiny828
     * attiny84
@@ -370,6 +371,8 @@ pub use crate::devices::attiny414;
 pub use crate::devices::attiny416;
 #[cfg(feature = "attiny44a")]
 pub use crate::devices::attiny44a;
+#[cfg(feature = "attiny804")]
+pub use crate::devices::attiny804;
 #[cfg(feature = "attiny816")]
 pub use crate::devices::attiny816;
 #[cfg(feature = "attiny828")]
