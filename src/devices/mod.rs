@@ -2,7 +2,6 @@
 #[allow(private_no_mangle_statics)]
 #[no_mangle]
 pub(crate) static mut DEVICE_PERIPHERALS: bool = false;
-
 /// [AT90USB1286](https://www.microchip.com/wwwproducts/en/AT90USB1286)
 #[cfg(feature = "at90usb1286")]
 pub mod at90usb1286;
@@ -59,14 +58,6 @@ pub mod atmega328pb;
 #[cfg(feature = "atmega32a")]
 pub mod atmega32a;
 
-/// [ATmega32u2](https://www.microchip.com/wwwproducts/en/ATmega32u2)
-#[cfg(feature = "atmega32u2")]
-pub mod atmega32u2;
-
-/// [ATmega32U4](https://www.microchip.com/wwwproducts/en/ATmega32U4)
-#[cfg(feature = "atmega32u4")]
-pub mod atmega32u4;
-
 /// [ATmega3208](https://www.microchip.com/wwwproducts/en/ATmega3208)
 #[cfg(feature = "atmega3208")]
 pub mod atmega3208;
@@ -74,6 +65,14 @@ pub mod atmega3208;
 /// [ATmega3209](https://www.microchip.com/wwwproducts/en/ATmega3209)
 #[cfg(feature = "atmega3209")]
 pub mod atmega3209;
+
+/// [ATmega32u2](https://www.microchip.com/wwwproducts/en/ATmega32u2)
+#[cfg(feature = "atmega32u2")]
+pub mod atmega32u2;
+
+/// [ATmega32U4](https://www.microchip.com/wwwproducts/en/ATmega32U4)
+#[cfg(feature = "atmega32u4")]
+pub mod atmega32u4;
 
 /// [ATmega4808](https://www.microchip.com/wwwproducts/en/ATmega4808)
 #[cfg(feature = "atmega4808")]
@@ -87,14 +86,6 @@ pub mod atmega4809;
 #[cfg(feature = "atmega48p")]
 pub mod atmega48p;
 
-/// [ATmega8](https://www.microchip.com/wwwproducts/en/ATmega8)
-#[cfg(feature = "atmega8")]
-pub mod atmega8;
-
-/// [ATmega8u2](https://www.microchip.com/wwwproducts/en/ATmega8u2)
-#[cfg(feature = "atmega8u2")]
-pub mod atmega8u2;
-
 /// [ATmega64](https://www.microchip.com/wwwproducts/en/ATmega64)
 #[cfg(feature = "atmega64")]
 pub mod atmega64;
@@ -102,6 +93,14 @@ pub mod atmega64;
 /// [ATmega644](https://www.microchip.com/wwwproducts/en/ATmega644)
 #[cfg(feature = "atmega644")]
 pub mod atmega644;
+
+/// [ATmega8](https://www.microchip.com/wwwproducts/en/ATmega8)
+#[cfg(feature = "atmega8")]
+pub mod atmega8;
+
+/// [ATmega8u2](https://www.microchip.com/wwwproducts/en/ATmega8u2)
+#[cfg(feature = "atmega8u2")]
+pub mod atmega8u2;
 
 /// [ATmega88P](https://www.microchip.com/wwwproducts/en/ATmega88P)
 #[cfg(feature = "atmega88p")]
@@ -111,9 +110,9 @@ pub mod atmega88p;
 #[cfg(feature = "attiny13a")]
 pub mod attiny13a;
 
-/// [ATtiny167](https://www.microchip.com/wwwproducts/en/ATtiny167)
-#[cfg(feature = "attiny167")]
-pub mod attiny167;
+/// [ATtiny1604](https://www.microchip.com/wwwproducts/en/ATtiny1604)
+#[cfg(feature = "attiny1604")]
+pub mod attiny1604;
 
 /// [ATtiny1614](https://www.microchip.com/wwwproducts/en/ATtiny1614)
 #[cfg(feature = "attiny1614")]
@@ -122,6 +121,10 @@ pub mod attiny1614;
 /// [ATtiny202](https://www.microchip.com/wwwproducts/en/ATtiny202)
 #[cfg(feature = "attiny202")]
 pub mod attiny202;
+
+/// [ATtiny204](https://www.microchip.com/wwwproducts/en/ATtiny204)
+#[cfg(feature = "attiny204")]
+pub mod attiny204;
 
 /// [ATtiny212](https://www.microchip.com/wwwproducts/en/ATtiny212)
 #[cfg(feature = "attiny212")]
@@ -143,11 +146,11 @@ pub mod attiny2313a;
 #[cfg(feature = "attiny26")]
 pub mod attiny26;
 
-/// [ATtiny402](https://www.microchip.com/en-us/product/ATTINY402)
+/// [ATtiny402](https://www.microchip.com/en-us/product/ATTiny402)
 #[cfg(feature = "attiny402")]
 pub mod attiny402;
 
-/// [ATtiny404](https://www.microchip.com/en-us/product/ATTINY404)
+/// [ATtiny404](https://www.microchip.com/en-us/product/ATTiny404)
 #[cfg(feature = "attiny404")]
 pub mod attiny404;
 
@@ -163,9 +166,13 @@ pub mod attiny414;
 #[cfg(feature = "attiny416")]
 pub mod attiny416;
 
-/// [ATtiny44a](https://www.microchip.com/en-us/product/ATtiny44a)
+/// [ATtiny44a](https://www.microchip.com/en-us/product/ATTiny44a)
 #[cfg(feature = "attiny44a")]
 pub mod attiny44a;
+
+/// [ATtiny804](https://www.microchip.com/wwwproducts/en/ATtiny804)
+#[cfg(feature = "attiny804")]
+pub mod attiny804;
 
 /// [ATtiny816](https://www.microchip.com/wwwproducts/en/ATtiny816)
 #[cfg(feature = "attiny816")]
@@ -183,7 +190,7 @@ pub mod attiny84;
 #[cfg(feature = "attiny841")]
 pub mod attiny841;
 
-/// [ATtiny84a](https://www.microchip.com/en-us/product/ATtiny84a)
+/// [ATtiny84a](https://www.microchip.com/en-us/product/ATTiny84a)
 #[cfg(feature = "attiny84a")]
 pub mod attiny84a;
 
@@ -199,10 +206,14 @@ pub mod attiny861;
 #[cfg(feature = "attiny88")]
 pub mod attiny88;
 
-/// [AVR64DU32](https://www.microchip.com/wwwproducts/en/AVR64DU32)
-#[cfg(feature = "avr64du32")]
-pub mod avr64du32;
+/// [ATtiny167](https://www.microchip.com/wwwproducts/en/ATtiny167)
+#[cfg(feature = "attiny167")]
+pub mod attiny167;
 
 /// [AVR64DU28](https://www.microchip.com/wwwproducts/en/AVR64DU28)
 #[cfg(feature = "avr64du28")]
 pub mod avr64du28;
+
+/// [AVR64DU32](https://www.microchip.com/wwwproducts/en/AVR64DU32)
+#[cfg(feature = "avr64du32")]
+pub mod avr64du32;
