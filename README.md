@@ -33,6 +33,7 @@ Via the feature you can select which chip you want the register specifications f
 |  `atmega164pa`  |              |                   |               |  `attiny841`  |
 |                 |              |                   |               |  `attiny84a`  |
 |                 |              |                   |               |  `attiny861`  |
+|                 |              |                   |               | `attiny1606`  |
 |                 |              |                   |               | `attiny1614`  |
 |                 |              |                   |               | `attiny2313`  |
 |                 |              |                   |               | `attiny2313a` |
