@@ -184,10 +184,11 @@
 pub mod asm;
 pub mod interrupt;
 
-#[allow(unused_imports)]
-use generic::*;
+pub(crate) use generic::*;
 #[doc = r"Common register and bit access and modify traits"]
-pub mod generic;
+pub mod generic {
+    include!(concat!(env!("OUT_DIR"), "/pac/generic.rs"));
+}
 
 /// Attribute to declare an interrupt service routine
 ///
@@ -288,6 +289,8 @@ compile_error!(
 #[allow(non_camel_case_types, unused_attributes, unreachable_patterns)]
 mod devices;
 
+include!(concat!(env!("OUT_DIR"), "/pac/vector.rs"));
+
 #[cfg(feature = "at90usb1286")]
 pub use crate::devices::at90usb1286;
 #[cfg(feature = "atmega1280")]
@@ -308,6 +311,10 @@ pub use crate::devices::atmega168;
 pub use crate::devices::atmega16u2;
 #[cfg(feature = "atmega2560")]
 pub use crate::devices::atmega2560;
+#[cfg(feature = "atmega3208")]
+pub use crate::devices::atmega3208;
+#[cfg(feature = "atmega3209")]
+pub use crate::devices::atmega3209;
 #[cfg(feature = "atmega324pa")]
 pub use crate::devices::atmega324pa;
 #[cfg(feature = "atmega328p")]
@@ -320,10 +327,6 @@ pub use crate::devices::atmega32a;
 pub use crate::devices::atmega32u2;
 #[cfg(feature = "atmega32u4")]
 pub use crate::devices::atmega32u4;
-#[cfg(feature = "atmega3208")]
-pub use crate::devices::atmega3208;
-#[cfg(feature = "atmega3209")]
-pub use crate::devices::atmega3209;
 #[cfg(feature = "atmega4808")]
 pub use crate::devices::atmega4808;
 #[cfg(feature = "atmega4809")]

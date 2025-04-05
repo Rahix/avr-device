@@ -19,10 +19,8 @@ embedded-hal = "0.2.3"
 
 [dependencies.avr-device]
 version = "0.7"
-# To use the local version of avr-device instead, uncomment the following line:
-# NB: make sure to build this crate first by running `make` at the root of the project
-# path = "../.."
-features = ["atmega328p", "rt"]
+path = "../.."
+features = ["atmega328p", "rt", "critical-section-impl"]
 
 # Configure the build for minimal size - AVRs have very little program memory
 [profile.dev]
