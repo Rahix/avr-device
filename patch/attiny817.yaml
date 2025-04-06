@@ -32,6 +32,21 @@ SLPCTRL:
         STANDBY: [1, "Standby Mode"]
         PDOWN: [2, "Power-down Mode"]
 
+TCB0:
+  _add:
+    # FIXME: no idea how to add a write constraint with range [0x0, 0xFF] to
+    #        added registers to prevent bits() from being marked as unsafe
+    CCMPL:
+      description: Lower Compare or Capture in 8-bit PWM mode
+      addressOffset: 0x0C
+      access: read-write
+      size: 8
+    CCMPH:
+      description: Upper Compare or Capture in 8-bit PWM mode
+      addressOffset: 0x0D
+      access: read-write
+      size: 8
+
 TCD0:
   EVCTRL?:
     CFG:
@@ -100,8 +115,19 @@ CPUINT:
 
 EVSYS:
   # make ASYNCCHx, SYNCCHx, ASYNCUSERx and SYNCUSERx a rust slice
+  _modify:
+    "ASYNCUSER*":
+      description: "Users of asynchronous channels"
+    "SYNCUSER*":
+      description: "Users of synchronous channels"
   _array:
     "ASYNCCH*": {}
     "SYNCCH*": {}
     "ASYNCUSER*": {}
     "SYNCUSER*": {}
+
+"SIGROW":
+  # make a bunch of registers rust slices for easier access
+  _array:
+    "DEVICEID?": {}
+    "SERNUM?": {}

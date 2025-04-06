@@ -1,6 +1,4 @@
 //! This crate contains register definitions for
-#![feature(asm_const)]
-
 #![cfg_attr(feature = "at90usb1286", doc = "**at90usb1286**,")]
 #![cfg_attr(feature = "atmega1280", doc = "**atmega1280**,")]
 #![cfg_attr(feature = "atmega1284p", doc = "**atmega1284p**,")]
