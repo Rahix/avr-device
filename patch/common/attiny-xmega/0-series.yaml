@@ -1,4 +1,15 @@
 # Nothing needed beyond common config
 # This is probably good for at least ATtiny202/204/402/404/406, but may not be valid for ATtiny80* and ATtiny160*
 
-{}
+EVSYS:
+  # make ASYNCCHx, SYNCCHx, ASYNCUSERx and SYNCUSERx a rust slice
+  _modify:
+    "ASYNCUSER*":
+      description: "Users of asynchronous channels"
+    "SYNCUSER*":
+      description: "Users of synchronous channels"
+  _array:
+    "ASYNCCH*": {}
+    "SYNCCH*": {}
+    "ASYNCUSER*": {}
+    "SYNCUSER*": {}
