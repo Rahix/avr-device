@@ -33,7 +33,9 @@
 #![cfg_attr(feature = "attiny1604", doc = "**attiny1604**,")]
 #![cfg_attr(feature = "attiny1606", doc = "**attiny1606**,")]
 #![cfg_attr(feature = "attiny1614", doc = "**attiny1614**,")]
+#![cfg_attr(feature = "attiny1617", doc = "**attiny1617**,")]
 #![cfg_attr(feature = "attiny1626", doc = "**attiny1626**,")]
+#![cfg_attr(feature = "attiny3217", doc = "**attiny3217**,")]
 #![cfg_attr(feature = "attiny202", doc = "**attiny202**,")]
 #![cfg_attr(feature = "attiny204", doc = "**attiny204**,")]
 #![cfg_attr(feature = "attiny212", doc = "**attiny212**,")]
@@ -47,10 +49,12 @@
 #![cfg_attr(feature = "attiny412", doc = "**attiny412**,")]
 #![cfg_attr(feature = "attiny414", doc = "**attiny414**,")]
 #![cfg_attr(feature = "attiny416", doc = "**attiny416**,")]
+#![cfg_attr(feature = "attiny417", doc = "**attiny417**,")]
 #![cfg_attr(feature = "attiny44a", doc = "**attiny44a**,")]
 #![cfg_attr(feature = "attiny461a", doc = "**attiny461a**,")]
 #![cfg_attr(feature = "attiny804", doc = "**attiny804**,")]
 #![cfg_attr(feature = "attiny816", doc = "**attiny816**,")]
+#![cfg_attr(feature = "attiny817", doc = "**attiny817**,")]
 #![cfg_attr(feature = "attiny828", doc = "**attiny828**,")]
 #![cfg_attr(feature = "attiny84", doc = "**attiny84**,")]
 #![cfg_attr(feature = "attiny841", doc = "**attiny841**,")]
@@ -103,7 +107,9 @@
 //! `attiny167`,
 //! `attiny1604`,
 //! `attiny1614`,
+//! `attiny1617`,
 //! `attiny1626`,
+//! `attiny3217`,
 //! `attiny202`,
 //! `attiny204`,
 //! `attiny212`,
@@ -117,10 +123,12 @@
 //! `attiny412`,
 //! `attiny414`,
 //! `attiny416`,
+//! `attiny417`,
 //! `attiny44a`,
 //! `attiny461a`,
 //! `attiny804`,
 //! `attiny816`,
+//! `attiny817`,
 //! `attiny828`,
 //! `attiny84`,
 //! `attiny841`,
@@ -286,7 +294,9 @@ compile_error!(
     * attiny1604
     * attiny1606
     * attiny1614
+    * attiny1617
     * attiny1626
+    * attiny3217
     * attiny202
     * attiny204
     * attiny212
@@ -300,10 +310,12 @@ compile_error!(
     * attiny412
     * attiny414
     * attiny416
+    * attiny417
     * attiny44a
     * attiny461a
     * attiny804
     * attiny816
+    * attiny817
     * attiny828
     * attiny84
     * attiny841
@@ -389,8 +401,12 @@ pub use crate::devices::attiny1604;
 pub use crate::devices::attiny1606;
 #[cfg(feature = "attiny1614")]
 pub use crate::devices::attiny1614;
+#[cfg(feature = "attiny1617")]
+pub use crate::devices::attiny1617;
 #[cfg(feature = "attiny1626")]
 pub use crate::devices::attiny1626;
+#[cfg(feature = "attiny3217")]
+pub use crate::devices::attiny3217;
 #[cfg(feature = "attiny167")]
 pub use crate::devices::attiny167;
 #[cfg(feature = "attiny202")]
@@ -419,6 +435,8 @@ pub use crate::devices::attiny412;
 pub use crate::devices::attiny414;
 #[cfg(feature = "attiny416")]
 pub use crate::devices::attiny416;
+#[cfg(feature = "attiny417")]
+pub use crate::devices::attiny417;
 #[cfg(feature = "attiny44a")]
 pub use crate::devices::attiny44a;
 #[cfg(feature = "attiny461a")]
@@ -427,6 +445,8 @@ pub use crate::devices::attiny461a;
 pub use crate::devices::attiny804;
 #[cfg(feature = "attiny816")]
 pub use crate::devices::attiny816;
+#[cfg(feature = "attiny817")]
+pub use crate::devices::attiny817;
 #[cfg(feature = "attiny828")]
 pub use crate::devices::attiny828;
 #[cfg(feature = "attiny84")]
