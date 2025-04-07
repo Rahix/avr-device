@@ -24,16 +24,20 @@ Via the feature you can select which chip you want the register specifications f
 |  `atmega324pa`  |              |                   |               |  `attiny412`  |
 |  `atmega328p`   |              |                   |               |  `attiny414`  |
 |  `atmega328pb`  |              |                   |               |  `attiny416`  |
-|   `atmega32a`   |              |                   |               |  `attiny44a`  |
-|  `atmega1280`   |              |                   |               |  `attiny84`   |
-|  `atmega1284p`  |              |                   |               |  `attiny85`   |
-|  `atmega128a`   |              |                   |               |  `attiny88`   |
-| `atmega128rfa1` |              |                   |               |  `attiny816`  |
-|  `atmega2560`   |              |                   |               |  `attiny828`  |
-|  `atmega164pa`  |              |                   |               |  `attiny841`  |
+|   `atmega32a`   |              |                   |               |  `attiny417`  |
+|  `atmega1280`   |              |                   |               |  `attiny44a`  |
+|  `atmega1284p`  |              |                   |               |  `attiny84`   |
+|  `atmega128a`   |              |                   |               |  `attiny85`   |
+| `atmega128rfa1` |              |                   |               |  `attiny88`   |
+|  `atmega2560`   |              |                   |               |  `attiny816`  |
+|  `atmega164pa`  |              |                   |               |  `attiny817`  |
+|                 |              |                   |               |  `attiny828`  |
+|                 |              |                   |               |  `attiny841`  |
 |                 |              |                   |               |  `attiny84a`  |
 |                 |              |                   |               |  `attiny861`  |
 |                 |              |                   |               | `attiny1614`  |
+|                 |              |                   |               | `attiny1617`  |
+|                 |              |                   |               | `attiny3217`  |
 |                 |              |                   |               | `attiny2313`  |
 |                 |              |                   |               | `attiny2313a` |
 

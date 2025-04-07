@@ -119,6 +119,14 @@ pub mod attiny167;
 #[cfg(feature = "attiny1614")]
 pub mod attiny1614;
 
+/// [ATtiny1617](https://www.microchip.com/wwwproducts/en/ATtiny1617)
+#[cfg(feature = "attiny1617")]
+pub mod attiny1617;
+
+/// [ATtiny3217](https://www.microchip.com/wwwproducts/en/ATtiny3217)
+#[cfg(feature = "attiny3217")]
+pub mod attiny3217;
+
 /// [ATtiny202](https://www.microchip.com/wwwproducts/en/ATtiny202)
 #[cfg(feature = "attiny202")]
 pub mod attiny202;
@@ -163,6 +171,10 @@ pub mod attiny414;
 #[cfg(feature = "attiny416")]
 pub mod attiny416;
 
+/// [ATtiny417](https://www.microchip.com/wwwproducts/en/ATtiny417)
+#[cfg(feature = "attiny417")]
+pub mod attiny417;
+
 /// [ATtiny44a](https://www.microchip.com/en-us/product/ATtiny44a)
 #[cfg(feature = "attiny44a")]
 pub mod attiny44a;
@@ -170,6 +182,10 @@ pub mod attiny44a;
 /// [ATtiny816](https://www.microchip.com/wwwproducts/en/ATtiny816)
 #[cfg(feature = "attiny816")]
 pub mod attiny816;
+
+/// [ATtiny817](https://www.microchip.com/wwwproducts/en/ATtiny817)
+#[cfg(feature = "attiny817")]
+pub mod attiny817;
 
 /// [ATtiny828](https://www.microchip.com/wwwproducts/en/ATtiny828)
 #[cfg(feature = "attiny828")]
