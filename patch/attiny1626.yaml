@@ -1,0 +1,3 @@
+_include:
+  - common/attiny-xmega/common.yaml
+  - common/attiny-xmega/2-series.yaml

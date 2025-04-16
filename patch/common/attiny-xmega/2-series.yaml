@@ -1,0 +1,5 @@
+# VPORTA.DIR is located at memory address 0x0. So far rust is not able to access
+# memory address 0x0. It treats it as invalid pointer and immediately panics
+# without even trying to access the address.
+VPORTA:
+  _delete: DIR
