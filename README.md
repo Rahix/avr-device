@@ -34,6 +34,7 @@ Via the feature you can select which chip you want the register specifications f
 |                 |              |                   |               |  `attiny84a`  |
 |                 |              |                   |               |  `attiny861`  |
 |                 |              |                   |               | `attiny1614`  |
+|                 |              |                   |               | `attiny1626`  |
 |                 |              |                   |               | `attiny2313`  |
 |                 |              |                   |               | `attiny2313a` |
 
