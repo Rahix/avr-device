@@ -195,7 +195,13 @@ impl InputFinder {
             }
         }
 
-        cargo_directives.push(format!("cargo::rerun-if-changed={}", path.display()));
+        cargo_directives.push(format!(
+            "cargo::rerun-if-changed={}",
+            path.to_str().ok_or(anyhow::anyhow!(
+                "file with non UTF-8 name in `{}`",
+                path.display()
+            ))?
+        ));
 
         Ok(())
     }
