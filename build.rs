@@ -11,52 +11,41 @@ use svd2rust::config::IdentFormats;
 use svd_rs::Device;
 
 fn main() -> Result<(), anyhow::Error> {
-    let crate_root = PathBuf::from(
-        env::var_os("CARGO_MANIFEST_DIR")
-            .ok_or(anyhow::anyhow!(
-                "env variable CARGO_MANIFEST_DIR is missing"
-            ))
-            .context("in the top-level execution of avr-device's build script")?,
-    );
-    let available_mcu_inputs = InputFinder::find(&crate_root).context("during input search")?;
+    let crate_root = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").ok_or(anyhow::anyhow!(
+        "env variable CARGO_MANIFEST_DIR is missing"
+    ))?);
+    let available_mcu_inputs =
+        InputFinder::find(&crate_root).context("failed finding available MCUs")?;
 
     let out_dir = PathBuf::from(
-        env::var_os("OUT_DIR")
-            .ok_or(anyhow::anyhow!("env variable OUT_DIR is missing"))
-            .context("in the top-level execution of avr-device's build script")?,
+        env::var_os("OUT_DIR").ok_or(anyhow::anyhow!("env variable OUT_DIR is missing"))?,
     );
 
-    let svd_generator = SvdGenerator::from_out_dir(&out_dir)
-        .context("during output directory creation")
-        .context("in the top-level execution of avr-device's build script")?;
+    let svd_generator =
+        SvdGenerator::from_out_dir(&out_dir).context("failed to create SVD output directory")?;
     let code_generator = CodeGenerator::from_out_dir(&out_dir)
-        .context("during output directory creation")
-        .context("in the top-level execution of avr-device's build script")?;
+        .context("failed to create codegen output directory")?;
 
     let mcu_inputs = available_mcu_inputs
         .filter_from_features()
-        .context("during MCU filtering")
-        .context("in the top-level execution of avr-device's build script")?;
+        .context("failed to select MCUs for code generation")?;
     let mut svds = BTreeMap::new();
     for (mcu, inputs) in mcu_inputs.get_map() {
         let _ = svds.insert(
             mcu.as_str(),
             svd_generator
                 .generate(mcu, inputs)
-                .context(format!("during SVD generation for MCU {}", mcu))
-                .context("in the top-level execution of avr-device's build script")?,
+                .context(format!("failed to generate SVD for MCU {}", mcu))?,
         );
     }
     for (mcu, svd) in &svds {
         code_generator
             .generate_module(mcu, svd)
-            .context(format!("during PAC generation for MCU {}", mcu))
-            .context("in the top-level execution of avr-device's build script")?;
+            .context(format!("failed to generate PAC code for MCU {}", mcu))?;
     }
     code_generator
         .generate_vector(&svds)
-        .context("during vector generation")
-        .context("in the top-level execution of avr-device's build script")?;
+        .context("failed to generate interrupt vector definitions")?;
 
     Ok(())
 }
@@ -100,6 +89,7 @@ impl InputFinder {
                     .collect::<Vec<_>>()
                     .join(", ")
             ))
+            .context("no crate-features for MCUs were selected")
         }
     }
 
@@ -113,11 +103,11 @@ impl InputFinder {
         let mut inputs = BTreeMap::new();
         for result in fs::read_dir(&packs_dir)
             .map_err(io_error_in_path(&packs_dir))
-            .context("while trying to scan directory")?
+            .context("could not scan vendor/ directory")?
         {
             let entry = result
                 .map_err(io_error_in_path(&packs_dir))
-                .context("while trying to read scanned directory entry")?;
+                .context("could not read entry from vendor/ directory")?;
             let atdf_path = entry.path();
             if atdf_path.extension() != Some(&OsString::from("atdf")) {
                 continue;
@@ -137,16 +127,19 @@ impl InputFinder {
 
             let atdf_file = File::open(&atdf_path)
                 .map_err(io_error_in_path(&atdf_path))
-                .context("while trying to open file")?;
+                .context("could not open ATDF file")?;
             let atdf = atdf2svd::atdf::parse(atdf_file, &mut HashSet::new())
                 .map_err(atdf_error(&atdf_path))?;
             let patch_path = patches_dir.join(&mcu_name).with_extension("yaml");
             let patch = if patch_path
                 .try_exists()
                 .map_err(io_error_in_path(&patch_path))
-                .context("while trying to test path existence")?
+                .context("could not test for patch path existence")?
             {
-                Some(svdtools::patch::load_patch(&patch_path).context("parsing YAML patch")?)
+                Some(
+                    svdtools::patch::load_patch(&patch_path)
+                        .context("failed to parse patch YAML")?,
+                )
             } else {
                 None
             };
@@ -167,7 +160,7 @@ impl InputFinder {
         if !path
             .try_exists()
             .map_err(io_error_in_path(path))
-            .context("while trying to test path existence")?
+            .context("could not test for path existence")?
         {
             return Err(anyhow::anyhow!(
                 "required path `{}` is missing",
@@ -183,11 +176,11 @@ impl InputFinder {
         if path.is_dir() {
             for result in fs::read_dir(path)
                 .map_err(io_error_in_path(path))
-                .context("while trying to scan directory")?
+                .context("failed to scan directory")?
             {
                 let subpath = result
                     .map_err(io_error_in_path(path))
-                    .context("while trying to read scanned directory entry")?
+                    .context("failed to read scanned directory entry")?
                     .path();
                 Self::track_path(&subpath)?;
             }
@@ -224,13 +217,13 @@ impl SvdGenerator {
         let unpatched_svd_path = self.unpatched_svd.join(mcu).with_extension("svd");
         let unpatched_writer = File::create(&unpatched_svd_path)
             .map_err(io_error_in_path(&unpatched_svd_path))
-            .context("while trying to create file")?;
+            .context("failed to create file for unpatched SVD")?;
         atdf2svd::svd::generate(&inputs.atdf, &unpatched_writer)
             .map_err(atdf_error(&inputs.atdf_path))
-            .context("while trying to generate or write file")?;
+            .context("failed to generate SVD from ATDF")?;
         let unpatched_reader = File::open(&unpatched_svd_path)
             .map_err(io_error_in_path(&unpatched_svd_path))
-            .context("while trying to open file")?;
+            .context("failed to open unpatched SVD for reading")?;
         let patched_svd_path = self.patched_svd.join(mcu).with_extension("svd");
         let svd_path = if let Some(patch) = &inputs.patch {
             let mut reader = svdtools::patch::process_reader(
@@ -239,16 +232,16 @@ impl SvdGenerator {
                 &Default::default(),
                 &Default::default(),
             )
-            .context("while reading patched SVD back")?;
+            .context("failed to start SVD patcher")?;
             let mut b = Vec::new();
             reader
                 .read_to_end(&mut b)
                 .map_err(io_error_in_path(&patched_svd_path))
-                .context("while trying to read from file")?;
+                .context("failed to read patched SVD from patcher process")?;
 
             fs::write(&patched_svd_path, b)
                 .map_err(io_error_in_path(&patched_svd_path))
-                .context("while trying to write file")?;
+                .context("failed to write patched SVD")?;
             patched_svd_path
         } else {
             unpatched_svd_path
@@ -256,10 +249,10 @@ impl SvdGenerator {
 
         let svd_str = fs::read_to_string(&svd_path)
             .map_err(io_error_in_path(&svd_path))
-            .context("while trying to read file to String")?;
+            .context("failed to read final SVD")?;
 
         svd2rust::load_from(&svd_str, &svd2rust::Config::default())
-            .context("while parsing read SVD")
+            .context("failed to parse SVD with svd2rust")
     }
 }
 
@@ -283,11 +276,11 @@ impl CodeGenerator {
 
         let generated_stream =
             svd2rust::generate::device::render(&svd, &svd2rust_config, &mut String::new())
-                .context("while rendering Rust module")?;
+                .context("failed to generate svd2rust module")?;
 
         let mut syntax_tree: syn::File = syn::parse2(generated_stream)
             .map_err(|e| anyhow::anyhow!("{}", e))
-            .context("while parsing module code with syn")?;
+            .context("failed to parse svd2rust module code")?;
         for item in syntax_tree.items.iter_mut() {
             {
                 let syn::Item::Static(statik) = item else {
@@ -306,7 +299,7 @@ impl CodeGenerator {
         let module_path = self.module.join(mcu).with_extension("rs");
         fs::write(&module_path, &formatted)
             .map_err(io_error_in_path(&module_path))
-            .context("while trying to write file")
+            .context("failed to write svd2rust module code to file")
     }
 
     fn generate_vector(&self, devices: &BTreeMap<&str, Device>) -> Result<(), anyhow::Error> {
@@ -340,12 +333,12 @@ macro_rules! __avr_device_trampoline {{
         let vector_path = self.module.join("vector.rs");
         fs::write(&vector_path, content)
             .map_err(io_error_in_path(&vector_path))
-            .context("while trying to write file")
+            .context("failed to write vector module to file")
     }
 
     pub fn from_out_dir(out_dir: &Path) -> Result<Self, anyhow::Error> {
         let module = out_dir.join("pac");
-        ensure_out_dir(&module).context("while ensuring directory existence")?;
+        ensure_out_dir(&module).context("failed preparing PAC directory")?;
         Ok(Self { module })
     }
 }
@@ -360,7 +353,7 @@ fn ensure_out_dir(dir: &Path) -> Result<(), anyhow::Error> {
     if !dir.is_dir() {
         fs::create_dir_all(dir)
             .map_err(io_error_in_path(dir))
-            .context("while trying to create dir")?;
+            .context("failed creating directory")?;
     }
     Ok(())
 }
