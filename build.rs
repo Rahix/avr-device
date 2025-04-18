@@ -11,11 +11,13 @@ use svd2rust::config::IdentFormats;
 use svd_rs::Device;
 
 fn main() -> Result<(), anyhow::Error> {
+    let mut cargo_directives = vec![];
+
     let crate_root = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").ok_or(anyhow::anyhow!(
         "env variable CARGO_MANIFEST_DIR is missing"
     ))?);
-    let available_mcu_inputs =
-        InputFinder::find(&crate_root).context("failed finding available MCUs")?;
+    let available_mcu_inputs = InputFinder::find(&crate_root, &mut cargo_directives)
+        .context("failed finding available MCUs")?;
 
     let out_dir = PathBuf::from(
         env::var_os("OUT_DIR").ok_or(anyhow::anyhow!("env variable OUT_DIR is missing"))?,
@@ -46,6 +48,10 @@ fn main() -> Result<(), anyhow::Error> {
     code_generator
         .generate_vector(&svds)
         .context("failed to generate interrupt vector definitions")?;
+
+    for directive in cargo_directives {
+        println!("{}", directive);
+    }
 
     Ok(())
 }
@@ -93,12 +99,15 @@ impl InputFinder {
         }
     }
 
-    pub fn find(crate_root: &Path) -> Result<Self, anyhow::Error> {
+    pub fn find(
+        crate_root: &Path,
+        cargo_directives: &mut Vec<String>,
+    ) -> Result<Self, anyhow::Error> {
         let packs_dir = crate_root.join("vendor");
         let patches_dir = crate_root.join("patch");
 
-        Self::track_path(&packs_dir)?;
-        Self::track_path(&patches_dir)?;
+        Self::track_path(&packs_dir, cargo_directives)?;
+        Self::track_path(&patches_dir, cargo_directives)?;
 
         let mut inputs = BTreeMap::new();
         for result in fs::read_dir(&packs_dir)
@@ -156,7 +165,7 @@ impl InputFinder {
         Ok(Self { inputs })
     }
 
-    fn track_path(path: &Path) -> Result<(), anyhow::Error> {
+    fn track_path(path: &Path, cargo_directives: &mut Vec<String>) -> Result<(), anyhow::Error> {
         if !path
             .try_exists()
             .map_err(io_error_in_path(path))
@@ -182,11 +191,11 @@ impl InputFinder {
                     .map_err(io_error_in_path(path))
                     .context("failed to read scanned directory entry")?
                     .path();
-                Self::track_path(&subpath)?;
+                Self::track_path(&subpath, cargo_directives)?;
             }
         }
 
-        println!("cargo::rerun-if-changed={}", path.display());
+        cargo_directives.push(format!("cargo::rerun-if-changed={}", path.display()));
 
         Ok(())
     }
