@@ -6,9 +6,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- **BREAKING**: Changed the architecture of `avr-device` such that code is now
+  generated at build time ([#157]).  This allows us to scale better and also makes the
+  code-generation much simpler in general.  No external dependencies need to be
+  installed anymore when working on this crate.
+- **BREAKING**: Upgraded to svd2rust version 0.36.1 ([#157]).  This leads to
+  two big changes in the register APIs:
+  1. Periperal names are now lowercase, following rust conventions.
+  2. Registers are now accessed through functions instead of struct members.
+
+  In practice, this means you will have to do the following changes throughout
+  your codebase:
+  ```diff
+  -dp.PORTD.portd.write(|w| w.pd3().clear_bit());
+  +dp.portd.portd().write(|w| w.pd3().clear_bit());
+
+  -dp.TC0.tccr0b.write(|w| w.cs0().prescale_1024());
+  +dp.tc0.tccr0b().write(|w| w.cs0().prescale_1024());
+  ```
 - Switched to the rust version of svdtools ([#174]).
 - Better register definitions for peripherals of the ATmega128RFA1 ([#173]).
 
+[#157]: https://github.com/Rahix/avr-device/pull/157
 [#173]: https://github.com/Rahix/avr-device/pull/173
 [#174]: https://github.com/Rahix/avr-device/pull/174
 
