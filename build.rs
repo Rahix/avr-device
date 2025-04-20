@@ -16,9 +16,6 @@ fn main() -> Result<(), anyhow::Error> {
     let crate_root = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").ok_or(anyhow::anyhow!(
         "env variable CARGO_MANIFEST_DIR is missing"
     ))?);
-    let available_mcu_inputs = InputFinder::find(&crate_root, &mut cargo_directives)
-        .context("failed finding available MCUs")?;
-
     let out_dir = PathBuf::from(
         env::var_os("OUT_DIR").ok_or(anyhow::anyhow!("env variable OUT_DIR is missing"))?,
     );
@@ -28,9 +25,8 @@ fn main() -> Result<(), anyhow::Error> {
     let code_generator = CodeGenerator::from_out_dir(&out_dir)
         .context("failed to create codegen output directory")?;
 
-    let mcu_inputs = available_mcu_inputs
-        .filter_from_features()
-        .context("failed to select MCUs for code generation")?;
+    let mcu_inputs = InputFinder::find(&crate_root, &mut cargo_directives)
+        .context("failed finding and selecting MCU inputs")?;
     let mut svds = BTreeMap::new();
     for (mcu, inputs) in mcu_inputs.get_map() {
         let _ = svds.insert(
@@ -73,32 +69,6 @@ impl InputFinder {
         &self.inputs
     }
 
-    pub fn filter_from_features(self) -> Result<Self, anyhow::Error> {
-        let (selected_mcus, other_mcus) =
-            self.inputs
-                .into_iter()
-                .partition::<BTreeMap<_, _>, _>(|(mcu, _)| {
-                    env::var_os(format!("CARGO_FEATURE_{}", mcu.to_uppercase())).is_some()
-                });
-        if !selected_mcus.is_empty() {
-            Ok(Self {
-                inputs: selected_mcus,
-            })
-        } else {
-            // In this case `other_mcus` contains all of them, for listing when
-            // printing the error.
-            Err(anyhow::anyhow!(
-                "at least one MCU feature must be selected; choose from {}",
-                other_mcus
-                    .keys()
-                    .map(ToOwned::to_owned)
-                    .collect::<Vec<_>>()
-                    .join(", ")
-            ))
-            .context("no crate-features for MCUs were selected")
-        }
-    }
-
     pub fn find(
         crate_root: &Path,
         cargo_directives: &mut Vec<String>,
@@ -110,6 +80,7 @@ impl InputFinder {
         Self::track_path(&patches_dir, cargo_directives)?;
 
         let mut inputs = BTreeMap::new();
+        let mut all_mcus = Vec::new();
         for result in fs::read_dir(&packs_dir)
             .map_err(io_error_in_path(&packs_dir))
             .context("could not scan vendor/ directory")?
@@ -133,6 +104,10 @@ impl InputFinder {
                     atdf_path.display()
                 ))?
                 .to_owned();
+            all_mcus.push(mcu_name.clone());
+            if env::var_os(format!("CARGO_FEATURE_{}", mcu_name.to_uppercase())).is_none() {
+                continue;
+            }
 
             let atdf_file = File::open(&atdf_path)
                 .map_err(io_error_in_path(&atdf_path))
@@ -160,6 +135,13 @@ impl InputFinder {
                     patch,
                 },
             );
+        }
+        if inputs.is_empty() {
+            return Err(anyhow::anyhow!(
+                "at least one MCU feature must be selected; choose from {}",
+                all_mcus.join(", ")
+            ))
+            .context("no crate-features for MCUs were selected");
         }
 
         Ok(Self { inputs })
