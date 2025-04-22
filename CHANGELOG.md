@@ -27,9 +27,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Switched to the rust version of svdtools ([#174]).
 - Better register definitions for peripherals of the ATmega128RFA1 ([#173]).
 
+### Added
+- Support for `ATtiny1606` ([#183]).  The `VPORTA.DIR` register is currently
+  unavailable due to a compiler limitation.  See pull request for details.
+
 [#157]: https://github.com/Rahix/avr-device/pull/157
 [#173]: https://github.com/Rahix/avr-device/pull/173
 [#174]: https://github.com/Rahix/avr-device/pull/174
+[#183]: https://github.com/Rahix/avr-device/pull/183
 
 
 ## [0.7.0] - 2025-01-05
