@@ -39,6 +39,53 @@ pub fn wdr() {
     }
 }
 
+/// Get the stack size in bytes, for debbuging.
+#[cfg(feature = "rt")]
+#[inline(always)]
+pub fn get_stack_size() -> usize {
+    extern "C" {
+        static __DATA_REGION_ORIGIN__: usize;
+        static __DATA_REGION_LENGTH__: usize;
+    }
+    use core::ptr::addr_of;
+
+    cfg_if::cfg_if! {
+        if #[cfg(target_arch = "avr")] {
+            unsafe {
+                let data_region_end = addr_of!(__DATA_REGION_ORIGIN__) as usize + addr_of!(__DATA_REGION_LENGTH__) as usize;
+                let sp: usize;
+                if data_region_end > u8::MAX as usize {
+                    // Here the stack pointer is 2 bytes.
+
+                    let spl: u8;
+                    let sph: u8;
+                    core::arch::asm!(
+                        "in {}, 0x3d",
+                        "in {}, 0x3e",
+                        out(reg) spl,
+                        out(reg) sph,
+                        options(nostack, nomem, pure),
+                    );
+                    sp = usize::from_le_bytes([spl, sph]);
+                } else {
+                    // Here the stack pointer is 1 byte.
+
+                    let spl: u8;
+                    core::arch::asm!(
+                        "in {}, 0x3d",
+                        out(reg) spl,
+                        options(nostack, nomem, pure),
+                    );
+                    sp = spl as usize;
+                }
+                data_region_end - sp
+            }
+        } else {
+            unimplemented!()
+        }
+    }
+}
+
 /// Blocks the program for at least `cycles` CPU cycles.
 ///
 /// This is intended for very simple delays in low-level drivers, but it
