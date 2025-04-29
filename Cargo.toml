@@ -82,7 +82,9 @@ avr64du32 = ["device-selected"]
 avr64du28 = ["device-selected"]
 rt = ["avr-device-macros"]
 
-critical-section-impl = ["critical-section/restore-state-u8"]
+critical-section = ["critical-section/restore-state-u8"]
+
+default = ["critical-section"]
 
 # Unfortunately, we can only build documentation for a subset of the supported
 # MCUs on docs.rs.  If you think a very popular chip is missing from the list,
