@@ -109,10 +109,15 @@ impl InputFinder {
                 continue;
             }
 
+            // Apply the port_rename_snake_case patch so svd2rust generates port names like
+            // `PortA`, `PortB` instead of `Porta`, `Portb`.
+            let atdf2svd_patches =
+                HashSet::from_iter(["port_rename_snake_case"].iter().map(ToString::to_string));
+
             let atdf_file = File::open(&atdf_path)
                 .map_err(io_error_in_path(&atdf_path))
                 .context("could not open ATDF file")?;
-            let atdf = atdf2svd::atdf::parse(atdf_file, &mut HashSet::new())
+            let atdf = atdf2svd::atdf::parse(atdf_file, &atdf2svd_patches)
                 .map_err(atdf_error(&atdf_path))?;
             let patch_path = patches_dir.join(&mcu_name).with_extension("yaml");
             let patch = if patch_path
