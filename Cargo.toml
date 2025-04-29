@@ -104,7 +104,7 @@ optional = true
 [build-dependencies]
 svd2rust = "=0.36.1"
 svdtools = "=0.4.6"
-atdf2svd = "=0.5.0"
+atdf2svd = { git = "https://github.com/Rahix/atdf2svd", rev = "1073549b2315ba28748af7bac3301c54db8e1d49" }
 prettyplease = "=0.2.32"
 svd-rs = "=0.14.12"
 yaml-rust2 = "=0.10.1"
