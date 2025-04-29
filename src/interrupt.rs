@@ -235,7 +235,7 @@ where
     }
 }
 
-#[cfg(feature = "critical-section-impl")]
+#[cfg(feature = "critical-section")]
 mod cs {
     use critical_section::RawRestoreState;
 
