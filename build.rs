@@ -278,18 +278,9 @@ impl CodeGenerator {
         let mut syntax_tree: syn::File = syn::parse2(generated_stream)
             .map_err(|e| anyhow::anyhow!("{}", e))
             .context("failed to parse svd2rust module code")?;
-        for item in syntax_tree.items.iter_mut() {
-            {
-                let syn::Item::Static(statik) = item else {
-                    continue;
-                };
-                if &statik.ident.to_string() != "DEVICE_PERIPHERALS" {
-                    continue;
-                }
-            }
-            *item = syn::parse_quote! {use super::DEVICE_PERIPHERALS;};
-            break;
-        }
+
+        self.patch_device_peripherals_singleton(&mut syntax_tree)
+            .context("failed to patch svd2rust module code")?;
 
         let formatted = prettyplease::unparse(&syntax_tree);
 
@@ -297,6 +288,23 @@ impl CodeGenerator {
         fs::write(&module_path, &formatted)
             .map_err(io_error_in_path(&module_path))
             .context("failed to write svd2rust module code to file")
+    }
+
+    fn patch_device_peripherals_singleton(
+        &self,
+        syntax_tree: &mut syn::File,
+    ) -> Result<(), anyhow::Error> {
+        for item in syntax_tree.items.iter_mut() {
+            if let syn::Item::Static(statik) = item {
+                if statik.ident.to_string() == "DEVICE_PERIPHERALS" {
+                    *item = syn::parse_quote! {use super::DEVICE_PERIPHERALS;};
+                    return Ok(());
+                }
+            }
+        }
+        Err(anyhow::anyhow!(
+            "Could not find `DEVICE_PERIPHERALS` static"
+        ))
     }
 
     fn generate_vector(&self, devices: &BTreeMap<&str, Device>) -> Result<(), anyhow::Error> {
