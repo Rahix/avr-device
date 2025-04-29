@@ -10,7 +10,7 @@ use std::{
 use svd2rust::config::IdentFormats;
 use svd_rs::Device;
 
-fn main() -> Result<(), anyhow::Error> {
+fn main() -> anyhow::Result<()> {
     let mut cargo_directives = vec![];
 
     let crate_root = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").ok_or(anyhow::anyhow!(
@@ -69,10 +69,7 @@ impl InputFinder {
         &self.inputs
     }
 
-    pub fn find(
-        crate_root: &Path,
-        cargo_directives: &mut Vec<String>,
-    ) -> Result<Self, anyhow::Error> {
+    pub fn find(crate_root: &Path, cargo_directives: &mut Vec<String>) -> anyhow::Result<Self> {
         let packs_dir = crate_root.join("vendor");
         let patches_dir = crate_root.join("patch");
 
@@ -147,7 +144,7 @@ impl InputFinder {
         Ok(Self { inputs })
     }
 
-    fn track_path(path: &Path, cargo_directives: &mut Vec<String>) -> Result<(), anyhow::Error> {
+    fn track_path(path: &Path, cargo_directives: &mut Vec<String>) -> anyhow::Result<()> {
         if !path
             .try_exists()
             .map_err(io_error_in_path(path))
@@ -196,7 +193,7 @@ struct SvdGenerator {
 }
 
 impl SvdGenerator {
-    pub fn from_out_dir(out_dir: &Path) -> Result<Self, anyhow::Error> {
+    pub fn from_out_dir(out_dir: &Path) -> anyhow::Result<Self> {
         let svd_dir = out_dir.join("svd");
         let unpatched_svd = svd_dir.join("unpatched");
         let patched_svd = svd_dir.join("patched");
@@ -210,7 +207,7 @@ impl SvdGenerator {
         })
     }
 
-    pub fn generate(&self, mcu: &str, inputs: &McuInputs) -> Result<Device, anyhow::Error> {
+    pub fn generate(&self, mcu: &str, inputs: &McuInputs) -> anyhow::Result<Device> {
         let unpatched_svd_path = self.unpatched_svd.join(mcu).with_extension("svd");
         let unpatched_writer = File::create(&unpatched_svd_path)
             .map_err(io_error_in_path(&unpatched_svd_path))
@@ -259,7 +256,7 @@ struct CodeGenerator {
 }
 
 impl CodeGenerator {
-    pub fn generate_module(&self, mcu: &str, svd: &Device) -> Result<(), anyhow::Error> {
+    pub fn generate_module(&self, mcu: &str, svd: &Device) -> anyhow::Result<()> {
         let mut svd2rust_config = svd2rust::Config::default();
         svd2rust_config.target = svd2rust::Target::None;
         svd2rust_config.generic_mod = true;
@@ -293,7 +290,7 @@ impl CodeGenerator {
     fn patch_device_peripherals_singleton(
         &self,
         syntax_tree: &mut syn::File,
-    ) -> Result<(), anyhow::Error> {
+    ) -> anyhow::Result<()> {
         for item in syntax_tree.items.iter_mut() {
             if let syn::Item::Static(statik) = item {
                 if statik.ident.to_string() == "DEVICE_PERIPHERALS" {
@@ -307,7 +304,7 @@ impl CodeGenerator {
         ))
     }
 
-    fn generate_vector(&self, devices: &BTreeMap<&str, Device>) -> Result<(), anyhow::Error> {
+    fn generate_vector(&self, devices: &BTreeMap<&str, Device>) -> anyhow::Result<()> {
         let mut specific_matchers = Vec::new();
         for (mcu, device) in devices {
             for p in &device.peripherals {
@@ -341,14 +338,14 @@ macro_rules! __avr_device_trampoline {{
             .context("failed to write vector module to file")
     }
 
-    pub fn from_out_dir(out_dir: &Path) -> Result<Self, anyhow::Error> {
+    pub fn from_out_dir(out_dir: &Path) -> anyhow::Result<Self> {
         let module = out_dir.join("pac");
         ensure_out_dir(&module).context("failed preparing PAC directory")?;
         Ok(Self { module })
     }
 }
 
-fn ensure_out_dir(dir: &Path) -> Result<(), anyhow::Error> {
+fn ensure_out_dir(dir: &Path) -> anyhow::Result<()> {
     if dir.is_file() || dir.is_symlink() {
         return Err(anyhow::anyhow!(
             "path `{}` not being a directory is invalid",
