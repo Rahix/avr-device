@@ -26,9 +26,9 @@ fn panic(_info: &core::panic::PanicInfo) -> ! {
 
     loop {
         avr_device::asm::delay_cycles(1_000_000);
-        dp.portd.portd().write(|w| w.pd3().set_bit());
+        dp.PORTD.portd().write(|w| w.pd3().set_bit());
         avr_device::asm::delay_cycles(1_000_000);
-        dp.portd.portd().write(|w| w.pd3().clear_bit());
+        dp.PORTD.portd().write(|w| w.pd3().clear_bit());
     }
 }
 
@@ -62,14 +62,14 @@ fn main() -> ! {
     // will be written value + the modified bits
 
     // Divide by 1024 -> 16MHz/1024 = 15.6kHz
-    dp.tc0.tccr0b().write(|w| w.cs0().prescale_1024());
+    dp.TC0.tccr0b().write(|w| w.cs0().prescale_1024());
     // Enable overflow interrupts
-    dp.tc0.timsk0().write(|w| w.toie0().set_bit());
+    dp.TC0.timsk0().write(|w| w.toie0().set_bit());
 
     // Make pd2 and pd3 outputs
     // We use .modify() in order not to change the other bits
-    dp.portd.ddrd().modify(|_, w| w.pd2().set_bit());
-    dp.portd.ddrd().modify(|_, w| w.pd3().set_bit());
+    dp.PORTD.ddrd().modify(|_, w| w.pd2().set_bit());
+    dp.PORTD.ddrd().modify(|_, w| w.pd3().set_bit());
 
     // SAFETY: We can enable the interrupts here as we are not inside
     // a critical section.
@@ -85,7 +85,7 @@ fn main() -> ! {
             led_state = LED_STATE.borrow(cs).get();
         });
 
-        dp.portd.portd().modify(|_, w| w.pd2().bit(led_state));
+        dp.PORTD.portd().modify(|_, w| w.pd2().bit(led_state));
 
         // We want to make the program crash after 9 blinks
         if previous_state != led_state {
