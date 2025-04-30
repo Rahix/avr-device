@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   -dp.TC0.tccr0b.write(|w| w.cs0().prescale_1024());
   +dp.tc0.tccr0b().write(|w| w.cs0().prescale_1024());
   ```
+- **BREAKING**: Renamed the `critical-section-impl` to just `critical-section`
+  and enabled it by default.  This was done because the `Periperals::take()`
+  method is now gated on `critical-section` ([#195]).
 - Switched to the rust version of svdtools ([#174]).
 - Better register definitions for peripherals of the ATmega128RFA1 ([#173]).
 
@@ -37,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#174]: https://github.com/Rahix/avr-device/pull/174
 [#183]: https://github.com/Rahix/avr-device/pull/183
 [#185]: https://github.com/Rahix/avr-device/pull/185
+[#195]: https://github.com/Rahix/avr-device/pull/195
 
 
 ## [0.7.0] - 2025-01-05
