@@ -266,7 +266,7 @@ impl CodeGenerator {
         svd2rust_config.skip_crate_attributes = true;
         svd2rust_config.reexport_core_peripherals = false;
         svd2rust_config.reexport_interrupt = false;
-        svd2rust_config.ident_formats = IdentFormats::default_theme();
+        svd2rust_config.ident_formats = IdentFormats::legacy_theme();
 
         let generated_stream =
             svd2rust::generate::device::render(&svd, &svd2rust_config, &mut String::new())
