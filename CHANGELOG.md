@@ -11,18 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   code-generation much simpler in general.  No external dependencies need to be
   installed anymore when working on this crate.
 - **BREAKING**: Upgraded to svd2rust version 0.36.1 ([#157]).  This leads to
-  two big changes in the register APIs:
-  1. Periperal names are now lowercase, following rust conventions.
-  2. Registers are now accessed through functions instead of struct members.
+  mostly one major change in the register API:
+  - Registers are now accessed through functions instead of struct members.
 
   In practice, this means you will have to do the following changes throughout
   your codebase:
   ```diff
   -dp.PORTD.portd.write(|w| w.pd3().clear_bit());
-  +dp.portd.portd().write(|w| w.pd3().clear_bit());
+  +dp.PORTD.portd().write(|w| w.pd3().clear_bit());
 
   -dp.TC0.tccr0b.write(|w| w.cs0().prescale_1024());
-  +dp.tc0.tccr0b().write(|w| w.cs0().prescale_1024());
+  +dp.TC0.tccr0b().write(|w| w.cs0().prescale_1024());
   ```
 - **BREAKING**: Renamed the `critical-section-impl` to just `critical-section`
   and enabled it by default.  This was done because the `Periperals::take()`
