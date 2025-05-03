@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Better register definitions for peripherals of the ATmega128RFA1 ([#173]).
 
 ### Added
+- Support for `ATtiny204`, `ATtiny804`, and `ATtiny1604` ([#182]).
 - Support for `ATtiny1606` ([#183]).
 - Support for `ATtiny1626` ([#185]). The `VPORTA.DIR` register is currently
   unavailable due to a compiler limitation.  See pull request for details.
@@ -39,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#157]: https://github.com/Rahix/avr-device/pull/157
 [#173]: https://github.com/Rahix/avr-device/pull/173
 [#174]: https://github.com/Rahix/avr-device/pull/174
+[#182]: https://github.com/Rahix/avr-device/pull/182
 [#183]: https://github.com/Rahix/avr-device/pull/183
 [#185]: https://github.com/Rahix/avr-device/pull/185
 [#189]: https://github.com/Rahix/avr-device/pull/189
