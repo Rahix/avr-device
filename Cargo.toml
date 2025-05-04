@@ -109,7 +109,7 @@ optional = true
 [build-dependencies]
 svd2rust = "=0.36.1"
 svdtools = "=0.4.6"
-atdf2svd = "=0.5.0"
+atdf2svd = "=0.5.1"
 prettyplease = "=0.2.32"
 svd-rs = "=0.14.12"
 yaml-rust2 = "=0.10.1"
