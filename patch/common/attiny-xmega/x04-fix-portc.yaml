@@ -1,0 +1,261 @@
+PORTC:
+  DIR:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  DIRCLR:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  DIRSET:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  DIRTGL:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  IN:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  INTFLAGS:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  OUT:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  OUTCLR:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  OUTSET:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+  OUTTGL:
+    _add:
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
