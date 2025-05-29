@@ -1,0 +1,11 @@
+# Patches for the SPI peripheral
+#
+# Fix the SP2X status register bit to have write access
+SPI*:
+  SPSR:
+    _modify:
+      SPIF:
+        access: read-only
+      WCOL:
+        access: read-only
+ 

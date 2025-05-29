@@ -1,5 +1,7 @@
 //! This crate contains register definitions for
-
+#![cfg_attr(feature = "at90can128", doc = "**at90can128**,")]
+#![cfg_attr(feature = "at90can64", doc = "**at90can64**,")]
+#![cfg_attr(feature = "at90can32", doc = "**at90can32**,")]
 #![cfg_attr(feature = "at90usb1286", doc = "**at90usb1286**,")]
 #![cfg_attr(feature = "atmega1280", doc = "**atmega1280**,")]
 #![cfg_attr(feature = "atmega1284p", doc = "**atmega1284p**,")]
@@ -64,6 +66,9 @@
 )]
 //! Which chips the crate is built for depends on the feature flag used.
 //! The following chips are available (using feature flags of the same name):
+//! `at90can128`,
+//! `at90can64`,
+//! `at90can32`,
 //! `at90usb1286`,
 //! `atmega1280`,
 //! `atmega1284p`,
@@ -306,6 +311,12 @@ mod devices;
 
 include!(concat!(env!("OUT_DIR"), "/pac/vector.rs"));
 
+#[cfg(feature = "at90can128")]
+pub use crate::devices::at90can128;
+#[cfg(feature = "at90can64")]
+pub use crate::devices::at90can64;
+#[cfg(feature = "at90can32")]
+pub use crate::devices::at90can32;
 #[cfg(feature = "at90usb1286")]
 pub use crate::devices::at90usb1286;
 #[cfg(feature = "atmega1280")]

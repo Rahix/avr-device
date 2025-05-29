@@ -3,6 +3,24 @@
 #[no_mangle]
 pub(crate) static mut DEVICE_PERIPHERALS: bool = false;
 
+/// [AT90CAN128](https://www.microchip.com/wwwproducts/en/AT90CAN128)
+#[cfg(feature = "at90can128")]
+pub mod at90can128 {
+    include!(concat!(env!("OUT_DIR"), "/pac/at90can128.rs"));
+}
+
+/// [AT90CAN64](https://www.microchip.com/wwwproducts/en/AT90CAN64)
+#[cfg(feature = "at90can64")]
+pub mod at90can64 {
+    include!(concat!(env!("OUT_DIR"), "/pac/at90can64.rs"));
+}
+
+/// [AT90CAN32](https://www.microchip.com/wwwproducts/en/AT90CAN32)
+#[cfg(feature = "at90can32")]
+pub mod at90can32 {
+    include!(concat!(env!("OUT_DIR"), "/pac/at90can32.rs"));
+}
+
 /// [AT90USB1286](https://www.microchip.com/wwwproducts/en/AT90USB1286)
 #[cfg(feature = "at90usb1286")]
 pub mod at90usb1286 {
