@@ -1,0 +1,7 @@
+# attiny261a, attiny461a, attiny861a
+
+TC0:
+  TCCR0A:
+    _modify:
+      WGM00:
+        name: CTC0

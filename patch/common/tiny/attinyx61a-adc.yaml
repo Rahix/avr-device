@@ -1,20 +1,10 @@
-_include:
-  - "common/ac.yaml"
-  - "common/wdt.yaml"
-  - "common/tiny/usi.yaml"
-  - "common/tiny/attinyx61a-ports.yaml"
-
-# All FUSEs are read-only from the CPU.
-FUSE:
-  _modify:
-    "*":
-      access: read-only
+# attiny261a, attiny461a, attiny861a
 
 ADC:
   _modify:
-    ADCSR:
-      description: "ADC Control and Status Register"
-  ADCSR:
+    ADCSRA:
+      description: "ADC Control and Status Register A"
+  ADCSRA:
     ADPS:
       _replace_enum:
         PRESCALER_2: [1, "Prescaler Value 2"]
@@ -67,11 +57,15 @@ ADC:
         ADC10_ADC9_20X: [28, "Differential Inputs Positive ADC10 Negative ADC9 20x Gain"]
         ADC10_ADC9_1X: [29, "Differential Inputs Positive ADC10 Negative ADC9 1x Gain"]
 
-        ADC_VBG: [30, "Internal 1.18V Reference (VBG)"]
+        ADC_VREF_1P1: [30, "Internal 1.1V Reference"]
         ADC_GND: [31, "0V (GND)"]
+
+        # TODO: More mux settings are possible together with ADCSRB/MUX5=1
+
     REFS:
       _replace_enum:
         VCC: [0, "Vcc used as Voltage Reference, disconnected from Aref"]
         AREF: [1, "External Voltage Reference at AREF pin, Internal Voltage Reference turned off"]
-        INTERNAL: [2, "Internal 2.56V Voltage Reference without external bypass"]
-        INTERNAL_BYPASS: [3, "Internal 2.56V Voltage Reference with external bypass capacitor at AREF pin"]
+        INTERNAL: [2, "Internal 1.1V Voltage Reference"]
+
+        # TODO: More ref settings are possible together with ADCSRB/REFS2=1
