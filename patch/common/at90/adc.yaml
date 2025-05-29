@@ -1,0 +1,40 @@
+
+_include:
+  - "../adc.yaml"
+  
+ADC:
+  ADMUX:
+    MUX:
+      _replace_enum:
+        ADC0: [0, "ADC Single Ended Input pin 0"]
+        ADC1: [1, "ADC Single Ended Input pin 1"]
+        ADC2: [2, "ADC Single Ended Input pin 2"]
+        ADC3: [3, "ADC Single Ended Input pin 3"]
+        ADC4: [4, "ADC Single Ended Input pin 4"]
+        ADC5: [5, "ADC Single Ended Input pin 5"]
+        ADC6: [6, "ADC Single Ended Input pin 6"]
+        ADC7: [7, "ADC Single Ended Input pin 7"]
+        ADC0_ADC0_10X: [8, "ADC Differential Inputs Positive pin 0 Negative pin 0 10x Gain"]
+        ADC1_ADC0_10X: [9, "ADC Differential Inputs Positive pin 1 Negative pin 0 10x Gain"]
+        ADC0_ADC0_200X: [10, "ADC Differential Inputs Positive pin 0 Negative pin 0 200x Gain"]
+        ADC1_ADC0_200X: [11, "ADC Differential Inputs Positive pin 1 Negative pin 0 200x Gain"]
+        ADC2_ADC2_10X: [12, "ADC Differential Inputs Positive pin 2 Negative pin 2 10x Gain"]
+        ADC3_ADC2_10X: [13, "ADC Differential Inputs Positive pin 3 Negative pin 2 10x Gain"]
+        ADC2_ADC2_200X: [14, "ADC Differential Inputs Positive pin 2 Negative pin 2 200x Gain"]
+        ADC3_ADC2_200X: [15, "ADC Differential Inputs Positive pin 3 Negative pin 2 200x Gain"]
+        ADC0_ADC1_1X: [16, "ADC Differential Inputs Positive pin 0 Negative pin 1 1x Gain"]
+        ADC1_ADC1_1X: [17, "ADC Differential Inputs Positive pin 1 Negative pin 1 1x Gain"]
+        ADC2_ADC1_1X: [18, "ADC Differential Inputs Positive pin 2 Negative pin 1 1x Gain"]
+        ADC3_ADC1_1X: [19, "ADC Differential Inputs Positive pin 3 Negative pin 1 1x Gain"]
+        ADC4_ADC1_1X: [20, "ADC Differential Inputs Positive pin 4 Negative pin 1 1x Gain"]
+        ADC5_ADC1_1X: [21, "ADC Differential Inputs Positive pin 5 Negative pin 1 1x Gain"]
+        ADC6_ADC1_1X: [22, "ADC Differential Inputs Positive pin 6 Negative pin 1 1x Gain"]
+        ADC7_ADC1_1X: [23, "ADC Differential Inputs Positive pin 7 Negative pin 1 1x Gain"]
+        ADC0_ADC2_1X: [24, "ADC Differential Inputs Positive pin 0 Negative pin 2 1x Gain"]
+        ADC1_ADC2_1X: [25, "ADC Differential Inputs Positive pin 1 Negative pin 2 1x Gain"]
+        ADC2_ADC2_1X: [26, "ADC Differential Inputs Positive pin 2 Negative pin 2 1x Gain"]
+        ADC3_ADC2_1X: [27, "ADC Differential Inputs Positive pin 3 Negative pin 2 1x Gain"]
+        ADC4_ADC2_1X: [28, "ADC Differential Inputs Positive pin 4 Negative pin 2 1x Gain"]
+        ADC5_ADC2_1X: [29, "ADC Differential Inputs Positive pin 5 Negative pin 2 1x Gain"]
+        ADC_VBG: [30, "Internal Reference (VBG)"]
+        ADC_GND: [31, "0V (GND)"]

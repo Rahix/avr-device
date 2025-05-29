@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Better register definitions for peripherals of the ATmega128RFA1 ([#173]).
 
 ### Added
+- Support for `AT90CAN128`, `AT90CAN64`, and `AT90CAN32`.
 - Support for `ATtiny204`, `ATtiny804`, and `ATtiny1604` ([#182]).
 - Support for `ATtiny1606` ([#183]).
 - Support for `ATtiny1626` ([#185]). The `VPORTA.DIR` register is currently
