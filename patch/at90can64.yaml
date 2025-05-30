@@ -1,0 +1,5 @@
+_include:
+  - "common/ac.yaml"
+  - "common/at90/adc.yaml"
+  - "common/at90/spi.yaml"
+  - "common/at90/usart.yaml"

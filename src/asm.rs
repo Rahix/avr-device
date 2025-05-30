@@ -47,6 +47,7 @@ pub fn get_stack_size() -> usize {
         static __DATA_REGION_ORIGIN__: usize;
         static __DATA_REGION_LENGTH__: usize;
     }
+    
     use core::ptr::addr_of;
 
     cfg_if::cfg_if! {
@@ -92,12 +93,12 @@ pub fn get_stack_size() -> usize {
 /// has some caveats:
 ///
 /// - The delay may be significantly longer if an interrupt is serviced at the
-/// same time, since the delay loop will not be executing during the interrupt.
-/// If you need precise timing, use a hardware timer peripheral instead.
+///   same time, since the delay loop will not be executing during the interrupt.
+///   If you need precise timing, use a hardware timer peripheral instead.
 ///
 /// - The real-time delay depends on the CPU clock frequency. If you want to
-/// conveniently specify a delay value in real-time units like microseconds,
-/// then use the `delay` module in the HAL crate for your platform.
+///   conveniently specify a delay value in real-time units like microseconds,
+///   then use the `delay` module in the HAL crate for your platform.
 #[inline(always)]
 pub fn delay_cycles(cycles: u32) {
     cfg_if::cfg_if! {

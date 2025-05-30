@@ -109,7 +109,7 @@ impl InputFinder {
             let atdf_file = File::open(&atdf_path)
                 .map_err(io_error_in_path(&atdf_path))
                 .context("could not open ATDF file")?;
-            let atdf = atdf2svd::atdf::parse(atdf_file, &mut HashSet::new())
+            let atdf = atdf2svd::atdf::parse(atdf_file, &HashSet::new())
                 .map_err(atdf_error(&atdf_path))?;
             let patch_path = patches_dir.join(&mcu_name).with_extension("yaml");
             let patch = if patch_path
@@ -222,7 +222,7 @@ impl SvdGenerator {
         let svd_path = if let Some(patch) = &inputs.patch {
             let mut reader = svdtools::patch::process_reader(
                 unpatched_reader,
-                &patch,
+                patch,
                 &Default::default(),
                 &Default::default(),
             )
@@ -269,7 +269,7 @@ impl CodeGenerator {
         svd2rust_config.ident_formats = IdentFormats::legacy_theme();
 
         let generated_stream =
-            svd2rust::generate::device::render(&svd, &svd2rust_config, &mut String::new())
+            svd2rust::generate::device::render(svd, &svd2rust_config, &mut String::new())
                 .context("failed to generate svd2rust module")?;
 
         let mut syntax_tree: syn::File = syn::parse2(generated_stream)
@@ -293,7 +293,7 @@ impl CodeGenerator {
     ) -> anyhow::Result<()> {
         for item in syntax_tree.items.iter_mut() {
             if let syn::Item::Static(statik) = item {
-                if statik.ident.to_string() == "DEVICE_PERIPHERALS" {
+                if statik.ident == "DEVICE_PERIPHERALS" {
                     *item = syn::parse_quote! {use super::DEVICE_PERIPHERALS;};
                     return Ok(());
                 }
