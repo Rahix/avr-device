@@ -86,6 +86,7 @@ attiny1614 = ["device-selected"]
 attiny1626 = ["device-selected"]
 avr64du32 = ["device-selected"]
 avr64du28 = ["device-selected"]
+avr128db28 = ["device-selected"]
 rt = ["avr-device-macros"]
 
 critical-section = ["critical-section/restore-state-u8"]
