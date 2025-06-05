@@ -10,41 +10,9 @@ version = "0.7.0"
 features = ["atmega32u4"]
 ```
 
-Via the feature you can select which chip you want the register specifications for.  The following list is what is currently supported:
-
-|     ATmega      |  ATmega USB  | ATmega 0,1 Series |     AT90      |    ATtiny     |
-| :-------------: | :----------: | :---------------: | :-----------: | :-----------: |
-|    `atmega8`    | `atmega8u2`  |   `atmega3208`    | `at90usb1286` |  `attiny13a`  |
-|   `atmega48p`   | `atmega16u2` |   `atmega3209`    | `at90can128`  |  `attiny167`  |
-|   `atmega64`    | `atmega32u2` |   `atmega4808`    | `at90can64`   |  `attiny202`  |
-|   `atmega644`   | `atmega32u4` |   `atmega4809`    | `at90can32`   |  `attiny204`  |
-|   `atmega88p`   | `avr64du32`  |                   |               |  `attiny212`  |
-|   `atmega16`    | `avr64du28`  |                   |               |  `attiny214`  |
-|   `atmega168`   |              |                   |               |  `attiny26`   |
-|  `atmega324pa`  |              |                   |               |  `attiny261a` |
-|  `atmega328p`   |              |                   |               |  `attiny402`  |
-|  `atmega328pb`  |              |                   |               |  `attiny404`  |
-|  `atmega32a`    |              |                   |               |  `attiny412`  |
-|  `atmega1280`   |              |                   |               |  `attiny414`  |
-|  `atmega1284p`  |              |                   |               |  `attiny416`  |
-|  `atmega128a`   |              |                   |               |  `attiny44a`  |
-| `atmega128rfa1` |              |                   |               |  `attiny461a` |
-|  `atmega2560`   |              |                   |               |  `attiny84`   |
-|  `atmega164pa`  |              |                   |               |  `attiny85`   |
-|                 |              |                   |               |  `attiny88`   |
-|                 |              |                   |               |  `attiny804`  |
-|                 |              |                   |               |  `attiny816`  |
-|                 |              |                   |               |  `attiny828`  |
-|                 |              |                   |               |  `attiny841`  |
-|                 |              |                   |               |  `attiny84a`  |
-|                 |              |                   |               |  `attiny861`  |
-|                 |              |                   |               |  `attiny861a` |
-|                 |              |                   |               | `attiny1604`  |
-|                 |              |                   |               | `attiny1606`  |
-|                 |              |                   |               | `attiny1614`  |
-|                 |              |                   |               | `attiny1626`  |
-|                 |              |                   |               | `attiny2313`  |
-|                 |              |                   |               | `attiny2313a` |
+With the feature you can select which chip you want the register definitions
+for.  For a full list of supported AVR chips, please check
+[`Cargo.toml`](https://github.com/rahix/avr-device/blob/main/Cargo.toml#L30).
 
 ## Build Instructions
 The PACs (Peripheral Access Crates, or really modules, in our case) **are not**
