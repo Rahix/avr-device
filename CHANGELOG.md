@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Support for `AT90CAN128`, `AT90CAN64`, and `AT90CAN32` ([#206]).
+- Support for `AVR128DB28` ([#207]).
 - Support for `ATtiny204`, `ATtiny804`, and `ATtiny1604` ([#182]).
 - Support for `ATtiny1606` ([#183]).
 - Support for `ATtiny261A`, `ATtiny461A`, and `ATtiny861A` ([#179]).
@@ -49,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#189]: https://github.com/Rahix/avr-device/pull/189
 [#195]: https://github.com/Rahix/avr-device/pull/195
 [#206]: https://github.com/Rahix/avr-device/pull/206
+[#207]: https://github.com/Rahix/avr-device/pull/207
 
 
 ## [0.7.0] - 2025-01-05
