@@ -1,4 +1,22 @@
-# Nothing needed beyond common config
 # This is probably good for at least ATtiny212/214/412/414/416, but may not be valid for ATtiny81* and ATtiny161*
 
-{}
+TCD*:
+  EVCTRL?:
+    CFG:
+      _replace_enum:
+        NEITHER: [0, "Neither Filter nor Asynchronous Event is enabled"]
+        FILTERON: [1, "Input Capture Noise Cancellation Filter enabled"]
+        ASYNCON: [2, "Asynchronous Event output qualification enabled"]
+
+EVSYS:
+  # make ASYNCCHx, SYNCCHx, ASYNCUSERx and SYNCUSERx a rust slice
+  _modify:
+    "ASYNCUSER*":
+      description: "Users of asynchronous channels"
+    "SYNCUSER*":
+      description: "Users of synchronous channels"
+  _array:
+    "ASYNCCH*": {}
+    "SYNCCH*": {}
+    "ASYNCUSER*": {}
+    "SYNCUSER*": {}
