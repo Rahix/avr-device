@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for `ATtiny204`, `ATtiny804`, and `ATtiny1604` ([#182]).
 - Support for `ATtiny1606` ([#183]).
 - Support for `ATtiny261A`, `ATtiny461A`, and `ATtiny861A` ([#179]).
+- Support for `ATtiny417`, `ATtiny817`, `ATtiny1617`, and `ATtiny3217` ([#184]).
 - Support for `ATtiny1626` ([#185]). The `VPORTA.DIR` register is currently
   unavailable due to a compiler limitation.  See pull request for details.
 - Added `asm::get_stack_size()` function which returns the current size of the
@@ -46,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#179]: https://github.com/Rahix/avr-device/pull/179
 [#182]: https://github.com/Rahix/avr-device/pull/182
 [#183]: https://github.com/Rahix/avr-device/pull/183
+[#184]: https://github.com/Rahix/avr-device/pull/184
 [#185]: https://github.com/Rahix/avr-device/pull/185
 [#189]: https://github.com/Rahix/avr-device/pull/189
 [#195]: https://github.com/Rahix/avr-device/pull/195
