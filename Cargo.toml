@@ -118,7 +118,7 @@ version = "=0.7.0"
 optional = true
 
 [build-dependencies]
-svd2rust = { version = "=0.37.0", default-features = false }
+svd2rust = { version = "=0.37.1", default-features = false }
 svdtools = { version = "=0.5.0", default-features = false }
 atdf2svd = { version = "=0.5.1", default-features = false }
 prettyplease = "=0.2.37"
