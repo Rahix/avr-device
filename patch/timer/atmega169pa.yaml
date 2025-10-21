@@ -1,0 +1,77 @@
+TC0:
+  TCCR?A:
+    _delete:
+      - "WGM??"
+    _add:
+      WGM00:
+        description: Waveform Generation Mode
+        bitOffset: 6
+        bitWidth: 1
+        access: read-write
+      WGM01:
+        description: Waveform Generation Mode
+        bitOffset: 3
+        bitWidth: 1
+        access: read-write
+    _modify:
+      COM?A:
+        description: "Compare Output A Mode"
+        _write_constraint: enum
+      FOC??:
+        access: write-only
+    COM??:
+      _replace_enum:
+        DISCONNECTED:  [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE:  [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR:   [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at TOP)"]
+        MATCH_SET:     [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at TOP)"]
+    CS?:
+      _replace_enum:
+        NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+        DIRECT:        [1, "Running, No Prescaling"]
+        PRESCALE_8:    [2, "Running, CLK/8"]
+        PRESCALE_64:   [3, "Running, CLK/64"]
+        PRESCALE_256:  [4, "Running, CLK/256"]
+        PRESCALE_1024: [5, "Running, CLK/1024"]
+        EXT_FALLING:   [6, "Running, ExtClk Tx Falling Edge"]
+        EXT_RISING:    [7, "Running, ExtClk Tx Rising Edge"]
+
+TC1:
+  _include:
+    - "dev/16bit.yaml"
+
+TC2:
+  TCCR?A:
+    _delete:
+      - "WGM??"
+    _add:
+      WGM20:
+        description: Waveform Generation Mode
+        bitOffset: 6
+        bitWidth: 1
+        access: read-write
+      WGM21:
+        description: Waveform Generation Mode
+        bitOffset: 3
+        bitWidth: 1
+        access: read-write
+    _modify:
+      COM?A:
+        description: "Compare Output A Mode"
+        _write_constraint: enum
+    COM??:
+      _replace_enum:
+        DISCONNECTED:  [0, "Normal port operation, OCix disconnected"]
+        MATCH_TOGGLE:  [1, "Toggle OCix on Compare Match (Might depend on WGM)"]
+        MATCH_CLEAR:   [2, "Clear OCix on Compare Match (If PWM is enabled, OCix is set at TOP)"]
+        MATCH_SET:     [3, "Set OCix on Compare Match (If PWM is enabled, OCix is cleared at TOP)"]
+    CS?:
+      _replace_enum:
+        NO_CLOCK:      [0, "No clock source (Timer/Counter stopped)"]
+        DIRECT:        [1, "Running, No Prescaling"]
+        PRESCALE_8:    [2, "Running, CLK/8"]
+        PRESCALE_32:   [3, "Running, CLK/32"]
+        PRESCALE_64:   [4, "Running, CLK/64"]
+        PRESCALE_128:  [5, "Running, CLK/128"]
+        PRESCALE_256:  [6, "Running, CLK/256"]
+        PRESCALE_1024: [7, "Running, CLK/1024"]

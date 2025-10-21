@@ -8,6 +8,7 @@
 #![cfg_attr(feature = "atmega16", doc = "**atmega16**,")]
 #![cfg_attr(feature = "atmega164pa", doc = "**atmega164pa**,")]
 #![cfg_attr(feature = "atmega168", doc = "**atmega168**,")]
+#![cfg_attr(feature = "atmega169pa", doc = "**atmega169pa**,")]
 #![cfg_attr(feature = "atmega16u2", doc = "**atmega16u2**,")]
 #![cfg_attr(feature = "atmega2560", doc = "**atmega2560**,")]
 #![cfg_attr(feature = "atmega8", doc = "**atmega8**,")]
@@ -67,6 +68,7 @@
 //! `atmega16`,
 //! `atmega164pa`,
 //! `atmega168`,
+//! `atmega169pa`,
 //! `atmega16u2`,
 //! `atmega2560`,
 //! `atmega8`,
@@ -240,6 +242,7 @@ compile_error!(
     * atmega16
     * atmega164pa
     * atmega168
+    * atmega169pa
     * atmega16u2
     * atmega2560
     * atmega324pa
@@ -304,6 +307,8 @@ pub use crate::devices::atmega16;
 pub use crate::devices::atmega164pa;
 #[cfg(feature = "atmega168")]
 pub use crate::devices::atmega168;
+#[cfg(feature = "atmega169pa")]
+pub use crate::devices::atmega169pa;
 #[cfg(feature = "atmega16u2")]
 pub use crate::devices::atmega16u2;
 #[cfg(feature = "atmega2560")]
