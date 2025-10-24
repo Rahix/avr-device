@@ -6,6 +6,17 @@ _include:
   - "common/spi.yaml"
   - "timer/atmega169pa.yaml"
 
+EXINT:
+  EIMSK:
+    _delete:
+      - PCIE
+    _add:
+      PCIE:
+        description: "Pin Change Interrupt Enables"
+        bitOffset: 6
+        bitWidth: 2
+        access: read-write
+
 USART?:
   UCSR?B:
     _modify:
