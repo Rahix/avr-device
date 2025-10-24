@@ -11,10 +11,15 @@ EXINT:
     _delete:
       - PCIE
     _add:
-      PCIE:
-        description: "Pin Change Interrupt Enables"
+      PCIE0:
+        description: "Pin Change Interrupt Enable 0"
         bitOffset: 6
-        bitWidth: 2
+        bitWidth: 1
+        access: read-write
+      PCIE1:
+        description: "Pin Change Interrupt Enable 1"
+        bitOffset: 7
+        bitWidth: 1
         access: read-write
 
 USART?:
