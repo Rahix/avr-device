@@ -3,12 +3,116 @@
 #[cfg(target_arch = "avr")]
 use core::arch::asm;
 
-/// No Operation
+/// No Operation - Burn one CPU cycle
+///
+/// This emits exactly one NOP instruction and therefore burns at least one CPU cycle at runtime.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
 #[inline(always)]
 pub fn nop() {
     cfg_if::cfg_if! {
         if #[cfg(target_arch = "avr")] {
-            unsafe { asm!("nop") }
+            unsafe {
+                asm!(
+                    "nop",
+                    options(preserves_flags)
+                )
+            }
+        } else {
+            unimplemented!()
+        }
+    }
+}
+
+/// No Operation - Burn two CPU cycles
+///
+/// This emits a minimum amount of instructions to burn at least two CPU cycles at runtime.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
+#[inline(always)]
+pub fn nop2() {
+    cfg_if::cfg_if! {
+        if #[cfg(target_arch = "avr")] {
+            unsafe {
+                asm!(
+                    "rjmp 1f",
+                    "1:",
+                    options(preserves_flags)
+                )
+            }
+        } else {
+            unimplemented!()
+        }
+    }
+}
+
+/// No Operation - Burn three CPU cycles
+///
+/// This emits a minimum amount of instructions to burn at least three CPU cycles at runtime.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
+#[inline(always)]
+pub fn nop3() {
+    cfg_if::cfg_if! {
+        if #[cfg(target_arch = "avr")] {
+            unsafe {
+                asm!(
+                    "rjmp 1f",
+                    "1: nop",
+                    options(preserves_flags)
+                )
+            }
+        } else {
+            unimplemented!()
+        }
+    }
+}
+
+/// No Operation - Burn four CPU cycles
+///
+/// This emits a minimum amount of instructions to burn at least four CPU cycles at runtime.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
+#[inline(always)]
+pub fn nop4() {
+    cfg_if::cfg_if! {
+        if #[cfg(target_arch = "avr")] {
+            unsafe {
+                asm!(
+                    "rjmp 1f",
+                    "1: rjmp 2f",
+                    "2:",
+                    options(preserves_flags)
+                )
+            }
+        } else {
+            unimplemented!()
+        }
+    }
+}
+
+/// No Operation - Burn five CPU cycles
+///
+/// This emits a minimum amount of instructions to burn at least five CPU cycles at runtime.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
+#[inline(always)]
+pub fn nop5() {
+    cfg_if::cfg_if! {
+        if #[cfg(target_arch = "avr")] {
+            unsafe {
+                asm!(
+                    "rjmp 1f",
+                    "1: rjmp 2f",
+                    "2: nop",
+                    options(preserves_flags)
+                )
+            }
         } else {
             unimplemented!()
         }
@@ -16,11 +120,21 @@ pub fn nop() {
 }
 
 /// Sleep / Wait For Interrupt
+///
+/// Emit a SLEEP instruction.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
 #[inline(always)]
 pub fn sleep() {
     cfg_if::cfg_if! {
         if #[cfg(target_arch = "avr")] {
-            unsafe { asm!("sleep") }
+            unsafe {
+                asm!(
+                    "sleep",
+                    options(preserves_flags)
+                )
+            }
         } else {
             unimplemented!()
         }
@@ -28,11 +142,21 @@ pub fn sleep() {
 }
 
 /// Watchdog Reset
+///
+/// Emit a WDR instruction.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
 #[inline(always)]
 pub fn wdr() {
     cfg_if::cfg_if! {
         if #[cfg(target_arch = "avr")] {
-            unsafe { asm!("wdr") }
+            unsafe {
+                asm!(
+                    "wdr",
+                    options(preserves_flags)
+                )
+            }
         } else {
             unimplemented!()
         }
@@ -99,6 +223,9 @@ pub fn get_stack_size() -> usize {
 /// - The real-time delay depends on the CPU clock frequency. If you want to
 ///   conveniently specify a delay value in real-time units like microseconds,
 ///   then use the `delay` module in the HAL crate for your platform.
+///
+/// This function is an optimization fence.
+/// That means memory accesses will not be re-ordered by the compiler across this function call.
 #[inline(always)]
 pub fn delay_cycles(cycles: u32) {
     cfg_if::cfg_if! {
