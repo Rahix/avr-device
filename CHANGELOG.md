@@ -40,6 +40,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   unavailable due to a compiler limitation.  See pull request for details.
 - Added `asm::get_stack_size()` function which returns the current size of the
   stack ([#189]).  This function depends on the `rt` feature.
+- Added `asm::nop2()`, `asm::nop3()`, `asm::nop4()`, and `asm::nop5()`
+  functions that delay for precisely 2 to 5 cycles ([#228]).  These are useful
+  for precise timing in bit-banging.
 
 [#157]: https://github.com/Rahix/avr-device/pull/157
 [#173]: https://github.com/Rahix/avr-device/pull/173
@@ -53,6 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#195]: https://github.com/Rahix/avr-device/pull/195
 [#206]: https://github.com/Rahix/avr-device/pull/206
 [#207]: https://github.com/Rahix/avr-device/pull/207
+[#228]: https://github.com/Rahix/avr-device/pull/228
 
 
 ## [0.7.0] - 2025-01-05
