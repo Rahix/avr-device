@@ -1,7 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <avr-tools-device-file xmlns:xalan="http://xml.apache.org/xalan" xmlns:NumHelper="NumHelper" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schema-version="0.3" xsi:noNamespaceSchemaLocation="../../schema/avr_tools_device_file.xsd">
   <variants>
-    <variant tempmin="0" tempmax="0" speedmax="0" package="" ordercode="standard" vccmin="1.62" vccmax="5.5"/>
+    <variant tempmin="-40" tempmax="85" speedmax="20000000" package="TQFP32" ordercode="ATTINY828R-AUR" vccmin="1.62" vccmax="5.5"/>
+    <variant tempmin="-40" tempmax="85" speedmax="20000000" package="TQFP32" ordercode="ATTINY828-AU" vccmin="1.62" vccmax="5.5"/>
+    <variant tempmin="-40" tempmax="85" speedmax="20000000" package="TQFP32" ordercode="ATTINY828-AUR" vccmin="1.62" vccmax="5.5"/>
+    <variant tempmin="-40" tempmax="85" speedmax="20000000" package="VQFN32" ordercode="ATTINY828-MU" vccmin="1.62" vccmax="5.5"/>
+    <variant tempmin="-40" tempmax="85" speedmax="20000000" package="VQFN32" ordercode="ATTINY828-MUR" vccmin="1.62" vccmax="5.5"/>
+    <variant tempmin="-40" tempmax="85" speedmax="20000000" package="TQFP32" ordercode="ATTINY828R-AU" vccmin="1.62" vccmax="5.5"/>
   </variants>
   <devices>
     <device name="ATtiny828" architecture="AVR8" family="tinyAVR">
@@ -862,12 +867,12 @@
       <register-group caption="USART" name="USART">
         <register caption="USART I/O Data Register" name="UDR" offset="0xC6" size="1" mask="0xFF" ocd-rw=""/>
         <register caption="USART Control and Status Register A" name="UCSRA" offset="0xC0" size="1" ocd-rw="R">
-          <bitfield caption="USART Receive Complete" mask="0x80" name="RXC"/>
-          <bitfield caption="USART Transmitt Complete" mask="0x40" name="TXC"/>
-          <bitfield caption="USART Data Register Empty" mask="0x20" name="UDRE"/>
-          <bitfield caption="Framing Error" mask="0x10" name="FE"/>
-          <bitfield caption="Data overRun" mask="0x08" name="DOR"/>
-          <bitfield caption="Parity Error" mask="0x04" name="UPE"/>
+          <bitfield caption="USART Receive Complete" mask="0x80" name="RXC" rw="R"/>
+          <bitfield caption="USART Transmit Complete" mask="0x40" name="TXC"/>
+          <bitfield caption="USART Data Register Empty" mask="0x20" name="UDRE" rw="R"/>
+          <bitfield caption="Framing Error" mask="0x10" name="FE" rw="R"/>
+          <bitfield caption="Data Overrun" mask="0x08" name="DOR" rw="R"/>
+          <bitfield caption="Parity Error" mask="0x04" name="UPE" rw="R"/>
           <bitfield caption="Double the USART transmission speed" mask="0x02" name="U2X"/>
           <bitfield caption="Multi-processor Communication Mode" mask="0x01" name="MPCM"/>
         </register>
