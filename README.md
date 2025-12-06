@@ -46,7 +46,6 @@ To add a new chip:
    `cargo build --features <mcu>,rt`.
 7. Also check the built documentation for inconsistencies, via
    `cargo doc --features <mcu>,rt --open` (it will pop up in your browser).
-8. Update this README.md, adding the MCU to the table.
    
 ## Internals
 Since the vendor does not provide SVDs we can pass to [`svd2rust`][], we
