@@ -38,13 +38,14 @@ To add a new chip:
    but it should not include the top-level `_svd` key, as that's handled by the
    build system; If patching is unneeded (it's almost always needed!), the file
    can be omitted.
-4. Include the module into the tree, in [`devices.rs`](./src/devices.rs),
+4. Add the module as a feature in [`Cargo.toml`](./Cargo.toml), enabling `device-selected`.
+5. Include the module into the tree, in [`devices.rs`](./src/devices.rs),
    following the format used by other modules in that file;
-5. Update [`lib.rs`](./src/lib.rs) to conditionally `use` the new MCU module,
+6. Update [`lib.rs`](./src/lib.rs) to conditionally `use` the new MCU module,
    and add it to the lists of selected and available MCUs in the doc comment.
-6. Finally, try building the crate for your MCU with
+7. Finally, try building the crate for your MCU with
    `cargo build --features <mcu>,rt`.
-7. Also check the built documentation for inconsistencies, via
+8. Also check the built documentation for inconsistencies, via
    `cargo doc --features <mcu>,rt --open` (it will pop up in your browser).
    
 ## Internals
