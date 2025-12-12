@@ -5,10 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for `AVR128DB48` ([#234]).
+
 ### Fixed
 - Improved the register descriptions for `ATtiny828` ([#232]).
 
 [#232]: https://github.com/Rahix/avr-device/pull/232
+[#234]: https://github.com/Rahix/avr-device/pull/234
 
 
 ## [0.8.0] - 2025-11-30
