@@ -25,9 +25,9 @@ checksum = "7d902e3d592a523def97af8f317b08ce16b7ab854c1985a0c671e6f15cebc236"
 
 [[package]]
 name = "atdf2svd"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "179e5f106191a4d02437d8f66ed06f852e1a85774db29f934251d33cfec219fa"
+checksum = "d62644989789dfd059d5f5a1e9c7562f9803e2c8953e0c1acfb24b590a9cd850"
 dependencies = [
  "cfg-if",
  "log",

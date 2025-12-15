@@ -121,7 +121,7 @@ optional = true
 [build-dependencies]
 svd2rust = { version = "=0.37.1", default-features = false }
 svdtools = { version = "=0.5.0", default-features = false }
-atdf2svd = { version = "=0.5.1", default-features = false }
+atdf2svd = { version = "=0.6.0", default-features = false }
 prettyplease = "=0.2.37"
 svd-rs = { version = "=0.14.12", default-features = false }
 yaml-rust2 = { version = "=0.10.4", default-features = false }
