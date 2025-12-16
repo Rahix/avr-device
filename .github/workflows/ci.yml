@@ -43,7 +43,7 @@ jobs:
           RUSTFLAGS: "-C target-cpu=atmega328p"
 
       # Upload artifacts
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: avr-device
           path: |
