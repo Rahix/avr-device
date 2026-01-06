@@ -9,10 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for `AVR128DB48` ([#234]).
 
 ### Fixed
+- Fixed building executables that don't run with avr-libc versions >= 2.3.0 ([#240]).
 - Improved the register descriptions for `ATtiny828` ([#232]).
 
 [#232]: https://github.com/Rahix/avr-device/pull/232
 [#234]: https://github.com/Rahix/avr-device/pull/234
+[#240]: https://github.com/Rahix/avr-device/pull/240
 
 
 ## [0.8.0] - 2025-11-30
