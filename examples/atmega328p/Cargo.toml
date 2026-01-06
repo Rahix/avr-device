@@ -18,7 +18,7 @@ embedded-hal = "0.2.3"
 
 
 [dependencies.avr-device]
-version = "0.8"
+version = "0.8.1"
 path = "../.."
 features = ["atmega328p", "rt"]
 

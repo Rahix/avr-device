@@ -38,7 +38,7 @@ dependencies = [
 
 [[package]]
 name = "avr-device"
-version = "0.8.0"
+version = "0.8.1"
 dependencies = [
  "anyhow",
  "atdf2svd",
@@ -58,7 +58,7 @@ dependencies = [
 
 [[package]]
 name = "avr-device-macros"
-version = "0.8.0"
+version = "0.8.1"
 dependencies = [
  "proc-macro2",
  "quote",
