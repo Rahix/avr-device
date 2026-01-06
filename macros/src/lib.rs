@@ -109,6 +109,11 @@ pub fn entry(
         #(#cfgs)*
         #(#attrs)*
         #[doc(hidden)]
+        // Since avr-libc >= 2.3.0, pulling main in the .init9
+        // section is required to include it in the init sequence.
+        // Keeping the export name "main" is enough to maintain
+        // backward compatibility.
+        #[link_section = ".init9"]
         #[export_name = "main"]
         pub unsafe extern "C" fn #tramp_ident() {
             #ident(
