@@ -125,5 +125,5 @@ atdf2svd = { version = "=0.5.1", default-features = false }
 prettyplease = "=0.2.37"
 svd-rs = { version = "=0.14.12", default-features = false }
 yaml-rust2 = { version = "=0.10.4", default-features = false }
-syn = { version = "=2.0.110", default-features = false, features = ["full", "parsing"] }
+syn = { version = "=2.0.114", default-features = false, features = ["full", "parsing"] }
 anyhow = "1.0"
