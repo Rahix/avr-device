@@ -1,0 +1,211 @@
+PORTC:
+  DIR:
+    _add: &PORTC_FIELDS
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+  DIRSET:
+    _add: *PORTC_FIELDS
+  DIRCLR:
+    _add: *PORTC_FIELDS
+  DIRTGL:
+    _add: *PORTC_FIELDS
+  OUT:
+    _add: *PORTC_FIELDS
+  OUTSET:
+    _add: *PORTC_FIELDS
+  OUTCLR:
+    _add: *PORTC_FIELDS
+  OUTTGL:
+    _add: *PORTC_FIELDS
+  IN:
+    _add: *PORTC_FIELDS
+  INTFLAGS:
+    _add: *PORTC_FIELDS
+
+PORTD:
+  DIR:
+    _add: &PORTD_FIELDS
+      PD0:
+        description: Pin D0
+        bitRange: "[0:0]"
+        access: read-write
+      PD1:
+        description: Pin D1
+        bitRange: "[1:1]"
+        access: read-write
+      PD2:
+        description: Pin D2
+        bitRange: "[2:2]"
+        access: read-write
+      PD3:
+        description: Pin D3
+        bitRange: "[3:3]"
+        access: read-write
+      PD4:
+        description: Pin D4
+        bitRange: "[4:4]"
+        access: read-write
+      PD5:
+        description: Pin D5
+        bitRange: "[5:5]"
+        access: read-write
+      PD6:
+        description: Pin D6
+        bitRange: "[6:6]"
+        access: read-write
+      PD7:
+        description: Pin D7
+        bitRange: "[7:7]"
+        access: read-write
+  DIRSET:
+    _add: *PORTD_FIELDS
+  DIRCLR:
+    _add: *PORTD_FIELDS
+  DIRTGL:
+    _add: *PORTD_FIELDS
+  OUT:
+    _add: *PORTD_FIELDS
+  OUTSET:
+    _add: *PORTD_FIELDS
+  OUTCLR:
+    _add: *PORTD_FIELDS
+  OUTTGL:
+    _add: *PORTD_FIELDS
+  IN:
+    _add: *PORTD_FIELDS
+  INTFLAGS:
+    _add: *PORTD_FIELDS
+
+PORTF:
+  DIR:
+    _add: &PORTF_FIELDS
+      PF0:
+        description: Pin F0
+        bitRange: "[0:0]"
+        access: read-write
+      PF1:
+        description: Pin F1
+        bitRange: "[1:1]"
+        access: read-write
+      PF2:
+        description: Pin F2
+        bitRange: "[2:2]"
+        access: read-write
+      PF3:
+        description: Pin F3
+        bitRange: "[3:3]"
+        access: read-write
+      PF4:
+        description: Pin F4
+        bitRange: "[4:4]"
+        access: read-write
+      PF5:
+        description: Pin F5
+        bitRange: "[5:5]"
+        access: read-write
+      PF6:
+        description: Pin F6
+        bitRange: "[6:6]"
+        access: read-write
+  DIRSET:
+    _add: *PORTF_FIELDS
+  DIRCLR:
+    _add: *PORTF_FIELDS
+  DIRTGL:
+    _add: *PORTF_FIELDS
+  OUT:
+    _add: *PORTF_FIELDS
+  OUTSET:
+    _add: *PORTF_FIELDS
+  OUTCLR:
+    _add: *PORTF_FIELDS
+  OUTTGL:
+    _add: *PORTF_FIELDS
+  IN:
+    _add: *PORTF_FIELDS
+  INTFLAGS:
+    _add: *PORTF_FIELDS
+
+VPORTA:
+  OUT:
+    _add: &PORTA_FIELDS
+      PA0:
+        description: Pin A0
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: Pin A1
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: Pin A2
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: Pin A3
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: Pin A4
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: Pin A5
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: Pin A6
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: Pin A7
+        bitRange: "[7:7]"
+        access: read-write
+  IN:
+    _add: *PORTA_FIELDS
+  INTFLAGS:
+    _add: *PORTA_FIELDS
+
+VPORTC:
+  DIR:
+    _add: *PORTC_FIELDS
+  OUT:
+    _add: *PORTC_FIELDS
+  IN:
+    _add: *PORTC_FIELDS
+  INTFLAGS:
+    _add: *PORTC_FIELDS
+
+VPORTD:
+  DIR:
+    _add: *PORTD_FIELDS
+  OUT:
+    _add: *PORTD_FIELDS
+  IN:
+    _add: *PORTD_FIELDS
+  INTFLAGS:
+    _add: *PORTD_FIELDS
+
+VPORTF:
+  DIR:
+    _add: *PORTF_FIELDS
+  OUT:
+    _add: *PORTF_FIELDS
+  IN:
+    _add: *PORTF_FIELDS
+  INTFLAGS:
+    _add: *PORTF_FIELDS
