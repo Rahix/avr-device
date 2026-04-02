@@ -154,11 +154,6 @@ impl InputFinder {
                 "required path `{}` is missing",
                 path.display()
             ));
-        } else if path.is_symlink() {
-            return Err(anyhow::anyhow!(
-                "required path `{}` being a symlink is invalid",
-                path.display()
-            ));
         }
 
         if path.is_dir() {
