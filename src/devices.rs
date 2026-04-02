@@ -177,6 +177,12 @@ pub mod atmega88p {
     include!(concat!(env!("OUT_DIR"), "/pac/atmega88p.rs"));
 }
 
+/// [ATtiny10](https://www.microchip.com/wwwproducts/en/ATtiny10)
+#[cfg(feature = "attiny10")]
+pub mod attiny10 {
+    include!(concat!(env!("OUT_DIR"), "/pac/attiny10.rs"));
+}
+
 /// [ATtiny13A](https://www.microchip.com/wwwproducts/en/ATtiny13A)
 #[cfg(feature = "attiny13a")]
 pub mod attiny13a {
