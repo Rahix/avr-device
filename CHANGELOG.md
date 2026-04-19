@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for `ATtiny10` ([#252]).
+
+### Fixed
+- Fixed compilation with the Bazel build system ([#251]).  There was a symlink
+  check in our build script which interferes with Bazel's source organization.
+
+[#251]: https://github.com/Rahix/avr-device/pull/251
+[#252]: https://github.com/Rahix/avr-device/pull/252
 
 
 ## [0.8.1] - 2026-01-07
