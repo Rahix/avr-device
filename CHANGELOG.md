@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for `ATtiny10` ([#252]).
+- Support for `AVR128DB32` ([#259]).
 
 ### Fixed
 - Fixed compilation with the Bazel build system ([#251]).  There was a symlink
@@ -14,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [#251]: https://github.com/Rahix/avr-device/pull/251
 [#252]: https://github.com/Rahix/avr-device/pull/252
+[#259]: https://github.com/Rahix/avr-device/pull/259
 
 
 ## [0.8.1] - 2026-01-07
