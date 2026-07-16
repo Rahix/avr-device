@@ -10,12 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for `AVR128DB32` ([#259]).
 
 ### Fixed
+- `ATtiny412`: Fixed `TCA0` missing and a bunch of incorrect register fields ([#260]).
 - Fixed compilation with the Bazel build system ([#251]).  There was a symlink
   check in our build script which interferes with Bazel's source organization.
 
 [#251]: https://github.com/Rahix/avr-device/pull/251
 [#252]: https://github.com/Rahix/avr-device/pull/252
 [#259]: https://github.com/Rahix/avr-device/pull/259
+[#260]: https://github.com/Rahix/avr-device/pull/260
 
 
 ## [0.8.1] - 2026-01-07
