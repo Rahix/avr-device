@@ -515,7 +515,7 @@
                              index="0"
                              pad="PB0"/>
                      <signal field="PORTMUX.CTRLC.TCA00"
-                             function="TCA0_ALT"
+                             function="TCA0_ALT1"
                              group="WO"
                              index="0"
                              pad="PB3"/>
@@ -604,19 +604,19 @@
                              group="XDIR"
                              pad="PB0"/>
                      <signal field="PORTMUX.CTRLB.USART0"
-                             function="USART0_ALT"
+                             function="USART0_ALT1"
                              group="RXD"
                              pad="PA2"/>
                      <signal field="PORTMUX.CTRLB.USART0"
-                             function="USART0_ALT"
+                             function="USART0_ALT1"
                              group="TXD"
                              pad="PA1"/>
                      <signal field="PORTMUX.CTRLB.USART0"
-                             function="USART0_ALT"
+                             function="USART0_ALT1"
                              group="XCK"
                              pad="PA3"/>
                      <signal field="PORTMUX.CTRLB.USART0"
-                             function="USART0_ALT"
+                             function="USART0_ALT1"
                              group="XDIR"
                              pad="PA4"/>
                   </signals>
@@ -902,7 +902,7 @@
                       offset="0x05"
                       rw="RW"
                       size="1">
-               <bitfield caption="Sample lenght" mask="0x1F" name="SAMPLEN" rw="RW"/>
+               <bitfield caption="Sample length" mask="0x1F" name="SAMPLEN" rw="RW"/>
             </register>
             <register caption="Positive mux input"
                       initval="0x00"
@@ -1253,7 +1253,8 @@
                <bitfield caption="Clock Source Selection"
                          mask="0x40"
                          name="CLKSRC"
-                         rw="RW"/>
+                         rw="RW"
+                         values="CCL_CLKSRC"/>
                <bitfield caption="Edge Detection Enable"
                          mask="0x80"
                          name="EDGEDET"
@@ -1313,7 +1314,8 @@
                <bitfield caption="Clock Source Selection"
                          mask="0x40"
                          name="CLKSRC"
-                         rw="RW"/>
+                         rw="RW"
+                         values="CCL_CLKSRC"/>
                <bitfield caption="Edge Detection Enable"
                          mask="0x80"
                          name="EDGEDET"
@@ -1358,6 +1360,10 @@
                <bitfield caption="Truth Table" mask="0xFF" name="TRUTH" rw="RW"/>
             </register>
          </register-group>
+         <value-group caption="Clock Source Selection" name="CCL_CLKSRC">
+            <value caption="CLK_PER is clocking the LUT" name="CLKPER" value="0x0"/>
+            <value caption="IN[2] is clocking the LUT" name="IN2" value="0x1"/>
+         </value-group>
          <value-group caption="Edge Detection Enable select" name="CCL_EDGEDET">
             <value caption="Edge detector is disabled" name="DIS" value="0x0"/>
             <value caption="Edge detector is enabled" name="EN" value="0x1"/>
@@ -1449,7 +1455,7 @@
                       offset="0x02"
                       rw="RW"
                       size="1">
-               <bitfield caption="lock ebable" mask="0x01" name="LOCKEN" rw="RW"/>
+               <bitfield caption="Lock enable" mask="0x01" name="LOCKEN" rw="RW"/>
             </register>
             <register caption="MCLK Status"
                       initval="0x00"
@@ -1508,8 +1514,8 @@
             </register>
          </register-group>
          <value-group caption="Clock select" name="CLKCTRL_CLKSEL">
-            <value caption="20MHz internal oscillator" name="OSC20M" value="0x00"/>
-            <value caption="32KHz internal Ultra Low Power oscillator"
+            <value caption="16/20MHz internal oscillator" name="OSC20M" value="0x00"/>
+            <value caption="32.768kHz internal ultra low-power oscillator"
                    name="OSCULP32K"
                    value="0x01"/>
             <value caption="External clock" name="EXTCLK" value="0x03"/>
@@ -3251,7 +3257,7 @@
             <register caption="Revision ID"
                       name="REVID"
                       offset="0x01"
-                      rw="RW"
+                      rw="R"
                       size="1"/>
             <register caption="External Break"
                       initval="0x00"

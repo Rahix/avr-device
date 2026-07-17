@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ATtiny412`: Fixed `TCA0` missing and a bunch of incorrect register fields ([#260]).
 - Fixed compilation with the Bazel build system ([#251]).  There was a symlink
   check in our build script which interferes with Bazel's source organization.
+- Normalized all tinyAVR 0/1-series vendor ATDFs to a single Microchip pack
+  version (`ATtiny_DFP.3.4.278`).  The previous set mixed versions: some
+  parts were older schema-0.3 files that encoded `TCA` as a `class="union"`
+  register-group, which `atdf2svd` cannot handle (leaving the generated PAC
+  without `TCA0`).  The `.278` pack encodes `TCA` as an ordinary
+  register-group, so `TCA0` is generated correctly.  `attiny1614` was
+  additionally a pre-release schema-0.3 file with wrong CCL pin data.
 
 [#251]: https://github.com/Rahix/avr-device/pull/251
 [#252]: https://github.com/Rahix/avr-device/pull/252

@@ -1608,7 +1608,8 @@
                <bitfield caption="Clock Source Selection"
                          mask="0x40"
                          name="CLKSRC"
-                         rw="RW"/>
+                         rw="RW"
+                         values="CCL_CLKSRC"/>
                <bitfield caption="Edge Detection Enable"
                          mask="0x80"
                          name="EDGEDET"
@@ -1665,7 +1666,8 @@
                <bitfield caption="Clock Source Selection"
                          mask="0x40"
                          name="CLKSRC"
-                         rw="RW"/>
+                         rw="RW"
+                         values="CCL_CLKSRC"/>
                <bitfield caption="Edge Detection Enable"
                          mask="0x80"
                          name="EDGEDET"
@@ -1707,6 +1709,10 @@
                       rw="RW"
                       size="1"/>
          </register-group>
+         <value-group caption="Clock Source Selection" name="CCL_CLKSRC">
+            <value caption="CLK_PER is clocking the LUT" name="CLKPER" value="0x0"/>
+            <value caption="IN[2] is clocking the LUT" name="IN2" value="0x1"/>
+         </value-group>
          <value-group caption="Edge Detection Enable select" name="CCL_EDGEDET">
             <value caption="Edge detector is disabled" name="DIS" value="0x0"/>
             <value caption="Edge detector is enabled" name="EN" value="0x1"/>
@@ -3930,7 +3936,7 @@
             <register caption="Revision ID"
                       name="REVID"
                       offset="0x01"
-                      rw="RW"
+                      rw="R"
                       size="1"/>
             <register caption="External Break"
                       initval="0x00"
