@@ -1,0 +1,5 @@
+# VPORTA starts at address 0x0 on mega0 devices. Keep the virtual port usable
+# by dropping the zero-offset DIR register, matching the existing workaround
+# already used for newer tiny/xmega parts in this repo.
+VPORTA:
+  _delete: DIR

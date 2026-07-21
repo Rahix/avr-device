@@ -1,0 +1,221 @@
+VPORTA:
+  OUT:
+    _add: &PORTA_FIELDS
+      PA0:
+        description: Pin A0
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: Pin A1
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: Pin A2
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: Pin A3
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: Pin A4
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: Pin A5
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: Pin A6
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: Pin A7
+        bitRange: "[7:7]"
+        access: read-write
+  IN:
+    _add: *PORTA_FIELDS
+  INTFLAGS:
+    _add: *PORTA_FIELDS
+
+VPORTB:
+  DIR:
+    _add: &PORTB_FIELDS
+      PB0:
+        description: Pin B0
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: Pin B1
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: Pin B2
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: Pin B3
+        bitRange: "[3:3]"
+        access: read-write
+      PB4:
+        description: Pin B4
+        bitRange: "[4:4]"
+        access: read-write
+      PB5:
+        description: Pin B5
+        bitRange: "[5:5]"
+        access: read-write
+  OUT:
+    _add: *PORTB_FIELDS
+  IN:
+    _add: *PORTB_FIELDS
+  INTFLAGS:
+    _add: *PORTB_FIELDS
+
+VPORTC:
+  DIR:
+    _add: &PORTC_FIELDS
+      PC0:
+        description: Pin C0
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: Pin C1
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: Pin C2
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: Pin C3
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: Pin C4
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: Pin C5
+        bitRange: "[5:5]"
+        access: read-write
+      PC6:
+        description: Pin C6
+        bitRange: "[6:6]"
+        access: read-write
+      PC7:
+        description: Pin C7
+        bitRange: "[7:7]"
+        access: read-write
+  OUT:
+    _add: *PORTC_FIELDS
+  IN:
+    _add: *PORTC_FIELDS
+  INTFLAGS:
+    _add: *PORTC_FIELDS
+
+VPORTD:
+  DIR:
+    _add: &PORTD_FIELDS
+      PD0:
+        description: Pin D0
+        bitRange: "[0:0]"
+        access: read-write
+      PD1:
+        description: Pin D1
+        bitRange: "[1:1]"
+        access: read-write
+      PD2:
+        description: Pin D2
+        bitRange: "[2:2]"
+        access: read-write
+      PD3:
+        description: Pin D3
+        bitRange: "[3:3]"
+        access: read-write
+      PD4:
+        description: Pin D4
+        bitRange: "[4:4]"
+        access: read-write
+      PD5:
+        description: Pin D5
+        bitRange: "[5:5]"
+        access: read-write
+      PD6:
+        description: Pin D6
+        bitRange: "[6:6]"
+        access: read-write
+      PD7:
+        description: Pin D7
+        bitRange: "[7:7]"
+        access: read-write
+  OUT:
+    _add: *PORTD_FIELDS
+  IN:
+    _add: *PORTD_FIELDS
+  INTFLAGS:
+    _add: *PORTD_FIELDS
+
+VPORTE:
+  DIR:
+    _add: &PORTE_FIELDS
+      PE0:
+        description: Pin E0
+        bitRange: "[0:0]"
+        access: read-write
+      PE1:
+        description: Pin E1
+        bitRange: "[1:1]"
+        access: read-write
+      PE2:
+        description: Pin E2
+        bitRange: "[2:2]"
+        access: read-write
+      PE3:
+        description: Pin E3
+        bitRange: "[3:3]"
+        access: read-write
+  OUT:
+    _add: *PORTE_FIELDS
+  IN:
+    _add: *PORTE_FIELDS
+  INTFLAGS:
+    _add: *PORTE_FIELDS
+
+VPORTF:
+  DIR:
+    _add: &PORTF_FIELDS
+      PF0:
+        description: Pin F0
+        bitRange: "[0:0]"
+        access: read-write
+      PF1:
+        description: Pin F1
+        bitRange: "[1:1]"
+        access: read-write
+      PF2:
+        description: Pin F2
+        bitRange: "[2:2]"
+        access: read-write
+      PF3:
+        description: Pin F3
+        bitRange: "[3:3]"
+        access: read-write
+      PF4:
+        description: Pin F4
+        bitRange: "[4:4]"
+        access: read-write
+      PF5:
+        description: Pin F5
+        bitRange: "[5:5]"
+        access: read-write
+      PF6:
+        description: Pin F6
+        bitRange: "[6:6]"
+        access: read-write
+  OUT:
+    _add: *PORTF_FIELDS
+  IN:
+    _add: *PORTF_FIELDS
+  INTFLAGS:
+    _add: *PORTF_FIELDS

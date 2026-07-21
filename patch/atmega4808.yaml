@@ -1,2 +1,3 @@
 _include:
-  - "common/mega0/port.yaml"
+  - "common/mega0/common.yaml"
+  - "common/mega0/32pin.yaml"
