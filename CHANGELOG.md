@@ -13,11 +13,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ATtiny412`: Fixed `TCA0` missing and a bunch of incorrect register fields ([#260]).
 - Fixed compilation with the Bazel build system ([#251]).  There was a symlink
   check in our build script which interferes with Bazel's source organization.
+- Fixed cargo dependency resolution errors like
+  ```text
+  error: failed to select a version for `syn`.
+  ```
+  caused by `avr-device` having had a pinned version of `syn` in its
+  build-dependencies. Same fix for `yaml-rust2` ([#267]).
 
 [#251]: https://github.com/Rahix/avr-device/pull/251
 [#252]: https://github.com/Rahix/avr-device/pull/252
 [#259]: https://github.com/Rahix/avr-device/pull/259
 [#260]: https://github.com/Rahix/avr-device/pull/260
+[#267]: https://github.com/Rahix/avr-device/pull/267
 
 
 ## [0.8.1] - 2026-01-07
