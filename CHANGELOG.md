@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+
+## [0.9.0] - 2026-08-04
 ### Added
 - Support for `ATtiny10` ([#252]).
 - Support for `AVR128DB32` ([#259]).
@@ -395,7 +398,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial release with support for `ATmega1280`, `ATmega328P`, `ATmega32U4`,
 `ATmega64`, `ATmega8`, `ATtiny85`.
 
-[Unreleased]: https://github.com/Rahix/avr-device/compare/v0.8.1...HEAD
+[Unreleased]: https://github.com/Rahix/avr-device/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/Rahix/avr-device/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/Rahix/avr-device/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/Rahix/avr-device/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/Rahix/avr-device/compare/v0.6.0...v0.7.0
