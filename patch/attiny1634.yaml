@@ -1,0 +1,303 @@
+_include:
+  - "common/eeprom.yaml"
+
+ADC:
+  ADMUX:
+    _modify:
+      MUX:
+        description: "Analog Channel Selection Bits"
+    MUX:
+      _replace_enum:
+        ADC0:     [0, "ADC Single Ended Input pin 0"]
+        ADC1:     [1, "ADC Single Ended Input pin 1"]
+        ADC2:     [2, "ADC Single Ended Input pin 2"]
+        ADC3:     [3, "ADC Single Ended Input pin 3"]
+        ADC4:     [4, "ADC Single Ended Input pin 4"]
+        ADC5:     [5, "ADC Single Ended Input pin 5"]
+        ADC6:     [6, "ADC Single Ended Input pin 6"]
+        ADC7:     [7, "ADC Single Ended Input pin 7"]
+        ADC8:     [8, "ADC Single Ended Input pin 8"]
+        ADC9:     [9, "ADC Single Ended Input pin 9"]
+        ADC10:    [10, "ADC Single Ended Input pin 10"]
+        ADC11:    [11, "ADC Single Ended Input pin 11"]
+        ADC_GND:  [12, "0V (GND)"]
+        ADC_VBG:  [13, "Internal Reference (VBG)"]
+        TEMPSENS: [14, "Temperature sensor"]
+    REFS:
+      _replace_enum:
+        AVCC: [0, "AVcc"]
+        AREF: [1, "External voltage reference (AREF)"]
+        INTERNAL_11: [2, "Internal 1.1V Voltage Reference"]
+  ADCSRA:
+    ADPS:
+      _replace_enum:
+        PRESCALER_2: [1, "Prescaler Value 2"]
+        PRESCALER_4: [2, "Prescaler Value 4"]
+        PRESCALER_8: [3, "Prescaler Value 8"]
+        PRESCALER_16: [4, "Prescaler Value 16"]
+        PRESCALER_32: [5, "Prescaler Value 32"]
+        PRESCALER_64: [6, "Prescaler Value 64"]
+        PRESCALER_128: [7, "Prescaler Value 128"]
+
+WDT:
+  WDTCSR,WDTCR:
+    _delete:
+      - WDP
+    _add:
+      WDPL:
+        description: "Watchdog Timer Prescaler - Low Bits"
+        bitRange: "[2:0]"
+      WDPH:
+        description: "Watchdog Timer Prescaler - High Bit"
+        bitRange: "[5:5]"
+    WDPL:
+      CYCLES_512_128K: [0, "- 512 cycles, ~16ms/128K (131072) cycles, ~4s if WDPH is set"]
+      CYCLES_1K_256K:  [1, "- 1024 cycles, ~32ms/1024K (262144) cycles, ~8s if WDPH is set"]
+      CYCLES_2K:       [2, "- 2048 cycles, ~64ms"]
+      CYCLES_4K:       [3, "- 4096 (16384) cycles, ~0.125s"]
+      CYCLES_8K:       [4, "- 8192 (32768) cycles, ~0.25s"]
+      CYCLES_16K:      [5, "- 16K (65536) cycles, ~0.5s"]
+      CYCLES_32K:      [6, "- 32K (131072) cycles, ~1s"]
+      CYCLES_64K:      [7, "- 64K (262144) cycles, ~2s"]
+
+PORTA:
+  DDRA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: "Pin A3"
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: "Pin A4"
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: "Pin A5"
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: "Pin A6"
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: "Pin A7"
+        bitRange: "[7:7]"
+        access: read-write
+  PINA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: "Pin A3"
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: "Pin A4"
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: "Pin A5"
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: "Pin A6"
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: "Pin A7"
+        bitRange: "[7:7]"
+        access: read-write
+  PORTA:
+    _add:
+      PA0:
+        description: "Pin A0"
+        bitRange: "[0:0]"
+        access: read-write
+      PA1:
+        description: "Pin A1"
+        bitRange: "[1:1]"
+        access: read-write
+      PA2:
+        description: "Pin A2"
+        bitRange: "[2:2]"
+        access: read-write
+      PA3:
+        description: "Pin A3"
+        bitRange: "[3:3]"
+        access: read-write
+      PA4:
+        description: "Pin A4"
+        bitRange: "[4:4]"
+        access: read-write
+      PA5:
+        description: "Pin A5"
+        bitRange: "[5:5]"
+        access: read-write
+      PA6:
+        description: "Pin A6"
+        bitRange: "[6:6]"
+        access: read-write
+      PA7:
+        description: "Pin A7"
+        bitRange: "[7:7]"
+        access: read-write
+
+
+PORTB:
+  DDRB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+  PINB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+
+  PORTB:
+    _add:
+      PB0:
+        description: "Pin B0"
+        bitRange: "[0:0]"
+        access: read-write
+      PB1:
+        description: "Pin B1"
+        bitRange: "[1:1]"
+        access: read-write
+      PB2:
+        description: "Pin B2"
+        bitRange: "[2:2]"
+        access: read-write
+      PB3:
+        description: "Pin B3"
+        bitRange: "[3:3]"
+        access: read-write
+
+PORTC:
+  DDRC:
+    _add:
+      PC0:
+        description: "Pin C0"
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: "Pin C1"
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: "Pin C2"
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: "Pin C3"
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: "Pin C4"
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: "Pin C5"
+        bitRange: "[5:5]"
+        access: read-write
+  PINC:
+    _add:
+      PC0:
+        description: "Pin C0"
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: "Pin C1"
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: "Pin C2"
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: "Pin C3"
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: "Pin C4"
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: "Pin C5"
+        bitRange: "[5:5]"
+        access: read-write
+  PORTC:
+    _add:
+      PC0:
+        description: "Pin C0"
+        bitRange: "[0:0]"
+        access: read-write
+      PC1:
+        description: "Pin C1"
+        bitRange: "[1:1]"
+        access: read-write
+      PC2:
+        description: "Pin C2"
+        bitRange: "[2:2]"
+        access: read-write
+      PC3:
+        description: "Pin C3"
+        bitRange: "[3:3]"
+        access: read-write
+      PC4:
+        description: "Pin C4"
+        bitRange: "[4:4]"
+        access: read-write
+      PC5:
+        description: "Pin C5"
+        bitRange: "[5:5]"
+        access: read-write
