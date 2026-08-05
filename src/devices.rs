@@ -225,6 +225,12 @@ pub mod attiny1617 {
     include!(concat!(env!("OUT_DIR"), "/pac/attiny1617.rs"));
 }
 
+/// [ATtiny1634](https://www.microchip.com/wwwproducts/en/ATtiny1634)
+#[cfg(feature = "attiny1634")]
+pub mod attiny1634 {
+    include!(concat!(env!("OUT_DIR"), "/pac/attiny1634.rs"));
+}
+
 /// [ATtiny3217](https://www.microchip.com/wwwproducts/en/ATtiny3217)
 #[cfg(feature = "attiny3217")]
 pub mod attiny3217 {
