@@ -36,6 +36,7 @@
 #![cfg_attr(feature = "attiny1614", doc = "**attiny1614**,")]
 #![cfg_attr(feature = "attiny1617", doc = "**attiny1617**,")]
 #![cfg_attr(feature = "attiny1626", doc = "**attiny1626**,")]
+#![cfg_attr(feature = "attiny1634", doc = "**attiny1634**,")]
 #![cfg_attr(feature = "attiny3217", doc = "**attiny3217**,")]
 #![cfg_attr(feature = "attiny202", doc = "**attiny202**,")]
 #![cfg_attr(feature = "attiny204", doc = "**attiny204**,")]
@@ -416,6 +417,8 @@ pub use crate::devices::attiny1614;
 pub use crate::devices::attiny1617;
 #[cfg(feature = "attiny1626")]
 pub use crate::devices::attiny1626;
+#[cfg(feature = "attiny1634")]
+pub use crate::devices::attiny1634;
 #[cfg(feature = "attiny3217")]
 pub use crate::devices::attiny3217;
 #[cfg(feature = "attiny167")]
