@@ -17,11 +17,11 @@ jobs:
 
       # Rust Dependencies
       - name: Install Stable Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v2
         with:
           toolchain: stable
       - name: Install Nightly Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v2
         with:
           toolchain: nightly-2025-04-27
           components: rustfmt,rust-src
@@ -58,7 +58,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
       - name: Install Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v2
         with:
           toolchain: nightly-2025-04-27
           rustflags: ""
