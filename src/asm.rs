@@ -251,6 +251,7 @@ pub fn delay_cycles(cycles: u32) {
                     r3 = inout(reg_upper) cycles_bytes[3],
                 )
             }
+            let _ = cycles_bytes;
         } else {
             let _ = cycles;
             unimplemented!()
